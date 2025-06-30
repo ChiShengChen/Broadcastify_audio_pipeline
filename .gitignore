@@ -1,0 +1,38 @@
+# Python standard ignores
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.env
+venv/
+env/
+*.egg-info/
+
+# IDE and editor specific
+.vscode/
+.idea/
+
+# Data and output files from the audio pipeline
+# These paths are relative to the project root (`ems_call/` directory)
+
+# Raw and converted audio data folders
+converted_audio/
+final_wav_data_*/
+*_speech_segments/
+merged_audio_*/
+data/
+*_data/
+*_data_*/
+
+# Test data and experiment folders
+test_data_*/
+test_exp_data_*/
+
+# Transcription output
+*_transcriptions/
+
+# Generated plots, logs, and other files
+*.png
+*.log 
+*.zip
