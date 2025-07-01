@@ -45,6 +45,12 @@ The scripts should be run in the following order. **Important:** Before running 
     1.  Update `folder_path` and `save_path` at the bottom of the script.
     2.  Run the script: `python ems_call/count_file_stat.py`
 
+- **Script:** `calculate_average_duration.py`
+- **Purpose:** Scans a directory to count the total number of `.wav` files and calculate their average duration. Useful for getting a baseline understanding of raw data or VAD segments.
+- **Usage:**
+    1.  Update `TARGET_DIR` to the folder you want to analyze.
+    2.  Run the script: `python ems_call/calculate_average_duration.py`
+
 ### Step 4: Detect Speech Segments (VAD)
 
 - **Script:** `wav_vad_only_w_timepoint.py`
@@ -53,28 +59,54 @@ The scripts should be run in the following order. **Important:** Before running 
     1.  Update `input_folder` and `output_folder`.
     2.  Run the script: `python ems_call/wav_vad_only_w_timepoint.py`
 
-### Step 5: Concatenate Speech Segments
+### Step 5: Merge Segments into Coherent Calls
 
-- **Script:** `concat_audio_w_adative_1min.py`
-- **Purpose:** Merges the speech segments created in the previous step. It intelligently adds silence for short gaps (< 60s) between segments or creates a new file for long gaps (> 60s).
+- **Script:** `merge_calls_by_timestamp.py`
+- **Purpose:** Intelligently merges the fragmented speech segments from Step 4 into coherent calls. It identifies breaks between calls by analyzing the silence duration between segments, which is the recommended merging method.
+- **Usage:**
+    1.  Update `INPUT_DIR` and `OUTPUT_DIR`.
+    2.  Adjust `CALL_BREAK_THRESHOLD_S` (e.g., 15 seconds) to define what constitutes a new call.
+    3.  Run the script: `python ems_call/merge_calls_by_timestamp.py`
+
+- **(Alternative) Script:** `concat_audio_w_adative_1min.py`
+- **Purpose:** A simpler method to merge speech segments. It adds silence for short gaps (< 60s) or creates a new file for long gaps (> 60s).
 - **Usage:**
     1.  Update `base_dir` and `output_dir`.
     2.  Run the script: `python ems_call/concat_audio_w_adative_1min.py`
 
-### Step 6: Filter and Enhance Audio
+### Step 6: Post-Processing and Analysis of Merged Calls (Optional)
+
+This stage involves analyzing and filtering the calls merged in the previous step.
+
+-   **Analyze Call Durations:**
+    -   **Script:** `analyze_merged_call_stats.py`
+    -   **Purpose:** Counts the total number of merged calls and categorizes them by duration (e.g., <1 min, 1-2 min, >2 min) to understand the distribution of call lengths.
+    -   **Usage:** Update `TARGET_DIR` and run `python ems_call/analyze_merged_call_stats.py`.
+
+-   **Filter Long Calls:**
+    -   **Script:** `copy_long_calls.py`
+    -   **Purpose:** Copies calls that are longer than a specified duration (e.g., 60 seconds) into a new directory for focused analysis, while preserving the folder structure.
+    -   **Usage:** Update `SOURCE_DIR`, `DEST_DIR`, and `MIN_DURATION_S`, then run `python ems_call/copy_long_calls.py`.
+
+-   **Generate Audio Properties Log:**
+    -   **Script:** `analyze_audio_properties.py`
+    -   **Purpose:** Scans a folder of audio files, extracts key properties (duration, sample rate, channels, bit depth), and saves the information into a detailed `.csv` log file.
+    -   **Usage:** Update `TARGET_DIR` and `OUTPUT_LOG_FILE`, then run `python ems_call/analyze_audio_properties.py`.
+
+### Step 7: Filter and Enhance Audio
 
 - **Script:** `audio_filter_enhance_plot.py`
 - **Purpose:** Applies various audio processing techniques (Wiener filter for noise reduction, high-pass filter, and a band-pass filter for speech enhancement) to the audio files. It saves the processed audio and generates plots for visual comparison of the original vs. enhanced audio.
 - **Usage:**
-    1.  Update `input_folder_path` to the directory containing the audio you want to process (e.g., the output from Step 5).
+    1.  Update `input_folder_path` to the directory containing the audio you want to process (e.g., the output from Step 5 or the filtered calls from Step 6).
     2.  Run the script: `python ems_call/audio_filter_enhance_plot.py`
 
-### Step 7: Transcribe Audio to Text
+### Step 8: Transcribe Audio to Text
 
 - **Script:** `batch_transcribe_and_save_whisper_models_new.py`
 - **Purpose:** Performs batch transcription on the processed audio files using different Whisper models (`tiny`, `medium`, `large-v2`, etc.). It organizes the text outputs into subdirectories based on the model used and skips files that have already been transcribed.
 - **Usage:**
-    1.  Update `input_directory` and `base_output_dir`.
+    1.  Update `input_directory` and `base_output_dir`. The input can be any directory with audio files, such as the output from Step 7.
     2.  Run the script: `python ems_call/batch_transcribe_and_save_whisper_models_new.py` 
 
 ---
