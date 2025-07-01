@@ -134,4 +134,9 @@ This directory contains additional scripts for various specialized tasks, experi
     -   **Purpose:** A utility to check for missing files within a specified date range in a folder. It compares expected filenames (based on YYYYMMDD format) against existing files.
 
 -   **`test_ping.py`**
-    -   **Purpose:** A simple script to test network connectivity to `broadcastify.com` by sending a request and saving the HTML response. 
+    -   **Purpose:** A simple script to test network connectivity to `broadcastify.com` by sending a request and saving the HTML response.  
+ 
+---  
+## Related Repo:  
+https://github.com/ChiShengChen/broadcastify_mp3_crawler  
+https://github.com/ChiShengChen/whisper_audio_translate  
