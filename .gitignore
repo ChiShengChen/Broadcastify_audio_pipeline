@@ -24,7 +24,7 @@ merged_audio_*/
 data/
 *_data/
 *_data_*/
-
+random*/
 # Test data and experiment folders
 test_data_*/
 test_exp_data_*/
