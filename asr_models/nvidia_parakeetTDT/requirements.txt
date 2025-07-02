@@ -1,0 +1,17 @@
+# NVIDIA NeMo and Parakeet TDT dependencies
+nemo-toolkit[asr]>=1.20.0
+torch>=2.0.0
+torchaudio>=2.0.0
+transformers>=4.30.0
+librosa>=0.10.0
+soundfile>=0.12.0
+numpy>=1.21.0
+hydra-core>=1.3.0
+omegaconf>=2.3.0
+pytorch-lightning>=2.0.0
+datasets>=2.10.0
+
+librosa
+torch
+transformers
+nemo_toolkit[asr] 
