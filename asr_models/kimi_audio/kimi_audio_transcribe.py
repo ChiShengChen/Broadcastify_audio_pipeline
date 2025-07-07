@@ -40,7 +40,8 @@ def transcribe_audio_files(source_dir, model_id="moonshotai/Kimi-Audio-7B-Instru
             model_id,
             torch_dtype=torch_dtype,
             trust_remote_code=True,
-            attn_implementation="sdpa" # a more efficient attention mechanism
+            # attn_implementation="sdpa" # a more efficient attention mechanism
+            attn_implementation="eager" # stop using flash attention
         )
         model.to(device)
         logger.info("模型載入成功")
@@ -87,8 +88,9 @@ def transcribe_audio_files(source_dir, model_id="moonshotai/Kimi-Audio-7B-Instru
                     audio_array, sampling_rate = librosa.load(str(wav_file), sr=16000)
 
                     # 準備模型輸入
+                    # 參考官方用法，提供明確的英文轉錄指令
                     messages = [
-                        {"role": "user", "content": "<audio>"},
+                        {"role": "user", "content": "The following is a conversation in English. Please transcribe it.<audio>"},
                     ]
                     prompt = processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
                     inputs = processor(prompt, audios=audio_array, return_tensors="pt", padding=True)
