@@ -33,6 +33,6 @@ test_exp_data_*/
 *_transcriptions/
 
 # Generated plots, logs, and other files
-*.png
+# *.png
 *.log 
 *.zip
