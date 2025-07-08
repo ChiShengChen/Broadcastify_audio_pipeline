@@ -1,0 +1,17 @@
+# Basic data handling and plotting
+pandas
+matplotlib
+seaborn
+
+# System and audio metrics
+psutil
+pynvml
+librosa
+
+# Core ML/ASR Libraries
+torch
+transformers
+openai-whisper
+
+# For NVIDIA Models (Canary and Parakeet)
+nemo_toolkit[asr] 
