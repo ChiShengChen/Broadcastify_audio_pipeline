@@ -1,52 +1,73 @@
 #!/usr/bin/env python3
 """
-簡單的 NVIDIA Parakeet TDT 英文轉錄執行腳本
+A simple wrapper script to run NVIDIA Parakeet TDT transcription.
 """
 
-import sys
 import os
-from pathlib import Path
+import subprocess
+import argparse
+import torch
 
-# 添加當前目錄到系統路徑
-current_dir = Path(__file__).parent
-sys.path.append(str(current_dir))
+def run_batch_transcription(source_dir, model_name="parakeet-tdt-0.6b-v2"):
+    """
+    Sets up the environment and calls the main transcription script.
+    """
+    print("="*60)
+    print("NVIDIA Parakeet TDT 0.6B v2 English Audio Transcription Tool")
+    print(f"Source Directory: {source_dir}")
+    print(f"Model Name: {model_name}")
+    print("="*60)
+    print()
 
-# 導入轉錄模組
-from parakeet_transcribe import main
+    # Check for GPU
+    if torch.cuda.is_available():
+        print(f"✓ GPU detected: {torch.cuda.get_device_name()}")
+        print(f"  GPU Memory: {torch.cuda.get_device_properties(0).total_memory // 1024**3} GB")
+    else:
+        print("⚠ No GPU detected, using CPU (processing will be slower).")
+    
+    print()
+    print("Model Information:")
+    print("  - Using Model: NVIDIA Parakeet TDT 0.6B v2")
+    print("  - Model Type: CTC (Connectionist Temporal Classification)")
+    print("  - Language Support: English")
+    print("  - Model Size: ~600M parameters")
+    print("  - Domain: General-purpose speech recognition")
+    print()
+    
+    print("Starting English transcription process...")
+    print("Note: The model will be downloaded on the first run. Please be patient.")
+    print("Audio files will be processed in 30-second chunks.")
+    print()
+
+    # The main logic is in `parakeet_transcribe.py`. This script just calls it.
+    # We are keeping the hardcoded source directory as the main script expects it.
+    script_path = os.path.join(os.path.dirname(__file__), 'parakeet_transcribe.py')
+
+    try:
+        subprocess.run(['python', script_path], check=True)
+    except FileNotFoundError:
+        print(f"Error: Could not find the transcription script at {script_path}.")
+    except subprocess.CalledProcessError as e:
+        print(f"An error occurred while running the transcription script: {e}")
+
+    print("\nTranscription process finished!")
+    print("Results have been saved in their respective source folders.")
+    print(f"Filename format: {model_name}_<original_filename>.txt")
+
 
 if __name__ == "__main__":
-    print("="*60)
-    print("NVIDIA Parakeet TDT 0.6B v2 英文音頻轉錄工具")
-    print("="*60)
-    print()
+    parser = argparse.ArgumentParser(description="Run batch transcription using NVIDIA Parakeet TDT.")
     
-    # 檢查是否有GPU
-    import torch
-    if torch.cuda.is_available():
-        print(f"✓ 檢測到GPU: {torch.cuda.get_device_name()}")
-        print(f"  GPU 記憶體: {torch.cuda.get_device_properties(0).total_memory // 1024**3} GB")
-    else:
-        print("⚠ 未檢測到GPU，將使用CPU（處理速度較慢）")
+    # The underlying script has a hardcoded source directory.
+    # If it were parameterized, we would add an argument for it here.
+    # parser.add_argument("source_dir", type=str, help="Directory containing sub-folders of .wav files.")
     
-    print()
-    print("模型資訊:")
-    print("  - 使用模型: NVIDIA Parakeet TDT 0.6B v2")
-    print("  - 模型類型: CTC (Connectionist Temporal Classification)")
-    print("  - 語言支援: 英文")
-    print("  - 模型大小: ~600M 參數")
-    print("  - 專業領域: 通用語音識別")
-    print()
+    parser.add_argument("--model_name", type=str, default="parakeet-tdt-0.6b-v2", 
+                        help="The name to use for the output files.")
     
-    print("開始英文轉錄處理...")
-    print("注意：首次運行時會下載模型文件，請耐心等待")
-    print("語言設置：英文 (English)")
-    print("音頻文件會被分割成30秒片段進行處理")
-    print()
+    args = parser.parse_args()
     
-    # 執行主要轉錄程序
-    main()
-    
-    print()
-    print("轉錄程序執行完成！")
-    print("轉錄結果已保存在各自的源文件夾中")
-    print("文件名格式: parakeet-tdt-0.6b-v2_{原始文件名}.txt") 
+    # Using the hardcoded path from the main script.
+    hardcoded_source_dir = "/media/meow/One Touch/ems_call/long_calls_filtered"
+    run_batch_transcription(hardcoded_source_dir, args.model_name) 

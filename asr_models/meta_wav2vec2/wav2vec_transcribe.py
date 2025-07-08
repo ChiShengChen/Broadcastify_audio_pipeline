@@ -1,158 +1,119 @@
 #!/usr/bin/env python3
 """
-Meta Wav2Vec2 英文音頻轉錄腳本
-用於將 long_calls_filtered 目錄中的音頻文件轉換為文字
+Meta Wav2Vec2 English Audio Transcription Script
+Used to transcribe audio files in the long_calls_filtered directory into text
 """
 
 import os
 import torch
-import librosa
-import numpy as np
-from pathlib import Path
-import logging
+import torchaudio
+import torchaudio.transforms as T
+import argparse
 from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor
-import warnings
 
-# 忽略一些警告信息
-warnings.filterwarnings("ignore")
-
-# 設定日誌
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-
-def transcribe_audio_files(source_dir, model_name="wav2vec-xls-r"):
+def transcribe_audio(model_name, audio_path, hf_token=None):
     """
-    使用 Wav2Vec2 英文模型轉錄音頻文件
+    Transcribe an audio file using a specified Wav2Vec 2.0 model.
     
     Args:
-        source_dir (str): 包含音頻文件的源目錄路徑
-        model_name (str): 模型名稱，預設為 "wav2vec-xls-r"
+        model_name (str): The name of the model on Hugging Face Hub or a local path.
+        audio_path (str): Path to the audio file.
+        hf_token (str, optional): Hugging Face Hub token for private models.
     """
-    
-    # 檢查 CUDA 是否可用
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    logger.info(f"使用設備: {device}")
-    
-    # 載入 Wav2Vec2 模型和處理器
-    model_id = "facebook/wav2vec2-large-960h-lv60-self"  # 英文模型
-    logger.info(f"載入 Wav2Vec2 英文模型: {model_id}")
-    
+    # Load model and processor
+    print(f"Loading model: {model_name}...")
     try:
-        processor = Wav2Vec2Processor.from_pretrained(model_id)
-        model = Wav2Vec2ForCTC.from_pretrained(model_id)
-        model.to(device)
-        model.eval()
-        logger.info("模型載入成功")
+        # If a local path is provided and exists, load from there
+        if os.path.isdir(model_name):
+            model = Wav2Vec2ForCTC.from_pretrained(model_name)
+            processor = Wav2Vec2Processor.from_pretrained(model_name)
+        else:
+            # Otherwise, load from Hugging Face Hub
+            model = Wav2Vec2ForCTC.from_pretrained(model_name, use_auth_token=hf_token)
+            processor = Wav2Vec2Processor.from_pretrained(model_name, use_auth_token=hf_token)
     except Exception as e:
-        logger.error(f"載入模型失敗: {e}")
-        return
+        print(f"Error loading model {model_name}: {e}")
+        return None
     
-    # 取得源目錄路徑
-    source_path = Path(source_dir)
-    if not source_path.exists():
-        logger.error(f"源目錄不存在: {source_dir}")
-        return
-    
-    # 統計變數
-    total_files = 0
-    transcribed_files = 0
-    skipped_files = 0
-    
-    # 遍歷所有子目錄
-    for subdir in source_path.iterdir():
-        if subdir.is_dir():
-            logger.info(f"處理目錄: {subdir.name}")
-            
-            # 在子目錄中尋找 .wav 文件
-            wav_files = list(subdir.glob("*.wav"))
-            
-            for wav_file in wav_files:
-                total_files += 1
-                
-                # 生成轉錄文件名
-                transcript_filename = f"{model_name}_{wav_file.stem}.txt"
-                transcript_path = wav_file.parent / transcript_filename
-                
-                # 檢查轉錄文件是否已存在
-                if transcript_path.exists():
-                    logger.info(f"跳過已存在的轉錄文件: {transcript_filename}")
-                    skipped_files += 1
-                    continue
-                
-                try:
-                    logger.info(f"轉錄文件: {wav_file.name}")
-                    
-                    # 讀取音頻文件
-                    audio, sample_rate = librosa.load(str(wav_file), sr=16000)
-                    
-                    # 將音頻分割成較小的片段以避免記憶體問題
-                    chunk_length = 16000 * 30  # 30秒片段
-                    chunks = []
-                    
-                    for i in range(0, len(audio), chunk_length):
-                        chunk = audio[i:i + chunk_length]
-                        if len(chunk) > 0:
-                            chunks.append(chunk)
-                    
-                    # 處理每個片段並合併結果
-                    transcripts = []
-                    
-                    for i, chunk in enumerate(chunks):
-                        logger.info(f"處理片段 {i+1}/{len(chunks)}")
-                        
-                        # 預處理音頻
-                        inputs = processor(chunk, sampling_rate=16000, return_tensors="pt", padding=True)
-                        inputs = {k: v.to(device) for k, v in inputs.items()}
-                        
-                        # 執行推理
-                        with torch.no_grad():
-                            logits = model(**inputs).logits
-                        
-                        # 解碼結果
-                        predicted_ids = torch.argmax(logits, dim=-1)
-                        transcription = processor.batch_decode(predicted_ids)[0]
-                        
-                        if transcription.strip():
-                            transcripts.append(transcription.strip())
-                    
-                    # 合併所有片段的轉錄結果
-                    final_transcript = " ".join(transcripts)
-                    
-                    # 保存轉錄結果
-                    with open(transcript_path, 'w', encoding='utf-8') as f:
-                        f.write(final_transcript)
-                    
-                    logger.info(f"轉錄完成，保存為: {transcript_filename}")
-                    transcribed_files += 1
-                    
-                except Exception as e:
-                    logger.error(f"轉錄文件 {wav_file.name} 時發生錯誤: {e}")
-                    continue
-    
-    # 輸出統計結果
-    logger.info("="*50)
-    logger.info("轉錄完成統計:")
-    logger.info(f"總共找到音頻文件: {total_files}")
-    logger.info(f"成功轉錄文件: {transcribed_files}")
-    logger.info(f"跳過的文件: {skipped_files}")
-    logger.info("="*50)
+    # Move model to GPU if available
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model.to(device)
+    print(f"Model loaded successfully on {device}.")
 
-def main():
-    # 設定路徑
-    source_directory = "/media/meow/One Touch/ems_call/long_calls_filtered"
-    model_name = "wav2vec-xls-r"
-    
-    logger.info("開始 Wav2Vec2 英文音頻轉錄程序")
-    logger.info(f"源目錄: {source_directory}")
-    logger.info(f"使用模型: {model_name}")
-    
-    # 檢查源目錄是否存在
-    if not os.path.exists(source_directory):
-        logger.error(f"源目錄不存在: {source_directory}")
-        return
-    
-    # 開始轉錄
-    transcribe_audio_files(source_directory, model_name)
+    # Load and resample audio file
+    try:
+        print(f"Loading audio file: {audio_path}...")
+        speech_array, sampling_rate = torchaudio.load(audio_path)
+        
+        # Resample if sampling rate is not 16kHz
+        if sampling_rate != 16000:
+            resampler = T.Resample(orig_freq=sampling_rate, new_freq=16000)
+            speech_array = resampler(speech_array)
+            sampling_rate = 16000
 
-if __name__ == "__main__":
-    main() 
+    except Exception as e:
+        print(f"Error loading or resampling audio file {audio_path}: {e}")
+        return None
+
+    try:
+        print("Processing audio...")
+        input_values = processor(speech_array.squeeze(), sampling_rate=sampling_rate, return_tensors="pt").input_values
+        
+        # Move input to GPU if available
+        input_values = input_values.to(device)
+
+        # Perform inference
+        with torch.no_grad():
+            logits = model(input_values).logits
+
+        # Decode to get predicted token IDs
+        predicted_ids = torch.argmax(logits, dim=-1)
+        
+        # Decode token IDs to text
+        transcription = processor.decode(predicted_ids[0])
+        
+        return transcription.strip()
+    
+    except Exception as e:
+        print(f"Error during transcription: {e}")
+        return None
+
+def main(args):
+    """Main function to handle argument parsing and transcription."""
+    
+    # Perform transcription
+    transcribed_text = transcribe_audio(args.model, args.audio_file, args.hf_token)
+    
+    if transcribed_text is not None:
+        print("\n--- Transcription Result ---")
+        print(transcribed_text)
+        print("--------------------------\n")
+        
+        # Determine the output filename
+        if args.output_file:
+            output_path = args.output_file
+        else:
+            # Auto-generate output filename in the format: <model_name>_<original_filename>.txt
+            audio_basename = os.path.splitext(os.path.basename(args.audio_file))[0]
+            model_basename = args.model.split('/')[-1] # Get model name from path
+            output_filename = f"{model_basename}_{audio_basename}.txt"
+            output_path = os.path.join(os.getcwd(), output_filename)
+        
+        # Write transcription result to file
+        try:
+            with open(output_path, 'w', encoding='utf-8') as f:
+                f.write(transcribed_text)
+            print(f"Transcription successfully saved to: {output_path}")
+        except IOError as e:
+            print(f"Error writing to output file {output_path}: {e}")
+
+if __name__ == '__main__':
+    # Setup ArgumentParser
+    parser = argparse.ArgumentParser(description="Transcribe an audio file using a specified Wav2Vec 2.0 model.")
+    parser.add_argument("model", type=str, help="Name of the Wav2Vec 2.0 model from Hugging Face Hub or a local path.")
+    parser.add_argument("audio_file", type=str, help="Path to the audio file to be transcribed.")
+    parser.add_argument("--output_file", type=str, default=None, help="Optional. Path to save the transcription text file. If not provided, it will be saved in the current directory.")
+    parser.add_argument("--hf_token", type=str, default=None, help="Optional. Hugging Face Hub token for models that require authentication.")
+    
+    args = parser.parse_args()
+    main(args)

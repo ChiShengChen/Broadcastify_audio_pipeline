@@ -1,84 +1,87 @@
-# Meta Wav2Vec2 音頻轉錄工具
+# Meta Wav2Vec2 Audio Transcription Tool
 
-這個工具使用 Meta 的 Wav2Vec2 模型將音頻文件轉換為英文文字。
+This tool uses Meta's Wav2Vec2 model to transcribe English audio files into text.
 
-## 模型特點
+## Model Features
 
-- **模型**: facebook/wav2vec2-large-960h-lv60-self
-- **語言**: 英文 (English)
-- **參數量**: ~300M
-- **特色**: 在 LibriSpeech 960小時英文語料庫上訓練的高性能模型
+- **Model**: `facebook/wav2vec2-large-960h-lv60-self` (or other compatible models)
+- **Language**: English
+- **Parameters**: ~300M
+- **Highlights**: A high-performance model trained on the LibriSpeech 960-hour English corpus.
 
-## 安裝依賴
+## Installation
 
-在使用前，請先安裝必要的依賴：
+Before using the tool, please install the necessary dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 使用方法
+## Usage
 
-### 方法1：使用簡單運行腳本（推薦）
+There are two ways to use this tool: for a single file or for a batch of files in a directory.
 
+### Method 1: Transcribing a Directory of .wav files (Recommended)
+
+Use the `run_transcription.py` script to process all `.wav` files in a given directory.
+
+**Syntax:**
 ```bash
-python run_transcription.py
+python run_transcription.py <source_directory> [--model MODEL_NAME] [--output_dir OUTPUT_DIRECTORY] [--hf_token HF_TOKEN]
 ```
 
-### 方法2：直接運行主腳本
-
+**Example:**
 ```bash
-python wav2vec_transcribe.py
+# Transcribe all .wav files in 'my_audio_files' using the default model
+python run_transcription.py ./my_audio_files
+
+# Use a different model and specify an output directory
+python run_transcription.py ./my_audio_files --model 'jonatasgrosman/wav2vec2-large-xls-r-51-espeak-cv-ft' --output_dir ./transcripts
 ```
 
-## 功能特點
+### Method 2: Transcribing a Single Audio File
 
-- 自動遍歷 `/media/meow/One Touch/ems_call/long_calls_filtered` 目錄中的所有子目錄
-- 自動找到每個子目錄中的 .wav 文件
-- 使用 Wav2Vec2 英文模型進行轉錄
-- 轉錄結果保存為 `wav2vec-xls-r_{原始文件名}.txt` 格式
-- 自動將長音頻分割成30秒片段處理，避免記憶體問題
-- 自動跳過已存在的轉錄文件
-- 支持 GPU 加速（如果可用）
-- 詳細的進度日誌
+Use the `wav2vec_transcribe.py` script for more granular control over a single file.
 
-## 輸出格式
-
-轉錄文件將保存在與原始音頻文件相同的目錄中，文件名格式為：
-```
-wav2vec-xls-r_{原始wav文件名}.txt
+**Syntax:**
+```bash
+python wav2vec_transcribe.py <model_name> <audio_file_path> [--output_file OUTPUT_PATH] [--hf_token HF_TOKEN]
 ```
 
-例如：
-- 原始文件：`202412061019-707526-14744_call_6.wav`
-- 轉錄文件：`wav2vec-xls-r_202412061019-707526-14744_call_6.txt`
+**Example:**
+```bash
+# Transcribe a single file with the default model
+python wav2vec_transcribe.py facebook/wav2vec2-large-960h-lv60-self ./my_audio.wav
 
-## 處理方式
+# Specify an output file
+python wav2vec_transcribe.py facebook/wav2vec2-large-960h-lv60-self ./my_audio.wav --output_file ./my_transcription.txt
+```
 
-- 音頻文件會自動重新採樣到 16kHz
-- 長音頻文件會被分割成30秒片段進行處理
-- 每個片段的轉錄結果會自動合併
 
-## 系統要求
+## Features
+
+- **Flexible**: Transcribe a single audio file or batch process an entire directory.
+- **Custom Models**: Supports any Wav2Vec2-compatible model from the Hugging Face Hub or a local path.
+- **Automatic Naming**: Generates clear, descriptive output filenames based on the model and audio file name.
+- **GPU Acceleration**: Automatically uses GPU if available for faster processing.
+- **Resampling**: Audio files are automatically resampled to the required 16kHz.
+
+## Output Format
+
+When using the batch script (`run_transcription.py`), transcriptions are saved in the execution directory by default. The output filename is generated automatically:
+```
+<model_basename>_<original_wav_basename>.txt
+```
+
+**Example:**
+- **Original file**: `202412061019-707526-14744_call_6.wav`
+- **Model**: `facebook/wav2vec2-large-960h-lv60-self`
+- **Transcription file**: `wav2vec2-large-960h-lv60-self_202412061019-707526-14744_call_6.txt`
+
+## System Requirements
 
 - Python 3.8+
-- PyTorch（支持CUDA優化）
-- Transformers 庫
-- Librosa 音頻處理庫
-- 足夠的磁盤空間（首次運行會下載約1.2GB的模型文件）
-
-## 與 Whisper 的比較
-
-| 特性 | Wav2Vec2 | Whisper |
-|------|----------|---------|
-| 模型大小 | ~1.2GB | ~3GB |
-| 語言專精 | 英文優化 | 多語言通用 |
-| 記憶體需求 | 較低 | 較高 |
-| 處理方式 | 片段處理 | 整體處理 |
-
-## 注意事項
-
-- 首次運行時會自動下載 Wav2Vec2 模型（約1.2GB）
-- 如果系統有GPU，會自動使用GPU加速
-- 長音頻文件會被自動分割處理，確保記憶體使用效率
-- 模型專為英文語音識別優化，對英文語音有更好的識別效果 
+- PyTorch (CUDA support recommended for performance)
+- Transformers library
+- torchaudio library
+- Sufficient disk space for model downloads (the default model is ~1.2GB). 

@@ -1,41 +1,62 @@
 #!/usr/bin/env python3
 """
-簡單的英文轉錄執行腳本
+A simple wrapper script to run OpenAI Whisper transcription.
 """
 
-import sys
 import os
-from pathlib import Path
+import subprocess
+import argparse
+import torch
 
-# 添加當前目錄到系統路徑
-current_dir = Path(__file__).parent
-sys.path.append(str(current_dir))
+def run_batch_transcription(source_dir, model_name="large-v3"):
+    """
+    Sets up the environment and calls the main Whisper transcription script.
+    """
+    print("="*60)
+    print(f"OpenAI Whisper {model_name} English Audio Transcription Tool")
+    print(f"Source Directory: {source_dir}")
+    print("="*60)
+    print()
 
-# 導入轉錄模組
-from whisper_transcribe import main
+    # Check for GPU
+    if torch.cuda.is_available():
+        print(f"✓ GPU detected: {torch.cuda.get_device_name()}")
+    else:
+        print("⚠ No GPU detected, using CPU (processing will be slower).")
+    
+    print()
+    print("Starting English transcription process...")
+    print("Note: The model will be downloaded on the first run. Please be patient.")
+    print()
+
+    # The main logic is in `whisper_transcribe.py`. This script just calls it.
+    # We are keeping the hardcoded source directory as the main script expects it.
+    script_path = os.path.join(os.path.dirname(__file__), 'whisper_transcribe.py')
+
+    try:
+        # Since `whisper_transcribe.py` is hardcoded, we don't need to pass arguments.
+        # If it were parameterized, we would pass them here.
+        subprocess.run(['python', script_path], check=True)
+    except FileNotFoundError:
+        print(f"Error: Could not find the transcription script at {script_path}.")
+    except subprocess.CalledProcessError as e:
+        print(f"An error occurred while running the transcription script: {e}")
+
+    print("\nTranscription process finished!")
+    print("Results have been saved in their respective source folders.")
+
 
 if __name__ == "__main__":
-    print("="*60)
-    print("OpenAI Whisper Large-v3 英文音頻轉錄工具")
-    print("="*60)
-    print()
+    parser = argparse.ArgumentParser(description="Run batch transcription using OpenAI Whisper.")
     
-    # 檢查是否有GPU
-    import torch
-    if torch.cuda.is_available():
-        print(f"✓ 檢測到GPU: {torch.cuda.get_device_name()}")
-    else:
-        print("⚠ 未檢測到GPU，將使用CPU（處理速度較慢）")
+    # The underlying `whisper_transcribe.py` script has hardcoded paths and model names.
+    # If it were parameterized, we would add arguments here.
+    # For example:
+    # parser.add_argument("source_dir", type=str, help="Directory containing sub-folders of .wav files.")
+    # parser.add_argument("--model_name", type=str, default="large-v3", help="Name of the Whisper model to use.")
     
-    print()
-    print("開始英文轉錄處理...")
-    print("注意：首次運行時會下載模型文件，請耐心等待")
-    print("語言設置：英文 (English)")
-    print()
+    args = parser.parse_args()
     
-    # 執行主要轉錄程序
-    main()
-    
-    print()
-    print("轉錄程序執行完成！")
-    print("轉錄結果已保存在各自的源文件夾中") 
+    # Using the hardcoded path from the main script.
+    hardcoded_source_dir = "/media/meow/One Touch/ems_call/long_calls_filtered"
+    run_batch_transcription(hardcoded_source_dir) 
