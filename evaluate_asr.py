@@ -2,23 +2,8 @@ import os
 import pandas as pd
 import jiwer
 import glob
+import argparse
 from collections import defaultdict
-
-# --- Configuration ---
-GROUND_TRUTH_FILE = '/media/meow/One Touch/ems_call/vb_ems_anotation/human_anotation_vb.csv'
-# Directories containing the text files from various models
-TRANSCRIPT_DIRS = [
-    # '/media/meow/One Touch/ems_call/random_samples_1',
-    # '/media/meow/One Touch/ems_call/random_samples_2'
-    '/media/meow/One Touch/ems_call/random_samples_1_preprocessed',
-    '/media/meow/One Touch/ems_call/random_samples_2_preprocessed'
-]
-OUTPUT_CSV_FILE = '/media/meow/One Touch/ems_call/asr_preprocessed_evaluation_results.csv'
-
-# Known model prefixes used in the filenames.
-# The script will try to match these at the start of filenames.
-KNOWN_MODEL_PREFIXES = ['large-v3', 'wav2vec-xls-r', 'parakeet-tdt-0.6b-v2', 'canary-1b']
-# ---------------------
 
 # A standard transformation for both reference and hypothesis strings
 transformation = jiwer.Compose([
@@ -42,14 +27,14 @@ def load_ground_truth(filepath):
         print(f"Error: Ground truth file not found at {filepath}")
         return None
 
-def parse_filename(filepath):
+def parse_filename(filepath, known_model_prefixes):
     """
     Parses a filepath like '.../large-v3_202412010133-841696-14744_call_2.txt'
     and returns the model name and the ground truth key (e.g., '..._call_2.wav').
     Returns: (model_name, ground_truth_key) or (None, None)
     """
     basename = os.path.basename(filepath)
-    for prefix in KNOWN_MODEL_PREFIXES:
+    for prefix in known_model_prefixes:
         if basename.startswith(prefix + '_'):
             model_name = prefix
             # Extract the part after the prefix
@@ -63,7 +48,35 @@ def parse_filename(filepath):
 
 def main():
     """Main function to run the ASR evaluation."""
-    ground_truth_map = load_ground_truth(GROUND_TRUTH_FILE)
+    parser = argparse.ArgumentParser(description="Evaluate ASR model outputs against a ground truth file.")
+    parser.add_argument(
+        "--transcript_dirs",
+        type=str,
+        nargs='+',
+        required=True,
+        help="One or more directories containing the transcript .txt files."
+    )
+    parser.add_argument(
+        "--ground_truth_file",
+        type=str,
+        required=True,
+        help="Path to the ground truth CSV file."
+    )
+    parser.add_argument(
+        "--output_file",
+        type=str,
+        required=True,
+        help="Path to save the final evaluation results CSV file."
+    )
+    parser.add_argument(
+        '--model_prefixes',
+        nargs='+',
+        default=['large-v3', 'wav2vec-xls-r', 'parakeet-tdt-0.6b-v2', 'canary-1b'],
+        help='Known model prefixes used in the filenames.'
+    )
+    args = parser.parse_args()
+
+    ground_truth_map = load_ground_truth(args.ground_truth_file)
     if ground_truth_map is None:
         return
 
@@ -73,7 +86,7 @@ def main():
 
     print("Searching for transcript files...")
     all_txt_files = []
-    for directory in TRANSCRIPT_DIRS:
+    for directory in args.transcript_dirs:
         path = os.path.join(directory, '*.txt')
         found_files = glob.glob(path)
         print(f"Found {len(found_files)} .txt files in {directory}")
@@ -84,7 +97,8 @@ def main():
     unmatched_files = []
 
     for txt_file in all_txt_files:
-        model_name, gt_key = parse_filename(txt_file)
+        # Pass model prefixes to the parsing function
+        model_name, gt_key = parse_filename(txt_file, args.model_prefixes)
         
         if model_name and gt_key in ground_truth_map:
             # Pre-process the text here before appending
@@ -146,9 +160,9 @@ def main():
 
     # --- Save and display results ---
     results_df = pd.DataFrame(all_results).sort_values(by='WER').reset_index(drop=True)
-    results_df.to_csv(OUTPUT_CSV_FILE, index=False)
+    results_df.to_csv(args.output_file, index=False)
     
-    print(f"\nEvaluation complete. Results saved to {OUTPUT_CSV_FILE}")
+    print(f"\nEvaluation complete. Results saved to {args.output_file}")
     print("--- ASR Evaluation Report ---")
     print(results_df.to_string())
     print("-----------------------------")

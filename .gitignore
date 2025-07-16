@@ -28,6 +28,7 @@ random*/
 # Test data and experiment folders
 test_data_*/
 test_exp_data_*/
+*dataset/
 
 # Transcription output
 *_transcriptions/
@@ -36,3 +37,4 @@ test_exp_data_*/
 # *.png
 *.log 
 *.zip
+run_medical_asr.py
