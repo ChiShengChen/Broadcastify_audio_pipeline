@@ -101,13 +101,25 @@ This stage involves analyzing and filtering the calls merged in the previous ste
     1.  Update `input_folder_path` to the directory containing the audio you want to process (e.g., the output from Step 5 or the filtered calls from Step 6).
     2.  Run the script: `python ems_call/audio_filter_enhance_plot.py`
 
-### Step 8: Transcribe Audio to Text
+### Step 8: Transcribe Audio with Multiple ASR Models
 
-- **Script:** `batch_transcribe_and_save_whisper_models_new.py`
-- **Purpose:** Performs batch transcription on the processed audio files using different Whisper models (`tiny`, `medium`, `large-v2`, etc.). It organizes the text outputs into subdirectories based on the model used and skips files that have already been transcribed.
+- **Script:** `run_all_asrs.py`
+- **Purpose:** A powerful, unified script to perform batch transcription using various state-of-the-art ASR models, including **Whisper**, **Wav2Vec2**, and NVIDIA's **Canary** and **Parakeet**. It automatically downloads the required models from online hubs and saves the text outputs in the source audio directory, ready for evaluation.
+- **Prerequisites:** This script requires a specific set of libraries. Ensure they are installed, preferably in a dedicated Conda environment (e.g., Python 3.9+).
+    ```bash
+    # It is recommended to install torch with CUDA support first
+    pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu118
+    # Then install the other ASR libraries
+    pip install transformers "nemo_toolkit[asr]" openai-whisper tqdm
+    ```
 - **Usage:**
-    1.  Update `input_directory` and `base_output_dir`. The input can be any directory with audio files, such as the output from Step 7.
-    2.  Run the script: `python ems_call/batch_transcribe_and_save_whisper_models_new.py` 
+    1.  This script takes the path to your audio directory as a command-line argument.
+    2.  Run the script from the project root directory. **Note:** The first time you run this, it will download several large models from the internet, which may take a significant amount of time.
+    3.  Example command:
+        ```bash
+        python3 ems_call/run_all_asrs.py /media/meow/One\ Touch/ems_call/random_samples_1_preprocessed/
+        ```
+    4.  The script will generate `.txt` files for each model directly within your specified audio folder (e.g., `large-v3_..._call_1.txt`, `canary-1b_..._call_1.txt`, etc.).
 
 ---
 

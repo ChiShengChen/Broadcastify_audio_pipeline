@@ -8,10 +8,12 @@ from collections import defaultdict
 GROUND_TRUTH_FILE = '/media/meow/One Touch/ems_call/vb_ems_anotation/human_anotation_vb.csv'
 # Directories containing the text files from various models
 TRANSCRIPT_DIRS = [
-    '/media/meow/One Touch/ems_call/random_samples_1',
-    '/media/meow/One Touch/ems_call/random_samples_2'
+    # '/media/meow/One Touch/ems_call/random_samples_1',
+    # '/media/meow/One Touch/ems_call/random_samples_2'
+    '/media/meow/One Touch/ems_call/random_samples_1_preprocessed',
+    '/media/meow/One Touch/ems_call/random_samples_2_preprocessed'
 ]
-OUTPUT_CSV_FILE = '/media/meow/One Touch/ems_call/asr_evaluation_results.csv'
+OUTPUT_CSV_FILE = '/media/meow/One Touch/ems_call/asr_preprocessed_evaluation_results.csv'
 
 # Known model prefixes used in the filenames.
 # The script will try to match these at the start of filenames.
