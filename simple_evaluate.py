@@ -122,6 +122,11 @@ def main():
     
     # Save results
     if results:
+        # Ensure output directory exists
+        output_dir = os.path.dirname(args.output)
+        if output_dir and not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+            
         with open(args.output, 'w', newline='', encoding='utf-8') as f:
             writer = csv.DictWriter(f, fieldnames=['Model', 'Files_Processed', 'Average_WER', 'Min_WER', 'Max_WER'])
             writer.writeheader()

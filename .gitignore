@@ -30,7 +30,7 @@ test_data_*/
 test_exp_data_*/
 *dataset/
 huggingface*/
-pipeline_results/
+pipeline_results*/
 
 # Transcription output
 *_transcriptions/

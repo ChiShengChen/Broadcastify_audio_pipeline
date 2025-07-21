@@ -17,8 +17,9 @@ AUDIO_DIR="/media/meow/One Touch/ems_call/random_samples_1_preprocessed"
 # Must contain 'Filename' and 'transcript' columns.
 GROUND_TRUTH_FILE="/media/meow/One Touch/ems_call/vb_ems_anotation/human_anotation_vb.csv"
 
-# Output directory for all processing results
-OUTPUT_DIR="/media/meow/One Touch/ems_call/pipeline_results"
+# Output directory for all processing results (with timestamp)
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+OUTPUT_DIR="/media/meow/One Touch/ems_call/pipeline_results_${TIMESTAMP}"
 
 # Path to save the final evaluation report CSV.
 OUTPUT_FILE="$OUTPUT_DIR/asr_evaluation_results.csv"
