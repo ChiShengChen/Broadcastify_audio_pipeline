@@ -15,6 +15,14 @@ You will also need:
 - **FFmpeg** for audio format conversion (`pydub` and `ffmpeg` command in `bash_mp3_to_wav.sh` depend on it).
 
 ---
+## Quick Start
+
+- Change the AUDIO_DIR, GROUND_TRUTH_FILE, OUTPUT_DIR, OUTPUT_FILE into your correct file path in run_pipeline.sh  
+
+```bash
+bash run_pipeline.sh
+```
+
 
 ## Pipeline Workflow
 

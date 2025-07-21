@@ -1,0 +1,27 @@
+Enhanced ASR Pipeline Summary
+=============================
+Date: 西元2025年07月22日 (週二) 01時46分57秒 CST
+Input Directory: /media/meow/One Touch/ems_call/random_samples_1_preprocessed
+Output Directory: /media/meow/One Touch/ems_call/pipeline_results
+
+Configuration:
+  - VAD Preprocessing: true
+  - Enhanced VAD: false
+  - VAD Parameters:
+    * Speech threshold: 0.5
+    * Min speech duration: 0.5s
+    * Min silence duration: 0.3s
+
+Input Files: 25 audio files
+
+VAD Results:
+  - VAD summary available in: /media/meow/One Touch/ems_call/pipeline_results/vad_segments/vad_processing_summary.json
+
+ASR Results:
+  - Transcript files: 100
+  - Transcripts directory: /media/meow/One Touch/ems_call/pipeline_results/asr_transcripts
+
+Evaluation Results:
+  - Evaluation report: /media/meow/One Touch/ems_call/pipeline_results/asr_evaluation_results.csv
+
+All results saved to: /media/meow/One Touch/ems_call/pipeline_results

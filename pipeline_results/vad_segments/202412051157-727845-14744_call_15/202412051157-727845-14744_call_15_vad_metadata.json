@@ -1,0 +1,151 @@
+{
+  "input_file": "202412051157-727845-14744_call_15.wav",
+  "original_duration": 66.526,
+  "total_speech_duration": 19.648,
+  "speech_ratio": 0.295,
+  "num_segments": 16,
+  "sample_rate": 16000,
+  "concatenated": true,
+  "vad_parameters": {
+    "chunk_size": 512,
+    "speech_threshold": 0.5,
+    "min_speech_duration": 0.5,
+    "min_silence_duration": 0.3
+  },
+  "timestamp_mapping": [
+    {
+      "segment_id": 1,
+      "original_start_time": 0.0,
+      "original_end_time": 0.768,
+      "concatenated_start_time": 0.0,
+      "concatenated_end_time": 0.768,
+      "duration": 0.768
+    },
+    {
+      "segment_id": 2,
+      "original_start_time": 12.48,
+      "original_end_time": 15.488,
+      "concatenated_start_time": 0.768,
+      "concatenated_end_time": 3.776,
+      "duration": 3.008
+    },
+    {
+      "segment_id": 3,
+      "original_start_time": 15.904,
+      "original_end_time": 16.672,
+      "concatenated_start_time": 3.776,
+      "concatenated_end_time": 4.544,
+      "duration": 0.768
+    },
+    {
+      "segment_id": 4,
+      "original_start_time": 17.632,
+      "original_end_time": 17.856,
+      "concatenated_start_time": 4.544,
+      "concatenated_end_time": 4.768,
+      "duration": 0.224
+    },
+    {
+      "segment_id": 5,
+      "original_start_time": 18.176,
+      "original_end_time": 20.64,
+      "concatenated_start_time": 4.768,
+      "concatenated_end_time": 7.232,
+      "duration": 2.464
+    },
+    {
+      "segment_id": 6,
+      "original_start_time": 21.44,
+      "original_end_time": 22.144,
+      "concatenated_start_time": 7.232,
+      "concatenated_end_time": 7.936,
+      "duration": 0.704
+    },
+    {
+      "segment_id": 7,
+      "original_start_time": 22.464,
+      "original_end_time": 24.096,
+      "concatenated_start_time": 7.936,
+      "concatenated_end_time": 9.568,
+      "duration": 1.632
+    },
+    {
+      "segment_id": 8,
+      "original_start_time": 25.344,
+      "original_end_time": 26.368,
+      "concatenated_start_time": 9.568,
+      "concatenated_end_time": 10.592,
+      "duration": 1.024
+    },
+    {
+      "segment_id": 9,
+      "original_start_time": 29.504,
+      "original_end_time": 29.728,
+      "concatenated_start_time": 10.592,
+      "concatenated_end_time": 10.816,
+      "duration": 0.224
+    },
+    {
+      "segment_id": 10,
+      "original_start_time": 44.416,
+      "original_end_time": 44.992,
+      "concatenated_start_time": 10.816,
+      "concatenated_end_time": 11.392,
+      "duration": 0.576
+    },
+    {
+      "segment_id": 11,
+      "original_start_time": 46.752,
+      "original_end_time": 47.744,
+      "concatenated_start_time": 11.392,
+      "concatenated_end_time": 12.384,
+      "duration": 0.992
+    },
+    {
+      "segment_id": 12,
+      "original_start_time": 48.064,
+      "original_end_time": 50.784,
+      "concatenated_start_time": 12.384,
+      "concatenated_end_time": 15.104,
+      "duration": 2.72
+    },
+    {
+      "segment_id": 13,
+      "original_start_time": 51.872,
+      "original_end_time": 53.824,
+      "concatenated_start_time": 15.104,
+      "concatenated_end_time": 17.056,
+      "duration": 1.952
+    },
+    {
+      "segment_id": 14,
+      "original_start_time": 57.568,
+      "original_end_time": 59.136,
+      "concatenated_start_time": 17.056,
+      "concatenated_end_time": 18.624,
+      "duration": 1.568
+    },
+    {
+      "segment_id": 15,
+      "original_start_time": 62.88,
+      "original_end_time": 63.296,
+      "concatenated_start_time": 18.624,
+      "concatenated_end_time": 19.04,
+      "duration": 0.416
+    },
+    {
+      "segment_id": 16,
+      "original_start_time": 65.888,
+      "original_end_time": 66.496,
+      "concatenated_start_time": 19.04,
+      "concatenated_end_time": 19.648,
+      "duration": 0.608
+    }
+  ],
+  "individual_segments": [],
+  "concatenated_file": {
+    "file_path": "202412051157-727845-14744_call_15/202412051157-727845-14744_call_15_vad.wav",
+    "duration": 19.648,
+    "timestamp_mapping_count": 16
+  }
+}

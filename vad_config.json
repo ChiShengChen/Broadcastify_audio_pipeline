@@ -1,0 +1,30 @@
+{
+  "vad_parameters": {
+    "chunk_size": 512,
+    "speech_threshold": 0.5,
+    "min_speech_duration": 0.5,
+    "min_silence_duration": 0.3,
+    "target_sample_rate": 16000
+  },
+  "asr_parameters": {
+    "models": ["large-v3", "canary-1b", "parakeet-tdt-0.6b-v2", "wav2vec-xls-r"],
+    "batch_size": 16,
+    "language": "en"
+  },
+  "processing_options": {
+    "skip_vad": false,
+    "save_segments": true,
+    "save_metadata": true,
+    "consolidate_results": true
+  },
+  "file_handling": {
+    "supported_extensions": [".wav", ".mp3", ".flac", ".m4a"],
+    "preserve_directory_structure": true,
+    "cleanup_intermediate_files": false
+  },
+  "paths": {
+    "input_dir": "/media/meow/One Touch/ems_call/random_samples_1_preprocessed",
+    "output_dir": "/media/meow/One Touch/ems_call/vad_asr_output",
+    "ground_truth_file": "/media/meow/One Touch/ems_call/vb_ems_anotation/human_anotation_vb.csv"
+  }
+} 

@@ -1,0 +1,167 @@
+{
+  "input_file": "202412040936-56143-14744_call_8.wav",
+  "original_duration": 65.982,
+  "total_speech_duration": 26.304,
+  "speech_ratio": 0.399,
+  "num_segments": 18,
+  "sample_rate": 16000,
+  "concatenated": true,
+  "vad_parameters": {
+    "chunk_size": 512,
+    "speech_threshold": 0.5,
+    "min_speech_duration": 0.5,
+    "min_silence_duration": 0.3
+  },
+  "timestamp_mapping": [
+    {
+      "segment_id": 1,
+      "original_start_time": 0.0,
+      "original_end_time": 3.36,
+      "concatenated_start_time": 0.0,
+      "concatenated_end_time": 3.36,
+      "duration": 3.36
+    },
+    {
+      "segment_id": 2,
+      "original_start_time": 3.872,
+      "original_end_time": 5.248,
+      "concatenated_start_time": 3.36,
+      "concatenated_end_time": 4.736,
+      "duration": 1.376
+    },
+    {
+      "segment_id": 3,
+      "original_start_time": 5.856,
+      "original_end_time": 6.656,
+      "concatenated_start_time": 4.736,
+      "concatenated_end_time": 5.536,
+      "duration": 0.8
+    },
+    {
+      "segment_id": 4,
+      "original_start_time": 12.288,
+      "original_end_time": 15.68,
+      "concatenated_start_time": 5.536,
+      "concatenated_end_time": 8.928,
+      "duration": 3.392
+    },
+    {
+      "segment_id": 5,
+      "original_start_time": 17.44,
+      "original_end_time": 18.592,
+      "concatenated_start_time": 8.928,
+      "concatenated_end_time": 10.08,
+      "duration": 1.152
+    },
+    {
+      "segment_id": 6,
+      "original_start_time": 32.064,
+      "original_end_time": 33.856,
+      "concatenated_start_time": 10.08,
+      "concatenated_end_time": 11.872,
+      "duration": 1.792
+    },
+    {
+      "segment_id": 7,
+      "original_start_time": 35.04,
+      "original_end_time": 36.16,
+      "concatenated_start_time": 11.872,
+      "concatenated_end_time": 12.992,
+      "duration": 1.12
+    },
+    {
+      "segment_id": 8,
+      "original_start_time": 36.576,
+      "original_end_time": 36.864,
+      "concatenated_start_time": 12.992,
+      "concatenated_end_time": 13.28,
+      "duration": 0.288
+    },
+    {
+      "segment_id": 9,
+      "original_start_time": 37.28,
+      "original_end_time": 37.92,
+      "concatenated_start_time": 13.28,
+      "concatenated_end_time": 13.92,
+      "duration": 0.64
+    },
+    {
+      "segment_id": 10,
+      "original_start_time": 38.24,
+      "original_end_time": 39.36,
+      "concatenated_start_time": 13.92,
+      "concatenated_end_time": 15.04,
+      "duration": 1.12
+    },
+    {
+      "segment_id": 11,
+      "original_start_time": 40.064,
+      "original_end_time": 40.96,
+      "concatenated_start_time": 15.04,
+      "concatenated_end_time": 15.936,
+      "duration": 0.896
+    },
+    {
+      "segment_id": 12,
+      "original_start_time": 51.968,
+      "original_end_time": 53.856,
+      "concatenated_start_time": 15.936,
+      "concatenated_end_time": 17.824,
+      "duration": 1.888
+    },
+    {
+      "segment_id": 13,
+      "original_start_time": 54.304,
+      "original_end_time": 56.224,
+      "concatenated_start_time": 17.824,
+      "concatenated_end_time": 19.744,
+      "duration": 1.92
+    },
+    {
+      "segment_id": 14,
+      "original_start_time": 56.64,
+      "original_end_time": 58.72,
+      "concatenated_start_time": 19.744,
+      "concatenated_end_time": 21.824,
+      "duration": 2.08
+    },
+    {
+      "segment_id": 15,
+      "original_start_time": 59.36,
+      "original_end_time": 59.84,
+      "concatenated_start_time": 21.824,
+      "concatenated_end_time": 22.304,
+      "duration": 0.48
+    },
+    {
+      "segment_id": 16,
+      "original_start_time": 60.16,
+      "original_end_time": 62.848,
+      "concatenated_start_time": 22.304,
+      "concatenated_end_time": 24.992,
+      "duration": 2.688
+    },
+    {
+      "segment_id": 17,
+      "original_start_time": 63.232,
+      "original_end_time": 64.256,
+      "concatenated_start_time": 24.992,
+      "concatenated_end_time": 26.016,
+      "duration": 1.024
+    },
+    {
+      "segment_id": 18,
+      "original_start_time": 64.864,
+      "original_end_time": 65.152,
+      "concatenated_start_time": 26.016,
+      "concatenated_end_time": 26.304,
+      "duration": 0.288
+    }
+  ],
+  "individual_segments": [],
+  "concatenated_file": {
+    "file_path": "202412040936-56143-14744_call_8/202412040936-56143-14744_call_8_vad.wav",
+    "duration": 26.304,
+    "timestamp_mapping_count": 18
+  }
+}

@@ -10,8 +10,19 @@ librosa
 
 # Core ML/ASR Libraries
 torch
+torchaudio
 transformers
 openai-whisper
 
 # For NVIDIA Models (Canary and Parakeet)
-nemo_toolkit[asr] 
+nemo_toolkit[asr]
+
+# VAD Pipeline Dependencies
+pathlib2
+tqdm
+datasets
+soundfile
+pydub
+
+# Evaluation and metrics
+jiwer 

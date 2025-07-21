@@ -1,0 +1,143 @@
+{
+  "input_file": "202412041235-634426-14744_call_13.wav",
+  "original_duration": 77.886,
+  "total_speech_duration": 32.832,
+  "speech_ratio": 0.422,
+  "num_segments": 15,
+  "sample_rate": 16000,
+  "concatenated": true,
+  "vad_parameters": {
+    "chunk_size": 512,
+    "speech_threshold": 0.5,
+    "min_speech_duration": 0.5,
+    "min_silence_duration": 0.3
+  },
+  "timestamp_mapping": [
+    {
+      "segment_id": 1,
+      "original_start_time": 0.0,
+      "original_end_time": 0.672,
+      "concatenated_start_time": 0.0,
+      "concatenated_end_time": 0.672,
+      "duration": 0.672
+    },
+    {
+      "segment_id": 2,
+      "original_start_time": 5.088,
+      "original_end_time": 6.24,
+      "concatenated_start_time": 0.672,
+      "concatenated_end_time": 1.824,
+      "duration": 1.152
+    },
+    {
+      "segment_id": 3,
+      "original_start_time": 11.232,
+      "original_end_time": 16.896,
+      "concatenated_start_time": 1.824,
+      "concatenated_end_time": 7.488,
+      "duration": 5.664
+    },
+    {
+      "segment_id": 4,
+      "original_start_time": 19.488,
+      "original_end_time": 22.048,
+      "concatenated_start_time": 7.488,
+      "concatenated_end_time": 10.048,
+      "duration": 2.56
+    },
+    {
+      "segment_id": 5,
+      "original_start_time": 23.84,
+      "original_end_time": 25.536,
+      "concatenated_start_time": 10.048,
+      "concatenated_end_time": 11.744,
+      "duration": 1.696
+    },
+    {
+      "segment_id": 6,
+      "original_start_time": 26.496,
+      "original_end_time": 28.672,
+      "concatenated_start_time": 11.744,
+      "concatenated_end_time": 13.92,
+      "duration": 2.176
+    },
+    {
+      "segment_id": 7,
+      "original_start_time": 29.536,
+      "original_end_time": 30.528,
+      "concatenated_start_time": 13.92,
+      "concatenated_end_time": 14.912,
+      "duration": 0.992
+    },
+    {
+      "segment_id": 8,
+      "original_start_time": 40.032,
+      "original_end_time": 45.44,
+      "concatenated_start_time": 14.912,
+      "concatenated_end_time": 20.32,
+      "duration": 5.408
+    },
+    {
+      "segment_id": 9,
+      "original_start_time": 46.368,
+      "original_end_time": 49.952,
+      "concatenated_start_time": 20.32,
+      "concatenated_end_time": 23.904,
+      "duration": 3.584
+    },
+    {
+      "segment_id": 10,
+      "original_start_time": 63.488,
+      "original_end_time": 67.04,
+      "concatenated_start_time": 23.904,
+      "concatenated_end_time": 27.456,
+      "duration": 3.552
+    },
+    {
+      "segment_id": 11,
+      "original_start_time": 69.568,
+      "original_end_time": 69.888,
+      "concatenated_start_time": 27.456,
+      "concatenated_end_time": 27.776,
+      "duration": 0.32
+    },
+    {
+      "segment_id": 12,
+      "original_start_time": 70.688,
+      "original_end_time": 71.392,
+      "concatenated_start_time": 27.776,
+      "concatenated_end_time": 28.48,
+      "duration": 0.704
+    },
+    {
+      "segment_id": 13,
+      "original_start_time": 72.032,
+      "original_end_time": 74.144,
+      "concatenated_start_time": 28.48,
+      "concatenated_end_time": 30.592,
+      "duration": 2.112
+    },
+    {
+      "segment_id": 14,
+      "original_start_time": 75.072,
+      "original_end_time": 76.448,
+      "concatenated_start_time": 30.592,
+      "concatenated_end_time": 31.968,
+      "duration": 1.376
+    },
+    {
+      "segment_id": 15,
+      "original_start_time": 76.992,
+      "original_end_time": 77.856,
+      "concatenated_start_time": 31.968,
+      "concatenated_end_time": 32.832,
+      "duration": 0.864
+    }
+  ],
+  "individual_segments": [],
+  "concatenated_file": {
+    "file_path": "202412041235-634426-14744_call_13/202412041235-634426-14744_call_13_vad.wav",
+    "duration": 32.832,
+    "timestamp_mapping_count": 15
+  }
+}
