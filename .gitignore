@@ -29,6 +29,8 @@ random*/
 test_data_*/
 test_exp_data_*/
 *dataset/
+huggingface*/
+pipeline_results/
 
 # Transcription output
 *_transcriptions/
@@ -38,3 +40,4 @@ test_exp_data_*/
 *.log 
 *.zip
 run_medical_asr.py
+medical*.csv
