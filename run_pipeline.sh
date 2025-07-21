@@ -23,9 +23,11 @@ OUTPUT_DIR="/media/meow/One Touch/ems_call/pipeline_results"
 # Path to save the final evaluation report CSV.
 OUTPUT_FILE="$OUTPUT_DIR/asr_evaluation_results.csv"
 
-# Processing options
 USE_VAD=true                    # Enable VAD preprocessing
-USE_ENHANCED_VAD=false          # Use enhanced VAD with filters
+
+
+#### DO NOT CHANGE THESE OPTIONS ####
+# Processing options
 VAD_SPEECH_THRESHOLD=0.5        # VAD speech detection threshold
 VAD_MIN_SPEECH_DURATION=0.5     # Minimum speech segment duration
 VAD_MIN_SILENCE_DURATION=0.3    # Minimum silence between segments
@@ -55,7 +57,7 @@ while [[ $# -gt 0 ]]; do
             ;;
         --use-enhanced-vad)
             USE_VAD=true
-            USE_ENHANCED_VAD=true
+            USE_ENHANCED_VAD=false
             shift
             ;;
         --vad-threshold)
@@ -104,7 +106,7 @@ while [[ $# -gt 0 ]]; do
             ;;
     esac
 done
-
+USE_ENHANCED_VAD=false  
 # Create output directory
 mkdir -p "$OUTPUT_DIR"
 # --------------------
