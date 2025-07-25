@@ -11,11 +11,15 @@ set -e
 
 # --- User Configuration ---
 # Directory containing the .wav files to be processed.
-AUDIO_DIR="/media/meow/One Touch/ems_call/random_samples_1_preprocessed"
+# AUDIO_DIR="/media/meow/One Touch/ems_call/random_samples_1_preprocessed"
+AUDIO_DIR="/media/meow/One Touch/ems_call/long_audio_test_dataset"
+
 
 # Path to the ground truth CSV file for evaluation.
 # Must contain 'Filename' and 'transcript' columns.
-GROUND_TRUTH_FILE="/media/meow/One Touch/ems_call/vb_ems_anotation/human_anotation_vb.csv"
+# GROUND_TRUTH_FILE="/media/meow/One Touch/ems_call/vb_ems_anotation/human_anotation_vb.csv"
+GROUND_TRUTH_FILE="/media/meow/One Touch/ems_call/long_audio_test_dataset/long_audio_ground_truth.csv"
+
 
 # Output directory for all processing results (with timestamp)
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")

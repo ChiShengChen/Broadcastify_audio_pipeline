@@ -87,8 +87,9 @@ def main():
     print("Searching for transcript files...")
     all_txt_files = []
     for directory in args.transcript_dirs:
-        path = os.path.join(directory, '*.txt')
-        found_files = glob.glob(path)
+        # Use recursive glob to search in subdirectories as well
+        path = os.path.join(directory, '**', '*.txt')
+        found_files = glob.glob(path, recursive=True)
         print(f"Found {len(found_files)} .txt files in {directory}")
         all_txt_files.extend(found_files)
 
