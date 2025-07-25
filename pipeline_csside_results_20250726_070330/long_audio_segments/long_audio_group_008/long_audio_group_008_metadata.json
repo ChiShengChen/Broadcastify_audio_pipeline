@@ -1,0 +1,272 @@
+{
+  "original_file": "long_audio_group_008.wav",
+  "original_duration": 229.177,
+  "max_segment_duration": 120.0,
+  "total_segments": 2,
+  "segments": [
+    {
+      "segment_id": 0,
+      "filename": "long_audio_group_008_segment_000.wav",
+      "start_time": 0.0,
+      "end_time": 120.0,
+      "duration": 120.0,
+      "speech_segments": [
+        {
+          "original_start": 0.0,
+          "original_end": 1.056,
+          "segment_start": 0.0,
+          "segment_end": 1.056
+        },
+        {
+          "original_start": 1.12,
+          "original_end": 2.496,
+          "segment_start": 1.12,
+          "segment_end": 2.496
+        },
+        {
+          "original_start": 2.592,
+          "original_end": 3.712,
+          "segment_start": 2.592,
+          "segment_end": 3.712
+        },
+        {
+          "original_start": 14.912,
+          "original_end": 15.776,
+          "segment_start": 14.912,
+          "segment_end": 15.776
+        },
+        {
+          "original_start": 22.752,
+          "original_end": 24.832,
+          "segment_start": 22.752,
+          "segment_end": 24.832
+        },
+        {
+          "original_start": 32.448,
+          "original_end": 33.056,
+          "segment_start": 32.448,
+          "segment_end": 33.056
+        },
+        {
+          "original_start": 36.192,
+          "original_end": 37.088,
+          "segment_start": 36.192,
+          "segment_end": 37.088
+        },
+        {
+          "original_start": 37.664,
+          "original_end": 39.872,
+          "segment_start": 37.664,
+          "segment_end": 39.872
+        },
+        {
+          "original_start": 58.24,
+          "original_end": 58.944,
+          "segment_start": 58.24,
+          "segment_end": 58.944
+        },
+        {
+          "original_start": 63.232,
+          "original_end": 63.808,
+          "segment_start": 63.232,
+          "segment_end": 63.808
+        },
+        {
+          "original_start": 75.744,
+          "original_end": 76.992,
+          "segment_start": 75.744,
+          "segment_end": 76.992
+        },
+        {
+          "original_start": 77.024,
+          "original_end": 77.536,
+          "segment_start": 77.024,
+          "segment_end": 77.536
+        },
+        {
+          "original_start": 77.568,
+          "original_end": 78.624,
+          "segment_start": 77.568,
+          "segment_end": 78.624
+        },
+        {
+          "original_start": 78.944,
+          "original_end": 79.52,
+          "segment_start": 78.944,
+          "segment_end": 79.52
+        },
+        {
+          "original_start": 80.704,
+          "original_end": 82.304,
+          "segment_start": 80.704,
+          "segment_end": 82.304
+        },
+        {
+          "original_start": 82.464,
+          "original_end": 83.776,
+          "segment_start": 82.464,
+          "segment_end": 83.776
+        },
+        {
+          "original_start": 84.896,
+          "original_end": 85.696,
+          "segment_start": 84.896,
+          "segment_end": 85.696
+        },
+        {
+          "original_start": 86.4,
+          "original_end": 87.52,
+          "segment_start": 86.4,
+          "segment_end": 87.52
+        },
+        {
+          "original_start": 88.416,
+          "original_end": 89.536,
+          "segment_start": 88.416,
+          "segment_end": 89.536
+        },
+        {
+          "original_start": 110.304,
+          "original_end": 110.944,
+          "segment_start": 110.304,
+          "segment_end": 110.944
+        },
+        {
+          "original_start": 111.136,
+          "original_end": 112.064,
+          "segment_start": 111.136,
+          "segment_end": 112.064
+        },
+        {
+          "original_start": 112.608,
+          "original_end": 113.984,
+          "segment_start": 112.608,
+          "segment_end": 113.984
+        },
+        {
+          "original_start": 114.944,
+          "original_end": 116.96,
+          "segment_start": 114.944,
+          "segment_end": 116.96
+        }
+      ]
+    },
+    {
+      "segment_id": 1,
+      "filename": "long_audio_group_008_segment_001.wav",
+      "start_time": 120.0,
+      "end_time": 229.177,
+      "duration": 109.17699999999999,
+      "speech_segments": [
+        {
+          "original_start": 120.768,
+          "original_end": 121.376,
+          "segment_start": 0.7680000000000007,
+          "segment_end": 1.3760000000000048
+        },
+        {
+          "original_start": 121.44,
+          "original_end": 122.24,
+          "segment_start": 1.4399999999999977,
+          "segment_end": 2.239999999999995
+        },
+        {
+          "original_start": 129.6,
+          "original_end": 130.912,
+          "segment_start": 9.599999999999994,
+          "segment_end": 10.912000000000006
+        },
+        {
+          "original_start": 133.984,
+          "original_end": 134.624,
+          "segment_start": 13.984000000000009,
+          "segment_end": 14.623999999999995
+        },
+        {
+          "original_start": 138.432,
+          "original_end": 140.416,
+          "segment_start": 18.431999999999988,
+          "segment_end": 20.415999999999997
+        },
+        {
+          "original_start": 140.576,
+          "original_end": 141.6,
+          "segment_start": 20.575999999999993,
+          "segment_end": 21.599999999999994
+        },
+        {
+          "original_start": 147.52,
+          "original_end": 149.344,
+          "segment_start": 27.52000000000001,
+          "segment_end": 29.343999999999994
+        },
+        {
+          "original_start": 149.856,
+          "original_end": 150.816,
+          "segment_start": 29.855999999999995,
+          "segment_end": 30.816000000000003
+        },
+        {
+          "original_start": 152.032,
+          "original_end": 154.784,
+          "segment_start": 32.03200000000001,
+          "segment_end": 34.78399999999999
+        },
+        {
+          "original_start": 156.512,
+          "original_end": 157.088,
+          "segment_start": 36.512,
+          "segment_end": 37.087999999999994
+        },
+        {
+          "original_start": 167.136,
+          "original_end": 167.712,
+          "segment_start": 47.135999999999996,
+          "segment_end": 47.71199999999999
+        },
+        {
+          "original_start": 191.744,
+          "original_end": 192.416,
+          "segment_start": 71.744,
+          "segment_end": 72.416
+        },
+        {
+          "original_start": 203.872,
+          "original_end": 204.736,
+          "segment_start": 83.87200000000001,
+          "segment_end": 84.73599999999999
+        },
+        {
+          "original_start": 204.928,
+          "original_end": 205.568,
+          "segment_start": 84.928,
+          "segment_end": 85.56800000000001
+        },
+        {
+          "original_start": 216.192,
+          "original_end": 217.28,
+          "segment_start": 96.19200000000001,
+          "segment_end": 97.28
+        },
+        {
+          "original_start": 217.952,
+          "original_end": 219.264,
+          "segment_start": 97.952,
+          "segment_end": 99.26400000000001
+        },
+        {
+          "original_start": 220.192,
+          "original_end": 222.08,
+          "segment_start": 100.19200000000001,
+          "segment_end": 102.08000000000001
+        },
+        {
+          "original_start": 223.104,
+          "original_end": 223.776,
+          "segment_start": 103.10400000000001,
+          "segment_end": 103.77600000000001
+        }
+      ]
+    }
+  ]
+}

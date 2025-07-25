@@ -1,0 +1,188 @@
+{
+  "original_file": "long_audio_group_001.wav",
+  "original_duration": 230.325875,
+  "max_segment_duration": 120.0,
+  "total_segments": 2,
+  "segments": [
+    {
+      "segment_id": 0,
+      "filename": "long_audio_group_001_segment_000.wav",
+      "start_time": 0.0,
+      "end_time": 120.0,
+      "duration": 120.0,
+      "speech_segments": [
+        {
+          "original_start": 0.0,
+          "original_end": 0.96,
+          "segment_start": 0.0,
+          "segment_end": 0.96
+        },
+        {
+          "original_start": 1.44,
+          "original_end": 4.128,
+          "segment_start": 1.44,
+          "segment_end": 4.128
+        },
+        {
+          "original_start": 15.392,
+          "original_end": 16.576,
+          "segment_start": 15.392,
+          "segment_end": 16.576
+        },
+        {
+          "original_start": 17.024,
+          "original_end": 18.048,
+          "segment_start": 17.024,
+          "segment_end": 18.048
+        },
+        {
+          "original_start": 19.2,
+          "original_end": 21.12,
+          "segment_start": 19.2,
+          "segment_end": 21.12
+        },
+        {
+          "original_start": 21.472,
+          "original_end": 23.904,
+          "segment_start": 21.472,
+          "segment_end": 23.904
+        },
+        {
+          "original_start": 31.104,
+          "original_end": 33.504,
+          "segment_start": 31.104,
+          "segment_end": 33.504
+        },
+        {
+          "original_start": 38.848,
+          "original_end": 39.584,
+          "segment_start": 38.848,
+          "segment_end": 39.584
+        },
+        {
+          "original_start": 42.592,
+          "original_end": 44.48,
+          "segment_start": 42.592,
+          "segment_end": 44.48
+        },
+        {
+          "original_start": 44.8,
+          "original_end": 45.76,
+          "segment_start": 44.8,
+          "segment_end": 45.76
+        },
+        {
+          "original_start": 50.624,
+          "original_end": 51.68,
+          "segment_start": 50.624,
+          "segment_end": 51.68
+        },
+        {
+          "original_start": 51.744,
+          "original_end": 52.768,
+          "segment_start": 51.744,
+          "segment_end": 52.768
+        },
+        {
+          "original_start": 52.8,
+          "original_end": 53.824,
+          "segment_start": 52.8,
+          "segment_end": 53.824
+        },
+        {
+          "original_start": 66.784,
+          "original_end": 67.328,
+          "segment_start": 66.784,
+          "segment_end": 67.328
+        },
+        {
+          "original_start": 68.064,
+          "original_end": 69.28,
+          "segment_start": 68.064,
+          "segment_end": 69.28
+        },
+        {
+          "original_start": 84.864,
+          "original_end": 85.408,
+          "segment_start": 84.864,
+          "segment_end": 85.408
+        },
+        {
+          "original_start": 86.272,
+          "original_end": 86.88,
+          "segment_start": 86.272,
+          "segment_end": 86.88
+        },
+        {
+          "original_start": 88.864,
+          "original_end": 89.76,
+          "segment_start": 88.864,
+          "segment_end": 89.76
+        },
+        {
+          "original_start": 115.168,
+          "original_end": 115.84,
+          "segment_start": 115.168,
+          "segment_end": 115.84
+        },
+        {
+          "original_start": 116.128,
+          "original_end": 116.928,
+          "segment_start": 116.128,
+          "segment_end": 116.928
+        }
+      ]
+    },
+    {
+      "segment_id": 1,
+      "filename": "long_audio_group_001_segment_001.wav",
+      "start_time": 120.0,
+      "end_time": 230.325875,
+      "duration": 110.325875,
+      "speech_segments": [
+        {
+          "original_start": 127.04,
+          "original_end": 127.776,
+          "segment_start": 7.040000000000006,
+          "segment_end": 7.775999999999996
+        },
+        {
+          "original_start": 152.8,
+          "original_end": 153.6,
+          "segment_start": 32.80000000000001,
+          "segment_end": 33.599999999999994
+        },
+        {
+          "original_start": 157.504,
+          "original_end": 158.24,
+          "segment_start": 37.50399999999999,
+          "segment_end": 38.24000000000001
+        },
+        {
+          "original_start": 158.336,
+          "original_end": 159.872,
+          "segment_start": 38.33600000000001,
+          "segment_end": 39.872000000000014
+        },
+        {
+          "original_start": 160.672,
+          "original_end": 161.248,
+          "segment_start": 40.672,
+          "segment_end": 41.24799999999999
+        },
+        {
+          "original_start": 228.352,
+          "original_end": 229.28,
+          "segment_start": 108.352,
+          "segment_end": 109.28
+        },
+        {
+          "original_start": 229.344,
+          "original_end": 230.304,
+          "segment_start": 109.344,
+          "segment_end": 110.304
+        }
+      ]
+    }
+  ]
+}

@@ -457,6 +457,24 @@ else
 fi
 echo ""
 
+# --- Step 6.5: Model File Analysis ---
+echo "--- Step 6.5: Analyzing Model File Processing ---"
+MODEL_ANALYSIS_FILE="$OUTPUT_DIR/model_file_analysis.txt"
+
+if [[ -d "$TRANSCRIPT_DIR" ]]; then
+    echo "Running detailed model file analysis..."
+    $PYTHON_EXEC analyze_model_files.py \
+        --transcript_dir "$TRANSCRIPT_DIR" \
+        --ground_truth_file "$GROUND_TRUTH_FILE" \
+        --output_file "$MODEL_ANALYSIS_FILE"
+    
+    echo "Model file analysis completed"
+    echo "Detailed analysis saved to: $MODEL_ANALYSIS_FILE"
+else
+    echo "Skipping model file analysis - transcript directory not found"
+fi
+echo ""
+
 # --- Step 7: Generate Summary ---
 echo "--- Generating Pipeline Summary ---"
 SUMMARY_FILE="$OUTPUT_DIR/pipeline_summary.txt"
@@ -545,6 +563,13 @@ SUMMARY_FILE="$OUTPUT_DIR/pipeline_summary.txt"
         echo "  - Evaluation report: $OUTPUT_FILE"
     fi
     
+    # Model file analysis results
+    if [ -f "$MODEL_ANALYSIS_FILE" ]; then
+        echo ""
+        echo "Model File Analysis:"
+        echo "  - Model file analysis: $MODEL_ANALYSIS_FILE"
+    fi
+    
     echo ""
     echo "All results saved to: $OUTPUT_DIR"
     
@@ -566,6 +591,7 @@ if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
     echo "  $OUTPUT_DIR/merged_transcripts/    # Merged transcripts for evaluation"
 fi
 echo "  $OUTPUT_FILE         # Evaluation metrics"
+echo "  $MODEL_ANALYSIS_FILE # Model file processing analysis"
 echo "  $SUMMARY_FILE        # Detailed summary"
 echo ""
 echo "Check the summary file for detailed results: $SUMMARY_FILE" 
