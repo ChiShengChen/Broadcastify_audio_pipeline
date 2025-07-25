@@ -25,6 +25,8 @@ OUTPUT_DIR="/media/meow/One Touch/ems_call/pipeline_results_${TIMESTAMP}"
 OUTPUT_FILE="$OUTPUT_DIR/asr_evaluation_results.csv"
 
 USE_VAD=true                    # Enable VAD preprocessing
+USE_LONG_AUDIO_SPLIT=true      # Enable long audio splitting to prevent OOM
+MAX_SEGMENT_DURATION=120.0      # Maximum segment duration in seconds (2 minutes)
 
 
 #### DO NOT CHANGE THESE OPTIONS ####
@@ -73,6 +75,14 @@ while [[ $# -gt 0 ]]; do
             VAD_MIN_SILENCE_DURATION="$2"
             shift 2
             ;;
+        --use-long-audio-split)
+            USE_LONG_AUDIO_SPLIT=true
+            shift
+            ;;
+        --max-segment-duration)
+            MAX_SEGMENT_DURATION="$2"
+            shift 2
+            ;;
         -h|--help)
             echo "Enhanced ASR Pipeline with Optional VAD"
             echo ""
@@ -87,6 +97,8 @@ while [[ $# -gt 0 ]]; do
             echo "  --vad-threshold FLOAT        VAD speech threshold (default: 0.5)"
             echo "  --vad-min-speech FLOAT       Min speech duration (default: 0.5s)"
             echo "  --vad-min-silence FLOAT      Min silence duration (default: 0.3s)"
+            echo "  --use-long-audio-split       Enable long audio splitting to prevent OOM"
+            echo "  --max-segment-duration FLOAT Max segment duration in seconds (default: 120.0)"
             echo "  -h, --help                   Show this help"
             echo ""
             echo "Examples:"
@@ -98,6 +110,12 @@ while [[ $# -gt 0 ]]; do
             echo ""
             echo "  # With enhanced VAD"
             echo "  $0 --input_dir /path/to/audio --output_dir /path/to/results --use-enhanced-vad"
+            echo ""
+            echo "  # With long audio splitting to prevent OOM"
+            echo "  $0 --input_dir /path/to/audio --output_dir /path/to/results --use-long-audio-split"
+            echo ""
+            echo "  # With custom segment duration"
+            echo "  $0 --input_dir /path/to/audio --output_dir /path/to/results --use-long-audio-split --max-segment-duration 90"
             exit 0
             ;;
         *)
@@ -125,6 +143,11 @@ if [ "$USE_VAD" = true ]; then
     echo "  - Min speech duration: ${VAD_MIN_SPEECH_DURATION}s"
     echo "  - Min silence duration: ${VAD_MIN_SILENCE_DURATION}s"
 fi
+echo "Use Long Audio Split: $USE_LONG_AUDIO_SPLIT"
+if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
+    echo "Long Audio Split Parameters:"
+    echo "  - Max segment duration: ${MAX_SEGMENT_DURATION}s"
+fi
 echo "==============================================="
 echo ""
 
@@ -138,9 +161,33 @@ echo ""
 # echo "Dependencies installation complete"
 # echo ""
 
-# --- Step 2: VAD Processing (Optional) ---
+# --- Step 2: Long Audio Splitting (Optional) ---
+if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
+    echo "--- Step 2: Long Audio Splitting ---"
+    LONG_AUDIO_OUTPUT_DIR="$OUTPUT_DIR/long_audio_segments"
+    
+    echo "Running Long Audio Splitter to prevent OOM issues..."
+    $PYTHON_EXEC long_audio_splitter.py \
+        --input_dir "$AUDIO_DIR" \
+        --output_dir "$LONG_AUDIO_OUTPUT_DIR" \
+        --max_duration "$MAX_SEGMENT_DURATION" \
+        --speech_threshold "$VAD_SPEECH_THRESHOLD" \
+        --min_speech_duration "$VAD_MIN_SPEECH_DURATION" \
+        --min_silence_duration "$VAD_MIN_SILENCE_DURATION"
+    
+    echo "Long audio splitting completed"
+    echo "Split segments saved to: $LONG_AUDIO_OUTPUT_DIR"
+    echo ""
+    
+    # Set input directory for next steps to split segments
+    PROCESSING_INPUT_DIR="$LONG_AUDIO_OUTPUT_DIR"
+else
+    PROCESSING_INPUT_DIR="$AUDIO_DIR"
+fi
+
+# --- Step 3: VAD Processing (Optional) ---
 if [ "$USE_VAD" = true ]; then
-    echo "--- Step 2: VAD Processing ---"
+    echo "--- Step 3: VAD Processing ---"
     VAD_OUTPUT_DIR="$OUTPUT_DIR/vad_segments"
     
     if [ "$USE_ENHANCED_VAD" = true ]; then
@@ -169,11 +216,11 @@ if [ "$USE_VAD" = true ]; then
     ASR_INPUT_DIR="$VAD_OUTPUT_DIR"
 else
     echo "--- Skipping VAD (processing original files) ---"
-    ASR_INPUT_DIR="$AUDIO_DIR"
+    ASR_INPUT_DIR="$PROCESSING_INPUT_DIR"
 fi
 
-# --- Step 3: ASR Processing ---
-echo "--- Step 3: ASR Transcription ---"
+# --- Step 4: ASR Processing ---
+echo "--- Step 4: ASR Transcription ---"
 ASR_OUTPUT_DIR="$OUTPUT_DIR/asr_transcripts"
 mkdir -p "$ASR_OUTPUT_DIR"
 
@@ -372,8 +419,27 @@ echo "ASR transcription completed"
 echo "Transcripts saved to: $TRANSCRIPT_DIR"
 echo ""
 
-# --- Step 4: Evaluation ---
-echo "--- Step 4: Evaluating ASR Results ---"
+# --- Step 5: Merge Split Transcripts (if long audio splitting was used) ---
+if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
+    echo "--- Step 5: Merging Split Transcripts ---"
+    MERGED_TRANSCRIPTS_DIR="$OUTPUT_DIR/merged_transcripts"
+    
+    echo "Merging split transcripts for WER calculation..."
+    $PYTHON_EXEC merge_split_transcripts.py \
+        --input_dir "$TRANSCRIPT_DIR" \
+        --output_dir "$MERGED_TRANSCRIPTS_DIR" \
+        --metadata_dir "$LONG_AUDIO_OUTPUT_DIR"
+    
+    echo "Transcript merging completed"
+    echo "Merged transcripts saved to: $MERGED_TRANSCRIPTS_DIR"
+    echo ""
+    
+    # Set transcript directory for evaluation to merged transcripts
+    TRANSCRIPT_DIR="$MERGED_TRANSCRIPTS_DIR"
+fi
+
+# --- Step 6: Evaluation ---
+echo "--- Step 6: Evaluating ASR Results ---"
 if [[ -f "$GROUND_TRUTH_FILE" && -d "$TRANSCRIPT_DIR" ]]; then
     $PYTHON_EXEC evaluate_asr.py \
         --transcript_dirs "$TRANSCRIPT_DIR" \
@@ -387,7 +453,7 @@ else
 fi
 echo ""
 
-# --- Step 5: Generate Summary ---
+# --- Step 7: Generate Summary ---
 echo "--- Generating Pipeline Summary ---"
 SUMMARY_FILE="$OUTPUT_DIR/pipeline_summary.txt"
 
@@ -407,11 +473,32 @@ SUMMARY_FILE="$OUTPUT_DIR/pipeline_summary.txt"
         echo "    * Min speech duration: ${VAD_MIN_SPEECH_DURATION}s"
         echo "    * Min silence duration: ${VAD_MIN_SILENCE_DURATION}s"
     fi
+    echo "  - Long Audio Split: $USE_LONG_AUDIO_SPLIT"
+    if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
+        echo "  - Long Audio Split Parameters:"
+        echo "    * Max segment duration: ${MAX_SEGMENT_DURATION}s"
+    fi
     echo ""
     
     # Count input files
     INPUT_COUNT=$(find "$AUDIO_DIR" -name "*.wav" | wc -l)
     echo "Input Files: $INPUT_COUNT audio files"
+    
+    # Long audio split results
+    if [ "$USE_LONG_AUDIO_SPLIT" = true ] && [ -f "$OUTPUT_DIR/long_audio_segments/processing_summary.json" ]; then
+        echo ""
+        echo "Long Audio Split Results:"
+        if command -v jq > /dev/null 2>&1; then
+            TOTAL_FILES=$(jq -r '.total_files' "$OUTPUT_DIR/long_audio_segments/processing_summary.json" 2>/dev/null || echo "N/A")
+            SPLIT_FILES=$(jq -r '.split_files' "$OUTPUT_DIR/long_audio_segments/processing_summary.json" 2>/dev/null || echo "N/A")
+            UNSPLIT_FILES=$(jq -r '.unsplit_files' "$OUTPUT_DIR/long_audio_segments/processing_summary.json" 2>/dev/null || echo "N/A")
+            echo "  - Total files processed: $TOTAL_FILES"
+            echo "  - Files split: $SPLIT_FILES"
+            echo "  - Files unchanged: $UNSPLIT_FILES"
+        else
+            echo "  - Long audio split summary available in: $OUTPUT_DIR/long_audio_segments/processing_summary.json"
+        fi
+    fi
     
     # VAD results
     if [ "$USE_VAD" = true ] && [ -f "$OUTPUT_DIR/vad_segments/vad_processing_summary.json" ]; then
@@ -439,6 +526,12 @@ SUMMARY_FILE="$OUTPUT_DIR/pipeline_summary.txt"
         TRANSCRIPT_COUNT=$(find "$TRANSCRIPT_DIR" -name "*.txt" | wc -l)
         echo "  - Transcript files: $TRANSCRIPT_COUNT"
         echo "  - Transcripts directory: $TRANSCRIPT_DIR"
+        
+        # Show merged transcripts info if applicable
+        if [ "$USE_LONG_AUDIO_SPLIT" = true ] && [ -d "$OUTPUT_DIR/merged_transcripts" ]; then
+            MERGED_COUNT=$(find "$OUTPUT_DIR/merged_transcripts" -name "*.txt" | wc -l)
+            echo "  - Merged transcript files: $MERGED_COUNT"
+        fi
     fi
     
     # Evaluation results
@@ -458,10 +551,16 @@ echo ""
 echo "=== Pipeline Completed Successfully ==="
 echo ""
 echo "Results structure:"
+if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
+    echo "  $OUTPUT_DIR/long_audio_segments/   # Long audio split segments"
+fi
 if [ "$USE_VAD" = true ]; then
     echo "  $OUTPUT_DIR/vad_segments/          # VAD extracted speech segments"
 fi
 echo "  $OUTPUT_DIR/asr_transcripts/       # ASR transcription results"
+if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
+    echo "  $OUTPUT_DIR/merged_transcripts/    # Merged transcripts for evaluation"
+fi
 echo "  $OUTPUT_FILE         # Evaluation metrics"
 echo "  $SUMMARY_FILE        # Detailed summary"
 echo ""
