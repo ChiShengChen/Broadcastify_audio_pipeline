@@ -1,0 +1,367 @@
+ASR Model Number Processing Analysis Report
+==================================================
+
+Model: canary-1b
+------------------------------
+Total files: 9
+Number instances: 362
+
+Number types found:
+  time_format: 33
+  phone_code: 15
+  address_number: 43
+  single_digit: 134
+  double_digit: 137
+
+Processing accuracy: 0.0%
+  Correct: 0/362
+  Missing: 362/362
+
+Detailed examples:
+
+Example 1:
+  File: long_audio_group_005.wav
+  Ground truth number: 13:57 (time_format)
+  Found in transcript: False
+  GT context: . [x] case added at 13:57. ambulance 1424P en
+  Transcript preview: City vents can if you move your vehicle enable so they can reop that lane of travel. So they can bri...
+
+Example 2:
+  File: long_audio_group_005.wav
+  Ground truth number: 13:58 (time_format)
+  Found in transcript: False
+  GT context: 5 weeks pregnant at 13:58. [x] and ALS needed
+  Transcript preview: City vents can if you move your vehicle enable so they can reop that lane of travel. So they can bri...
+
+Example 3:
+  File: long_audio_group_005.wav
+  Ground truth number: 14:19 (time_format)
+  Found in transcript: False
+  GT context: [x] copy? [x] copy. 14:19. ambulance 522P en 
+  Transcript preview: City vents can if you move your vehicle enable so they can reop that lane of travel. So they can bri...
+
+Example 4:
+  File: long_audio_group_005.wav
+  Ground truth number: 14:20 (time_format)
+  Found in transcript: False
+  GT context:  is en route [x] at 14:20. 120 [x] street. th
+  Transcript preview: City vents can if you move your vehicle enable so they can reop that lane of travel. So they can bri...
+
+Example 5:
+  File: long_audio_group_005.wav
+  Ground truth number: 14:20 (time_format)
+  Found in transcript: False
+  GT context: scious breathing at 14:20.
+  Transcript preview: City vents can if you move your vehicle enable so they can reop that lane of travel. So they can bri...
+
+Example 6:
+  File: long_audio_group_005.wav
+  Ground truth number: 5-0-1 (phone_code)
+  Found in transcript: False
+  GT context: cardiac arrest call 5-0-1-2 newson road. call
+  Transcript preview: City vents can if you move your vehicle enable so they can reop that lane of travel. So they can bri...
+
+Example 7:
+  File: long_audio_group_005.wav
+  Ground truth number: 1357 (address_number)
+  Found in transcript: False
+  GT context: e closed. available 1357. [x] 220P EMS 4 en 
+  Transcript preview: City vents can if you move your vehicle enable so they can reop that lane of travel. So they can bri...
+
+Example 8:
+  File: long_audio_group_005.wav
+  Ground truth number: 5427 (address_number)
+  Found in transcript: False
+  GT context: to the cardiac call 5427 Lynnbrook Landing. 
+  Transcript preview: City vents can if you move your vehicle enable so they can reop that lane of travel. So they can bri...
+
+Example 9:
+  File: long_audio_group_005.wav
+  Ground truth number: 1358 (address_number)
+  Found in transcript: False
+  GT context: cious, breathing at 1358. [x] injuries [x] g
+  Transcript preview: City vents can if you move your vehicle enable so they can reop that lane of travel. So they can bri...
+
+Example 10:
+  File: long_audio_group_005.wav
+  Ground truth number: 3900 (address_number)
+  Found in transcript: False
+  GT context: ficulty priority 1. 3900 Brentwood Crescent 
+  Transcript preview: City vents can if you move your vehicle enable so they can reop that lane of travel. So they can bri...
+
+==================================================
+
+Model: large-v3
+------------------------------
+Total files: 9
+Number instances: 362
+
+Number types found:
+  time_format: 33
+  phone_code: 15
+  address_number: 43
+  single_digit: 134
+  double_digit: 137
+
+Processing accuracy: 51.1%
+  Correct: 185/362
+  Missing: 177/362
+
+Detailed examples:
+
+Example 1:
+  File: long_audio_group_005.wav
+  Ground truth number: 13:57 (time_format)
+  Found in transcript: False
+  GT context: . [x] case added at 13:57. ambulance 1424P en
+  Transcript preview: The city is asking if you move your vehicle enable so they can free up that lane of travel. Resolve ...
+
+Example 2:
+  File: long_audio_group_005.wav
+  Ground truth number: 13:58 (time_format)
+  Found in transcript: False
+  GT context: 5 weeks pregnant at 13:58. [x] and ALS needed
+  Transcript preview: The city is asking if you move your vehicle enable so they can free up that lane of travel. Resolve ...
+
+Example 3:
+  File: long_audio_group_005.wav
+  Ground truth number: 14:19 (time_format)
+  Found in transcript: False
+  GT context: [x] copy? [x] copy. 14:19. ambulance 522P en 
+  Transcript preview: The city is asking if you move your vehicle enable so they can free up that lane of travel. Resolve ...
+
+Example 4:
+  File: long_audio_group_005.wav
+  Ground truth number: 14:20 (time_format)
+  Found in transcript: False
+  GT context:  is en route [x] at 14:20. 120 [x] street. th
+  Transcript preview: The city is asking if you move your vehicle enable so they can free up that lane of travel. Resolve ...
+
+Example 5:
+  File: long_audio_group_005.wav
+  Ground truth number: 14:20 (time_format)
+  Found in transcript: False
+  GT context: scious breathing at 14:20.
+  Transcript preview: The city is asking if you move your vehicle enable so they can free up that lane of travel. Resolve ...
+
+Example 6:
+  File: long_audio_group_005.wav
+  Ground truth number: 5-0-1 (phone_code)
+  Found in transcript: False
+  GT context: cardiac arrest call 5-0-1-2 newson road. call
+  Transcript preview: The city is asking if you move your vehicle enable so they can free up that lane of travel. Resolve ...
+
+Example 7:
+  File: long_audio_group_005.wav
+  Ground truth number: 1357 (address_number)
+  Found in transcript: True
+  Transcript versions: ['205', '5015', '1357', '5012', '1357', '5427', '1358', '3900', '1419', '1737', '1420', '1420']
+  GT context: e closed. available 1357. [x] 220P EMS 4 en 
+  Transcript preview: The city is asking if you move your vehicle enable so they can free up that lane of travel. Resolve ...
+
+Example 8:
+  File: long_audio_group_005.wav
+  Ground truth number: 5427 (address_number)
+  Found in transcript: True
+  Transcript versions: ['205', '5015', '1357', '5012', '1357', '5427', '1358', '3900', '1419', '1737', '1420', '1420']
+  GT context: to the cardiac call 5427 Lynnbrook Landing. 
+  Transcript preview: The city is asking if you move your vehicle enable so they can free up that lane of travel. Resolve ...
+
+Example 9:
+  File: long_audio_group_005.wav
+  Ground truth number: 1358 (address_number)
+  Found in transcript: True
+  Transcript versions: ['205', '5015', '1357', '5012', '1357', '5427', '1358', '3900', '1419', '1737', '1420', '1420']
+  GT context: cious, breathing at 1358. [x] injuries [x] g
+  Transcript preview: The city is asking if you move your vehicle enable so they can free up that lane of travel. Resolve ...
+
+Example 10:
+  File: long_audio_group_005.wav
+  Ground truth number: 3900 (address_number)
+  Found in transcript: True
+  Transcript versions: ['205', '5015', '1357', '5012', '1357', '5427', '1358', '3900', '1419', '1737', '1420', '1420']
+  GT context: ficulty priority 1. 3900 Brentwood Crescent 
+  Transcript preview: The city is asking if you move your vehicle enable so they can free up that lane of travel. Resolve ...
+
+==================================================
+
+Model: parakeet-tdt-0.6b-v2
+------------------------------
+Total files: 9
+Number instances: 362
+
+Number types found:
+  time_format: 33
+  phone_code: 15
+  address_number: 43
+  single_digit: 134
+  double_digit: 137
+
+Processing accuracy: 0.0%
+  Correct: 0/362
+  Missing: 362/362
+
+Detailed examples:
+
+Example 1:
+  File: long_audio_group_005.wav
+  Ground truth number: 13:57 (time_format)
+  Found in transcript: False
+  GT context: . [x] case added at 13:57. ambulance 1424P en
+  Transcript preview: if you move your vehicle andable so they can re that l of problem off is going to be open i believe ...
+
+Example 2:
+  File: long_audio_group_005.wav
+  Ground truth number: 13:58 (time_format)
+  Found in transcript: False
+  GT context: 5 weeks pregnant at 13:58. [x] and ALS needed
+  Transcript preview: if you move your vehicle andable so they can re that l of problem off is going to be open i believe ...
+
+Example 3:
+  File: long_audio_group_005.wav
+  Ground truth number: 14:19 (time_format)
+  Found in transcript: False
+  GT context: [x] copy? [x] copy. 14:19. ambulance 522P en 
+  Transcript preview: if you move your vehicle andable so they can re that l of problem off is going to be open i believe ...
+
+Example 4:
+  File: long_audio_group_005.wav
+  Ground truth number: 14:20 (time_format)
+  Found in transcript: False
+  GT context:  is en route [x] at 14:20. 120 [x] street. th
+  Transcript preview: if you move your vehicle andable so they can re that l of problem off is going to be open i believe ...
+
+Example 5:
+  File: long_audio_group_005.wav
+  Ground truth number: 14:20 (time_format)
+  Found in transcript: False
+  GT context: scious breathing at 14:20.
+  Transcript preview: if you move your vehicle andable so they can re that l of problem off is going to be open i believe ...
+
+Example 6:
+  File: long_audio_group_005.wav
+  Ground truth number: 5-0-1 (phone_code)
+  Found in transcript: False
+  GT context: cardiac arrest call 5-0-1-2 newson road. call
+  Transcript preview: if you move your vehicle andable so they can re that l of problem off is going to be open i believe ...
+
+Example 7:
+  File: long_audio_group_005.wav
+  Ground truth number: 1357 (address_number)
+  Found in transcript: False
+  GT context: e closed. available 1357. [x] 220P EMS 4 en 
+  Transcript preview: if you move your vehicle andable so they can re that l of problem off is going to be open i believe ...
+
+Example 8:
+  File: long_audio_group_005.wav
+  Ground truth number: 5427 (address_number)
+  Found in transcript: False
+  GT context: to the cardiac call 5427 Lynnbrook Landing. 
+  Transcript preview: if you move your vehicle andable so they can re that l of problem off is going to be open i believe ...
+
+Example 9:
+  File: long_audio_group_005.wav
+  Ground truth number: 1358 (address_number)
+  Found in transcript: False
+  GT context: cious, breathing at 1358. [x] injuries [x] g
+  Transcript preview: if you move your vehicle andable so they can re that l of problem off is going to be open i believe ...
+
+Example 10:
+  File: long_audio_group_005.wav
+  Ground truth number: 3900 (address_number)
+  Found in transcript: False
+  GT context: ficulty priority 1. 3900 Brentwood Crescent 
+  Transcript preview: if you move your vehicle andable so they can re that l of problem off is going to be open i believe ...
+
+==================================================
+
+Model: wav2vec-xls-r
+------------------------------
+Total files: 9
+Number instances: 362
+
+Number types found:
+  time_format: 33
+  phone_code: 15
+  address_number: 43
+  single_digit: 134
+  double_digit: 137
+
+Processing accuracy: 0.0%
+  Correct: 0/362
+  Missing: 362/362
+
+Detailed examples:
+
+Example 1:
+  File: long_audio_group_005.wav
+  Ground truth number: 13:57 (time_format)
+  Found in transcript: False
+  GT context: . [x] case added at 13:57. ambulance 1424P en
+  Transcript preview: ER TY MO IN E E MA RE BECL NABLE E I IN BEOIN  CO AL MAN     E GOING TO BE O BEN ABLE WEE ONE OSSIBL...
+
+Example 2:
+  File: long_audio_group_005.wav
+  Ground truth number: 13:58 (time_format)
+  Found in transcript: False
+  GT context: 5 weeks pregnant at 13:58. [x] and ALS needed
+  Transcript preview: ER TY MO IN E E MA RE BECL NABLE E I IN BEOIN  CO AL MAN     E GOING TO BE O BEN ABLE WEE ONE OSSIBL...
+
+Example 3:
+  File: long_audio_group_005.wav
+  Ground truth number: 14:19 (time_format)
+  Found in transcript: False
+  GT context: [x] copy? [x] copy. 14:19. ambulance 522P en 
+  Transcript preview: ER TY MO IN E E MA RE BECL NABLE E I IN BEOIN  CO AL MAN     E GOING TO BE O BEN ABLE WEE ONE OSSIBL...
+
+Example 4:
+  File: long_audio_group_005.wav
+  Ground truth number: 14:20 (time_format)
+  Found in transcript: False
+  GT context:  is en route [x] at 14:20. 120 [x] street. th
+  Transcript preview: ER TY MO IN E E MA RE BECL NABLE E I IN BEOIN  CO AL MAN     E GOING TO BE O BEN ABLE WEE ONE OSSIBL...
+
+Example 5:
+  File: long_audio_group_005.wav
+  Ground truth number: 14:20 (time_format)
+  Found in transcript: False
+  GT context: scious breathing at 14:20.
+  Transcript preview: ER TY MO IN E E MA RE BECL NABLE E I IN BEOIN  CO AL MAN     E GOING TO BE O BEN ABLE WEE ONE OSSIBL...
+
+Example 6:
+  File: long_audio_group_005.wav
+  Ground truth number: 5-0-1 (phone_code)
+  Found in transcript: False
+  GT context: cardiac arrest call 5-0-1-2 newson road. call
+  Transcript preview: ER TY MO IN E E MA RE BECL NABLE E I IN BEOIN  CO AL MAN     E GOING TO BE O BEN ABLE WEE ONE OSSIBL...
+
+Example 7:
+  File: long_audio_group_005.wav
+  Ground truth number: 1357 (address_number)
+  Found in transcript: False
+  GT context: e closed. available 1357. [x] 220P EMS 4 en 
+  Transcript preview: ER TY MO IN E E MA RE BECL NABLE E I IN BEOIN  CO AL MAN     E GOING TO BE O BEN ABLE WEE ONE OSSIBL...
+
+Example 8:
+  File: long_audio_group_005.wav
+  Ground truth number: 5427 (address_number)
+  Found in transcript: False
+  GT context: to the cardiac call 5427 Lynnbrook Landing. 
+  Transcript preview: ER TY MO IN E E MA RE BECL NABLE E I IN BEOIN  CO AL MAN     E GOING TO BE O BEN ABLE WEE ONE OSSIBL...
+
+Example 9:
+  File: long_audio_group_005.wav
+  Ground truth number: 1358 (address_number)
+  Found in transcript: False
+  GT context: cious, breathing at 1358. [x] injuries [x] g
+  Transcript preview: ER TY MO IN E E MA RE BECL NABLE E I IN BEOIN  CO AL MAN     E GOING TO BE O BEN ABLE WEE ONE OSSIBL...
+
+Example 10:
+  File: long_audio_group_005.wav
+  Ground truth number: 3900 (address_number)
+  Found in transcript: False
+  GT context: ficulty priority 1. 3900 Brentwood Crescent 
+  Transcript preview: ER TY MO IN E E MA RE BECL NABLE E I IN BEOIN  CO AL MAN     E GOING TO BE O BEN ABLE WEE ONE OSSIBL...
+
+==================================================
+

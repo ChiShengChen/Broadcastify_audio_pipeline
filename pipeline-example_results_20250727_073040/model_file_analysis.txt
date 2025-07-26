@@ -1,0 +1,95 @@
+Model File Processing Analysis
+==================================================
+Analysis Date: 2025-07-27 07:33:15
+Error Log File: /media/meow/One Touch/ems_call/pipeline_results_20250727_073040/error_analysis.log
+
+Summary Table:
+--------------------------------------------------------------------------------
+Model                Total    Success  Empty    Errors   Missing GT
+--------------------------------------------------------------------------------
+canary-1b            9        9        0        0        0         
+large-v3             9        9        0        0        0         
+parakeet-tdt-0.6b-v2 9        9        0        0        0         
+wav2vec-xls-r        9        9        0        0        0         
+
+=== canary-1b ===
+Total files found: 9
+Successful files: 9
+Empty files: 0
+Error files: 0
+Missing ground truth: 0
+Successful files:
+  ✓ canary-1b_long_audio_group_005.txt
+  ✓ canary-1b_long_audio_group_004.txt
+  ✓ canary-1b_long_audio_group_007.txt
+  ✓ canary-1b_long_audio_group_006.txt
+  ✓ canary-1b_long_audio_group_001.txt
+  ✓ canary-1b_long_audio_group_003.txt
+  ✓ canary-1b_long_audio_group_002.txt
+  ✓ canary-1b_long_audio_group_009.txt
+  ✓ canary-1b_long_audio_group_008.txt
+
+=== large-v3 ===
+Total files found: 9
+Successful files: 9
+Empty files: 0
+Error files: 0
+Missing ground truth: 0
+Successful files:
+  ✓ large-v3_long_audio_group_005.txt
+  ✓ large-v3_long_audio_group_004.txt
+  ✓ large-v3_long_audio_group_007.txt
+  ✓ large-v3_long_audio_group_006.txt
+  ✓ large-v3_long_audio_group_001.txt
+  ✓ large-v3_long_audio_group_003.txt
+  ✓ large-v3_long_audio_group_002.txt
+  ✓ large-v3_long_audio_group_009.txt
+  ✓ large-v3_long_audio_group_008.txt
+
+=== parakeet-tdt-0.6b-v2 ===
+Total files found: 9
+Successful files: 9
+Empty files: 0
+Error files: 0
+Missing ground truth: 0
+Successful files:
+  ✓ parakeet-tdt-0.6b-v2_long_audio_group_005.txt
+  ✓ parakeet-tdt-0.6b-v2_long_audio_group_004.txt
+  ✓ parakeet-tdt-0.6b-v2_long_audio_group_007.txt
+  ✓ parakeet-tdt-0.6b-v2_long_audio_group_006.txt
+  ✓ parakeet-tdt-0.6b-v2_long_audio_group_001.txt
+  ✓ parakeet-tdt-0.6b-v2_long_audio_group_003.txt
+  ✓ parakeet-tdt-0.6b-v2_long_audio_group_002.txt
+  ✓ parakeet-tdt-0.6b-v2_long_audio_group_009.txt
+  ✓ parakeet-tdt-0.6b-v2_long_audio_group_008.txt
+
+=== wav2vec-xls-r ===
+Total files found: 9
+Successful files: 9
+Empty files: 0
+Error files: 0
+Missing ground truth: 0
+Successful files:
+  ✓ wav2vec-xls-r_long_audio_group_005.txt
+  ✓ wav2vec-xls-r_long_audio_group_004.txt
+  ✓ wav2vec-xls-r_long_audio_group_007.txt
+  ✓ wav2vec-xls-r_long_audio_group_006.txt
+  ✓ wav2vec-xls-r_long_audio_group_001.txt
+  ✓ wav2vec-xls-r_long_audio_group_003.txt
+  ✓ wav2vec-xls-r_long_audio_group_002.txt
+  ✓ wav2vec-xls-r_long_audio_group_009.txt
+  ✓ wav2vec-xls-r_long_audio_group_008.txt
+
+=== Error Summary ===
+Total errors: 0
+Total warnings: 1
+See detailed error log: /media/meow/One Touch/ems_call/pipeline_results_20250727_073040/error_analysis.log
+
+=== Model Comparison ===
+Expected files per model: 9
+Maximum successful files: 9
+
+canary-1b: ✓ All files processed
+large-v3: ✓ All files processed
+parakeet-tdt-0.6b-v2: ✓ All files processed
+wav2vec-xls-r: ✓ All files processed

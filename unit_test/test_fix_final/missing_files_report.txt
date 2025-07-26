@@ -1,0 +1,130 @@
+Missing ASR Files Analysis Report
+==================================================
+Generated: 2025-07-26 12:56:07
+
+SUMMARY
+--------------------
+Total missing files across all models: 36
+Models analyzed: large-v3, canary-1b, parakeet-tdt-0.6b-v2, wav2vec-xls-r
+Expected files per model: 9
+
+PER-MODEL ANALYSIS
+--------------------
+large-v3:
+  - Successful: 0
+  - Missing: 9
+  - Success rate: 0.0%
+
+canary-1b:
+  - Successful: 0
+  - Missing: 9
+  - Success rate: 0.0%
+
+parakeet-tdt-0.6b-v2:
+  - Successful: 0
+  - Missing: 9
+  - Success rate: 0.0%
+
+wav2vec-xls-r:
+  - Successful: 0
+  - Missing: 9
+  - Success rate: 0.0%
+
+DETAILED MISSING FILES ANALYSIS
+-----------------------------------
+
+LARGE-V3:
+Missing 9 files:
+  - long_audio_group_005.wav
+    File size: 6.47 MB
+  - long_audio_group_009.wav
+    File size: 3.52 MB
+  - long_audio_group_004.wav
+    File size: 6.53 MB
+  - long_audio_group_002.wav
+    File size: 8.85 MB
+  - long_audio_group_006.wav
+    File size: 8.90 MB
+  - long_audio_group_007.wav
+    File size: 8.99 MB
+  - long_audio_group_003.wav
+    File size: 6.62 MB
+  - long_audio_group_008.wav
+    File size: 6.99 MB
+  - long_audio_group_001.wav
+    File size: 7.03 MB
+
+CANARY-1B:
+Missing 9 files:
+  - long_audio_group_005.wav
+    File size: 6.47 MB
+  - long_audio_group_009.wav
+    File size: 3.52 MB
+  - long_audio_group_004.wav
+    File size: 6.53 MB
+  - long_audio_group_002.wav
+    File size: 8.85 MB
+  - long_audio_group_006.wav
+    File size: 8.90 MB
+  - long_audio_group_007.wav
+    File size: 8.99 MB
+  - long_audio_group_003.wav
+    File size: 6.62 MB
+  - long_audio_group_008.wav
+    File size: 6.99 MB
+  - long_audio_group_001.wav
+    File size: 7.03 MB
+
+PARAKEET-TDT-0.6B-V2:
+Missing 9 files:
+  - long_audio_group_005.wav
+    File size: 6.47 MB
+  - long_audio_group_009.wav
+    File size: 3.52 MB
+  - long_audio_group_004.wav
+    File size: 6.53 MB
+  - long_audio_group_002.wav
+    File size: 8.85 MB
+  - long_audio_group_006.wav
+    File size: 8.90 MB
+  - long_audio_group_007.wav
+    File size: 8.99 MB
+  - long_audio_group_003.wav
+    File size: 6.62 MB
+  - long_audio_group_008.wav
+    File size: 6.99 MB
+  - long_audio_group_001.wav
+    File size: 7.03 MB
+
+WAV2VEC-XLS-R:
+Missing 9 files:
+  - long_audio_group_005.wav
+    File size: 6.47 MB
+  - long_audio_group_009.wav
+    File size: 3.52 MB
+  - long_audio_group_004.wav
+    File size: 6.53 MB
+  - long_audio_group_002.wav
+    File size: 8.85 MB
+  - long_audio_group_006.wav
+    File size: 8.90 MB
+  - long_audio_group_007.wav
+    File size: 8.99 MB
+  - long_audio_group_003.wav
+    File size: 6.62 MB
+  - long_audio_group_008.wav
+    File size: 6.99 MB
+  - long_audio_group_001.wav
+    File size: 7.03 MB
+
+COMMON ISSUES SUMMARY
+-------------------------
+
+RECOMMENDATIONS
+---------------
+1. Check audio file integrity and format
+2. Verify audio files are not corrupted
+3. Consider splitting very long audio files (>10 minutes)
+4. Check available disk space and memory
+5. Verify ASR model dependencies are properly installed
+6. Run the generated re-run script to process missing files

@@ -1,0 +1,13 @@
+{
+  "missing_files": {},
+  "audio_analysis": {},
+  "summary": {
+    "total_expected": 9,
+    "models_analyzed": [
+      "large-v3",
+      "canary-1b",
+      "parakeet-tdt-0.6b-v2",
+      "wav2vec-xls-r"
+    ]
+  }
+}

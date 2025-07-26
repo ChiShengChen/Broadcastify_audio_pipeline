@@ -31,6 +31,7 @@ test_exp_data_*/
 *dataset/
 huggingface*/
 pipeline_results*/
+long_audio*/
 
 # Transcription output
 *_transcriptions/

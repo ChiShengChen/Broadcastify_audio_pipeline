@@ -21,6 +21,7 @@ AUDIO_DIR="/media/meow/One Touch/ems_call/long_audio_test_dataset"
 GROUND_TRUTH_FILE="/media/meow/One Touch/ems_call/long_audio_test_dataset/long_audio_ground_truth.csv"
 
 
+
 # Output directory for all processing results (with timestamp)
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 OUTPUT_DIR="/media/meow/One Touch/ems_call/pipeline_results_${TIMESTAMP}"
@@ -38,6 +39,16 @@ MAX_SEGMENT_DURATION=120.0      # Maximum segment duration in seconds (2 minutes
 VAD_SPEECH_THRESHOLD=0.5        # VAD speech detection threshold
 VAD_MIN_SPEECH_DURATION=0.5     # Minimum speech segment duration
 VAD_MIN_SILENCE_DURATION=0.3    # Minimum silence between segments
+
+# Ground truth preprocessing options
+PREPROCESS_GROUND_TRUTH=true    # Enable ground truth preprocessing for better ASR matching
+PREPROCESS_MODE="conservative"  # Preprocessing mode: conservative (minimal) or aggressive (extensive)
+PREPROCESSED_GROUND_TRUTH_FILE=""  # Will be set automatically if preprocessing is enabled
+
+# Enhanced preprocessing options
+USE_ENHANCED_PREPROCESSOR=false  # Use enhanced preprocessor with comprehensive text normalization
+ENHANCED_PREPROCESSOR_MODE="conservative"  # Enhanced preprocessor mode: conservative or aggressive
+
 
 # Python interpreter to use.
 PYTHON_EXEC="python3"
@@ -87,6 +98,30 @@ while [[ $# -gt 0 ]]; do
             MAX_SEGMENT_DURATION="$2"
             shift 2
             ;;
+        --preprocess-ground-truth)
+            PREPROCESS_GROUND_TRUTH=true
+            shift
+            ;;
+        --no-preprocess-ground-truth)
+            PREPROCESS_GROUND_TRUTH=false
+            shift
+            ;;
+        --preprocess-mode)
+            PREPROCESS_MODE="$2"
+            shift 2
+            ;;
+        --use-enhanced-preprocessor)
+            USE_ENHANCED_PREPROCESSOR=true
+            shift
+            ;;
+        --no-enhanced-preprocessor)
+            USE_ENHANCED_PREPROCESSOR=false
+            shift
+            ;;
+        --enhanced-preprocessor-mode)
+            ENHANCED_PREPROCESSOR_MODE="$2"
+            shift 2
+            ;;
         -h|--help)
             echo "Enhanced ASR Pipeline with Optional VAD"
             echo ""
@@ -103,6 +138,12 @@ while [[ $# -gt 0 ]]; do
             echo "  --vad-min-silence FLOAT      Min silence duration (default: 0.3s)"
             echo "  --use-long-audio-split       Enable long audio splitting to prevent OOM"
             echo "  --max-segment-duration FLOAT Max segment duration in seconds (default: 120.0)"
+            echo "  --preprocess-ground-truth    Enable ground truth preprocessing for better ASR matching"
+            echo "  --no-preprocess-ground-truth Disable ground truth preprocessing"
+            echo "  --preprocess-mode MODE       Preprocessing mode: conservative or aggressive (default: conservative)"
+            echo "  --use-enhanced-preprocessor  Use enhanced preprocessor with comprehensive text normalization"
+            echo "  --no-enhanced-preprocessor   Disable enhanced preprocessor (use basic preprocessor)"
+            echo "  --enhanced-preprocessor-mode MODE Enhanced preprocessor mode: conservative or aggressive (default: conservative)"
             echo "  -h, --help                   Show this help"
             echo ""
             echo "Examples:"
@@ -120,6 +161,21 @@ while [[ $# -gt 0 ]]; do
             echo ""
             echo "  # With custom segment duration"
             echo "  $0 --input_dir /path/to/audio --output_dir /path/to/results --use-long-audio-split --max-segment-duration 90"
+            echo ""
+            echo "  # With ground truth preprocessing"
+            echo "  $0 --input_dir /path/to/audio --output_dir /path/to/results --preprocess-ground-truth"
+            echo ""
+            echo "  # Without ground truth preprocessing"
+            echo "  $0 --input_dir /path/to/audio --output_dir /path/to/results --no-preprocess-ground-truth"
+            echo ""
+            echo "  # With aggressive preprocessing"
+            echo "  $0 --input_dir /path/to/audio --output_dir /path/to/results --preprocess-mode aggressive"
+            echo ""
+            echo "  # With enhanced preprocessor"
+            echo "  $0 --input_dir /path/to/audio --output_dir /path/to/results --use-enhanced-preprocessor"
+            echo ""
+            echo "  # With enhanced preprocessor in aggressive mode"
+            echo "  $0 --input_dir /path/to/audio --output_dir /path/to/results --use-enhanced-preprocessor --enhanced-preprocessor-mode aggressive"
             exit 0
             ;;
         *)
@@ -132,6 +188,54 @@ done
 USE_ENHANCED_VAD=false  
 # Create output directory
 mkdir -p "$OUTPUT_DIR"
+
+# --- Step 1: Ground Truth Preprocessing (Optional) ---
+if [ "$PREPROCESS_GROUND_TRUTH" = true ]; then
+    echo "--- Step 1: Ground Truth Preprocessing ---"
+    
+    # Set the preprocessed ground truth file path
+    PREPROCESSED_GROUND_TRUTH_FILE="$OUTPUT_DIR/preprocessed_ground_truth.csv"
+    
+    echo "Preprocessing ground truth for better ASR matching..."
+    echo "Input: $GROUND_TRUTH_FILE"
+    echo "Output: $PREPROCESSED_GROUND_TRUTH_FILE"
+    
+    # Run the preprocessing script
+    if [ "$USE_ENHANCED_PREPROCESSOR" = true ]; then
+        echo "Using enhanced preprocessor with comprehensive text normalization..."
+        $PYTHON_EXEC tool/enhanced_ground_truth_preprocessor.py \
+            --input_file "$GROUND_TRUTH_FILE" \
+            --output_file "$PREPROCESSED_GROUND_TRUTH_FILE" \
+            --mode "$ENHANCED_PREPROCESSOR_MODE"
+    else
+        echo "Using basic preprocessor..."
+        $PYTHON_EXEC tool/smart_preprocess_ground_truth.py \
+            --input_file "$GROUND_TRUTH_FILE" \
+            --output_file "$PREPROCESSED_GROUND_TRUTH_FILE" \
+            --mode "$PREPROCESS_MODE"
+    fi
+    
+    if [ $? -eq 0 ]; then
+        echo "Ground truth preprocessing completed successfully"
+        echo "Using preprocessed ground truth: $PREPROCESSED_GROUND_TRUTH_FILE"
+        # Update the ground truth file path for evaluation
+        EVALUATION_GROUND_TRUTH_FILE="$PREPROCESSED_GROUND_TRUTH_FILE"
+    else
+        echo "Warning: Ground truth preprocessing failed, using original file"
+        echo "ERROR: Ground truth preprocessing failed" >> "$ERROR_LOG_FILE"
+        echo "  Input file: $GROUND_TRUTH_FILE" >> "$ERROR_LOG_FILE"
+        echo "  Output file: $PREPROCESSED_GROUND_TRUTH_FILE" >> "$ERROR_LOG_FILE"
+        echo "  Mode: $PREPROCESS_MODE" >> "$ERROR_LOG_FILE"
+        echo "  Using original ground truth file instead" >> "$ERROR_LOG_FILE"
+        echo "" >> "$ERROR_LOG_FILE"
+        EVALUATION_GROUND_TRUTH_FILE="$GROUND_TRUTH_FILE"
+    fi
+else
+    echo "--- Skipping Ground Truth Preprocessing ---"
+    EVALUATION_GROUND_TRUTH_FILE="$GROUND_TRUTH_FILE"
+fi
+echo ""
+
 # --------------------
 
 # Display configuration
@@ -151,6 +255,15 @@ echo "Use Long Audio Split: $USE_LONG_AUDIO_SPLIT"
 if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
     echo "Long Audio Split Parameters:"
     echo "  - Max segment duration: ${MAX_SEGMENT_DURATION}s"
+fi
+echo "Preprocess Ground Truth: $PREPROCESS_GROUND_TRUTH"
+if [ "$PREPROCESS_GROUND_TRUTH" = true ]; then
+    echo "Use Enhanced Preprocessor: $USE_ENHANCED_PREPROCESSOR"
+    if [ "$USE_ENHANCED_PREPROCESSOR" = true ]; then
+        echo "Enhanced Preprocessor Mode: $ENHANCED_PREPROCESSOR_MODE"
+    else
+        echo "Basic Preprocessor Mode: $PREPROCESS_MODE"
+    fi
 fi
 echo "==============================================="
 echo ""
@@ -380,9 +493,18 @@ print(f'Processed {len(file_mapping)} original files with {len(available_models)
             echo "  - Prepared ${base_name}.wav for ASR"
         done
         
-        # Run ASR on VAD processed files
-        echo "Running ASR transcription on concatenated VAD files..."
-        $PYTHON_EXEC run_all_asrs.py "$temp_vad_dir"
+            # Run ASR on VAD processed files
+    echo "Running ASR transcription on concatenated VAD files..."
+    $PYTHON_EXEC run_all_asrs.py "$temp_vad_dir"
+    
+    if [ $? -ne 0 ]; then
+        echo "Warning: ASR processing encountered issues"
+        echo "ERROR: ASR processing failed for VAD files" >> "$ERROR_LOG_FILE"
+        echo "  VAD directory: $temp_vad_dir" >> "$ERROR_LOG_FILE"
+        echo "  Number of files: ${#vad_files[@]}" >> "$ERROR_LOG_FILE"
+        echo "  Check ASR logs for details" >> "$ERROR_LOG_FILE"
+        echo "" >> "$ERROR_LOG_FILE"
+    fi
         
         # Move transcripts to final location with proper naming
         echo "Organizing transcripts..."
@@ -444,34 +566,71 @@ fi
 
 # --- Step 6: Evaluation ---
 echo "--- Step 6: Evaluating ASR Results ---"
-if [[ -f "$GROUND_TRUTH_FILE" && -d "$TRANSCRIPT_DIR" ]]; then
+if [[ -f "$EVALUATION_GROUND_TRUTH_FILE" && -d "$TRANSCRIPT_DIR" ]]; then
     $PYTHON_EXEC evaluate_asr.py \
         --transcript_dirs "$TRANSCRIPT_DIR" \
-        --ground_truth_file "$GROUND_TRUTH_FILE" \
+        --ground_truth_file "$EVALUATION_GROUND_TRUTH_FILE" \
         --output_file "$OUTPUT_FILE"
     
-    echo "Evaluation completed successfully"
-    echo "Results saved to: $OUTPUT_FILE"
+    if [ $? -eq 0 ]; then
+        echo "Evaluation completed successfully"
+        echo "Results saved to: $OUTPUT_FILE"
+    else
+        echo "Warning: Evaluation encountered issues"
+        echo "ERROR: ASR evaluation failed" >> "$ERROR_LOG_FILE"
+        echo "  Ground truth file: $EVALUATION_GROUND_TRUTH_FILE" >> "$ERROR_LOG_FILE"
+        echo "  Transcript directory: $TRANSCRIPT_DIR" >> "$ERROR_LOG_FILE"
+        echo "  Output file: $OUTPUT_FILE" >> "$ERROR_LOG_FILE"
+        echo "  Check evaluation logs for details" >> "$ERROR_LOG_FILE"
+        echo "" >> "$ERROR_LOG_FILE"
+    fi
 else
     echo "Skipping evaluation - missing ground truth file or transcript directory"
+    echo "ERROR: Cannot perform evaluation - missing required files" >> "$ERROR_LOG_FILE"
+    if [[ ! -f "$EVALUATION_GROUND_TRUTH_FILE" ]]; then
+        echo "  Missing ground truth file: $EVALUATION_GROUND_TRUTH_FILE" >> "$ERROR_LOG_FILE"
+    fi
+    if [[ ! -d "$TRANSCRIPT_DIR" ]]; then
+        echo "  Missing transcript directory: $TRANSCRIPT_DIR" >> "$ERROR_LOG_FILE"
+    fi
+    echo "" >> "$ERROR_LOG_FILE"
 fi
 echo ""
 
-# --- Step 6.5: Model File Analysis ---
-echo "--- Step 6.5: Analyzing Model File Processing ---"
+# --- Step 6.5: Model File Analysis with Error Logging ---
+echo "--- Step 6.5: Analyzing Model File Processing with Error Logging ---"
 MODEL_ANALYSIS_FILE="$OUTPUT_DIR/model_file_analysis.txt"
+ERROR_LOG_FILE="$OUTPUT_DIR/error_analysis.log"
+
+# Initialize error log
+echo "=== Error Analysis Log ===" > "$ERROR_LOG_FILE"
+echo "Analysis Date: $(date)" >> "$ERROR_LOG_FILE"
+echo "Pipeline Output Directory: $OUTPUT_DIR" >> "$ERROR_LOG_FILE"
+echo "" >> "$ERROR_LOG_FILE"
 
 if [[ -d "$TRANSCRIPT_DIR" ]]; then
-    echo "Running detailed model file analysis..."
-    $PYTHON_EXEC analyze_model_files.py \
-        --transcript_dir "$TRANSCRIPT_DIR" \
-        --ground_truth_file "$GROUND_TRUTH_FILE" \
-        --output_file "$MODEL_ANALYSIS_FILE"
+    echo "Running detailed model file analysis with error logging..."
     
-    echo "Model file analysis completed"
-    echo "Detailed analysis saved to: $MODEL_ANALYSIS_FILE"
+    # Run analysis with error logging
+    $PYTHON_EXEC tool/analyze_model_files_enhanced.py \
+        --transcript_dir "$TRANSCRIPT_DIR" \
+        --ground_truth_file "$EVALUATION_GROUND_TRUTH_FILE" \
+        --output_file "$MODEL_ANALYSIS_FILE" \
+        --error_log_file "$ERROR_LOG_FILE" \
+        --pipeline_output_dir "$OUTPUT_DIR"
+    
+    if [ $? -eq 0 ]; then
+        echo "Model file analysis completed successfully"
+        echo "Detailed analysis saved to: $MODEL_ANALYSIS_FILE"
+        echo "Error analysis saved to: $ERROR_LOG_FILE"
+    else
+        echo "Warning: Model file analysis encountered issues, but continued"
+        echo "Check error log: $ERROR_LOG_FILE"
+    fi
 else
     echo "Skipping model file analysis - transcript directory not found"
+    echo "ERROR: Transcript directory not found: $TRANSCRIPT_DIR" >> "$ERROR_LOG_FILE"
+    echo "This may indicate a failure in previous pipeline steps" >> "$ERROR_LOG_FILE"
 fi
 echo ""
 
@@ -499,6 +658,19 @@ SUMMARY_FILE="$OUTPUT_DIR/pipeline_summary.txt"
     if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
         echo "  - Long Audio Split Parameters:"
         echo "    * Max segment duration: ${MAX_SEGMENT_DURATION}s"
+    fi
+    echo "  - Ground Truth Preprocessing: $PREPROCESS_GROUND_TRUTH"
+    if [ "$PREPROCESS_GROUND_TRUTH" = true ]; then
+        echo "  - Ground Truth Preprocessing:"
+        echo "    * Input file: $GROUND_TRUTH_FILE"
+        echo "    * Processed file: $PREPROCESSED_GROUND_TRUTH_FILE"
+        if [ "$USE_ENHANCED_PREPROCESSOR" = true ]; then
+            echo "    * Preprocessor: Enhanced"
+            echo "    * Mode: $ENHANCED_PREPROCESSOR_MODE"
+        else
+            echo "    * Preprocessor: Basic"
+            echo "    * Mode: $PREPROCESS_MODE"
+        fi
     fi
     echo ""
     
@@ -570,6 +742,25 @@ SUMMARY_FILE="$OUTPUT_DIR/pipeline_summary.txt"
         echo "  - Model file analysis: $MODEL_ANALYSIS_FILE"
     fi
     
+    # Error analysis results
+    if [ -f "$ERROR_LOG_FILE" ]; then
+        echo ""
+        echo "Error Analysis:"
+        echo "  - Error log: $ERROR_LOG_FILE"
+        
+        # Count errors and warnings
+        ERROR_COUNT=$(grep -c "\[ERROR\]" "$ERROR_LOG_FILE" 2>/dev/null || echo "0")
+        WARNING_COUNT=$(grep -c "\[WARNING\]" "$ERROR_LOG_FILE" 2>/dev/null || echo "0")
+        
+        if [ "$ERROR_COUNT" -gt 0 ] || [ "$WARNING_COUNT" -gt 0 ]; then
+            echo "  - Errors found: $ERROR_COUNT"
+            echo "  - Warnings found: $WARNING_COUNT"
+            echo "  - Check error log for detailed analysis"
+        else
+            echo "  - No errors or warnings detected"
+        fi
+    fi
+    
     echo ""
     echo "All results saved to: $OUTPUT_DIR"
     
@@ -577,21 +768,86 @@ SUMMARY_FILE="$OUTPUT_DIR/pipeline_summary.txt"
 
 echo "Pipeline summary saved to: $SUMMARY_FILE"
 echo ""
-echo "=== Pipeline Completed Successfully ==="
-echo ""
-echo "Results structure:"
-if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
-    echo "  $OUTPUT_DIR/long_audio_segments/   # Long audio split segments"
+
+# Check for errors and determine pipeline status
+PIPELINE_SUCCESS=true
+ERROR_COUNT=0
+WARNING_COUNT=0
+
+# Check error log if it exists
+if [ -f "$ERROR_LOG_FILE" ]; then
+    ERROR_COUNT=$(grep -c "\[ERROR\]" "$ERROR_LOG_FILE" 2>/dev/null || echo "0")
+    WARNING_COUNT=$(grep -c "\[WARNING\]" "$ERROR_LOG_FILE" 2>/dev/null || echo "0")
+    
+    # If there are errors, mark pipeline as failed
+    if [ "$ERROR_COUNT" -gt 0 ]; then
+        PIPELINE_SUCCESS=false
+    fi
 fi
-if [ "$USE_VAD" = true ]; then
-    echo "  $OUTPUT_DIR/vad_segments/          # VAD extracted speech segments"
+
+# Check if critical files exist
+if [ ! -f "$OUTPUT_FILE" ]; then
+    PIPELINE_SUCCESS=false
 fi
-echo "  $OUTPUT_DIR/asr_transcripts/       # ASR transcription results"
-if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
-    echo "  $OUTPUT_DIR/merged_transcripts/    # Merged transcripts for evaluation"
+
+if [ ! -d "$TRANSCRIPT_DIR" ]; then
+    PIPELINE_SUCCESS=false
 fi
-echo "  $OUTPUT_FILE         # Evaluation metrics"
-echo "  $MODEL_ANALYSIS_FILE # Model file processing analysis"
-echo "  $SUMMARY_FILE        # Detailed summary"
-echo ""
-echo "Check the summary file for detailed results: $SUMMARY_FILE" 
+
+# Display final status
+if [ "$PIPELINE_SUCCESS" = true ]; then
+    echo "=== Pipeline Completed Successfully ==="
+    echo ""
+    echo "Results structure:"
+    if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
+        echo "  $OUTPUT_DIR/long_audio_segments/   # Long audio split segments"
+    fi
+    if [ "$USE_VAD" = true ]; then
+        echo "  $OUTPUT_DIR/vad_segments/          # VAD extracted speech segments"
+    fi
+    echo "  $OUTPUT_DIR/asr_transcripts/       # ASR transcription results"
+    if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
+        echo "  $OUTPUT_DIR/merged_transcripts/    # Merged transcripts for evaluation"
+    fi
+    echo "  $OUTPUT_FILE         # Evaluation metrics"
+    echo "  $MODEL_ANALYSIS_FILE # Model file processing analysis"
+    echo "  $SUMMARY_FILE        # Detailed summary"
+    echo ""
+    echo "Check the summary file for detailed results: $SUMMARY_FILE"
+    
+    # Show warnings if any
+    if [ "$WARNING_COUNT" -gt 0 ]; then
+        echo ""
+        echo "⚠️  Note: $WARNING_COUNT warnings were detected during processing."
+        echo "   Check $ERROR_LOG_FILE for details."
+    fi
+else
+    echo "=== Pipeline Completed with Errors ==="
+    echo ""
+    echo "❌ Pipeline encountered issues during execution."
+    echo ""
+    echo "Error Summary:"
+    if [ "$ERROR_COUNT" -gt 0 ]; then
+        echo "  - Errors detected: $ERROR_COUNT"
+    fi
+    if [ "$WARNING_COUNT" -gt 0 ]; then
+        echo "  - Warnings detected: $WARNING_COUNT"
+    fi
+    echo ""
+    echo "Troubleshooting:"
+    echo "  1. Check the error log: $ERROR_LOG_FILE"
+    echo "  2. Review the pipeline summary: $SUMMARY_FILE"
+    echo "  3. Verify input files and configuration"
+    echo "  4. Check system resources (disk space, memory)"
+    echo ""
+    echo "Available results (may be incomplete):"
+    if [ -d "$OUTPUT_DIR" ]; then
+        echo "  - Output directory: $OUTPUT_DIR"
+        if [ -f "$SUMMARY_FILE" ]; then
+            echo "  - Pipeline summary: $SUMMARY_FILE"
+        fi
+        if [ -f "$ERROR_LOG_FILE" ]; then
+            echo "  - Error analysis: $ERROR_LOG_FILE"
+        fi
+    fi
+fi 

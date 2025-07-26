@@ -1,0 +1,247 @@
+{
+  "missing_files": {
+    "large-v3": [
+      "long_audio_group_005",
+      "long_audio_group_009",
+      "long_audio_group_004",
+      "long_audio_group_002",
+      "long_audio_group_006",
+      "long_audio_group_007",
+      "long_audio_group_003",
+      "long_audio_group_008",
+      "long_audio_group_001"
+    ],
+    "canary-1b": [
+      "long_audio_group_005",
+      "long_audio_group_009",
+      "long_audio_group_004",
+      "long_audio_group_002",
+      "long_audio_group_006",
+      "long_audio_group_007",
+      "long_audio_group_003",
+      "long_audio_group_008",
+      "long_audio_group_001"
+    ],
+    "parakeet-tdt-0.6b-v2": [
+      "long_audio_group_005",
+      "long_audio_group_009",
+      "long_audio_group_004",
+      "long_audio_group_002",
+      "long_audio_group_006",
+      "long_audio_group_007",
+      "long_audio_group_003",
+      "long_audio_group_008",
+      "long_audio_group_001"
+    ],
+    "wav2vec-xls-r": [
+      "long_audio_group_005",
+      "long_audio_group_009",
+      "long_audio_group_004",
+      "long_audio_group_002",
+      "long_audio_group_006",
+      "long_audio_group_007",
+      "long_audio_group_003",
+      "long_audio_group_008",
+      "long_audio_group_001"
+    ]
+  },
+  "audio_analysis": {
+    "large-v3": {
+      "long_audio_group_005": {
+        "audio_exists": true,
+        "audio_size": 6783834,
+        "possible_reasons": []
+      },
+      "long_audio_group_009": {
+        "audio_exists": true,
+        "audio_size": 3686328,
+        "possible_reasons": []
+      },
+      "long_audio_group_004": {
+        "audio_exists": true,
+        "audio_size": 6851320,
+        "possible_reasons": []
+      },
+      "long_audio_group_002": {
+        "audio_exists": true,
+        "audio_size": 9275090,
+        "possible_reasons": []
+      },
+      "long_audio_group_006": {
+        "audio_exists": true,
+        "audio_size": 9333456,
+        "possible_reasons": []
+      },
+      "long_audio_group_007": {
+        "audio_exists": true,
+        "audio_size": 9424626,
+        "possible_reasons": []
+      },
+      "long_audio_group_003": {
+        "audio_exists": true,
+        "audio_size": 6938442,
+        "possible_reasons": []
+      },
+      "long_audio_group_008": {
+        "audio_exists": true,
+        "audio_size": 7333708,
+        "possible_reasons": []
+      },
+      "long_audio_group_001": {
+        "audio_exists": true,
+        "audio_size": 7370472,
+        "possible_reasons": []
+      }
+    },
+    "canary-1b": {
+      "long_audio_group_005": {
+        "audio_exists": true,
+        "audio_size": 6783834,
+        "possible_reasons": []
+      },
+      "long_audio_group_009": {
+        "audio_exists": true,
+        "audio_size": 3686328,
+        "possible_reasons": []
+      },
+      "long_audio_group_004": {
+        "audio_exists": true,
+        "audio_size": 6851320,
+        "possible_reasons": []
+      },
+      "long_audio_group_002": {
+        "audio_exists": true,
+        "audio_size": 9275090,
+        "possible_reasons": []
+      },
+      "long_audio_group_006": {
+        "audio_exists": true,
+        "audio_size": 9333456,
+        "possible_reasons": []
+      },
+      "long_audio_group_007": {
+        "audio_exists": true,
+        "audio_size": 9424626,
+        "possible_reasons": []
+      },
+      "long_audio_group_003": {
+        "audio_exists": true,
+        "audio_size": 6938442,
+        "possible_reasons": []
+      },
+      "long_audio_group_008": {
+        "audio_exists": true,
+        "audio_size": 7333708,
+        "possible_reasons": []
+      },
+      "long_audio_group_001": {
+        "audio_exists": true,
+        "audio_size": 7370472,
+        "possible_reasons": []
+      }
+    },
+    "parakeet-tdt-0.6b-v2": {
+      "long_audio_group_005": {
+        "audio_exists": true,
+        "audio_size": 6783834,
+        "possible_reasons": []
+      },
+      "long_audio_group_009": {
+        "audio_exists": true,
+        "audio_size": 3686328,
+        "possible_reasons": []
+      },
+      "long_audio_group_004": {
+        "audio_exists": true,
+        "audio_size": 6851320,
+        "possible_reasons": []
+      },
+      "long_audio_group_002": {
+        "audio_exists": true,
+        "audio_size": 9275090,
+        "possible_reasons": []
+      },
+      "long_audio_group_006": {
+        "audio_exists": true,
+        "audio_size": 9333456,
+        "possible_reasons": []
+      },
+      "long_audio_group_007": {
+        "audio_exists": true,
+        "audio_size": 9424626,
+        "possible_reasons": []
+      },
+      "long_audio_group_003": {
+        "audio_exists": true,
+        "audio_size": 6938442,
+        "possible_reasons": []
+      },
+      "long_audio_group_008": {
+        "audio_exists": true,
+        "audio_size": 7333708,
+        "possible_reasons": []
+      },
+      "long_audio_group_001": {
+        "audio_exists": true,
+        "audio_size": 7370472,
+        "possible_reasons": []
+      }
+    },
+    "wav2vec-xls-r": {
+      "long_audio_group_005": {
+        "audio_exists": true,
+        "audio_size": 6783834,
+        "possible_reasons": []
+      },
+      "long_audio_group_009": {
+        "audio_exists": true,
+        "audio_size": 3686328,
+        "possible_reasons": []
+      },
+      "long_audio_group_004": {
+        "audio_exists": true,
+        "audio_size": 6851320,
+        "possible_reasons": []
+      },
+      "long_audio_group_002": {
+        "audio_exists": true,
+        "audio_size": 9275090,
+        "possible_reasons": []
+      },
+      "long_audio_group_006": {
+        "audio_exists": true,
+        "audio_size": 9333456,
+        "possible_reasons": []
+      },
+      "long_audio_group_007": {
+        "audio_exists": true,
+        "audio_size": 9424626,
+        "possible_reasons": []
+      },
+      "long_audio_group_003": {
+        "audio_exists": true,
+        "audio_size": 6938442,
+        "possible_reasons": []
+      },
+      "long_audio_group_008": {
+        "audio_exists": true,
+        "audio_size": 7333708,
+        "possible_reasons": []
+      },
+      "long_audio_group_001": {
+        "audio_exists": true,
+        "audio_size": 7370472,
+        "possible_reasons": []
+      }
+    }
+  },
+  "summary": {
+    "total_expected": 9,
+    "models_analyzed": [
+      "large-v3",
+      "canary-1b",
+      "parakeet-tdt-0.6b-v2",
+      "wav2vec-xls-r"
+    ]
+  }
+}

@@ -1,0 +1,239 @@
+============================================================
+全面文字預處理分析報告
+============================================================
+分析文件數量: 9
+
+模式統計:
+------------------------------
+
+ABBREVIATIONS:
+  總出現次數: 8
+  唯一項目數: 6
+  最常見項目:
+    - BLS: 2 次
+    - PD: 2 次
+    - EMS: 1 次
+    - CPR: 1 次
+    - ALS: 1 次
+
+MEDICAL_TERMS:
+  總出現次數: 54
+  唯一項目數: 11
+  最常見項目:
+    - breathing: 14 次
+    - conscious: 11 次
+    - patient: 8 次
+    - male: 7 次
+    - female: 6 次
+
+EMERGENCY_CODES:
+  總出現次數: 91
+  唯一項目數: 61
+  最常見項目:
+    - 1621: 4 次
+    - 11:18: 3 次
+    - 12:08: 3 次
+    - 14:30: 3 次
+    - 6-1-2: 2 次
+
+UNIT_IDENTIFIERS:
+  總出現次數: 215
+  唯一項目數: 39
+  最常見項目:
+    - engine: 52 次
+    - command: 24 次
+    - ladder: 17 次
+    - rescue: 16 次
+    - ambulance: 12 次
+
+LOCATION_TERMS:
+  總出現次數: 86
+  唯一項目數: 19
+  最常見項目:
+    - on scene: 15 次
+    - road: 13 次
+    - en route: 10 次
+    - west: 7 次
+    - unit: 5 次
+
+TIME_EXPRESSIONS:
+  總出現次數: 61
+  唯一項目數: 35
+  最常見項目:
+    - now: 7 次
+    - at 11:18: 3 次
+    - 11:18: 3 次
+    - 12:08: 3 次
+    - at 14:30: 3 次
+
+MEASUREMENTS:
+  總出現次數: 16
+  唯一項目數: 14
+  最常見項目:
+    - 60 year old: 2 次
+    - 82 year old: 2 次
+    - 48 year old: 1 次
+    - 40 year old: 1 次
+    - 77 year old: 1 次
+
+CONTRACTIONS:
+  總出現次數: 39
+  唯一項目數: 12
+  最常見項目:
+    - we're: 15 次
+    - we'll: 5 次
+    - we've: 4 次
+    - you're: 3 次
+    - it's: 3 次
+
+FILLER_WORDS:
+  總出現次數: 8
+  唯一項目數: 3
+  最常見項目:
+    - so: 5 次
+    - like: 2 次
+    - actually: 1 次
+
+REPETITIONS:
+  總出現次數: 83
+  唯一項目數: 45
+  最常見項目:
+    - [x]: 9 次
+    - the: 8 次
+    - engine: 5 次
+    - for: 3 次
+    - year: 3 次
+
+INCOMPLETE_SENTENCES:
+  總出現次數: 102
+  唯一項目數: 12
+  最常見項目:
+    - copy: 24 次
+    - clear: 20 次
+    - on scene: 15 次
+    - go ahead: 10 次
+    - out: 10 次
+
+NOISE_MARKERS:
+  總出現次數: 155
+  唯一項目數: 1
+  最常見項目:
+    - [x]: 155 次
+
+PHONETIC_SPELLINGS:
+  總出現次數: 8
+  唯一項目數: 3
+  最常見項目:
+    - bravo: 4 次
+    - charlie: 2 次
+    - alpha: 2 次
+
+TECHNICAL_TERMS:
+  總出現次數: 3
+  唯一項目數: 1
+  最常見項目:
+    - water supply: 3 次
+
+SLANG_TERMS:
+  總出現次數: 93
+  唯一項目數: 11
+  最常見項目:
+    - copy: 24 次
+    - clear: 20 次
+    - on scene: 15 次
+    - out: 10 次
+    - en route: 10 次
+
+============================================================
+預處理建議
+============================================================
+
+高優先級項目:
+  ✓ 縮寫標準化：處理 EMS、BLS、ALS、PD 等專業縮寫
+  ✓ 緊急代碼標準化：處理電話代碼、地址號碼、時間格式
+  ✓ 噪音標記處理：移除或標準化 [x] 等標記
+
+中優先級項目:
+  ○ 縮寫形式標準化：處理 I'll、don't、can't 等
+  ○ 單位識別符標準化：處理 engine、ladder、rescue 等
+  ○ 醫療術語標準化：確保醫療術語的一致性
+
+低優先級項目:
+  - 填充詞處理：移除 um、uh、well 等填充詞
+  - 重複詞處理：處理過度重複的詞彙
+
+考慮事項:
+  • 保持專業術語的準確性
+  • 考慮上下文的重要性
+  • 平衡標準化與語義保持
+  • 根據 ASR 模型特性調整預處理策略
+
+============================================================
+詳細示例
+============================================================
+
+文件 1: long_audio_group_001.wav
+----------------------------------------
+  medical_terms: patient
+  emergency_codes: 19:20, 1541
+  unit_identifiers: battalion, command
+    ... 還有 35 個項目
+  location_terms: on scene, structure, road
+  time_expressions: 19:20
+  contractions: we're, i'll, they're
+  repetitions: command, the, attic, all, [x]
+    ... 還有 4 個項目
+  incomplete_sentences: received, go ahead, copy
+    ... 還有 8 個項目
+  noise_markers: [x]
+    ... 還有 11 個項目
+  slang_terms: clear, on scene, over, copy
+    ... 還有 4 個項目
+
+文件 2: long_audio_group_002.wav
+----------------------------------------
+  abbreviations: BLS
+  medical_terms: conscious, unconscious, breathing
+    ... 還有 11 個項目
+  emergency_codes: 4-8-5, 6-1-2, 1-5-3
+    ... 還有 21 個項目
+  unit_identifiers: rescue
+    ... 還有 26 個項目
+  location_terms: on scene, scene, road
+    ... 還有 5 個項目
+  time_expressions: at 11:17, at 11:18
+    ... 還有 14 個項目
+  measurements: 77 year old, 48 year old, 40 year old
+  contractions: i'll, we'll
+  filler_words: like
+  repetitions: rabbit, rescue, road, jack, [x]
+    ... 還有 5 個項目
+  incomplete_sentences: go ahead, copy, out
+    ... 還有 2 個項目
+  noise_markers: [x]
+    ... 還有 10 個項目
+  slang_terms: on scene, copy, out
+    ... 還有 1 個項目
+
+文件 3: long_audio_group_003.wav
+----------------------------------------
+  abbreviations: BLS
+  medical_terms: fall, conscious, male, breathing
+  emergency_codes: 132, 920, 4560
+    ... 還有 8 個項目
+  unit_identifiers: ladder, rescue, ambulance, command
+    ... 還有 19 個項目
+  location_terms: unavailable, on scene, available
+    ... 還有 6 個項目
+  time_expressions: 12:08, at 12:08, 20:28
+    ... 還有 1 個項目
+  measurements: 64 year old
+  repetitions: can, road, [x], for, you
+    ... 還有 5 個項目
+  incomplete_sentences: over, copy, negative, out
+    ... 還有 12 個項目
+  noise_markers: [x]
+    ... 還有 15 個項目
+  technical_terms: water supply
+  slang_terms: over, copy, negative, out
+    ... 還有 12 個項目
