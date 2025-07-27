@@ -528,7 +528,7 @@ print(f'Processed {len(file_mapping)} original files with {len(available_models)
         echo "VAD-based ASR processing completed"
         echo "Note: Transcripts are from concatenated speech segments with original timing preserved in VAD metadata"
     fi
-    
+ 
 else
     echo "Running ASR on original files from: $ASR_INPUT_DIR"
     # Copy original files to ASR output for processing
