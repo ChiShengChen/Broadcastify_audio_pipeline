@@ -1,427 +1,338 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Audio Preprocessor for ASR Model Compatibility
-=============================================
+Audio Preprocessor for ASR Pipeline
+==================================
 
-This script preprocesses audio files to ensure compatibility with different ASR models
-based on their specific limitations and requirements.
+This script provides audio preprocessing functionality including:
+1. Upsampling audio files to target sample rate (e.g., 8000Hz -> 16000Hz)
+2. Splitting long audio files into segments (e.g., >60s -> 60s segments)
+3. Maintaining metadata for proper WER calculation
+
+Usage:
+    python3 audio_preprocessor.py --input_dir /path/to/audio --output_dir /path/to/output --target_sample_rate 16000 --max_duration 60
 """
 
 import os
-import sys
-import argparse
-import json
-import logging
-from pathlib import Path
-from typing import Dict, List, Optional, Tuple
-import numpy as np
 import torch
 import torchaudio
-import torchaudio.transforms as T
-from scipy.io import wavfile
-import soundfile as sf
-from pydub import AudioSegment
-import librosa
+import argparse
+import json
+from pathlib import Path
+from typing import List, Tuple, Dict, Optional
+import warnings
+from tqdm import tqdm
+import shutil
+import numpy as np
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
+# Suppress warnings for cleaner output
+warnings.filterwarnings("ignore", category=UserWarning)
+warnings.filterwarnings("ignore", category=FutureWarning)
 
 class AudioPreprocessor:
-    """Audio preprocessor for ASR model compatibility"""
+    """Audio preprocessing with upsampling and segmentation"""
     
-    def __init__(self, output_dir: str):
-        self.output_dir = Path(output_dir)
-        self.output_dir.mkdir(parents=True, exist_ok=True)
+    def __init__(self, 
+                 target_sample_rate: int = 16000,
+                 max_duration: float = 60.0,  # Maximum duration per segment
+                 overlap_duration: float = 1.0,  # Overlap between segments
+                 min_segment_duration: float = 5.0,  # Minimum segment duration
+                 preserve_original_structure: bool = True):
+        """
+        Initialize Audio Preprocessor
         
-        # Model-specific requirements
-        self.model_requirements = {
-            "large-v3": {
-                "min_duration": 0.0,      # No minimum
-                "max_duration": float('inf'),  # No maximum
-                "sample_rate": 16000,      # Preferred
-                "channels": 1,             # Mono
-                "format": "wav",
-                "volume_threshold": 0.0,   # No minimum
-                "description": "Whisper large-v3 - Most flexible"
-            },
-            "canary-1b": {
-                "min_duration": 0.5,      # Minimum 0.5s
-                "max_duration": 60.0,     # Maximum 60s
-                "sample_rate": 16000,     # Required
-                "channels": 1,            # Mono
-                "format": "wav",
-                "volume_threshold": 0.01, # Minimum volume
-                "description": "NeMo Canary-1b - Strict duration limits"
-            },
-            "parakeet-tdt-0.6b-v2": {
-                "min_duration": 1.0,      # Minimum 1.0s
-                "max_duration": 300.0,    # Maximum 300s
-                "sample_rate": 16000,     # Required
-                "channels": 1,            # Mono
-                "format": "wav",
-                "volume_threshold": 0.0,  # No minimum
-                "description": "NeMo Parakeet - Medium flexibility"
-            },
-            "wav2vec-xls-r": {
-                "min_duration": 0.1,      # Minimum 0.1s
-                "max_duration": float('inf'),  # No maximum
-                "sample_rate": 16000,     # Required
-                "channels": 1,            # Mono
-                "format": "wav",
-                "volume_threshold": 0.01, # Minimum volume
-                "description": "Wav2Vec2 - Good flexibility"
-            }
-        }
+        Args:
+            target_sample_rate: Target sample rate for upsampling
+            max_duration: Maximum duration for each segment (seconds)
+            overlap_duration: Overlap between segments (seconds)
+            min_segment_duration: Minimum duration for valid segments (seconds)
+            preserve_original_structure: Whether to preserve original directory structure
+        """
+        self.target_sample_rate = target_sample_rate
+        self.max_duration = max_duration
+        self.overlap_duration = overlap_duration
+        self.min_segment_duration = min_segment_duration
+        self.preserve_original_structure = preserve_original_structure
+        
+        print("Audio Preprocessor initialized with parameters:")
+        print(f"  - Target sample rate: {target_sample_rate}Hz")
+        print(f"  - Max segment duration: {max_duration}s")
+        print(f"  - Overlap duration: {overlap_duration}s")
+        print(f"  - Min segment duration: {min_segment_duration}s")
+        print(f"  - Preserve structure: {preserve_original_structure}")
     
     def get_audio_info(self, audio_path: str) -> Dict:
         """Get audio file information"""
         try:
-            # Try using soundfile first
-            info = sf.info(audio_path)
-            duration = info.duration
-            sample_rate = info.samplerate
-            channels = info.channels
-            
-            # Calculate volume
-            audio, sr = sf.read(audio_path)
-            if len(audio.shape) > 1:
-                audio = audio.mean(axis=1)  # Convert to mono
-            volume = np.abs(audio).max()
+            waveform, sample_rate = torchaudio.load(audio_path)
+            duration = waveform.shape[1] / sample_rate
             
             return {
-                "duration": duration,
-                "sample_rate": sample_rate,
-                "channels": channels,
-                "volume": volume,
-                "format": Path(audio_path).suffix.lower()
+                'path': audio_path,
+                'sample_rate': sample_rate,
+                'duration': duration,
+                'channels': waveform.shape[0],
+                'file_size': os.path.getsize(audio_path),
+                'needs_upsampling': sample_rate != self.target_sample_rate,
+                'needs_splitting': duration > self.max_duration
             }
         except Exception as e:
-            logger.warning(f"Error reading {audio_path}: {e}")
+            print(f"Error reading audio file {audio_path}: {e}")
             return None
     
-    def load_audio(self, audio_path: str) -> Tuple[np.ndarray, int]:
-        """Load audio file"""
-        try:
-            audio, sample_rate = sf.read(audio_path)
-            return audio, sample_rate
-        except Exception as e:
-            logger.error(f"Failed to load audio {audio_path}: {e}")
-            return None, None
+    def upsample_audio(self, waveform: torch.Tensor, original_sample_rate: int) -> torch.Tensor:
+        """
+        Upsample audio to target sample rate
+        
+        Args:
+            waveform: Input audio tensor
+            original_sample_rate: Original sample rate
+            
+        Returns:
+            Upsampled waveform
+        """
+        if original_sample_rate == self.target_sample_rate:
+            return waveform
+        
+        # Convert to mono if stereo
+        if waveform.shape[0] > 1:
+            waveform = torch.mean(waveform, dim=0, keepdim=True)
+        
+        # Resample
+        resampler = torchaudio.transforms.Resample(original_sample_rate, self.target_sample_rate)
+        upsampled_waveform = resampler(waveform)
+        
+        return upsampled_waveform
     
-    def resample_audio(self, audio: np.ndarray, src_sr: int, target_sr: int) -> np.ndarray:
-        """Resample audio to target sample rate"""
-        if src_sr == target_sr:
-            return audio
+    def split_audio(self, waveform: torch.Tensor, sample_rate: int) -> List[Tuple[torch.Tensor, float, float]]:
+        """
+        Split audio into segments
         
-        # Use librosa for resampling
-        audio_resampled = librosa.resample(
-            audio, 
-            orig_sr=src_sr, 
-            target_sr=target_sr
-        )
-        return audio_resampled
-    
-    def convert_to_mono(self, audio: np.ndarray) -> np.ndarray:
-        """Convert audio to mono"""
-        if len(audio.shape) == 1:
-            return audio
-        return audio.mean(axis=1)
-    
-    def normalize_volume(self, audio: np.ndarray, target_volume: float = 0.5) -> np.ndarray:
-        """Normalize audio volume"""
-        current_max = np.abs(audio).max()
-        if current_max > 0:
-            scale_factor = target_volume / current_max
-            audio = audio * scale_factor
-        return audio
-    
-    def trim_silence(self, audio: np.ndarray, sample_rate: int, 
-                    threshold: float = 0.01, min_duration: float = 0.1) -> np.ndarray:
-        """Trim silence from audio"""
-        # Calculate frame length for silence detection
-        frame_length = int(sample_rate * 0.025)  # 25ms frames
+        Args:
+            waveform: Input audio tensor
+            sample_rate: Sample rate
+            
+        Returns:
+            List of (segment_waveform, start_time, end_time) tuples
+        """
+        duration = waveform.shape[1] / sample_rate
         
-        # Find non-silent regions
-        non_silent_ranges = librosa.effects.split(
-            audio, 
-            top_db=-20,  # -20dB threshold
-            frame_length=frame_length,
-            hop_length=frame_length // 4
-        )
-        
-        if len(non_silent_ranges) == 0:
-            return audio
-        
-        # Combine all non-silent regions
-        trimmed_audio = np.concatenate([
-            audio[start:end] for start, end in non_silent_ranges
-        ])
-        
-        # Ensure minimum duration
-        min_samples = int(sample_rate * min_duration)
-        if len(trimmed_audio) < min_samples:
-            # Pad with silence if too short
-            padding = np.zeros(min_samples - len(trimmed_audio))
-            trimmed_audio = np.concatenate([trimmed_audio, padding])
-        
-        return trimmed_audio
-    
-    def split_long_audio(self, audio: np.ndarray, sample_rate: int, 
-                        max_duration: float, overlap: float = 0.5) -> List[np.ndarray]:
-        """Split long audio into segments"""
-        max_samples = int(sample_rate * max_duration)
-        overlap_samples = int(sample_rate * overlap)
+        if duration <= self.max_duration:
+            return [(waveform, 0.0, duration)]
         
         segments = []
-        start = 0
+        segment_samples = int(self.max_duration * sample_rate)
+        overlap_samples = int(self.overlap_duration * sample_rate)
+        step_samples = segment_samples - overlap_samples
         
-        while start < len(audio):
-            end = min(start + max_samples, len(audio))
-            segment = audio[start:end]
-            segments.append(segment)
+        start_sample = 0
+        while start_sample < waveform.shape[1]:
+            end_sample = min(start_sample + segment_samples, waveform.shape[1])
+            segment_waveform = waveform[:, start_sample:end_sample]
             
-            if end >= len(audio):
-                break
+            segment_duration = segment_waveform.shape[1] / sample_rate
             
-            start = end - overlap_samples
+            # Only include segments that meet minimum duration
+            if segment_duration >= self.min_segment_duration:
+                start_time = start_sample / sample_rate
+                end_time = end_sample / sample_rate
+                segments.append((segment_waveform, start_time, end_time))
+            
+            start_sample += step_samples
         
         return segments
     
-    def pad_short_audio(self, audio: np.ndarray, sample_rate: int, 
-                       min_duration: float) -> np.ndarray:
-        """Pad short audio to minimum duration"""
-        min_samples = int(sample_rate * min_duration)
+    def process_audio_file(self, input_path: str, output_dir: str) -> Dict:
+        """
+        Process a single audio file
         
-        if len(audio) >= min_samples:
-            return audio
-        
-        # Pad with silence
-        padding_samples = min_samples - len(audio)
-        padding = np.zeros(padding_samples)
-        padded_audio = np.concatenate([audio, padding])
-        
-        return padded_audio
-    
-    def save_audio(self, audio: np.ndarray, sample_rate: int, 
-                  output_path: str, format: str = "wav") -> bool:
-        """Save audio to file"""
-        try:
-            sf.write(output_path, audio, sample_rate, format=format.upper())
-            return True
-        except Exception as e:
-            logger.error(f"Failed to save {output_path}: {e}")
-            return False
-    
-    def preprocess_for_model(self, audio_path: str, model_name: str) -> List[str]:
-        """Preprocess audio for specific model"""
-        requirements = self.model_requirements[model_name]
+        Args:
+            input_path: Input audio file path
+            output_dir: Output directory
+            
+        Returns:
+            Processing metadata
+        """
+        # Get audio info
+        audio_info = self.get_audio_info(input_path)
+        if audio_info is None:
+            return {'status': 'error', 'message': 'Failed to read audio file'}
         
         # Load audio
-        audio, src_sr = self.load_audio(audio_path)
-        if audio is None:
-            return []
+        waveform, original_sample_rate = torchaudio.load(input_path)
         
-        # Get original info
-        audio_info = self.get_audio_info(audio_path)
-        if audio_info is None:
-            return []
-        
-        logger.info(f"Processing {audio_path} for {model_name}")
-        logger.info(f"Original: {audio_info['duration']:.2f}s, {audio_info['sample_rate']}Hz, {audio_info['channels']}ch")
-        
-        # Convert to mono if needed
-        if audio_info['channels'] > 1:
-            audio = self.convert_to_mono(audio)
-            logger.info("Converted to mono")
-        
-        # Resample if needed
-        target_sr = requirements['sample_rate']
-        if src_sr != target_sr:
-            audio = self.resample_audio(audio, src_sr, target_sr)
-            logger.info(f"Resampled to {target_sr}Hz")
-        
-        # Normalize volume if needed
-        if requirements['volume_threshold'] > 0:
-            current_volume = np.abs(audio).max()
-            if current_volume < requirements['volume_threshold']:
-                audio = self.normalize_volume(audio, requirements['volume_threshold'] * 2)
-                logger.info(f"Normalized volume from {current_volume:.4f} to {np.abs(audio).max():.4f}")
-        
-        # Trim silence for better processing
-        audio = self.trim_silence(audio, target_sr)
-        
-        # Handle duration constraints
-        duration = len(audio) / target_sr
-        min_duration = requirements['min_duration']
-        max_duration = requirements['max_duration']
-        
-        output_files = []
-        base_name = Path(audio_path).stem
-        
-        if duration < min_duration:
-            # Pad short audio
-            audio = self.pad_short_audio(audio, target_sr, min_duration)
-            logger.info(f"Padded to {len(audio) / target_sr:.2f}s (min: {min_duration}s)")
-            
-            # Save single file
-            output_path = self.output_dir / f"{base_name}_{model_name}.wav"
-            if self.save_audio(audio, target_sr, str(output_path)):
-                output_files.append(str(output_path))
-        
-        elif duration > max_duration:
-            # Split long audio
-            segments = self.split_long_audio(audio, target_sr, max_duration)
-            logger.info(f"Split into {len(segments)} segments (max: {max_duration}s)")
-            
-            for i, segment in enumerate(segments):
-                output_path = self.output_dir / f"{base_name}_{model_name}_part{i+1:03d}.wav"
-                if self.save_audio(segment, target_sr, str(output_path)):
-                    output_files.append(str(output_path))
-        
+        # Upsample if needed
+        if audio_info['needs_upsampling']:
+            waveform = self.upsample_audio(waveform, original_sample_rate)
+            sample_rate = self.target_sample_rate
         else:
-            # Save as single file
-            output_path = self.output_dir / f"{base_name}_{model_name}.wav"
-            if self.save_audio(audio, target_sr, str(output_path)):
-                output_files.append(str(output_path))
+            sample_rate = original_sample_rate
         
-        logger.info(f"Generated {len(output_files)} files for {model_name}")
-        return output_files
+        # Split audio if needed
+        segments = self.split_audio(waveform, sample_rate)
+        
+        # Create output directory structure
+        if self.preserve_original_structure:
+            relative_path = os.path.relpath(input_path, self.input_dir)
+            file_output_dir = os.path.join(output_dir, os.path.dirname(relative_path))
+        else:
+            file_output_dir = output_dir
+        
+        os.makedirs(file_output_dir, exist_ok=True)
+        
+        # Save segments
+        base_name = os.path.splitext(os.path.basename(input_path))[0]
+        saved_segments = []
+        
+        for i, (segment_waveform, start_time, end_time) in enumerate(segments):
+            if len(segments) == 1:
+                # Single segment, use original filename
+                output_filename = f"{base_name}.wav"
+            else:
+                # Multiple segments, add segment number
+                output_filename = f"{base_name}_segment_{i:03d}.wav"
+            
+            output_path = os.path.join(file_output_dir, output_filename)
+            
+            # Save segment
+            torchaudio.save(output_path, segment_waveform, sample_rate)
+            
+            saved_segments.append({
+                'filename': output_filename,
+                'path': output_path,
+                'start_time': start_time,
+                'end_time': end_time,
+                'duration': end_time - start_time,
+                'sample_rate': sample_rate
+            })
+        
+        return {
+            'status': 'success',
+            'original_file': input_path,
+            'original_duration': audio_info['duration'],
+            'original_sample_rate': audio_info['sample_rate'],
+            'needs_upsampling': audio_info['needs_upsampling'],
+            'needs_splitting': audio_info['needs_splitting'],
+            'segments': saved_segments,
+            'total_segments': len(saved_segments)
+        }
     
-    def preprocess_all_models(self, audio_path: str) -> Dict[str, List[str]]:
-        """Preprocess audio for all models"""
-        results = {}
+    def process_directory(self, input_dir: str, output_dir: str) -> Dict:
+        """
+        Process all audio files in directory
         
-        for model_name in self.model_requirements.keys():
-            try:
-                output_files = self.preprocess_for_model(audio_path, model_name)
-                results[model_name] = output_files
-            except Exception as e:
-                logger.error(f"Failed to process {audio_path} for {model_name}: {e}")
-                results[model_name] = []
+        Args:
+            input_dir: Input directory
+            output_dir: Output directory
+            
+        Returns:
+            Processing summary
+        """
+        self.input_dir = input_dir
         
-        return results
-    
-    def process_directory(self, input_dir: str) -> Dict[str, Dict[str, List[str]]]:
-        """Process all audio files in directory"""
-        input_path = Path(input_dir)
-        audio_files = list(input_path.glob("*.wav")) + list(input_path.glob("*.mp3")) + \
-                     list(input_path.glob("*.m4a")) + list(input_path.glob("*.flac"))
+        # Find all audio files
+        audio_extensions = ['.wav', '.mp3', '.flac', '.m4a', '.aac']
+        audio_files = []
+        
+        for root, dirs, files in os.walk(input_dir):
+            for file in files:
+                if any(file.lower().endswith(ext) for ext in audio_extensions):
+                    audio_files.append(os.path.join(root, file))
         
         if not audio_files:
-            logger.warning(f"No audio files found in {input_dir}")
-            return {}
+            return {'status': 'error', 'message': 'No audio files found'}
         
-        logger.info(f"Found {len(audio_files)} audio files")
+        print(f"Found {len(audio_files)} audio files to process")
         
-        all_results = {}
-        for audio_file in audio_files:
-            logger.info(f"Processing {audio_file.name}")
-            results = self.preprocess_all_models(str(audio_file))
-            all_results[audio_file.name] = results
-        
-        return all_results
-    
-    def generate_summary(self, results: Dict[str, Dict[str, List[str]]]) -> Dict:
-        """Generate processing summary"""
-        summary = {
-            "total_files": len(results),
-            "models": list(self.model_requirements.keys()),
-            "model_stats": {},
-            "file_stats": {}
+        # Process files
+        results = {
+            'status': 'success',
+            'total_files': len(audio_files),
+            'processed_files': 0,
+            'error_files': 0,
+            'total_segments': 0,
+            'upsampled_files': 0,
+            'split_files': 0,
+            'file_results': []
         }
         
-        # Model statistics
-        for model_name in self.model_requirements.keys():
-            total_outputs = sum(len(results[file][model_name]) for file in results)
-            successful_files = sum(1 for file in results if results[file][model_name])
-            summary["model_stats"][model_name] = {
-                "total_output_files": total_outputs,
-                "successful_input_files": successful_files,
-                "success_rate": f"{successful_files}/{len(results)} ({successful_files/len(results)*100:.1f}%)"
-            }
+        for audio_file in tqdm(audio_files, desc="Processing audio files"):
+            try:
+                result = self.process_audio_file(audio_file, output_dir)
+                results['file_results'].append(result)
+                
+                if result['status'] == 'success':
+                    results['processed_files'] += 1
+                    results['total_segments'] += result['total_segments']
+                    
+                    if result['needs_upsampling']:
+                        results['upsampled_files'] += 1
+                    
+                    if result['needs_splitting']:
+                        results['split_files'] += 1
+                else:
+                    results['error_files'] += 1
+                    
+            except Exception as e:
+                print(f"Error processing {audio_file}: {e}")
+                results['error_files'] += 1
+                results['file_results'].append({
+                    'status': 'error',
+                    'original_file': audio_file,
+                    'message': str(e)
+                })
         
-        # File statistics
-        for file_name, file_results in results.items():
-            summary["file_stats"][file_name] = {
-                "total_output_files": sum(len(outputs) for outputs in file_results.values()),
-                "models_processed": sum(1 for outputs in file_results.values() if outputs),
-                "output_files_per_model": {model: len(outputs) for model, outputs in file_results.items()}
-            }
+        # Save processing metadata
+        metadata_file = os.path.join(output_dir, 'processing_metadata.json')
+        with open(metadata_file, 'w', encoding='utf-8') as f:
+            json.dump(results, f, indent=2, ensure_ascii=False)
         
-        return summary
-
+        return results
 
 def main():
-    """Main function"""
-    parser = argparse.ArgumentParser(
-        description="Audio Preprocessor for ASR Model Compatibility",
-        formatter_class=argparse.RawDescriptionHelpFormatter
-    )
-    
-    parser.add_argument('--input_dir', type=str, required=True,
-                       help='Input directory containing audio files')
-    parser.add_argument('--output_dir', type=str, required=True,
-                       help='Output directory for processed audio files')
-    parser.add_argument('--model', type=str, default='all',
-                       choices=['all', 'large-v3', 'canary-1b', 'parakeet-tdt-0.6b-v2', 'wav2vec-xls-r'],
-                       help='Target model(s) for preprocessing')
-    parser.add_argument('--summary_file', type=str, default='preprocessing_summary.json',
-                       help='Output summary file path')
-    parser.add_argument('--verbose', action='store_true',
-                       help='Enable verbose logging')
+    parser = argparse.ArgumentParser(description="Audio Preprocessor for ASR Pipeline")
+    parser.add_argument("--input_dir", required=True, help="Input directory with audio files")
+    parser.add_argument("--output_dir", required=True, help="Output directory for processed files")
+    parser.add_argument("--target_sample_rate", type=int, default=16000, help="Target sample rate (default: 16000)")
+    parser.add_argument("--max_duration", type=float, default=60.0, help="Maximum segment duration in seconds (default: 60.0)")
+    parser.add_argument("--overlap_duration", type=float, default=1.0, help="Overlap between segments in seconds (default: 1.0)")
+    parser.add_argument("--min_segment_duration", type=float, default=5.0, help="Minimum segment duration in seconds (default: 5.0)")
+    parser.add_argument("--preserve_structure", action="store_true", help="Preserve original directory structure")
     
     args = parser.parse_args()
     
-    if args.verbose:
-        logging.getLogger().setLevel(logging.DEBUG)
-    
     # Initialize preprocessor
-    preprocessor = AudioPreprocessor(args.output_dir)
+    preprocessor = AudioPreprocessor(
+        target_sample_rate=args.target_sample_rate,
+        max_duration=args.max_duration,
+        overlap_duration=args.overlap_duration,
+        min_segment_duration=args.min_segment_duration,
+        preserve_original_structure=args.preserve_structure
+    )
     
-    # Process files
-    logger.info(f"Starting audio preprocessing...")
-    logger.info(f"Input directory: {args.input_dir}")
-    logger.info(f"Output directory: {args.output_dir}")
+    # Process directory
+    print(f"Processing audio files from: {args.input_dir}")
+    print(f"Output directory: {args.output_dir}")
+    print()
     
-    results = preprocessor.process_directory(args.input_dir)
-    
-    # Generate summary
-    summary = preprocessor.generate_summary(results)
-    
-    # Save summary
-    summary_path = Path(args.output_dir) / args.summary_file
-    with open(summary_path, 'w', encoding='utf-8') as f:
-        json.dump(summary, f, indent=2, ensure_ascii=False)
+    results = preprocessor.process_directory(args.input_dir, args.output_dir)
     
     # Print summary
-    print("\n" + "="*60)
-    print("AUDIO PREPROCESSING SUMMARY")
-    print("="*60)
-    print(f"Total input files: {summary['total_files']}")
-    print(f"Output directory: {args.output_dir}")
-    print(f"Summary file: {summary_path}")
-    print()
+    print("\n" + "="*50)
+    print("PROCESSING SUMMARY")
+    print("="*50)
+    print(f"Total files: {results['total_files']}")
+    print(f"Successfully processed: {results['processed_files']}")
+    print(f"Errors: {results['error_files']}")
+    print(f"Total segments created: {results['total_segments']}")
+    print(f"Files upsampled: {results['upsampled_files']}")
+    print(f"Files split: {results['split_files']}")
+    print(f"Metadata saved to: {os.path.join(args.output_dir, 'processing_metadata.json')}")
     
-    print("MODEL PROCESSING STATISTICS:")
-    print("-" * 40)
-    for model_name, stats in summary['model_stats'].items():
-        print(f"{model_name:20} | {stats['success_rate']:15} | {stats['total_output_files']:3d} files")
-    
-    print()
-    print("MODEL REQUIREMENTS:")
-    print("-" * 40)
-    for model_name, reqs in preprocessor.model_requirements.items():
-        print(f"{model_name:20} | {reqs['description']}")
-    
-    print()
-    print(f"Processing completed successfully!")
-    print(f"Check {summary_path} for detailed results")
+    if results['status'] == 'success':
+        print("\n✅ Processing completed successfully!")
+    else:
+        print(f"\n❌ Processing failed: {results['message']}")
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main() 

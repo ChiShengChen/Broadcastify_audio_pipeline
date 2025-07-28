@@ -33,6 +33,13 @@ USE_VAD=true                    # Enable VAD preprocessing
 USE_LONG_AUDIO_SPLIT=true      # Enable long audio splitting to prevent OOM
 MAX_SEGMENT_DURATION=120.0      # Maximum segment duration in seconds (2 minutes)
 
+# Audio preprocessing options
+USE_AUDIO_PREPROCESSING=false   # Enable audio preprocessing (upsampling and segmentation)
+TARGET_SAMPLE_RATE=16000        # Target sample rate for upsampling
+AUDIO_MAX_DURATION=60.0         # Maximum audio segment duration in seconds
+AUDIO_OVERLAP_DURATION=1.0      # Overlap between audio segments in seconds
+AUDIO_MIN_SEGMENT_DURATION=5.0  # Minimum audio segment duration in seconds
+
 
 #### DO NOT CHANGE THESE OPTIONS ####
 # Processing options
@@ -122,6 +129,30 @@ while [[ $# -gt 0 ]]; do
             ENHANCED_PREPROCESSOR_MODE="$2"
             shift 2
             ;;
+        --use-audio-preprocessing)
+            USE_AUDIO_PREPROCESSING=true
+            shift
+            ;;
+        --no-audio-preprocessing)
+            USE_AUDIO_PREPROCESSING=false
+            shift
+            ;;
+        --target-sample-rate)
+            TARGET_SAMPLE_RATE="$2"
+            shift 2
+            ;;
+        --audio-max-duration)
+            AUDIO_MAX_DURATION="$2"
+            shift 2
+            ;;
+        --audio-overlap-duration)
+            AUDIO_OVERLAP_DURATION="$2"
+            shift 2
+            ;;
+        --audio-min-segment-duration)
+            AUDIO_MIN_SEGMENT_DURATION="$2"
+            shift 2
+            ;;
         -h|--help)
             echo "Enhanced ASR Pipeline with Optional VAD"
             echo ""
@@ -144,6 +175,12 @@ while [[ $# -gt 0 ]]; do
             echo "  --use-enhanced-preprocessor  Use enhanced preprocessor with comprehensive text normalization"
             echo "  --no-enhanced-preprocessor   Disable enhanced preprocessor (use basic preprocessor)"
             echo "  --enhanced-preprocessor-mode MODE Enhanced preprocessor mode: conservative or aggressive (default: conservative)"
+            echo "  --use-audio-preprocessing    Enable audio preprocessing (upsampling and segmentation)"
+            echo "  --no-audio-preprocessing     Disable audio preprocessing"
+            echo "  --target-sample-rate INT     Target sample rate for upsampling (default: 16000)"
+            echo "  --audio-max-duration FLOAT   Maximum audio segment duration in seconds (default: 60.0)"
+            echo "  --audio-overlap-duration FLOAT Overlap between audio segments in seconds (default: 1.0)"
+            echo "  --audio-min-segment-duration FLOAT Minimum audio segment duration in seconds (default: 5.0)"
             echo "  -h, --help                   Show this help"
             echo ""
             echo "Examples:"
@@ -176,6 +213,12 @@ while [[ $# -gt 0 ]]; do
             echo ""
             echo "  # With enhanced preprocessor in aggressive mode"
             echo "  $0 --input_dir /path/to/audio --output_dir /path/to/results --use-enhanced-preprocessor --enhanced-preprocessor-mode aggressive"
+            echo ""
+            echo "  # With audio preprocessing (upsampling and segmentation)"
+            echo "  $0 --input_dir /path/to/audio --output_dir /path/to/results --use-audio-preprocessing"
+            echo ""
+            echo "  # With custom audio preprocessing parameters"
+            echo "  $0 --input_dir /path/to/audio --output_dir /path/to/results --use-audio-preprocessing --target-sample-rate 16000 --audio-max-duration 60"
             exit 0
             ;;
         *)
@@ -189,9 +232,54 @@ USE_ENHANCED_VAD=false
 # Create output directory
 mkdir -p "$OUTPUT_DIR"
 
-# --- Step 1: Ground Truth Preprocessing (Optional) ---
+# --- Step 1: Audio Preprocessing (Optional) ---
+if [ "$USE_AUDIO_PREPROCESSING" = true ]; then
+    echo "--- Step 1: Audio Preprocessing (Upsampling and Segmentation) ---"
+    AUDIO_PREPROCESSED_DIR="$OUTPUT_DIR/preprocessed_audio"
+    
+    echo "Running audio preprocessing..."
+    echo "Input: $AUDIO_DIR"
+    echo "Output: $AUDIO_PREPROCESSED_DIR"
+    echo "Target sample rate: ${TARGET_SAMPLE_RATE}Hz"
+    echo "Max duration: ${AUDIO_MAX_DURATION}s"
+    echo "Overlap duration: ${AUDIO_OVERLAP_DURATION}s"
+    echo "Min segment duration: ${AUDIO_MIN_SEGMENT_DURATION}s"
+    
+    $PYTHON_EXEC audio_preprocessor.py \
+        --input_dir "$AUDIO_DIR" \
+        --output_dir "$AUDIO_PREPROCESSED_DIR" \
+        --target_sample_rate "$TARGET_SAMPLE_RATE" \
+        --max_duration "$AUDIO_MAX_DURATION" \
+        --overlap_duration "$AUDIO_OVERLAP_DURATION" \
+        --min_segment_duration "$AUDIO_MIN_SEGMENT_DURATION" \
+        --preserve_structure
+    
+    if [ $? -eq 0 ]; then
+        echo "Audio preprocessing completed successfully"
+        echo "Preprocessed audio saved to: $AUDIO_PREPROCESSED_DIR"
+        # Set input directory for next steps to preprocessed audio
+        PROCESSING_INPUT_DIR="$AUDIO_PREPROCESSED_DIR"
+        AUDIO_PREPROCESSING_METADATA="$AUDIO_PREPROCESSED_DIR/processing_metadata.json"
+    else
+        echo "Warning: Audio preprocessing failed, using original files"
+        echo "ERROR: Audio preprocessing failed" >> "$ERROR_LOG_FILE"
+        echo "  Input directory: $AUDIO_DIR" >> "$ERROR_LOG_FILE"
+        echo "  Output directory: $AUDIO_PREPROCESSED_DIR" >> "$ERROR_LOG_FILE"
+        echo "  Using original audio files instead" >> "$ERROR_LOG_FILE"
+        echo "" >> "$ERROR_LOG_FILE"
+        PROCESSING_INPUT_DIR="$AUDIO_DIR"
+        AUDIO_PREPROCESSING_METADATA=""
+    fi
+else
+    echo "--- Skipping Audio Preprocessing ---"
+    PROCESSING_INPUT_DIR="$AUDIO_DIR"
+    AUDIO_PREPROCESSING_METADATA=""
+fi
+echo ""
+
+# --- Step 2: Ground Truth Preprocessing (Optional) ---
 if [ "$PREPROCESS_GROUND_TRUTH" = true ]; then
-    echo "--- Step 1: Ground Truth Preprocessing ---"
+    echo "--- Step 2: Ground Truth Preprocessing ---"
     
     # Set the preprocessed ground truth file path
     PREPROCESSED_GROUND_TRUTH_FILE="$OUTPUT_DIR/preprocessed_ground_truth.csv"
@@ -243,6 +331,14 @@ echo "=== Enhanced ASR Pipeline Configuration ==="
 echo "Input directory: $AUDIO_DIR"
 echo "Output directory: $OUTPUT_DIR"
 echo "Ground truth file: $GROUND_TRUTH_FILE"
+echo "Use Audio Preprocessing: $USE_AUDIO_PREPROCESSING"
+if [ "$USE_AUDIO_PREPROCESSING" = true ]; then
+    echo "Audio Preprocessing Parameters:"
+    echo "  - Target sample rate: ${TARGET_SAMPLE_RATE}Hz"
+    echo "  - Max duration: ${AUDIO_MAX_DURATION}s"
+    echo "  - Overlap duration: ${AUDIO_OVERLAP_DURATION}s"
+    echo "  - Min segment duration: ${AUDIO_MIN_SEGMENT_DURATION}s"
+fi
 echo "Use VAD: $USE_VAD"
 if [ "$USE_VAD" = true ]; then
     echo "Enhanced VAD: $USE_ENHANCED_VAD"
@@ -278,14 +374,14 @@ echo ""
 # echo "Dependencies installation complete"
 # echo ""
 
-# --- Step 2: Long Audio Splitting (Optional) ---
+# --- Step 3: Long Audio Splitting (Optional) ---
 if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
-    echo "--- Step 2: Long Audio Splitting ---"
+    echo "--- Step 3: Long Audio Splitting ---"
     LONG_AUDIO_OUTPUT_DIR="$OUTPUT_DIR/long_audio_segments"
     
     echo "Running Long Audio Splitter to prevent OOM issues..."
     $PYTHON_EXEC long_audio_splitter.py \
-        --input_dir "$AUDIO_DIR" \
+        --input_dir "$PROCESSING_INPUT_DIR" \
         --output_dir "$LONG_AUDIO_OUTPUT_DIR" \
         --max_duration "$MAX_SEGMENT_DURATION" \
         --speech_threshold "$VAD_SPEECH_THRESHOLD" \
@@ -297,20 +393,20 @@ if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
     echo ""
     
     # Set input directory for next steps to split segments
-    PROCESSING_INPUT_DIR="$LONG_AUDIO_OUTPUT_DIR"
+    ASR_INPUT_DIR="$LONG_AUDIO_OUTPUT_DIR"
 else
-    PROCESSING_INPUT_DIR="$AUDIO_DIR"
+    ASR_INPUT_DIR="$PROCESSING_INPUT_DIR"
 fi
 
-# --- Step 3: VAD Processing (Optional) ---
+# --- Step 4: VAD Processing (Optional) ---
 if [ "$USE_VAD" = true ]; then
-    echo "--- Step 3: VAD Processing ---"
+    echo "--- Step 4: VAD Processing ---"
     VAD_OUTPUT_DIR="$OUTPUT_DIR/vad_segments"
     
     if [ "$USE_ENHANCED_VAD" = true ]; then
         echo "Running Enhanced VAD with audio filters..."
         $PYTHON_EXEC enhanced_vad_pipeline.py \
-            --input_dir "$AUDIO_DIR" \
+            --input_dir "$ASR_INPUT_DIR" \
             --output_dir "$VAD_OUTPUT_DIR" \
             --speech_threshold "$VAD_SPEECH_THRESHOLD" \
             --min_speech_duration "$VAD_MIN_SPEECH_DURATION" \
@@ -318,7 +414,7 @@ if [ "$USE_VAD" = true ]; then
     else
         echo "Running Basic VAD..."
         $PYTHON_EXEC vad_pipeline.py \
-            --input_dir "$AUDIO_DIR" \
+            --input_dir "$ASR_INPUT_DIR" \
             --output_dir "$VAD_OUTPUT_DIR" \
             --speech_threshold "$VAD_SPEECH_THRESHOLD" \
             --min_speech_duration "$VAD_MIN_SPEECH_DURATION" \
@@ -333,11 +429,11 @@ if [ "$USE_VAD" = true ]; then
     ASR_INPUT_DIR="$VAD_OUTPUT_DIR"
 else
     echo "--- Skipping VAD (processing original files) ---"
-    ASR_INPUT_DIR="$PROCESSING_INPUT_DIR"
+    # ASR_INPUT_DIR is already set from previous step
 fi
 
-# --- Step 4: ASR Processing ---
-echo "--- Step 4: ASR Transcription ---"
+# --- Step 5: ASR Processing ---
+echo "--- Step 5: ASR Transcription ---"
 ASR_OUTPUT_DIR="$OUTPUT_DIR/asr_transcripts"
 mkdir -p "$ASR_OUTPUT_DIR"
 
@@ -545,9 +641,37 @@ echo "ASR transcription completed"
 echo "Transcripts saved to: $TRANSCRIPT_DIR"
 echo ""
 
-# --- Step 5: Merge Split Transcripts (if long audio splitting was used) ---
+# --- Step 6: Merge Segmented Transcripts (if audio preprocessing was used) ---
+if [ "$USE_AUDIO_PREPROCESSING" = true ] && [ -n "$AUDIO_PREPROCESSING_METADATA" ] && [ -f "$AUDIO_PREPROCESSING_METADATA" ]; then
+    echo "--- Step 6: Merging Segmented Transcripts ---"
+    MERGED_SEGMENTED_TRANSCRIPTS_DIR="$OUTPUT_DIR/merged_segmented_transcripts"
+    
+    echo "Merging segmented transcripts for WER calculation..."
+    $PYTHON_EXEC merge_segmented_transcripts.py \
+        --input_dir "$TRANSCRIPT_DIR" \
+        --output_dir "$MERGED_SEGMENTED_TRANSCRIPTS_DIR" \
+        --metadata_file "$AUDIO_PREPROCESSING_METADATA"
+    
+    if [ $? -eq 0 ]; then
+        echo "Segmented transcript merging completed"
+        echo "Merged transcripts saved to: $MERGED_SEGMENTED_TRANSCRIPTS_DIR"
+        echo ""
+        
+        # Set transcript directory for evaluation to merged segmented transcripts
+        TRANSCRIPT_DIR="$MERGED_SEGMENTED_TRANSCRIPTS_DIR"
+    else
+        echo "Warning: Segmented transcript merging failed, using original transcripts"
+        echo "ERROR: Segmented transcript merging failed" >> "$ERROR_LOG_FILE"
+        echo "  Input directory: $TRANSCRIPT_DIR" >> "$ERROR_LOG_FILE"
+        echo "  Metadata file: $AUDIO_PREPROCESSING_METADATA" >> "$ERROR_LOG_FILE"
+        echo "  Using original transcripts instead" >> "$ERROR_LOG_FILE"
+        echo "" >> "$ERROR_LOG_FILE"
+    fi
+fi
+
+# --- Step 7: Merge Split Transcripts (if long audio splitting was used) ---
 if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
-    echo "--- Step 5: Merging Split Transcripts ---"
+    echo "--- Step 7: Merging Split Transcripts ---"
     MERGED_TRANSCRIPTS_DIR="$OUTPUT_DIR/merged_transcripts"
     
     echo "Merging split transcripts for WER calculation..."
@@ -564,8 +688,8 @@ if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
     TRANSCRIPT_DIR="$MERGED_TRANSCRIPTS_DIR"
 fi
 
-# --- Step 6: Evaluation ---
-echo "--- Step 6: Evaluating ASR Results ---"
+# --- Step 8: Evaluation ---
+echo "--- Step 8: Evaluating ASR Results ---"
 if [[ -f "$EVALUATION_GROUND_TRUTH_FILE" && -d "$TRANSCRIPT_DIR" ]]; then
     $PYTHON_EXEC evaluate_asr.py \
         --transcript_dirs "$TRANSCRIPT_DIR" \
@@ -597,8 +721,8 @@ else
 fi
 echo ""
 
-# --- Step 6.5: Model File Analysis with Error Logging ---
-echo "--- Step 6.5: Analyzing Model File Processing with Error Logging ---"
+# --- Step 8.5: Model File Analysis with Error Logging ---
+echo "--- Step 8.5: Analyzing Model File Processing with Error Logging ---"
 MODEL_ANALYSIS_FILE="$OUTPUT_DIR/model_file_analysis.txt"
 ERROR_LOG_FILE="$OUTPUT_DIR/error_analysis.log"
 
@@ -634,7 +758,7 @@ else
 fi
 echo ""
 
-# --- Step 7: Generate Summary ---
+# --- Step 9: Generate Summary ---
 echo "--- Generating Pipeline Summary ---"
 SUMMARY_FILE="$OUTPUT_DIR/pipeline_summary.txt"
 
@@ -646,6 +770,14 @@ SUMMARY_FILE="$OUTPUT_DIR/pipeline_summary.txt"
     echo "Output Directory: $OUTPUT_DIR"
     echo ""
     echo "Configuration:"
+    echo "  - Audio Preprocessing: $USE_AUDIO_PREPROCESSING"
+    if [ "$USE_AUDIO_PREPROCESSING" = true ]; then
+        echo "  - Audio Preprocessing Parameters:"
+        echo "    * Target sample rate: ${TARGET_SAMPLE_RATE}Hz"
+        echo "    * Max duration: ${AUDIO_MAX_DURATION}s"
+        echo "    * Overlap duration: ${AUDIO_OVERLAP_DURATION}s"
+        echo "    * Min segment duration: ${AUDIO_MIN_SEGMENT_DURATION}s"
+    fi
     echo "  - VAD Preprocessing: $USE_VAD"
     echo "  - Enhanced VAD: $USE_ENHANCED_VAD"
     if [ "$USE_VAD" = true ]; then
@@ -677,6 +809,26 @@ SUMMARY_FILE="$OUTPUT_DIR/pipeline_summary.txt"
     # Count input files
     INPUT_COUNT=$(find "$AUDIO_DIR" -name "*.wav" | wc -l)
     echo "Input Files: $INPUT_COUNT audio files"
+    
+    # Audio preprocessing results
+    if [ "$USE_AUDIO_PREPROCESSING" = true ] && [ -f "$OUTPUT_DIR/preprocessed_audio/processing_metadata.json" ]; then
+        echo ""
+        echo "Audio Preprocessing Results:"
+        if command -v jq > /dev/null 2>&1; then
+            TOTAL_FILES=$(jq -r '.total_files' "$OUTPUT_DIR/preprocessed_audio/processing_metadata.json" 2>/dev/null || echo "N/A")
+            PROCESSED_FILES=$(jq -r '.processed_files' "$OUTPUT_DIR/preprocessed_audio/processing_metadata.json" 2>/dev/null || echo "N/A")
+            TOTAL_SEGMENTS=$(jq -r '.total_segments' "$OUTPUT_DIR/preprocessed_audio/processing_metadata.json" 2>/dev/null || echo "N/A")
+            UPSAMPLED_FILES=$(jq -r '.upsampled_files' "$OUTPUT_DIR/preprocessed_audio/processing_metadata.json" 2>/dev/null || echo "N/A")
+            SPLIT_FILES=$(jq -r '.split_files' "$OUTPUT_DIR/preprocessed_audio/processing_metadata.json" 2>/dev/null || echo "N/A")
+            echo "  - Total files processed: $TOTAL_FILES"
+            echo "  - Successfully processed: $PROCESSED_FILES"
+            echo "  - Total segments created: $TOTAL_SEGMENTS"
+            echo "  - Files upsampled: $UPSAMPLED_FILES"
+            echo "  - Files split: $SPLIT_FILES"
+        else
+            echo "  - Audio preprocessing summary available in: $OUTPUT_DIR/preprocessed_audio/processing_metadata.json"
+        fi
+    fi
     
     # Long audio split results
     if [ "$USE_LONG_AUDIO_SPLIT" = true ] && [ -f "$OUTPUT_DIR/long_audio_segments/processing_summary.json" ]; then
@@ -799,6 +951,9 @@ if [ "$PIPELINE_SUCCESS" = true ]; then
     echo "=== Pipeline Completed Successfully ==="
     echo ""
     echo "Results structure:"
+    if [ "$USE_AUDIO_PREPROCESSING" = true ]; then
+        echo "  $OUTPUT_DIR/preprocessed_audio/     # Audio preprocessing results"
+    fi
     if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
         echo "  $OUTPUT_DIR/long_audio_segments/   # Long audio split segments"
     fi
@@ -806,6 +961,9 @@ if [ "$PIPELINE_SUCCESS" = true ]; then
         echo "  $OUTPUT_DIR/vad_segments/          # VAD extracted speech segments"
     fi
     echo "  $OUTPUT_DIR/asr_transcripts/       # ASR transcription results"
+    if [ "$USE_AUDIO_PREPROCESSING" = true ]; then
+        echo "  $OUTPUT_DIR/merged_segmented_transcripts/ # Merged segmented transcripts"
+    fi
     if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
         echo "  $OUTPUT_DIR/merged_transcripts/    # Merged transcripts for evaluation"
     fi
