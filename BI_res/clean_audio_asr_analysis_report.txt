@@ -1,0 +1,5907 @@
+================================================================================
+AUDIO ANALYSIS REPORT FOR ASR MODEL COMPATIBILITY
+================================================================================
+Analysis Date: 2025-07-28T08:30:01.637917
+Input Directory: /home/alex/Documents/EMS Audio Project/vad_transcribed_wav_files/
+Total Files Analyzed: 167
+
+COMPATIBILITY SUMMARY:
+----------------------------------------
+Whisper (large-v3): 167/167 files (100.0%)
+Canary-1b (NeMo): 0/167 files (0.0%)
+Parakeet-tdt-0.6b-v2 (NeMo): 0/167 files (0.0%)
+Wav2Vec2-xls-r (Transformers): 0/167 files (0.0%)
+
+INCOMPATIBLE FILES BY MODEL:
+Whisper (large-v3): (all compatible)
+Canary-1b (NeMo): , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , 
+Parakeet-tdt-0.6b-v2 (NeMo): , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , 
+Wav2Vec2-xls-r (Transformers): , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , 
+
+
+FILE: 
+--------------------------------------------------
+Duration: 60.42 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 966,732 bytes
+Max Volume: 0.9803
+Average Volume: 0.1397
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 60.42s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 32.77 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 524,364 bytes
+Max Volume: 0.9803
+Average Volume: 0.0906
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 16.38 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 262,220 bytes
+Max Volume: 0.9803
+Average Volume: 0.0685
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 34.82 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 557,132 bytes
+Max Volume: 0.9803
+Average Volume: 0.0953
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 60.42 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 966,732 bytes
+Max Volume: 0.9803
+Average Volume: 0.1347
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 60.42s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 90.11 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,441,868 bytes
+Max Volume: 0.9803
+Average Volume: 0.1291
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 90.11s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 77.82 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,245,260 bytes
+Max Volume: 0.9803
+Average Volume: 0.1685
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 77.82s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 93.18 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,491,020 bytes
+Max Volume: 0.9803
+Average Volume: 0.1448
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 93.18s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 14.34 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 229,452 bytes
+Max Volume: 0.9803
+Average Volume: 0.0721
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 62.46 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 999,500 bytes
+Max Volume: 0.9803
+Average Volume: 0.1414
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 62.46s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 17.41 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 278,604 bytes
+Max Volume: 0.9803
+Average Volume: 0.1720
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 55.30 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 884,812 bytes
+Max Volume: 0.9803
+Average Volume: 0.1407
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 80.90 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,294,412 bytes
+Max Volume: 0.9803
+Average Volume: 0.1403
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 80.90s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 110.59 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,769,548 bytes
+Max Volume: 0.9803
+Average Volume: 0.1279
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 110.59s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 74.75 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,196,108 bytes
+Max Volume: 0.9803
+Average Volume: 0.1281
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 74.75s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 76.80 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,228,876 bytes
+Max Volume: 0.9803
+Average Volume: 0.1206
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 76.80s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 19.46 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 311,372 bytes
+Max Volume: 0.9803
+Average Volume: 0.1548
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 63.49 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,015,884 bytes
+Max Volume: 0.9803
+Average Volume: 0.1229
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 63.49s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 61.44 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 983,116 bytes
+Max Volume: 0.9803
+Average Volume: 0.1342
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 61.44s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 104.45 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,671,244 bytes
+Max Volume: 0.9803
+Average Volume: 0.1240
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 104.45s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 83.97 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,343,564 bytes
+Max Volume: 0.9803
+Average Volume: 0.1445
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 83.97s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 94.21 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,507,404 bytes
+Max Volume: 0.9803
+Average Volume: 0.1598
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 94.21s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 48.13 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 770,124 bytes
+Max Volume: 0.9803
+Average Volume: 0.1502
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 34.82 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 557,132 bytes
+Max Volume: 0.9803
+Average Volume: 0.0705
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 77.82 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,245,260 bytes
+Max Volume: 0.9803
+Average Volume: 0.1264
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 77.82s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 93.18 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,491,020 bytes
+Max Volume: 0.9803
+Average Volume: 0.1401
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 93.18s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 53.25 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 852,044 bytes
+Max Volume: 0.9803
+Average Volume: 0.1230
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 145.41 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 2,326,604 bytes
+Max Volume: 0.9803
+Average Volume: 0.0824
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 145.41s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 10.24 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 163,916 bytes
+Max Volume: 0.9803
+Average Volume: 0.0370
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 66.56 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,065,036 bytes
+Max Volume: 0.9803
+Average Volume: 0.1387
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 66.56s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 69.63 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,114,188 bytes
+Max Volume: 0.9803
+Average Volume: 0.1313
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 69.63s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 75.78 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,212,492 bytes
+Max Volume: 0.9803
+Average Volume: 0.1300
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 75.78s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 79.87 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,278,028 bytes
+Max Volume: 0.9803
+Average Volume: 0.1226
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 79.87s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 297.98 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 4,767,820 bytes
+Max Volume: 0.9803
+Average Volume: 0.0656
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 297.98s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 63.49 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,015,884 bytes
+Max Volume: 0.9803
+Average Volume: 0.1328
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 63.49s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 12.29 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 196,684 bytes
+Max Volume: 0.9803
+Average Volume: 0.0544
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 65.54 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,048,652 bytes
+Max Volume: 0.9803
+Average Volume: 0.1228
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 65.54s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 10.24 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 163,916 bytes
+Max Volume: 0.9803
+Average Volume: 0.0542
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 30.72 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 491,596 bytes
+Max Volume: 0.9803
+Average Volume: 0.0814
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 18.43 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 294,988 bytes
+Max Volume: 0.9803
+Average Volume: 0.1521
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 60.42 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 966,732 bytes
+Max Volume: 0.9803
+Average Volume: 0.1357
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 60.42s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 55.30 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 884,812 bytes
+Max Volume: 0.9803
+Average Volume: 0.1353
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 76.80 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,228,876 bytes
+Max Volume: 0.9803
+Average Volume: 0.1464
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 76.80s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 66.56 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,065,036 bytes
+Max Volume: 0.9803
+Average Volume: 0.1296
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 66.56s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 61.44 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 983,116 bytes
+Max Volume: 0.9803
+Average Volume: 0.1359
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 61.44s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 69.63 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,114,188 bytes
+Max Volume: 0.9803
+Average Volume: 0.1274
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 69.63s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 68.61 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,097,804 bytes
+Max Volume: 0.9803
+Average Volume: 0.1355
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 68.61s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 32.77 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 524,364 bytes
+Max Volume: 0.9803
+Average Volume: 0.1409
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 87.04 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,392,716 bytes
+Max Volume: 0.9803
+Average Volume: 0.1252
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 87.04s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 73.73 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,179,724 bytes
+Max Volume: 0.9803
+Average Volume: 0.1338
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 73.73s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 60.42 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 966,732 bytes
+Max Volume: 0.9803
+Average Volume: 0.1346
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 60.42s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 86.02 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,376,332 bytes
+Max Volume: 0.9803
+Average Volume: 0.1356
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 86.02s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 36.86 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 589,900 bytes
+Max Volume: 0.9803
+Average Volume: 0.1260
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 20.48 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 327,756 bytes
+Max Volume: 0.9803
+Average Volume: 0.0992
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 58.37 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 933,964 bytes
+Max Volume: 0.9803
+Average Volume: 0.1533
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 13.31 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 213,068 bytes
+Max Volume: 0.9803
+Average Volume: 0.0898
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 24.58 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 393,292 bytes
+Max Volume: 0.9803
+Average Volume: 0.1721
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 75.78 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,212,492 bytes
+Max Volume: 0.9803
+Average Volume: 0.1272
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 75.78s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 74.75 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,196,108 bytes
+Max Volume: 0.9803
+Average Volume: 0.1374
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 74.75s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 70.66 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,130,572 bytes
+Max Volume: 0.9803
+Average Volume: 0.1342
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 70.66s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 84.99 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,359,948 bytes
+Max Volume: 0.9803
+Average Volume: 0.1283
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 84.99s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 74.75 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,196,108 bytes
+Max Volume: 0.9803
+Average Volume: 0.1299
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 74.75s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 61.44 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 983,116 bytes
+Max Volume: 0.9803
+Average Volume: 0.1387
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 61.44s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 89.09 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,425,484 bytes
+Max Volume: 0.9803
+Average Volume: 0.1250
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 89.09s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 96.26 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,540,172 bytes
+Max Volume: 0.9803
+Average Volume: 0.1382
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 96.26s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 68.61 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,097,804 bytes
+Max Volume: 0.9803
+Average Volume: 0.1591
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 68.61s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 73.73 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,179,724 bytes
+Max Volume: 0.9803
+Average Volume: 0.1356
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 73.73s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 51.20 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 819,276 bytes
+Max Volume: 0.9803
+Average Volume: 0.1387
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 27.65 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 442,444 bytes
+Max Volume: 0.9803
+Average Volume: 0.1546
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 79.87 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,278,028 bytes
+Max Volume: 0.9803
+Average Volume: 0.1302
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 79.87s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 65.54 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,048,652 bytes
+Max Volume: 0.9803
+Average Volume: 0.1645
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 65.54s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 73.73 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,179,724 bytes
+Max Volume: 0.9803
+Average Volume: 0.1534
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 73.73s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 35.84 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 573,516 bytes
+Max Volume: 0.9803
+Average Volume: 0.1381
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 41.98 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 671,820 bytes
+Max Volume: 0.9803
+Average Volume: 0.0583
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 39.94 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 639,052 bytes
+Max Volume: 0.9803
+Average Volume: 0.1070
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 57.34 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 917,580 bytes
+Max Volume: 0.9803
+Average Volume: 0.1465
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 80.90 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,294,412 bytes
+Max Volume: 0.9803
+Average Volume: 0.1423
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 80.90s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 75.78 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,212,492 bytes
+Max Volume: 0.9803
+Average Volume: 0.1483
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 75.78s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 86.02 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,376,332 bytes
+Max Volume: 0.9803
+Average Volume: 0.1331
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 86.02s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 60.42 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 966,732 bytes
+Max Volume: 0.9803
+Average Volume: 0.1443
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 60.42s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 98.30 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,572,940 bytes
+Max Volume: 0.9803
+Average Volume: 0.1357
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 98.30s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 79.87 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,278,028 bytes
+Max Volume: 0.9803
+Average Volume: 0.1343
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 79.87s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 48.13 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 770,124 bytes
+Max Volume: 0.9803
+Average Volume: 0.1300
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 21.50 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 344,140 bytes
+Max Volume: 0.9803
+Average Volume: 0.1338
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 19.46 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 311,372 bytes
+Max Volume: 0.9803
+Average Volume: 0.1562
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 61.44 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 983,116 bytes
+Max Volume: 0.9803
+Average Volume: 0.1369
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 61.44s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 32.77 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 524,364 bytes
+Max Volume: 0.9803
+Average Volume: 0.1226
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 21.50 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 344,140 bytes
+Max Volume: 0.9803
+Average Volume: 0.1140
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 67.58 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,081,420 bytes
+Max Volume: 0.9803
+Average Volume: 0.1370
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 67.58s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 87.04 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,392,716 bytes
+Max Volume: 0.9803
+Average Volume: 0.1257
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 87.04s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 79.87 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,278,028 bytes
+Max Volume: 0.9803
+Average Volume: 0.1330
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 79.87s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 74.75 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,196,108 bytes
+Max Volume: 0.9803
+Average Volume: 0.1455
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 74.75s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 77.82 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,245,260 bytes
+Max Volume: 0.9803
+Average Volume: 0.1562
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 77.82s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 87.04 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,392,716 bytes
+Max Volume: 0.9803
+Average Volume: 0.1204
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 87.04s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 67.58 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,081,420 bytes
+Max Volume: 0.9803
+Average Volume: 0.1284
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 67.58s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 84.99 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,359,948 bytes
+Max Volume: 0.9803
+Average Volume: 0.1370
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 84.99s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 74.75 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,196,108 bytes
+Max Volume: 0.9803
+Average Volume: 0.1207
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 74.75s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 16.38 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 262,220 bytes
+Max Volume: 0.9803
+Average Volume: 0.0936
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 88.06 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,409,100 bytes
+Max Volume: 0.9803
+Average Volume: 0.1358
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 88.06s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 91.14 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,458,252 bytes
+Max Volume: 0.9803
+Average Volume: 0.1298
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 91.14s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 63.49 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,015,884 bytes
+Max Volume: 0.9803
+Average Volume: 0.1199
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 63.49s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 77.82 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,245,260 bytes
+Max Volume: 0.9803
+Average Volume: 0.1260
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 77.82s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 67.58 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,081,420 bytes
+Max Volume: 0.9803
+Average Volume: 0.1244
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 67.58s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 112.64 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,802,316 bytes
+Max Volume: 0.9803
+Average Volume: 0.1701
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 112.64s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 23.55 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 376,908 bytes
+Max Volume: 0.9803
+Average Volume: 0.1078
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 53.25 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 852,044 bytes
+Max Volume: 0.9803
+Average Volume: 0.1343
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 77.82 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,245,260 bytes
+Max Volume: 0.9803
+Average Volume: 0.1335
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 77.82s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 49.15 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 786,508 bytes
+Max Volume: 0.9803
+Average Volume: 0.1533
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 113.66 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,818,700 bytes
+Max Volume: 0.9803
+Average Volume: 0.1348
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 113.66s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 82.94 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,327,180 bytes
+Max Volume: 0.9803
+Average Volume: 0.1268
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 82.94s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 88.06 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,409,100 bytes
+Max Volume: 0.9803
+Average Volume: 0.1294
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 88.06s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 17.41 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 278,604 bytes
+Max Volume: 0.9803
+Average Volume: 0.0511
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 83.97 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,343,564 bytes
+Max Volume: 0.9803
+Average Volume: 0.1334
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 83.97s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 91.14 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,458,252 bytes
+Max Volume: 0.9803
+Average Volume: 0.1338
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 91.14s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 21.50 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 344,140 bytes
+Max Volume: 0.9803
+Average Volume: 0.0713
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 18.43 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 294,988 bytes
+Max Volume: 0.9803
+Average Volume: 0.1438
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 12.29 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 196,684 bytes
+Max Volume: 0.9803
+Average Volume: 0.0501
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 51.20 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 819,276 bytes
+Max Volume: 0.9803
+Average Volume: 0.1528
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 67.58 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,081,420 bytes
+Max Volume: 0.9803
+Average Volume: 0.1493
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 67.58s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 70.66 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,130,572 bytes
+Max Volume: 0.9803
+Average Volume: 0.1395
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 70.66s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 67.58 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,081,420 bytes
+Max Volume: 0.9803
+Average Volume: 0.1328
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 67.58s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 89.09 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,425,484 bytes
+Max Volume: 0.9803
+Average Volume: 0.1345
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 89.09s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 27.65 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 442,444 bytes
+Max Volume: 0.9803
+Average Volume: 0.0986
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 75.78 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,212,492 bytes
+Max Volume: 0.9803
+Average Volume: 0.1432
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 75.78s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 27.65 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 442,444 bytes
+Max Volume: 0.9803
+Average Volume: 0.0838
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 61.44 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 983,116 bytes
+Max Volume: 0.9803
+Average Volume: 0.1715
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 61.44s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 22.53 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 360,524 bytes
+Max Volume: 0.9803
+Average Volume: 0.1616
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 45.06 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 720,972 bytes
+Max Volume: 0.9803
+Average Volume: 0.1081
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 54.27 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 868,428 bytes
+Max Volume: 0.9803
+Average Volume: 0.1457
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 77.82 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,245,260 bytes
+Max Volume: 0.9803
+Average Volume: 0.1618
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 77.82s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 135.17 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 2,162,764 bytes
+Max Volume: 0.9803
+Average Volume: 0.1428
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 135.17s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 18.43 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 294,988 bytes
+Max Volume: 0.9803
+Average Volume: 0.0576
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 53.25 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 852,044 bytes
+Max Volume: 0.9803
+Average Volume: 0.1476
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 74.75 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,196,108 bytes
+Max Volume: 0.9803
+Average Volume: 0.1389
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 74.75s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 93.18 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,491,020 bytes
+Max Volume: 0.9803
+Average Volume: 0.1426
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 93.18s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 77.82 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,245,260 bytes
+Max Volume: 0.9803
+Average Volume: 0.1460
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 77.82s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 20.48 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 327,756 bytes
+Max Volume: 0.9803
+Average Volume: 0.0659
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 95.23 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,523,788 bytes
+Max Volume: 0.9803
+Average Volume: 0.1343
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 95.23s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 78.85 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,261,644 bytes
+Max Volume: 0.9803
+Average Volume: 0.1327
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 78.85s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 67.58 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,081,420 bytes
+Max Volume: 0.9803
+Average Volume: 0.1456
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 67.58s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 84.99 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,359,948 bytes
+Max Volume: 0.9803
+Average Volume: 0.1537
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 84.99s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 31.74 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 507,980 bytes
+Max Volume: 0.9803
+Average Volume: 0.1147
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 60.42 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 966,732 bytes
+Max Volume: 0.9803
+Average Volume: 0.1175
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 60.42s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 50.18 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 802,892 bytes
+Max Volume: 0.9803
+Average Volume: 0.1620
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 55.30 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 884,812 bytes
+Max Volume: 0.9803
+Average Volume: 0.1482
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 77.82 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,245,260 bytes
+Max Volume: 0.9803
+Average Volume: 0.1278
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 77.82s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 74.75 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,196,108 bytes
+Max Volume: 0.9803
+Average Volume: 0.1231
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 74.75s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 76.80 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,228,876 bytes
+Max Volume: 0.9803
+Average Volume: 0.1423
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 76.80s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 44.03 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 704,588 bytes
+Max Volume: 0.9803
+Average Volume: 0.1224
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 47.10 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 753,740 bytes
+Max Volume: 0.9803
+Average Volume: 0.1261
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 76.80 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,228,876 bytes
+Max Volume: 0.9803
+Average Volume: 0.1279
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 76.80s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 81.92 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,310,796 bytes
+Max Volume: 0.9803
+Average Volume: 0.1466
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 81.92s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 67.58 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,081,420 bytes
+Max Volume: 0.9803
+Average Volume: 0.1228
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 67.58s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 450.56 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 7,209,036 bytes
+Max Volume: 0.9803
+Average Volume: 0.0635
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 450.56s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 59.39 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 950,348 bytes
+Max Volume: 0.9803
+Average Volume: 0.1352
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 47.10 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 753,740 bytes
+Max Volume: 0.9803
+Average Volume: 0.1391
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 12.29 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 196,684 bytes
+Max Volume: 0.9803
+Average Volume: 0.0546
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 66.56 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,065,036 bytes
+Max Volume: 0.9803
+Average Volume: 0.1364
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 66.56s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 58.37 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 933,964 bytes
+Max Volume: 0.9803
+Average Volume: 0.1298
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 44.03 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 704,588 bytes
+Max Volume: 0.9803
+Average Volume: 0.1111
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 71.68 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 1,146,956 bytes
+Max Volume: 0.9803
+Average Volume: 0.1347
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 71.68s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 61.44 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 983,116 bytes
+Max Volume: 0.9803
+Average Volume: 0.1563
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 61.44s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 62.46 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 999,500 bytes
+Max Volume: 0.9803
+Average Volume: 0.1367
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 62.46s (maximum: 60s)
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Split audio into segments of maximum 60s
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 51.20 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 819,276 bytes
+Max Volume: 0.9803
+Average Volume: 0.1520
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 58.37 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 933,964 bytes
+Max Volume: 0.9803
+Average Volume: 0.1490
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 58.37 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 933,964 bytes
+Max Volume: 0.9803
+Average Volume: 0.1393
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+
+FILE: 
+--------------------------------------------------
+Duration: 54.27 seconds
+Sample Rate: 8000 Hz
+Channels: 1
+File Size: 868,428 bytes
+Max Volume: 0.9803
+Average Volume: 0.1222
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 8000Hz (required: 16000Hz)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Resample to 16000Hz
+      - Split long audio into segments
+
+================================================================================
+END OF REPORT
+================================================================================
