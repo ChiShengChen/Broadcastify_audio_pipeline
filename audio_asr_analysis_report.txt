@@ -1,0 +1,879 @@
+================================================================================
+AUDIO ANALYSIS REPORT FOR ASR MODEL COMPATIBILITY
+================================================================================
+Analysis Date: 2025-07-28T15:39:31.726146
+Input Directory: preprocessed_test_integrated
+Total Files Analyzed: 46
+
+COMPATIBILITY SUMMARY:
+----------------------------------------
+Whisper (large-v3): 46/46 files (100.0%)
+Canary-1b (NeMo): 34/46 files (73.9%)
+Parakeet-tdt-0.6b-v2 (NeMo): 40/46 files (87.0%)
+Wav2Vec2-xls-r (Transformers): 44/46 files (95.7%)
+
+INCOMPATIBLE FILES BY MODEL:
+Whisper (large-v3): (all compatible)
+Canary-1b (NeMo): short_audio_large-v3.wav, short_audio_wav2vec-xls-r.wav, very_short_audio_large-v3.wav, very_short_audio_wav2vec-xls-r.wav, long_audio_large-v3.wav, long_audio_parakeet-tdt-0.6b-v2.wav, long_audio_wav2vec-xls-r.wav, very_long_audio_large-v3.wav, very_long_audio_parakeet-tdt-0.6b-v2.wav, very_long_audio_wav2vec-xls-r.wav, low_volume_audio_large-v3.wav, low_volume_audio_parakeet-tdt-0.6b-v2.wav
+Parakeet-tdt-0.6b-v2 (NeMo): short_audio_large-v3.wav, short_audio_canary-1b.wav, short_audio_wav2vec-xls-r.wav, very_short_audio_large-v3.wav, very_short_audio_canary-1b.wav, very_short_audio_wav2vec-xls-r.wav
+Wav2Vec2-xls-r (Transformers): low_volume_audio_large-v3.wav, low_volume_audio_parakeet-tdt-0.6b-v2.wav
+
+
+FILE: short_audio_large-v3.wav
+--------------------------------------------------
+Duration: 0.30 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 9,644 bytes
+Max Volume: 0.1000
+Average Volume: 0.0278
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too short: 0.30s (minimum: 0.5s)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Pad audio to minimum 0.5s
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too short: 0.30s (minimum: 1s)
+    Recommendations:
+      - Pad audio to minimum 1s
+      - Pad short audio to minimum duration
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: short_audio_canary-1b.wav
+--------------------------------------------------
+Duration: 0.50 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 16,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0167
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too short: 0.50s (minimum: 1s)
+    Recommendations:
+      - Pad audio to minimum 1s
+      - Pad short audio to minimum duration
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: short_audio_parakeet-tdt-0.6b-v2.wav
+--------------------------------------------------
+Duration: 1.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 32,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0083
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: short_audio_wav2vec-xls-r.wav
+--------------------------------------------------
+Duration: 0.30 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 9,644 bytes
+Max Volume: 0.1000
+Average Volume: 0.0278
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too short: 0.30s (minimum: 0.5s)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Pad audio to minimum 0.5s
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too short: 0.30s (minimum: 1s)
+    Recommendations:
+      - Pad audio to minimum 1s
+      - Pad short audio to minimum duration
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: very_short_audio_large-v3.wav
+--------------------------------------------------
+Duration: 0.10 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 3,244 bytes
+Max Volume: 0.1000
+Average Volume: 0.0224
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too short: 0.10s (minimum: 0.5s)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Pad audio to minimum 0.5s
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too short: 0.10s (minimum: 1s)
+    Recommendations:
+      - Pad audio to minimum 1s
+      - Pad short audio to minimum duration
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: very_short_audio_canary-1b.wav
+--------------------------------------------------
+Duration: 0.50 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 16,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0045
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too short: 0.50s (minimum: 1s)
+    Recommendations:
+      - Pad audio to minimum 1s
+      - Pad short audio to minimum duration
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: very_short_audio_parakeet-tdt-0.6b-v2.wav
+--------------------------------------------------
+Duration: 1.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 32,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0022
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: very_short_audio_wav2vec-xls-r.wav
+--------------------------------------------------
+Duration: 0.10 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 3,244 bytes
+Max Volume: 0.1000
+Average Volume: 0.0224
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too short: 0.10s (minimum: 0.5s)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Pad audio to minimum 0.5s
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too short: 0.10s (minimum: 1s)
+    Recommendations:
+      - Pad audio to minimum 1s
+      - Pad short audio to minimum duration
+      - Split long audio into segments
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: normal_audio_large-v3.wav
+--------------------------------------------------
+Duration: 5.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 160,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0248
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: normal_audio_canary-1b.wav
+--------------------------------------------------
+Duration: 5.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 160,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0248
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: normal_audio_parakeet-tdt-0.6b-v2.wav
+--------------------------------------------------
+Duration: 5.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 160,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0248
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: normal_audio_wav2vec-xls-r.wav
+--------------------------------------------------
+Duration: 5.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 160,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0248
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: long_audio_large-v3.wav
+--------------------------------------------------
+Duration: 90.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 2,880,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0251
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 90.00s (maximum: 60s)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Split audio into segments of maximum 60s
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: long_audio_canary-1b_part001.wav
+--------------------------------------------------
+Duration: 60.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 1,920,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0251
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: long_audio_canary-1b_part002.wav
+--------------------------------------------------
+Duration: 30.50 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 976,044 bytes
+Max Volume: 0.0959
+Average Volume: 0.0251
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: long_audio_parakeet-tdt-0.6b-v2.wav
+--------------------------------------------------
+Duration: 90.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 2,880,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0251
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 90.00s (maximum: 60s)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Split audio into segments of maximum 60s
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: long_audio_wav2vec-xls-r.wav
+--------------------------------------------------
+Duration: 90.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 2,880,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0251
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 90.00s (maximum: 60s)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Split audio into segments of maximum 60s
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: very_long_audio_large-v3.wav
+--------------------------------------------------
+Duration: 300.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 9,600,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0268
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 300.00s (maximum: 60s)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Split audio into segments of maximum 60s
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: very_long_audio_canary-1b_part001.wav
+--------------------------------------------------
+Duration: 60.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 1,920,044 bytes
+Max Volume: 0.0963
+Average Volume: 0.0268
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: very_long_audio_canary-1b_part002.wav
+--------------------------------------------------
+Duration: 60.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 1,920,044 bytes
+Max Volume: 0.0952
+Average Volume: 0.0268
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: very_long_audio_canary-1b_part003.wav
+--------------------------------------------------
+Duration: 60.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 1,920,044 bytes
+Max Volume: 0.0963
+Average Volume: 0.0269
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: very_long_audio_canary-1b_part004.wav
+--------------------------------------------------
+Duration: 60.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 1,920,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0269
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: very_long_audio_canary-1b_part005.wav
+--------------------------------------------------
+Duration: 60.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 1,920,044 bytes
+Max Volume: 0.0966
+Average Volume: 0.0268
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: very_long_audio_canary-1b_part006.wav
+--------------------------------------------------
+Duration: 2.50 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 80,044 bytes
+Max Volume: 0.0922
+Average Volume: 0.0268
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: very_long_audio_parakeet-tdt-0.6b-v2.wav
+--------------------------------------------------
+Duration: 300.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 9,600,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0268
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 300.00s (maximum: 60s)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Split audio into segments of maximum 60s
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: very_long_audio_wav2vec-xls-r.wav
+--------------------------------------------------
+Duration: 300.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 9,600,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0268
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Duration too long: 300.00s (maximum: 60s)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Split audio into segments of maximum 60s
+      - Split long audio into segments
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: low_volume_audio_large-v3.wav
+--------------------------------------------------
+Duration: 3.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 96,044 bytes
+Max Volume: 0.0050
+Average Volume: 0.0015
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Volume too low: 0.0050 (minimum: 0.01)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Split long audio into segments
+      - Normalize volume to minimum 0.01
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Volume too low: 0.0050 (minimum: 0.01)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Split long audio into segments
+      - Normalize volume to minimum 0.01
+
+
+FILE: low_volume_audio_canary-1b.wav
+--------------------------------------------------
+Duration: 3.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 96,044 bytes
+Max Volume: 0.0200
+Average Volume: 0.0061
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: low_volume_audio_parakeet-tdt-0.6b-v2.wav
+--------------------------------------------------
+Duration: 3.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 96,044 bytes
+Max Volume: 0.0050
+Average Volume: 0.0015
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): INCOMPATIBLE
+    Issues:
+      - Volume too low: 0.0050 (minimum: 0.01)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Split long audio into segments
+      - Normalize volume to minimum 0.01
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): INCOMPATIBLE
+    Issues:
+      - Volume too low: 0.0050 (minimum: 0.01)
+    Recommendations:
+      - Pad short audio to minimum duration
+      - Split long audio into segments
+      - Normalize volume to minimum 0.01
+
+
+FILE: low_volume_audio_wav2vec-xls-r.wav
+--------------------------------------------------
+Duration: 3.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 96,044 bytes
+Max Volume: 0.0200
+Average Volume: 0.0061
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: stereo_audio_large-v3.wav
+--------------------------------------------------
+Duration: 4.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 128,044 bytes
+Max Volume: 0.0746
+Average Volume: 0.0190
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: stereo_audio_canary-1b.wav
+--------------------------------------------------
+Duration: 4.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 128,044 bytes
+Max Volume: 0.0746
+Average Volume: 0.0190
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: stereo_audio_parakeet-tdt-0.6b-v2.wav
+--------------------------------------------------
+Duration: 4.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 128,044 bytes
+Max Volume: 0.0746
+Average Volume: 0.0190
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: stereo_audio_wav2vec-xls-r.wav
+--------------------------------------------------
+Duration: 4.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 128,044 bytes
+Max Volume: 0.0746
+Average Volume: 0.0190
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: diff_sr_audio_large-v3.wav
+--------------------------------------------------
+Duration: 6.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 192,044 bytes
+Max Volume: 0.0919
+Average Volume: 0.0220
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: diff_sr_audio_canary-1b.wav
+--------------------------------------------------
+Duration: 6.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 192,044 bytes
+Max Volume: 0.0919
+Average Volume: 0.0220
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: diff_sr_audio_parakeet-tdt-0.6b-v2.wav
+--------------------------------------------------
+Duration: 6.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 192,044 bytes
+Max Volume: 0.0919
+Average Volume: 0.0220
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: diff_sr_audio_wav2vec-xls-r.wav
+--------------------------------------------------
+Duration: 6.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 192,044 bytes
+Max Volume: 0.0919
+Average Volume: 0.0220
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: high_freq_audio_large-v3.wav
+--------------------------------------------------
+Duration: 7.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 224,044 bytes
+Max Volume: 0.1446
+Average Volume: 0.0408
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: high_freq_audio_canary-1b.wav
+--------------------------------------------------
+Duration: 7.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 224,044 bytes
+Max Volume: 0.1446
+Average Volume: 0.0408
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: high_freq_audio_parakeet-tdt-0.6b-v2.wav
+--------------------------------------------------
+Duration: 7.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 224,044 bytes
+Max Volume: 0.1446
+Average Volume: 0.0408
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: high_freq_audio_wav2vec-xls-r.wav
+--------------------------------------------------
+Duration: 7.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 224,044 bytes
+Max Volume: 0.1446
+Average Volume: 0.0408
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: noisy_audio_large-v3.wav
+--------------------------------------------------
+Duration: 8.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 256,044 bytes
+Max Volume: 0.1521
+Average Volume: 0.0295
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: noisy_audio_canary-1b.wav
+--------------------------------------------------
+Duration: 8.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 256,044 bytes
+Max Volume: 0.1521
+Average Volume: 0.0295
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: noisy_audio_parakeet-tdt-0.6b-v2.wav
+--------------------------------------------------
+Duration: 8.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 256,044 bytes
+Max Volume: 0.1521
+Average Volume: 0.0295
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+
+FILE: noisy_audio_wav2vec-xls-r.wav
+--------------------------------------------------
+Duration: 8.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+File Size: 256,044 bytes
+Max Volume: 0.1521
+Average Volume: 0.0295
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): COMPATIBLE
+  Canary-1b (NeMo): COMPATIBLE
+  Parakeet-tdt-0.6b-v2 (NeMo): COMPATIBLE
+  Wav2Vec2-xls-r (Transformers): COMPATIBLE
+
+================================================================================
+END OF REPORT
+================================================================================
