@@ -1,0 +1,386 @@
+================================================================================
+AUDIO ANALYSIS REPORT FOR ASR MODEL COMPATIBILITY
+================================================================================
+Analysis Date: 2025-07-28T14:57:02.365583
+Input Directory: ./test_data_integrated
+Total Files Analyzed: 10
+
+COMPATIBILITY SUMMARY:
+----------------------------------------
+Whisper (large-v3): 10/10 files (100.0%)
+Canary-1b (NeMo): 3/10 files (30.0%)
+Parakeet-tdt-0.6b-v2 (NeMo): 6/10 files (60.0%)
+Wav2Vec2-xls-r (Transformers): 8/10 files (80.0%)
+
+FILE 1: diff_sr_audio.wav
+--------------------------------------------------
+Duration: 6.00 seconds
+Sample Rate: 44100 Hz
+Channels: 1
+Format: WAV
+File Size: 529,244 bytes
+Max Volume: 0.1000
+Average Volume: 0.0280
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): ? COMPATIBLE
+
+  Canary-1b (NeMo): ? INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 44100Hz (required: 16000Hz)
+    Recommendations:
+      - Resample to 16000Hz
+      - Resample to 16kHz if different
+      - Convert to mono if stereo
+      - Normalize volume to minimum 0.01
+      - Split long audio into segments
+      - Pad short audio to minimum duration
+
+  Parakeet-tdt-0.6b-v2 (NeMo): ? INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 44100Hz (required: 16000Hz)
+    Recommendations:
+      - Resample to 16000Hz
+      - Resample to 16kHz if different
+      - Convert to mono if stereo
+      - Split very long audio into segments
+      - Pad short audio to minimum duration
+
+  Wav2Vec2-xls-r (Transformers): ? INCOMPATIBLE
+    Issues:
+      - Sample rate mismatch: 44100Hz (required: 16000Hz)
+    Recommendations:
+      - Resample to 16000Hz
+      - Resample to 16kHz if different
+      - Convert to mono if stereo
+      - Normalize volume to minimum 0.01
+
+
+FILE 2: high_freq_audio.wav
+--------------------------------------------------
+Duration: 7.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+Format: WAV
+File Size: 224,044 bytes
+Max Volume: 0.1446
+Average Volume: 0.0500
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): ? COMPATIBLE
+
+  Canary-1b (NeMo): ? COMPATIBLE
+
+  Parakeet-tdt-0.6b-v2 (NeMo): ? COMPATIBLE
+
+  Wav2Vec2-xls-r (Transformers): ? COMPATIBLE
+
+
+FILE 3: long_audio.wav
+--------------------------------------------------
+Duration: 90.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+Format: WAV
+File Size: 2,880,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0316
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): ? COMPATIBLE
+
+  Canary-1b (NeMo): ? INCOMPATIBLE
+    Issues:
+      - Duration too long: 90.00s (maximum: 60.0s)
+    Recommendations:
+      - Split audio into segments of maximum 60.0s
+      - Resample to 16kHz if different
+      - Convert to mono if stereo
+      - Normalize volume to minimum 0.01
+      - Split long audio into segments
+      - Pad short audio to minimum duration
+
+  Parakeet-tdt-0.6b-v2 (NeMo): ? COMPATIBLE
+
+  Wav2Vec2-xls-r (Transformers): ? COMPATIBLE
+
+
+FILE 4: low_volume_audio.wav
+--------------------------------------------------
+Duration: 3.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+Format: WAV
+File Size: 96,044 bytes
+Max Volume: 0.0050
+Average Volume: 0.0019
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): ? COMPATIBLE
+
+  Canary-1b (NeMo): ? INCOMPATIBLE
+    Issues:
+      - Volume too low: 0.0050 (minimum: 0.01)
+    Recommendations:
+      - Normalize volume to minimum 0.01
+      - Resample to 16kHz if different
+      - Convert to mono if stereo
+      - Normalize volume to minimum 0.01
+      - Split long audio into segments
+      - Pad short audio to minimum duration
+
+  Parakeet-tdt-0.6b-v2 (NeMo): ? COMPATIBLE
+
+  Wav2Vec2-xls-r (Transformers): ? INCOMPATIBLE
+    Issues:
+      - Volume too low: 0.0050 (minimum: 0.01)
+    Recommendations:
+      - Normalize volume to minimum 0.01
+      - Resample to 16kHz if different
+      - Convert to mono if stereo
+      - Normalize volume to minimum 0.01
+
+
+FILE 5: noisy_audio.wav
+--------------------------------------------------
+Duration: 8.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+Format: WAV
+File Size: 256,044 bytes
+Max Volume: 0.1521
+Average Volume: 0.0369
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): ? COMPATIBLE
+
+  Canary-1b (NeMo): ? COMPATIBLE
+
+  Parakeet-tdt-0.6b-v2 (NeMo): ? COMPATIBLE
+
+  Wav2Vec2-xls-r (Transformers): ? COMPATIBLE
+
+
+FILE 6: normal_audio.wav
+--------------------------------------------------
+Duration: 5.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+Format: WAV
+File Size: 160,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0306
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): ? COMPATIBLE
+
+  Canary-1b (NeMo): ? COMPATIBLE
+
+  Parakeet-tdt-0.6b-v2 (NeMo): ? COMPATIBLE
+
+  Wav2Vec2-xls-r (Transformers): ? COMPATIBLE
+
+
+FILE 7: short_audio.wav
+--------------------------------------------------
+Duration: 0.30 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+Format: WAV
+File Size: 9,644 bytes
+Max Volume: 0.1000
+Average Volume: 0.0349
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): ? COMPATIBLE
+
+  Canary-1b (NeMo): ? INCOMPATIBLE
+    Issues:
+      - Duration too short: 0.30s (minimum: 0.5s)
+    Recommendations:
+      - Pad audio to minimum 0.5s
+      - Resample to 16kHz if different
+      - Convert to mono if stereo
+      - Normalize volume to minimum 0.01
+      - Split long audio into segments
+      - Pad short audio to minimum duration
+
+  Parakeet-tdt-0.6b-v2 (NeMo): ? INCOMPATIBLE
+    Issues:
+      - Duration too short: 0.30s (minimum: 1.0s)
+    Recommendations:
+      - Pad audio to minimum 1.0s
+      - Resample to 16kHz if different
+      - Convert to mono if stereo
+      - Split very long audio into segments
+      - Pad short audio to minimum duration
+
+  Wav2Vec2-xls-r (Transformers): ? COMPATIBLE
+
+
+FILE 8: stereo_audio.wav
+--------------------------------------------------
+Duration: 4.00 seconds
+Sample Rate: 16000 Hz
+Channels: 2
+Format: WAV
+File Size: 256,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0294
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): ? COMPATIBLE
+
+  Canary-1b (NeMo): ? INCOMPATIBLE
+    Issues:
+      - Channel mismatch: 2 channels (required: 1)
+    Recommendations:
+      - Convert to 1 channel(s)
+      - Resample to 16kHz if different
+      - Convert to mono if stereo
+      - Normalize volume to minimum 0.01
+      - Split long audio into segments
+      - Pad short audio to minimum duration
+
+  Parakeet-tdt-0.6b-v2 (NeMo): ? INCOMPATIBLE
+    Issues:
+      - Channel mismatch: 2 channels (required: 1)
+    Recommendations:
+      - Convert to 1 channel(s)
+      - Resample to 16kHz if different
+      - Convert to mono if stereo
+      - Split very long audio into segments
+      - Pad short audio to minimum duration
+
+  Wav2Vec2-xls-r (Transformers): ? COMPATIBLE
+
+
+FILE 9: very_long_audio.wav
+--------------------------------------------------
+Duration: 300.00 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+Format: WAV
+File Size: 9,600,044 bytes
+Max Volume: 0.1000
+Average Volume: 0.0336
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): ? COMPATIBLE
+
+  Canary-1b (NeMo): ? INCOMPATIBLE
+    Issues:
+      - Duration too long: 300.00s (maximum: 60.0s)
+    Recommendations:
+      - Split audio into segments of maximum 60.0s
+      - Resample to 16kHz if different
+      - Convert to mono if stereo
+      - Normalize volume to minimum 0.01
+      - Split long audio into segments
+      - Pad short audio to minimum duration
+
+  Parakeet-tdt-0.6b-v2 (NeMo): ? COMPATIBLE
+
+  Wav2Vec2-xls-r (Transformers): ? COMPATIBLE
+
+
+FILE 10: very_short_audio.wav
+--------------------------------------------------
+Duration: 0.10 seconds
+Sample Rate: 16000 Hz
+Channels: 1
+Format: WAV
+File Size: 3,244 bytes
+Max Volume: 0.1000
+Average Volume: 0.0290
+
+MODEL COMPATIBILITY:
+  Whisper (large-v3): ? COMPATIBLE
+
+  Canary-1b (NeMo): ? INCOMPATIBLE
+    Issues:
+      - Duration too short: 0.10s (minimum: 0.5s)
+    Recommendations:
+      - Pad audio to minimum 0.5s
+      - Resample to 16kHz if different
+      - Convert to mono if stereo
+      - Normalize volume to minimum 0.01
+      - Split long audio into segments
+      - Pad short audio to minimum duration
+
+  Parakeet-tdt-0.6b-v2 (NeMo): ? INCOMPATIBLE
+    Issues:
+      - Duration too short: 0.10s (minimum: 1.0s)
+    Recommendations:
+      - Pad audio to minimum 1.0s
+      - Resample to 16kHz if different
+      - Convert to mono if stereo
+      - Split very long audio into segments
+      - Pad short audio to minimum duration
+
+  Wav2Vec2-xls-r (Transformers): ? COMPATIBLE
+
+
+OVERALL RECOMMENDATIONS:
+----------------------------------------
+Common issues found:
+  - Sample rate mismatch: 44100Hz (required: 16000Hz) (3 files)
+  - Volume too low: 0.0050 (minimum: 0.01) (2 files)
+  - Channel mismatch: 2 channels (required: 1) (2 files)
+  - Duration too long: 90.00s (maximum: 60.0s) (1 files)
+  - Duration too short: 0.30s (minimum: 0.5s) (1 files)
+  - Duration too short: 0.30s (minimum: 1.0s) (1 files)
+  - Duration too long: 300.00s (maximum: 60.0s) (1 files)
+  - Duration too short: 0.10s (minimum: 0.5s) (1 files)
+  - Duration too short: 0.10s (minimum: 1.0s) (1 files)
+
+MODEL-SPECIFIC RECOMMENDATIONS:
+----------------------------------------
+Whisper (large-v3):
+  Description: Most flexible model with minimal restrictions
+  General Recommendations:
+    - No preprocessing required for most files
+
+Canary-1b (NeMo):
+  Description: Strict limitations for optimal performance
+  Limitations:
+    - Duration must be between 0.5-60 seconds
+    - Sample rate must be 16kHz
+    - Audio must be mono (single channel)
+    - Minimum volume threshold of 0.01
+    - Only WAV format supported
+  General Recommendations:
+    - Resample to 16kHz if different
+    - Convert to mono if stereo
+    - Normalize volume to minimum 0.01
+    - Split long audio into segments
+    - Pad short audio to minimum duration
+
+Parakeet-tdt-0.6b-v2 (NeMo):
+  Description: Moderate limitations with good flexibility
+  Limitations:
+    - Duration must be between 1.0-300 seconds
+    - Sample rate must be 16kHz
+    - Audio must be mono (single channel)
+    - Only WAV format supported
+  General Recommendations:
+    - Resample to 16kHz if different
+    - Convert to mono if stereo
+    - Split very long audio into segments
+    - Pad short audio to minimum duration
+
+Wav2Vec2-xls-r (Transformers):
+  Description: Good flexibility with moderate requirements
+  Limitations:
+    - Duration must be at least 0.1 seconds
+    - Sample rate should be 16kHz
+    - Minimum volume threshold of 0.01
+    - Mono audio preferred
+  General Recommendations:
+    - Resample to 16kHz if different
+    - Convert to mono if stereo
+    - Normalize volume to minimum 0.01
+
+================================================================================
+END OF REPORT
+================================================================================

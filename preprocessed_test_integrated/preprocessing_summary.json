@@ -1,0 +1,133 @@
+{
+  "total_files": 10,
+  "models": [
+    "large-v3",
+    "canary-1b",
+    "parakeet-tdt-0.6b-v2",
+    "wav2vec-xls-r"
+  ],
+  "model_stats": {
+    "large-v3": {
+      "total_output_files": 10,
+      "successful_input_files": 10,
+      "success_rate": "10/10 (100.0%)"
+    },
+    "canary-1b": {
+      "total_output_files": 16,
+      "successful_input_files": 10,
+      "success_rate": "10/10 (100.0%)"
+    },
+    "parakeet-tdt-0.6b-v2": {
+      "total_output_files": 10,
+      "successful_input_files": 10,
+      "success_rate": "10/10 (100.0%)"
+    },
+    "wav2vec-xls-r": {
+      "total_output_files": 10,
+      "successful_input_files": 10,
+      "success_rate": "10/10 (100.0%)"
+    }
+  },
+  "file_stats": {
+    "short_audio.wav": {
+      "total_output_files": 4,
+      "models_processed": 4,
+      "output_files_per_model": {
+        "large-v3": 1,
+        "canary-1b": 1,
+        "parakeet-tdt-0.6b-v2": 1,
+        "wav2vec-xls-r": 1
+      }
+    },
+    "very_short_audio.wav": {
+      "total_output_files": 4,
+      "models_processed": 4,
+      "output_files_per_model": {
+        "large-v3": 1,
+        "canary-1b": 1,
+        "parakeet-tdt-0.6b-v2": 1,
+        "wav2vec-xls-r": 1
+      }
+    },
+    "normal_audio.wav": {
+      "total_output_files": 4,
+      "models_processed": 4,
+      "output_files_per_model": {
+        "large-v3": 1,
+        "canary-1b": 1,
+        "parakeet-tdt-0.6b-v2": 1,
+        "wav2vec-xls-r": 1
+      }
+    },
+    "long_audio.wav": {
+      "total_output_files": 5,
+      "models_processed": 4,
+      "output_files_per_model": {
+        "large-v3": 1,
+        "canary-1b": 2,
+        "parakeet-tdt-0.6b-v2": 1,
+        "wav2vec-xls-r": 1
+      }
+    },
+    "very_long_audio.wav": {
+      "total_output_files": 9,
+      "models_processed": 4,
+      "output_files_per_model": {
+        "large-v3": 1,
+        "canary-1b": 6,
+        "parakeet-tdt-0.6b-v2": 1,
+        "wav2vec-xls-r": 1
+      }
+    },
+    "low_volume_audio.wav": {
+      "total_output_files": 4,
+      "models_processed": 4,
+      "output_files_per_model": {
+        "large-v3": 1,
+        "canary-1b": 1,
+        "parakeet-tdt-0.6b-v2": 1,
+        "wav2vec-xls-r": 1
+      }
+    },
+    "stereo_audio.wav": {
+      "total_output_files": 4,
+      "models_processed": 4,
+      "output_files_per_model": {
+        "large-v3": 1,
+        "canary-1b": 1,
+        "parakeet-tdt-0.6b-v2": 1,
+        "wav2vec-xls-r": 1
+      }
+    },
+    "diff_sr_audio.wav": {
+      "total_output_files": 4,
+      "models_processed": 4,
+      "output_files_per_model": {
+        "large-v3": 1,
+        "canary-1b": 1,
+        "parakeet-tdt-0.6b-v2": 1,
+        "wav2vec-xls-r": 1
+      }
+    },
+    "high_freq_audio.wav": {
+      "total_output_files": 4,
+      "models_processed": 4,
+      "output_files_per_model": {
+        "large-v3": 1,
+        "canary-1b": 1,
+        "parakeet-tdt-0.6b-v2": 1,
+        "wav2vec-xls-r": 1
+      }
+    },
+    "noisy_audio.wav": {
+      "total_output_files": 4,
+      "models_processed": 4,
+      "output_files_per_model": {
+        "large-v3": 1,
+        "canary-1b": 1,
+        "parakeet-tdt-0.6b-v2": 1,
+        "wav2vec-xls-r": 1
+      }
+    }
+  }
+}
