@@ -1,0 +1,23 @@
+Filename,transcript
+normal_audio_large-v3.wav,This is a normal audio file for testing ASR models.
+normal_audio_canary-1b.wav,This is a normal audio file for testing ASR models.
+normal_audio_parakeet-tdt-0.6b-v2.wav,This is a normal audio file for testing ASR models.
+normal_audio_wav2vec-xls-r.wav,This is a normal audio file for testing ASR models.
+short_audio_large-v3.wav,This is a short audio file.
+short_audio_canary-1b.wav,This is a short audio file.
+short_audio_parakeet-tdt-0.6b-v2.wav,This is a short audio file.
+short_audio_wav2vec-xls-r.wav,This is a short audio file.
+long_audio_large-v3.wav,This is a long audio file that has been processed for ASR testing.
+long_audio_canary-1b_part001.wav,This is part one of a long audio file.
+long_audio_canary-1b_part002.wav,This is part two of a long audio file.
+long_audio_parakeet-tdt-0.6b-v2.wav,This is a long audio file that has been processed for ASR testing.
+long_audio_wav2vec-xls-r.wav,This is a long audio file that has been processed for ASR testing.
+very_long_audio_large-v3.wav,This is a very long audio file that has been processed for ASR testing and evaluation.
+very_long_audio_canary-1b_part001.wav,This is part one of a very long audio file.
+very_long_audio_canary-1b_part002.wav,This is part two of a very long audio file.
+very_long_audio_canary-1b_part003.wav,This is part three of a very long audio file.
+very_long_audio_canary-1b_part004.wav,This is part four of a very long audio file.
+very_long_audio_canary-1b_part005.wav,This is part five of a very long audio file.
+very_long_audio_canary-1b_part006.wav,This is part six of a very long audio file.
+very_long_audio_parakeet-tdt-0.6b-v2.wav,This is a very long audio file that has been processed for ASR testing and evaluation.
+very_long_audio_wav2vec-xls-r.wav,This is a very long audio file that has been processed for ASR testing and evaluation.

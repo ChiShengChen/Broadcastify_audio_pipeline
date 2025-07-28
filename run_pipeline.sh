@@ -34,7 +34,7 @@ USE_LONG_AUDIO_SPLIT=true      # Enable long audio splitting to prevent OOM
 MAX_SEGMENT_DURATION=120.0      # Maximum segment duration in seconds (2 minutes)
 
 # Audio preprocessing options
-USE_AUDIO_PREPROCESSING=false   # Enable audio preprocessing (upsampling and segmentation)
+USE_AUDIO_PREPROCESSING=true   # Enable audio preprocessing (upsampling and segmentation)
 TARGET_SAMPLE_RATE=16000        # Target sample rate for upsampling
 AUDIO_MAX_DURATION=60.0         # Maximum audio segment duration in seconds
 AUDIO_OVERLAP_DURATION=1.0      # Overlap between audio segments in seconds
