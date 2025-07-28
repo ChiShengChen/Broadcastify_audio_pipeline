@@ -131,6 +131,11 @@ class EnhancedVADPipeline(VADPipeline):
         waveform = waveform / (torch.max(torch.abs(waveform)) + 1e-8)
         
         return waveform, sample_rate
+    
+    def skip_audio_filtering(self):
+        """Skip audio filtering if already done by separate filter module"""
+        self.enable_filters = False
+        print("Audio filtering disabled - assuming already filtered by separate module")
 
 
 def main():

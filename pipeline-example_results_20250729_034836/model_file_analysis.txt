@@ -1,0 +1,258 @@
+Model File Processing Analysis
+==================================================
+Analysis Date: 2025-07-29 03:58:26
+Error Log File: /media/meow/One Touch/ems_call/pipeline_results_20250729_034836/error_analysis.log
+
+Summary Table:
+--------------------------------------------------------------------------------
+Model                Total    Success  Empty    Errors   Missing GT
+--------------------------------------------------------------------------------
+wav2vec-xls-r        50       50       0        0        0         
+canary-1b            50       50       0        0        0         
+parakeet-tdt-0.6b-v2 49       49       0        0        0         
+large-v3             50       50       0        0        0         
+
+=== wav2vec-xls-r ===
+Total files found: 50
+Successful files: 50
+Empty files: 0
+Error files: 0
+Missing ground truth: 0
+Successful files:
+  ✓ wav2vec-xls-r_202412010133-841696-14744_call_2.txt
+  ✓ wav2vec-xls-r_202412011757-965821-14744_call_11.txt
+  ✓ wav2vec-xls-r_202412011757-965821-14744_call_5.txt
+  ✓ wav2vec-xls-r_202412020952-344688-14744_call_14.txt
+  ✓ wav2vec-xls-r_202412021022-748072-14744_call_9.txt
+  ✓ wav2vec-xls-r_202412021121-31317-14744_call_13.txt
+  ✓ wav2vec-xls-r_202412021919-979320-14744_call_3.txt
+  ✓ wav2vec-xls-r_202412031043-922113-14744_call_18.txt
+  ✓ wav2vec-xls-r_202412031512-254309-14744_call_16.txt
+  ✓ wav2vec-xls-r_202412040437-202163-14744_call_14.txt
+  ✓ wav2vec-xls-r_202412040637-530611-14744_call_16.txt
+  ✓ wav2vec-xls-r_202412040936-56143-14744_call_8.txt
+  ✓ wav2vec-xls-r_202412041035-161261-14744_call_21.txt
+  ✓ wav2vec-xls-r_202412041235-634426-14744_call_13.txt
+  ✓ wav2vec-xls-r_202412041305-617206-14744_call_14.txt
+  ✓ wav2vec-xls-r_202412041305-617206-14744_call_24.txt
+  ✓ wav2vec-xls-r_202412041604-460429-14744_call_10.txt
+  ✓ wav2vec-xls-r_202412041604-460429-14744_call_12.txt
+  ✓ wav2vec-xls-r_202412050230-586791-14744_call_3.txt
+  ✓ wav2vec-xls-r_202412050459-375222-14744_call_16.txt
+  ✓ wav2vec-xls-r_202412050858-692837-14744_call_8.txt
+  ✓ wav2vec-xls-r_202412051127-142191-14744_call_3.txt
+  ✓ wav2vec-xls-r_202412051157-727845-14744_call_15.txt
+  ✓ wav2vec-xls-r_202412051556-238089-14744_call_6.txt
+  ✓ wav2vec-xls-r_202412061448-597093-14744_call_12.txt
+  ✓ wav2vec-xls-r_202412010731-280830-14744_call_1.txt
+  ✓ wav2vec-xls-r_202412011259-954439-14744_call_11.txt
+  ✓ wav2vec-xls-r_202412011329-642550-14744_call_6.txt
+  ✓ wav2vec-xls-r_202412011458-971661-14744_call_3.txt
+  ✓ wav2vec-xls-r_202412021121-31317-14744_call_2.txt
+  ✓ wav2vec-xls-r_202412021321-120801-14744_call_13.txt
+  ✓ wav2vec-xls-r_202412021520-274679-14744_call_10.txt
+  ✓ wav2vec-xls-r_202412021520-274679-14744_call_12.txt
+  ✓ wav2vec-xls-r_202412021649-160048-14744_call_11.txt
+  ✓ wav2vec-xls-r_202412021649-160048-14744_call_7.txt
+  ✓ wav2vec-xls-r_202412021948-545512-14744_call_8.txt
+  ✓ wav2vec-xls-r_202412031043-922113-14744_call_16.txt
+  ✓ wav2vec-xls-r_202412040607-588047-14744_call_11.txt
+  ✓ wav2vec-xls-r_202412040637-530611-14744_call_6.txt
+  ✓ wav2vec-xls-r_202412040736-239835-14744_call_4.txt
+  ✓ wav2vec-xls-r_202412040736-239835-14744_call_6.txt
+  ✓ wav2vec-xls-r_202412041135-308215-14744_call_10.txt
+  ✓ wav2vec-xls-r_202412041703-315276-14744_call_6.txt
+  ✓ wav2vec-xls-r_202412050429-519717-14744_call_21.txt
+  ✓ wav2vec-xls-r_202412050728-925202-14744_call_6.txt
+  ✓ wav2vec-xls-r_202412050858-692837-14744_call_2.txt
+  ✓ wav2vec-xls-r_202412051456-239162-14744_call_1.txt
+  ✓ wav2vec-xls-r_202412051556-238089-14744_call_12.txt
+  ✓ wav2vec-xls-r_202412061348-251491-14744_call_9.txt
+  ✓ wav2vec-xls-r_202412061448-597093-14744_call_6.txt
+
+=== canary-1b ===
+Total files found: 50
+Successful files: 50
+Empty files: 0
+Error files: 0
+Missing ground truth: 0
+Successful files:
+  ✓ canary-1b_202412010133-841696-14744_call_2.txt
+  ✓ canary-1b_202412011757-965821-14744_call_11.txt
+  ✓ canary-1b_202412011757-965821-14744_call_5.txt
+  ✓ canary-1b_202412020952-344688-14744_call_14.txt
+  ✓ canary-1b_202412021022-748072-14744_call_9.txt
+  ✓ canary-1b_202412021121-31317-14744_call_13.txt
+  ✓ canary-1b_202412021919-979320-14744_call_3.txt
+  ✓ canary-1b_202412031043-922113-14744_call_18.txt
+  ✓ canary-1b_202412031512-254309-14744_call_16.txt
+  ✓ canary-1b_202412040437-202163-14744_call_14.txt
+  ✓ canary-1b_202412040637-530611-14744_call_16.txt
+  ✓ canary-1b_202412040936-56143-14744_call_8.txt
+  ✓ canary-1b_202412041035-161261-14744_call_21.txt
+  ✓ canary-1b_202412041235-634426-14744_call_13.txt
+  ✓ canary-1b_202412041305-617206-14744_call_14.txt
+  ✓ canary-1b_202412041305-617206-14744_call_24.txt
+  ✓ canary-1b_202412041604-460429-14744_call_10.txt
+  ✓ canary-1b_202412041604-460429-14744_call_12.txt
+  ✓ canary-1b_202412050230-586791-14744_call_3.txt
+  ✓ canary-1b_202412050459-375222-14744_call_16.txt
+  ✓ canary-1b_202412050858-692837-14744_call_8.txt
+  ✓ canary-1b_202412051127-142191-14744_call_3.txt
+  ✓ canary-1b_202412051157-727845-14744_call_15.txt
+  ✓ canary-1b_202412051556-238089-14744_call_6.txt
+  ✓ canary-1b_202412061448-597093-14744_call_12.txt
+  ✓ canary-1b_202412010731-280830-14744_call_1.txt
+  ✓ canary-1b_202412011259-954439-14744_call_11.txt
+  ✓ canary-1b_202412011329-642550-14744_call_6.txt
+  ✓ canary-1b_202412011458-971661-14744_call_3.txt
+  ✓ canary-1b_202412021121-31317-14744_call_2.txt
+  ✓ canary-1b_202412021321-120801-14744_call_13.txt
+  ✓ canary-1b_202412021520-274679-14744_call_10.txt
+  ✓ canary-1b_202412021520-274679-14744_call_12.txt
+  ✓ canary-1b_202412021649-160048-14744_call_11.txt
+  ✓ canary-1b_202412021649-160048-14744_call_7.txt
+  ✓ canary-1b_202412021948-545512-14744_call_8.txt
+  ✓ canary-1b_202412031043-922113-14744_call_16.txt
+  ✓ canary-1b_202412040607-588047-14744_call_11.txt
+  ✓ canary-1b_202412040637-530611-14744_call_6.txt
+  ✓ canary-1b_202412040736-239835-14744_call_4.txt
+  ✓ canary-1b_202412040736-239835-14744_call_6.txt
+  ✓ canary-1b_202412041135-308215-14744_call_10.txt
+  ✓ canary-1b_202412041703-315276-14744_call_6.txt
+  ✓ canary-1b_202412050429-519717-14744_call_21.txt
+  ✓ canary-1b_202412050728-925202-14744_call_6.txt
+  ✓ canary-1b_202412050858-692837-14744_call_2.txt
+  ✓ canary-1b_202412051456-239162-14744_call_1.txt
+  ✓ canary-1b_202412051556-238089-14744_call_12.txt
+  ✓ canary-1b_202412061348-251491-14744_call_9.txt
+  ✓ canary-1b_202412061448-597093-14744_call_6.txt
+
+=== parakeet-tdt-0.6b-v2 ===
+Total files found: 49
+Successful files: 49
+Empty files: 0
+Error files: 0
+Missing ground truth: 0
+Successful files:
+  ✓ parakeet-tdt-0.6b-v2_202412010133-841696-14744_call_2.txt
+  ✓ parakeet-tdt-0.6b-v2_202412011757-965821-14744_call_11.txt
+  ✓ parakeet-tdt-0.6b-v2_202412011757-965821-14744_call_5.txt
+  ✓ parakeet-tdt-0.6b-v2_202412020952-344688-14744_call_14.txt
+  ✓ parakeet-tdt-0.6b-v2_202412021022-748072-14744_call_9.txt
+  ✓ parakeet-tdt-0.6b-v2_202412021121-31317-14744_call_13.txt
+  ✓ parakeet-tdt-0.6b-v2_202412021919-979320-14744_call_3.txt
+  ✓ parakeet-tdt-0.6b-v2_202412031043-922113-14744_call_18.txt
+  ✓ parakeet-tdt-0.6b-v2_202412031512-254309-14744_call_16.txt
+  ✓ parakeet-tdt-0.6b-v2_202412040437-202163-14744_call_14.txt
+  ✓ parakeet-tdt-0.6b-v2_202412040637-530611-14744_call_16.txt
+  ✓ parakeet-tdt-0.6b-v2_202412040936-56143-14744_call_8.txt
+  ✓ parakeet-tdt-0.6b-v2_202412041035-161261-14744_call_21.txt
+  ✓ parakeet-tdt-0.6b-v2_202412041235-634426-14744_call_13.txt
+  ✓ parakeet-tdt-0.6b-v2_202412041305-617206-14744_call_14.txt
+  ✓ parakeet-tdt-0.6b-v2_202412041305-617206-14744_call_24.txt
+  ✓ parakeet-tdt-0.6b-v2_202412041604-460429-14744_call_10.txt
+  ✓ parakeet-tdt-0.6b-v2_202412041604-460429-14744_call_12.txt
+  ✓ parakeet-tdt-0.6b-v2_202412050459-375222-14744_call_16.txt
+  ✓ parakeet-tdt-0.6b-v2_202412050858-692837-14744_call_8.txt
+  ✓ parakeet-tdt-0.6b-v2_202412051127-142191-14744_call_3.txt
+  ✓ parakeet-tdt-0.6b-v2_202412051157-727845-14744_call_15.txt
+  ✓ parakeet-tdt-0.6b-v2_202412051556-238089-14744_call_6.txt
+  ✓ parakeet-tdt-0.6b-v2_202412061448-597093-14744_call_12.txt
+  ✓ parakeet-tdt-0.6b-v2_202412010731-280830-14744_call_1.txt
+  ✓ parakeet-tdt-0.6b-v2_202412011259-954439-14744_call_11.txt
+  ✓ parakeet-tdt-0.6b-v2_202412011329-642550-14744_call_6.txt
+  ✓ parakeet-tdt-0.6b-v2_202412011458-971661-14744_call_3.txt
+  ✓ parakeet-tdt-0.6b-v2_202412021121-31317-14744_call_2.txt
+  ✓ parakeet-tdt-0.6b-v2_202412021321-120801-14744_call_13.txt
+  ✓ parakeet-tdt-0.6b-v2_202412021520-274679-14744_call_10.txt
+  ✓ parakeet-tdt-0.6b-v2_202412021520-274679-14744_call_12.txt
+  ✓ parakeet-tdt-0.6b-v2_202412021649-160048-14744_call_11.txt
+  ✓ parakeet-tdt-0.6b-v2_202412021649-160048-14744_call_7.txt
+  ✓ parakeet-tdt-0.6b-v2_202412021948-545512-14744_call_8.txt
+  ✓ parakeet-tdt-0.6b-v2_202412031043-922113-14744_call_16.txt
+  ✓ parakeet-tdt-0.6b-v2_202412040607-588047-14744_call_11.txt
+  ✓ parakeet-tdt-0.6b-v2_202412040637-530611-14744_call_6.txt
+  ✓ parakeet-tdt-0.6b-v2_202412040736-239835-14744_call_4.txt
+  ✓ parakeet-tdt-0.6b-v2_202412040736-239835-14744_call_6.txt
+  ✓ parakeet-tdt-0.6b-v2_202412041135-308215-14744_call_10.txt
+  ✓ parakeet-tdt-0.6b-v2_202412041703-315276-14744_call_6.txt
+  ✓ parakeet-tdt-0.6b-v2_202412050429-519717-14744_call_21.txt
+  ✓ parakeet-tdt-0.6b-v2_202412050728-925202-14744_call_6.txt
+  ✓ parakeet-tdt-0.6b-v2_202412050858-692837-14744_call_2.txt
+  ✓ parakeet-tdt-0.6b-v2_202412051456-239162-14744_call_1.txt
+  ✓ parakeet-tdt-0.6b-v2_202412051556-238089-14744_call_12.txt
+  ✓ parakeet-tdt-0.6b-v2_202412061348-251491-14744_call_9.txt
+  ✓ parakeet-tdt-0.6b-v2_202412061448-597093-14744_call_6.txt
+
+=== large-v3 ===
+Total files found: 50
+Successful files: 50
+Empty files: 0
+Error files: 0
+Missing ground truth: 0
+Successful files:
+  ✓ large-v3_202412010133-841696-14744_call_2.txt
+  ✓ large-v3_202412011757-965821-14744_call_11.txt
+  ✓ large-v3_202412011757-965821-14744_call_5.txt
+  ✓ large-v3_202412020952-344688-14744_call_14.txt
+  ✓ large-v3_202412021022-748072-14744_call_9.txt
+  ✓ large-v3_202412021121-31317-14744_call_13.txt
+  ✓ large-v3_202412021919-979320-14744_call_3.txt
+  ✓ large-v3_202412031043-922113-14744_call_18.txt
+  ✓ large-v3_202412031512-254309-14744_call_16.txt
+  ✓ large-v3_202412040437-202163-14744_call_14.txt
+  ✓ large-v3_202412040637-530611-14744_call_16.txt
+  ✓ large-v3_202412040936-56143-14744_call_8.txt
+  ✓ large-v3_202412041035-161261-14744_call_21.txt
+  ✓ large-v3_202412041235-634426-14744_call_13.txt
+  ✓ large-v3_202412041305-617206-14744_call_14.txt
+  ✓ large-v3_202412041305-617206-14744_call_24.txt
+  ✓ large-v3_202412041604-460429-14744_call_10.txt
+  ✓ large-v3_202412041604-460429-14744_call_12.txt
+  ✓ large-v3_202412050230-586791-14744_call_3.txt
+  ✓ large-v3_202412050459-375222-14744_call_16.txt
+  ✓ large-v3_202412050858-692837-14744_call_8.txt
+  ✓ large-v3_202412051127-142191-14744_call_3.txt
+  ✓ large-v3_202412051157-727845-14744_call_15.txt
+  ✓ large-v3_202412051556-238089-14744_call_6.txt
+  ✓ large-v3_202412061448-597093-14744_call_12.txt
+  ✓ large-v3_202412010731-280830-14744_call_1.txt
+  ✓ large-v3_202412011259-954439-14744_call_11.txt
+  ✓ large-v3_202412011329-642550-14744_call_6.txt
+  ✓ large-v3_202412011458-971661-14744_call_3.txt
+  ✓ large-v3_202412021121-31317-14744_call_2.txt
+  ✓ large-v3_202412021321-120801-14744_call_13.txt
+  ✓ large-v3_202412021520-274679-14744_call_10.txt
+  ✓ large-v3_202412021520-274679-14744_call_12.txt
+  ✓ large-v3_202412021649-160048-14744_call_11.txt
+  ✓ large-v3_202412021649-160048-14744_call_7.txt
+  ✓ large-v3_202412021948-545512-14744_call_8.txt
+  ✓ large-v3_202412031043-922113-14744_call_16.txt
+  ✓ large-v3_202412040607-588047-14744_call_11.txt
+  ✓ large-v3_202412040637-530611-14744_call_6.txt
+  ✓ large-v3_202412040736-239835-14744_call_4.txt
+  ✓ large-v3_202412040736-239835-14744_call_6.txt
+  ✓ large-v3_202412041135-308215-14744_call_10.txt
+  ✓ large-v3_202412041703-315276-14744_call_6.txt
+  ✓ large-v3_202412050429-519717-14744_call_21.txt
+  ✓ large-v3_202412050728-925202-14744_call_6.txt
+  ✓ large-v3_202412050858-692837-14744_call_2.txt
+  ✓ large-v3_202412051456-239162-14744_call_1.txt
+  ✓ large-v3_202412051556-238089-14744_call_12.txt
+  ✓ large-v3_202412061348-251491-14744_call_9.txt
+  ✓ large-v3_202412061448-597093-14744_call_6.txt
+
+=== Error Summary ===
+Total errors: 0
+Total warnings: 1
+See detailed error log: /media/meow/One Touch/ems_call/pipeline_results_20250729_034836/error_analysis.log
+
+=== Model Comparison ===
+Expected files per model: 50
+Maximum successful files: 50
+
+wav2vec-xls-r: ✓ All files processed
+canary-1b: ✓ All files processed
+parakeet-tdt-0.6b-v2: ⚠ 49/50 files processed
+large-v3: ✓ All files processed

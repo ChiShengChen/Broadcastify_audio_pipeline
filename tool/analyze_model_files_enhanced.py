@@ -235,25 +235,28 @@ class EnhancedModelFileAnalyzer:
                 )
             
             # Check for common error patterns in content
-            error_patterns = [
-                ('ERROR', 'Contains "ERROR" in content'),
-                ('Exception', 'Contains "Exception" in content'),
-                ('Traceback', 'Contains "Traceback" in content'),
-                ('Failed', 'Contains "Failed" in content'),
-                ('null', 'Contains "null" in content'),
-                ('undefined', 'Contains "undefined" in content'),
-                ('<empty>', 'Contains "<empty>" in content'),
-                ('<error>', 'Contains "<error>" in content')
-            ]
-            
-            for pattern, description in error_patterns:
-                if pattern.lower() in content.lower():
-                    result['warnings'].append(description)
-                    self.error_logger.log_warning(
-                        "SUSPICIOUS_CONTENT",
-                        f"Transcript contains suspicious pattern: {file_path}",
-                        f"Model: {model_name}, Pattern: {pattern}"
-                    )
+            # Skip this check for summary files
+            filename = os.path.basename(file_path)
+            if filename not in ['merging_summary.txt', 'summary.txt', 'processing_summary.txt']:
+                error_patterns = [
+                    ('ERROR', 'Contains "ERROR" in content'),
+                    ('Exception', 'Contains "Exception" in content'),
+                    ('Traceback', 'Contains "Traceback" in content'),
+                    ('Failed', 'Contains "Failed" in content'),
+                    ('null', 'Contains "null" in content'),
+                    ('undefined', 'Contains "undefined" in content'),
+                    ('<empty>', 'Contains "<empty>" in content'),
+                    ('<error>', 'Contains "<error>" in content')
+                ]
+                
+                for pattern, description in error_patterns:
+                    if pattern.lower() in content.lower():
+                        result['warnings'].append(description)
+                        self.error_logger.log_warning(
+                            "SUSPICIOUS_CONTENT",
+                            f"Transcript contains suspicious pattern: {file_path}",
+                            f"Model: {model_name}, Pattern: {pattern}"
+                        )
             
             result['status'] = 'success'
             
@@ -300,6 +303,10 @@ class EnhancedModelFileAnalyzer:
             # Group files by model
             for file_path in txt_files:
                 filename = os.path.basename(file_path)
+                
+                # Skip summary files and other non-transcript files
+                if filename in ['merging_summary.txt', 'summary.txt', 'processing_summary.txt']:
+                    continue
                 
                 # Extract model name from filename
                 # Expected format: model_name_original_filename.txt

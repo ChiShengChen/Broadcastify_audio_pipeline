@@ -11,14 +11,19 @@ set -e
 
 # --- User Configuration ---
 # Directory containing the .wav files to be processed.
+# Can be a single directory or multiple directories separated by spaces
 # AUDIO_DIR="/media/meow/One Touch/ems_call/random_samples_1_preprocessed"
-AUDIO_DIR="/media/meow/One Touch/ems_call/long_audio_test_dataset"
+# AUDIO_DIR="/media/meow/One\ Touch/ems_call/random_samples_1 /media/meow/One\ Touch/ems_call/random_samples_2"
+AUDIO_DIR=("/media/meow/One Touch/ems_call/random_samples_1" "/media/meow/One Touch/ems_call/random_samples_2")
+
+# For multiple directories, separate them with spaces:
+# AUDIO_DIR="/path/to/dir1 /path/to/dir2 /path/to/dir3"
 
 
 # Path to the ground truth CSV file for evaluation.
 # Must contain 'Filename' and 'transcript' columns.
-# GROUND_TRUTH_FILE="/media/meow/One Touch/ems_call/vb_ems_anotation/human_anotation_vb.csv"
-GROUND_TRUTH_FILE="/media/meow/One Touch/ems_call/long_audio_test_dataset/long_audio_ground_truth.csv"
+GROUND_TRUTH_FILE="/media/meow/One Touch/ems_call/vb_ems_anotation/human_anotation_vb.csv"
+# GROUND_TRUTH_FILE="/media/meow/One Touch/ems_call/long_audio_test_dataset/long_audio_ground_truth.csv"
 
 
 
@@ -39,6 +44,14 @@ TARGET_SAMPLE_RATE=16000        # Target sample rate for upsampling
 AUDIO_MAX_DURATION=60.0         # Maximum audio segment duration in seconds
 AUDIO_OVERLAP_DURATION=1.0      # Overlap between audio segments in seconds
 AUDIO_MIN_SEGMENT_DURATION=5.0  # Minimum audio segment duration in seconds
+
+# Audio filtering options (independent of VAD)
+USE_AUDIO_FILTERING=false       # Enable audio filtering (band-pass, high-pass, Wiener)
+FILTER_HIGHPASS_CUTOFF=300.0    # High-pass filter cutoff frequency (Hz)
+FILTER_LOWCUT=300.0             # Band-pass filter low cutoff (Hz)
+FILTER_HIGHCUT=3000.0           # Band-pass filter high cutoff (Hz)
+FILTER_ORDER=5                  # Filter order
+FILTER_ENABLE_WIENER=false      # Enable Wiener filter for noise reduction
 
 
 #### DO NOT CHANGE THESE OPTIONS ####
@@ -153,6 +166,38 @@ while [[ $# -gt 0 ]]; do
             AUDIO_MIN_SEGMENT_DURATION="$2"
             shift 2
             ;;
+        --use-audio-filtering)
+            USE_AUDIO_FILTERING=true
+            shift
+            ;;
+        --no-audio-filtering)
+            USE_AUDIO_FILTERING=false
+            shift
+            ;;
+        --filter-highpass-cutoff)
+            FILTER_HIGHPASS_CUTOFF="$2"
+            shift 2
+            ;;
+        --filter-lowcut)
+            FILTER_LOWCUT="$2"
+            shift 2
+            ;;
+        --filter-highcut)
+            FILTER_HIGHCUT="$2"
+            shift 2
+            ;;
+        --filter-order)
+            FILTER_ORDER="$2"
+            shift 2
+            ;;
+        --filter-enable-wiener)
+            FILTER_ENABLE_WIENER=true
+            shift
+            ;;
+        --filter-disable-wiener)
+            FILTER_ENABLE_WIENER=false
+            shift
+            ;;
         -h|--help)
             echo "Enhanced ASR Pipeline with Optional VAD"
             echo ""
@@ -181,6 +226,14 @@ while [[ $# -gt 0 ]]; do
             echo "  --audio-max-duration FLOAT   Maximum audio segment duration in seconds (default: 60.0)"
             echo "  --audio-overlap-duration FLOAT Overlap between audio segments in seconds (default: 1.0)"
             echo "  --audio-min-segment-duration FLOAT Minimum audio segment duration in seconds (default: 5.0)"
+            echo "  --use-audio-filtering        Enable audio filtering (band-pass, high-pass, Wiener)"
+            echo "  --no-audio-filtering         Disable audio filtering"
+            echo "  --filter-highpass-cutoff FLOAT High-pass filter cutoff frequency (Hz) (default: 300.0)"
+            echo "  --filter-lowcut FLOAT        Band-pass filter low cutoff (Hz) (default: 300.0)"
+            echo "  --filter-highcut FLOAT       Band-pass filter high cutoff (Hz) (default: 3000.0)"
+            echo "  --filter-order INT           Filter order (default: 5)"
+            echo "  --filter-enable-wiener       Enable Wiener filter for noise reduction"
+            echo "  --filter-disable-wiener      Disable Wiener filter"
             echo "  -h, --help                   Show this help"
             echo ""
             echo "Examples:"
@@ -238,21 +291,55 @@ if [ "$USE_AUDIO_PREPROCESSING" = true ]; then
     AUDIO_PREPROCESSED_DIR="$OUTPUT_DIR/preprocessed_audio"
     
     echo "Running audio preprocessing..."
-    echo "Input: $AUDIO_DIR"
+    echo "Input directories: $AUDIO_DIR"
     echo "Output: $AUDIO_PREPROCESSED_DIR"
     echo "Target sample rate: ${TARGET_SAMPLE_RATE}Hz"
     echo "Max duration: ${AUDIO_MAX_DURATION}s"
     echo "Overlap duration: ${AUDIO_OVERLAP_DURATION}s"
     echo "Min segment duration: ${AUDIO_MIN_SEGMENT_DURATION}s"
     
-    $PYTHON_EXEC audio_preprocessor.py \
-        --input_dir "$AUDIO_DIR" \
-        --output_dir "$AUDIO_PREPROCESSED_DIR" \
-        --target_sample_rate "$TARGET_SAMPLE_RATE" \
-        --max_duration "$AUDIO_MAX_DURATION" \
-        --overlap_duration "$AUDIO_OVERLAP_DURATION" \
-        --min_segment_duration "$AUDIO_MIN_SEGMENT_DURATION" \
-        --preserve_structure
+    # Handle multiple input directories
+    # if [[ "$AUDIO_DIR" == *" "* ]]; then
+    if [ "${#AUDIO_DIR[@]}" -gt 1 ]; then
+        echo "Processing multiple input directories..."
+        # Create a temporary combined directory
+        TEMP_COMBINED_DIR="$OUTPUT_DIR/temp_combined_input"
+        mkdir -p "$TEMP_COMBINED_DIR"
+        
+        # Copy files from all input directories to temp directory
+        # for input_dir in $AUDIO_DIR; do
+        for input_dir in "${AUDIO_DIR[@]}"; do
+            if [ -d "$input_dir" ]; then
+                echo "  Copying files from: $input_dir"
+                cp -r "$input_dir"/* "$TEMP_COMBINED_DIR/" 2>/dev/null || true
+            else
+                echo "  Warning: Directory not found: $input_dir"
+            fi
+        done
+        
+        # Process the combined directory
+        $PYTHON_EXEC audio_preprocessor.py \
+            --input_dir "$TEMP_COMBINED_DIR" \
+            --output_dir "$AUDIO_PREPROCESSED_DIR" \
+            --target_sample_rate "$TARGET_SAMPLE_RATE" \
+            --max_duration "$AUDIO_MAX_DURATION" \
+            --overlap_duration "$AUDIO_OVERLAP_DURATION" \
+            --min_segment_duration "$AUDIO_MIN_SEGMENT_DURATION" \
+            --preserve_structure
+        
+        # Clean up temp directory
+        rm -rf "$TEMP_COMBINED_DIR"
+    else
+        # Single directory processing
+        $PYTHON_EXEC audio_preprocessor.py \
+            --input_dir "$AUDIO_DIR" \
+            --output_dir "$AUDIO_PREPROCESSED_DIR" \
+            --target_sample_rate "$TARGET_SAMPLE_RATE" \
+            --max_duration "$AUDIO_MAX_DURATION" \
+            --overlap_duration "$AUDIO_OVERLAP_DURATION" \
+            --min_segment_duration "$AUDIO_MIN_SEGMENT_DURATION" \
+            --preserve_structure
+    fi
     
     if [ $? -eq 0 ]; then
         echo "Audio preprocessing completed successfully"
@@ -274,6 +361,92 @@ else
     echo "--- Skipping Audio Preprocessing ---"
     PROCESSING_INPUT_DIR="$AUDIO_DIR"
     AUDIO_PREPROCESSING_METADATA=""
+fi
+echo ""
+
+# --- Step 1.5: Audio Filtering (Optional) ---
+if [ "$USE_AUDIO_FILTERING" = true ]; then
+    echo "--- Step 1.5: Audio Filtering (Band-pass, High-pass, Wiener) ---"
+    AUDIO_FILTERED_DIR="$OUTPUT_DIR/filtered_audio"
+    
+    echo "Running audio filtering..."
+    echo "Input: $PROCESSING_INPUT_DIR"
+    echo "Output: $AUDIO_FILTERED_DIR"
+    echo "High-pass cutoff: ${FILTER_HIGHPASS_CUTOFF}Hz"
+    echo "Band-pass range: ${FILTER_LOWCUT}-${FILTER_HIGHCUT}Hz"
+    echo "Filter order: ${FILTER_ORDER}"
+    echo "Wiener filter: ${FILTER_ENABLE_WIENER}"
+    
+    WIENER_OPTION=""
+    if [ "$FILTER_ENABLE_WIENER" = true ]; then
+        WIENER_OPTION="--enable-wiener"
+    fi
+    
+    # Handle multiple input directories for filtering
+    #   if [[ "$PROCESSING_INPUT_DIR" == *" "* ]]; then
+    if [ "${#PROCESSING_INPUT_DIR[@]}" -gt 1 ]; then
+        echo "Processing multiple input directories for filtering..."
+        # Create a temporary combined directory
+        TEMP_COMBINED_DIR="$OUTPUT_DIR/temp_combined_filter_input"
+        mkdir -p "$TEMP_COMBINED_DIR"
+        
+        # Copy files from all input directories to temp directory
+        #   for input_dir in $PROCESSING_INPUT_DIR; do
+        for input_dir in "${PROCESSING_INPUT_DIR[@]}"; do
+            if [ -d "$input_dir" ]; then
+                echo "  Copying files from: $input_dir"
+                cp -r "$input_dir"/* "$TEMP_COMBINED_DIR/" 2>/dev/null || true
+            else
+                echo "  Warning: Directory not found: $input_dir"
+            fi
+        done
+        
+        # Process the combined directory
+        $PYTHON_EXEC audio_filter.py \
+            --input_dir "$TEMP_COMBINED_DIR" \
+            --output_dir "$AUDIO_FILTERED_DIR" \
+            --enable-filters \
+            $WIENER_OPTION \
+            --highpass_cutoff "$FILTER_HIGHPASS_CUTOFF" \
+            --lowcut "$FILTER_LOWCUT" \
+            --highcut "$FILTER_HIGHCUT" \
+            --filter_order "$FILTER_ORDER" \
+            --target_sample_rate "$TARGET_SAMPLE_RATE"
+        
+        # Clean up temp directory
+        rm -rf "$TEMP_COMBINED_DIR"
+    else
+        # Single directory processing
+        $PYTHON_EXEC audio_filter.py \
+            --input_dir "$PROCESSING_INPUT_DIR" \
+            --output_dir "$AUDIO_FILTERED_DIR" \
+            --enable-filters \
+            $WIENER_OPTION \
+            --highpass_cutoff "$FILTER_HIGHPASS_CUTOFF" \
+            --lowcut "$FILTER_LOWCUT" \
+            --highcut "$FILTER_HIGHCUT" \
+            --filter_order "$FILTER_ORDER" \
+            --target_sample_rate "$TARGET_SAMPLE_RATE"
+    fi
+    
+    if [ $? -eq 0 ]; then
+        echo "Audio filtering completed successfully"
+        echo "Filtered audio saved to: $AUDIO_FILTERED_DIR"
+        # Set input directory for next steps to filtered audio
+        PROCESSING_INPUT_DIR="$AUDIO_FILTERED_DIR"
+        AUDIO_FILTERING_METADATA="$AUDIO_FILTERED_DIR/filter_processing_metadata.json"
+    else
+        echo "Warning: Audio filtering failed, using previous input"
+        echo "ERROR: Audio filtering failed" >> "$ERROR_LOG_FILE"
+        echo "  Input directory: $PROCESSING_INPUT_DIR" >> "$ERROR_LOG_FILE"
+        echo "  Output directory: $AUDIO_FILTERED_DIR" >> "$ERROR_LOG_FILE"
+        echo "  Using previous input files instead" >> "$ERROR_LOG_FILE"
+        echo "" >> "$ERROR_LOG_FILE"
+        AUDIO_FILTERING_METADATA=""
+    fi
+else
+    echo "--- Skipping Audio Filtering ---"
+    AUDIO_FILTERING_METADATA=""
 fi
 echo ""
 
@@ -328,7 +501,7 @@ echo ""
 
 # Display configuration
 echo "=== Enhanced ASR Pipeline Configuration ==="
-echo "Input directory: $AUDIO_DIR"
+echo "Input directory(ies): $AUDIO_DIR"
 echo "Output directory: $OUTPUT_DIR"
 echo "Ground truth file: $GROUND_TRUTH_FILE"
 echo "Use Audio Preprocessing: $USE_AUDIO_PREPROCESSING"
@@ -339,6 +512,14 @@ if [ "$USE_AUDIO_PREPROCESSING" = true ]; then
     echo "  - Overlap duration: ${AUDIO_OVERLAP_DURATION}s"
     echo "  - Min segment duration: ${AUDIO_MIN_SEGMENT_DURATION}s"
 fi
+echo "Use Audio Filtering: $USE_AUDIO_FILTERING"
+if [ "$USE_AUDIO_FILTERING" = true ]; then
+    echo "Audio Filtering Parameters:"
+    echo "  - High-pass cutoff: ${FILTER_HIGHPASS_CUTOFF}Hz"
+    echo "  - Band-pass range: ${FILTER_LOWCUT}-${FILTER_HIGHCUT}Hz"
+    echo "  - Filter order: ${FILTER_ORDER}"
+    echo "  - Wiener filter: ${FILTER_ENABLE_WIENER}"
+fi
 echo "Use VAD: $USE_VAD"
 if [ "$USE_VAD" = true ]; then
     echo "Enhanced VAD: $USE_ENHANCED_VAD"
@@ -346,6 +527,12 @@ if [ "$USE_VAD" = true ]; then
     echo "  - Speech threshold: $VAD_SPEECH_THRESHOLD"
     echo "  - Min speech duration: ${VAD_MIN_SPEECH_DURATION}s"
     echo "  - Min silence duration: ${VAD_MIN_SILENCE_DURATION}s"
+    
+    # Check for potential filter conflict
+    if [ "$USE_AUDIO_FILTERING" = true ] && [ "$USE_ENHANCED_VAD" = true ]; then
+        echo "⚠️  WARNING: Both audio filtering and enhanced VAD are enabled"
+        echo "   Enhanced VAD will skip its internal filtering to avoid double filtering"
+    fi
 fi
 echo "Use Long Audio Split: $USE_LONG_AUDIO_SPLIT"
 if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
@@ -380,13 +567,47 @@ if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
     LONG_AUDIO_OUTPUT_DIR="$OUTPUT_DIR/long_audio_segments"
     
     echo "Running Long Audio Splitter to prevent OOM issues..."
-    $PYTHON_EXEC long_audio_splitter.py \
-        --input_dir "$PROCESSING_INPUT_DIR" \
-        --output_dir "$LONG_AUDIO_OUTPUT_DIR" \
-        --max_duration "$MAX_SEGMENT_DURATION" \
-        --speech_threshold "$VAD_SPEECH_THRESHOLD" \
-        --min_speech_duration "$VAD_MIN_SPEECH_DURATION" \
-        --min_silence_duration "$VAD_MIN_SILENCE_DURATION"
+    
+    # Handle multiple input directories for long audio splitting
+    # if [[ "$PROCESSING_INPUT_DIR" == *" "* ]]; then
+    if [ "${#PROCESSING_INPUT_DIR[@]}" -gt 1 ]; then
+        echo "Processing multiple input directories for long audio splitting..."
+        # Create a temporary combined directory
+        TEMP_COMBINED_DIR="$OUTPUT_DIR/temp_combined_split_input"
+        mkdir -p "$TEMP_COMBINED_DIR"
+        
+        # Copy files from all input directories to temp directory
+        # for input_dir in $PROCESSING_INPUT_DIR; do
+        for input_dir in "${PROCESSING_INPUT_DIR[@]}"; do
+            if [ -d "$input_dir" ]; then
+                echo "  Copying files from: $input_dir"
+                cp -r "$input_dir"/* "$TEMP_COMBINED_DIR/" 2>/dev/null || true
+            else
+                echo "  Warning: Directory not found: $input_dir"
+            fi
+        done
+        
+        # Process the combined directory
+        $PYTHON_EXEC long_audio_splitter.py \
+            --input_dir "$TEMP_COMBINED_DIR" \
+            --output_dir "$LONG_AUDIO_OUTPUT_DIR" \
+            --max_duration "$MAX_SEGMENT_DURATION" \
+            --speech_threshold "$VAD_SPEECH_THRESHOLD" \
+            --min_speech_duration "$VAD_MIN_SPEECH_DURATION" \
+            --min_silence_duration "$VAD_MIN_SILENCE_DURATION"
+        
+        # Clean up temp directory
+        rm -rf "$TEMP_COMBINED_DIR"
+    else
+        # Single directory processing
+        $PYTHON_EXEC long_audio_splitter.py \
+            --input_dir "$PROCESSING_INPUT_DIR" \
+            --output_dir "$LONG_AUDIO_OUTPUT_DIR" \
+            --max_duration "$MAX_SEGMENT_DURATION" \
+            --speech_threshold "$VAD_SPEECH_THRESHOLD" \
+            --min_speech_duration "$VAD_MIN_SPEECH_DURATION" \
+            --min_silence_duration "$VAD_MIN_SILENCE_DURATION"
+    fi
     
     echo "Long audio splitting completed"
     echo "Split segments saved to: $LONG_AUDIO_OUTPUT_DIR"
@@ -405,20 +626,97 @@ if [ "$USE_VAD" = true ]; then
     
     if [ "$USE_ENHANCED_VAD" = true ]; then
         echo "Running Enhanced VAD with audio filters..."
-        $PYTHON_EXEC enhanced_vad_pipeline.py \
-            --input_dir "$ASR_INPUT_DIR" \
-            --output_dir "$VAD_OUTPUT_DIR" \
-            --speech_threshold "$VAD_SPEECH_THRESHOLD" \
-            --min_speech_duration "$VAD_MIN_SPEECH_DURATION" \
-            --min_silence_duration "$VAD_MIN_SILENCE_DURATION"
+        
+        # Check if audio filtering was already done
+        if [ "$USE_AUDIO_FILTERING" = true ]; then
+            echo "Warning: Audio filtering already applied in previous step"
+            echo "Enhanced VAD will skip its internal filtering to avoid double filtering"
+            VAD_FILTER_OPTION="--no-filters"
+        else
+            VAD_FILTER_OPTION=""
+        fi
+        
+        # Handle multiple input directories for enhanced VAD
+        # if [[ "$ASR_INPUT_DIR" == *" "* ]]; then
+        if [ "${#ASR_INPUT_DIR[@]}" -gt 1 ]; then
+            echo "Processing multiple input directories for enhanced VAD..."
+            # Create a temporary combined directory
+            TEMP_COMBINED_DIR="$OUTPUT_DIR/temp_combined_vad_input"
+            mkdir -p "$TEMP_COMBINED_DIR"
+            
+            # Copy files from all input directories to temp directory
+            #   for input_dir in $ASR_INPUT_DIR; do
+            for input_dir in "${ASR_INPUT_DIR[@]}"; do
+                if [ -d "$input_dir" ]; then
+                    echo "  Copying files from: $input_dir"
+                    cp -r "$input_dir"/* "$TEMP_COMBINED_DIR/" 2>/dev/null || true
+                else
+                    echo "  Warning: Directory not found: $input_dir"
+                fi
+            done
+            
+            # Process the combined directory
+            $PYTHON_EXEC enhanced_vad_pipeline.py \
+                --input_dir "$TEMP_COMBINED_DIR" \
+                --output_dir "$VAD_OUTPUT_DIR" \
+                --speech_threshold "$VAD_SPEECH_THRESHOLD" \
+                --min_speech_duration "$VAD_MIN_SPEECH_DURATION" \
+                --min_silence_duration "$VAD_MIN_SILENCE_DURATION" \
+                $VAD_FILTER_OPTION
+            
+            # Clean up temp directory
+            rm -rf "$TEMP_COMBINED_DIR"
+        else
+            # Single directory processing
+            $PYTHON_EXEC enhanced_vad_pipeline.py \
+                --input_dir "$ASR_INPUT_DIR" \
+                --output_dir "$VAD_OUTPUT_DIR" \
+                --speech_threshold "$VAD_SPEECH_THRESHOLD" \
+                --min_speech_duration "$VAD_MIN_SPEECH_DURATION" \
+                --min_silence_duration "$VAD_MIN_SILENCE_DURATION" \
+                $VAD_FILTER_OPTION
+        fi
     else
         echo "Running Basic VAD..."
-        $PYTHON_EXEC vad_pipeline.py \
-            --input_dir "$ASR_INPUT_DIR" \
-            --output_dir "$VAD_OUTPUT_DIR" \
-            --speech_threshold "$VAD_SPEECH_THRESHOLD" \
-            --min_speech_duration "$VAD_MIN_SPEECH_DURATION" \
-            --min_silence_duration "$VAD_MIN_SILENCE_DURATION"
+        
+        # Handle multiple input directories for basic VAD
+        # if [[ "$ASR_INPUT_DIR" == *" "* ]]; then
+        if [ "${#ASR_INPUT_DIR[@]}" -gt 1 ]; then
+            echo "Processing multiple input directories for basic VAD..."
+            # Create a temporary combined directory
+            TEMP_COMBINED_DIR="$OUTPUT_DIR/temp_combined_vad_input"
+            mkdir -p "$TEMP_COMBINED_DIR"
+            
+            # Copy files from all input directories to temp directory
+            #   for input_dir in $ASR_INPUT_DIR; do
+            for input_dir in "${ASR_INPUT_DIR[@]}"; do
+                if [ -d "$input_dir" ]; then
+                    echo "  Copying files from: $input_dir"
+                    cp -r "$input_dir"/* "$TEMP_COMBINED_DIR/" 2>/dev/null || true
+                else
+                    echo "  Warning: Directory not found: $input_dir"
+                fi
+            done
+            
+            # Process the combined directory
+            $PYTHON_EXEC vad_pipeline.py \
+                --input_dir "$TEMP_COMBINED_DIR" \
+                --output_dir "$VAD_OUTPUT_DIR" \
+                --speech_threshold "$VAD_SPEECH_THRESHOLD" \
+                --min_speech_duration "$VAD_MIN_SPEECH_DURATION" \
+                --min_silence_duration "$VAD_MIN_SILENCE_DURATION"
+            
+            # Clean up temp directory
+            rm -rf "$TEMP_COMBINED_DIR"
+        else
+            # Single directory processing
+            $PYTHON_EXEC vad_pipeline.py \
+                --input_dir "$ASR_INPUT_DIR" \
+                --output_dir "$VAD_OUTPUT_DIR" \
+                --speech_threshold "$VAD_SPEECH_THRESHOLD" \
+                --min_speech_duration "$VAD_MIN_SPEECH_DURATION" \
+                --min_silence_duration "$VAD_MIN_SILENCE_DURATION"
+        fi
     fi
     
     echo "VAD processing completed"
@@ -627,8 +925,25 @@ print(f'Processed {len(file_mapping)} original files with {len(available_models)
  
 else
     echo "Running ASR on original files from: $ASR_INPUT_DIR"
-    # Copy original files to ASR output for processing
-    cp "$ASR_INPUT_DIR"/*.wav "$ASR_OUTPUT_DIR/" 2>/dev/null || true
+    
+    # Handle multiple input directories for ASR
+    #   if [[ "$ASR_INPUT_DIR" == *" "* ]]; then
+    if [ "${#ASR_INPUT_DIR[@]}" -gt 1 ]; then
+        echo "Processing multiple input directories for ASR..."
+        # Copy files from all input directories to ASR output
+        # for input_dir in $ASR_INPUT_DIR; do
+        for input_dir in "${ASR_INPUT_DIR[@]}"; do
+            if [ -d "$input_dir" ]; then
+                echo "  Copying files from: $input_dir"
+                cp "$input_dir"/*.wav "$ASR_OUTPUT_DIR/" 2>/dev/null || true
+            else
+                echo "  Warning: Directory not found: $input_dir"
+            fi
+        done
+    else
+        # Copy original files to ASR output for processing
+        cp "$ASR_INPUT_DIR"/*.wav "$ASR_OUTPUT_DIR/" 2>/dev/null || true
+    fi
     
     # Run ASR on original files
     $PYTHON_EXEC run_all_asrs.py "$ASR_OUTPUT_DIR"
@@ -778,6 +1093,14 @@ SUMMARY_FILE="$OUTPUT_DIR/pipeline_summary.txt"
         echo "    * Overlap duration: ${AUDIO_OVERLAP_DURATION}s"
         echo "    * Min segment duration: ${AUDIO_MIN_SEGMENT_DURATION}s"
     fi
+    echo "  - Audio Filtering: $USE_AUDIO_FILTERING"
+    if [ "$USE_AUDIO_FILTERING" = true ]; then
+        echo "  - Audio Filtering Parameters:"
+        echo "    * High-pass cutoff: ${FILTER_HIGHPASS_CUTOFF}Hz"
+        echo "    * Band-pass range: ${FILTER_LOWCUT}-${FILTER_HIGHCUT}Hz"
+        echo "    * Filter order: ${FILTER_ORDER}"
+        echo "    * Wiener filter: ${FILTER_ENABLE_WIENER}"
+    fi
     echo "  - VAD Preprocessing: $USE_VAD"
     echo "  - Enhanced VAD: $USE_ENHANCED_VAD"
     if [ "$USE_VAD" = true ]; then
@@ -807,8 +1130,21 @@ SUMMARY_FILE="$OUTPUT_DIR/pipeline_summary.txt"
     echo ""
     
     # Count input files
-    INPUT_COUNT=$(find "$AUDIO_DIR" -name "*.wav" | wc -l)
-    echo "Input Files: $INPUT_COUNT audio files"
+    #   if [[ "$AUDIO_DIR" == *" "* ]]; then
+    if [ "${#AUDIO_DIR[@]}" -gt 1 ]; then
+        INPUT_COUNT=0
+        # for input_dir in $AUDIO_DIR; do
+        for input_dir in "${AUDIO_DIR[@]}"; do
+            if [ -d "$input_dir" ]; then
+                COUNT=$(find "$input_dir" -name "*.wav" | wc -l)
+                INPUT_COUNT=$((INPUT_COUNT + COUNT))
+            fi
+        done
+        echo "Input Files: $INPUT_COUNT audio files (from multiple directories)"
+    else
+        INPUT_COUNT=$(find "$AUDIO_DIR" -name "*.wav" | wc -l)
+        echo "Input Files: $INPUT_COUNT audio files"
+    fi
     
     # Audio preprocessing results
     if [ "$USE_AUDIO_PREPROCESSING" = true ] && [ -f "$OUTPUT_DIR/preprocessed_audio/processing_metadata.json" ]; then
@@ -827,6 +1163,24 @@ SUMMARY_FILE="$OUTPUT_DIR/pipeline_summary.txt"
             echo "  - Files split: $SPLIT_FILES"
         else
             echo "  - Audio preprocessing summary available in: $OUTPUT_DIR/preprocessed_audio/processing_metadata.json"
+        fi
+    fi
+    
+    # Audio filtering results
+    if [ "$USE_AUDIO_FILTERING" = true ] && [ -f "$OUTPUT_DIR/filtered_audio/filter_processing_metadata.json" ]; then
+        echo ""
+        echo "Audio Filtering Results:"
+        if command -v jq > /dev/null 2>&1; then
+            TOTAL_FILES=$(jq -r '.total_files' "$OUTPUT_DIR/filtered_audio/filter_processing_metadata.json" 2>/dev/null || echo "N/A")
+            PROCESSED_FILES=$(jq -r '.processed_files' "$OUTPUT_DIR/filtered_audio/filter_processing_metadata.json" 2>/dev/null || echo "N/A")
+            FILTERS_ENABLED=$(jq -r '.filters_enabled' "$OUTPUT_DIR/filtered_audio/filter_processing_metadata.json" 2>/dev/null || echo "N/A")
+            WIENER_ENABLED=$(jq -r '.wiener_enabled' "$OUTPUT_DIR/filtered_audio/filter_processing_metadata.json" 2>/dev/null || echo "N/A")
+            echo "  - Total files processed: $TOTAL_FILES"
+            echo "  - Successfully processed: $PROCESSED_FILES"
+            echo "  - Filters enabled: $FILTERS_ENABLED"
+            echo "  - Wiener filter enabled: $WIENER_ENABLED"
+        else
+            echo "  - Audio filtering summary available in: $OUTPUT_DIR/filtered_audio/filter_processing_metadata.json"
         fi
     fi
     
@@ -953,6 +1307,9 @@ if [ "$PIPELINE_SUCCESS" = true ]; then
     echo "Results structure:"
     if [ "$USE_AUDIO_PREPROCESSING" = true ]; then
         echo "  $OUTPUT_DIR/preprocessed_audio/     # Audio preprocessing results"
+    fi
+    if [ "$USE_AUDIO_FILTERING" = true ]; then
+        echo "  $OUTPUT_DIR/filtered_audio/         # Audio filtering results"
     fi
     if [ "$USE_LONG_AUDIO_SPLIT" = true ]; then
         echo "  $OUTPUT_DIR/long_audio_segments/   # Long audio split segments"

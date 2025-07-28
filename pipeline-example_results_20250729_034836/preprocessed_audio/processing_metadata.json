@@ -1,0 +1,1305 @@
+{
+  "status": "success",
+  "total_files": 50,
+  "processed_files": 50,
+  "error_files": 0,
+  "total_segments": 93,
+  "upsampled_files": 0,
+  "split_files": 50,
+  "file_results": [
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412010133-841696-14744_call_2.wav",
+      "original_duration": 66.7815625,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412010133-841696-14744_call_2_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412010133-841696-14744_call_2_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412010133-841696-14744_call_2_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412010133-841696-14744_call_2_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 66.7815625,
+          "duration": 7.781562500000007,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412011757-965821-14744_call_11.wav",
+      "original_duration": 90.7475,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412011757-965821-14744_call_11_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412011757-965821-14744_call_11_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412011757-965821-14744_call_11_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412011757-965821-14744_call_11_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 90.7475,
+          "duration": 31.747500000000002,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412011757-965821-14744_call_5.wav",
+      "original_duration": 72.7968125,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412011757-965821-14744_call_5_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412011757-965821-14744_call_5_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412011757-965821-14744_call_5_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412011757-965821-14744_call_5_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 72.7968125,
+          "duration": 13.796812500000001,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412020952-344688-14744_call_14.wav",
+      "original_duration": 97.8525625,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412020952-344688-14744_call_14_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412020952-344688-14744_call_14_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412020952-344688-14744_call_14_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412020952-344688-14744_call_14_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 97.8525625,
+          "duration": 38.852562500000005,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412021022-748072-14744_call_9.wav",
+      "original_duration": 131.6754375,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412021022-748072-14744_call_9_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021022-748072-14744_call_9_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412021022-748072-14744_call_9_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021022-748072-14744_call_9_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 119.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412021022-748072-14744_call_9_segment_002.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021022-748072-14744_call_9_segment_002.wav",
+          "start_time": 118.0,
+          "end_time": 131.6754375,
+          "duration": 13.675437499999987,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 3
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412021121-31317-14744_call_13.wav",
+      "original_duration": 60.3171875,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412021121-31317-14744_call_13.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021121-31317-14744_call_13.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 1
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412021919-979320-14744_call_3.wav",
+      "original_duration": 69.02125,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412021919-979320-14744_call_3_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021919-979320-14744_call_3_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412021919-979320-14744_call_3_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021919-979320-14744_call_3_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 69.02125,
+          "duration": 10.021249999999995,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412031043-922113-14744_call_18.wav",
+      "original_duration": 73.309625,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412031043-922113-14744_call_18_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412031043-922113-14744_call_18_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412031043-922113-14744_call_18_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412031043-922113-14744_call_18_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 73.309625,
+          "duration": 14.309624999999997,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412031512-254309-14744_call_16.wav",
+      "original_duration": 74.4940625,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412031512-254309-14744_call_16_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412031512-254309-14744_call_16_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412031512-254309-14744_call_16_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412031512-254309-14744_call_16_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 74.4940625,
+          "duration": 15.494062499999998,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412040437-202163-14744_call_14.wav",
+      "original_duration": 87.324125,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412040437-202163-14744_call_14_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412040437-202163-14744_call_14_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412040437-202163-14744_call_14_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412040437-202163-14744_call_14_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 87.324125,
+          "duration": 28.324124999999995,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412040637-530611-14744_call_16.wav",
+      "original_duration": 60.796375,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412040637-530611-14744_call_16.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412040637-530611-14744_call_16.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 1
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412040936-56143-14744_call_8.wav",
+      "original_duration": 65.981875,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412040936-56143-14744_call_8_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412040936-56143-14744_call_8_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412040936-56143-14744_call_8_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412040936-56143-14744_call_8_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 65.981875,
+          "duration": 6.981875000000002,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412041035-161261-14744_call_21.wav",
+      "original_duration": 71.741375,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412041035-161261-14744_call_21_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412041035-161261-14744_call_21_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412041035-161261-14744_call_21_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412041035-161261-14744_call_21_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 71.741375,
+          "duration": 12.741375000000005,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412041235-634426-14744_call_13.wav",
+      "original_duration": 77.8856875,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412041235-634426-14744_call_13_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412041235-634426-14744_call_13_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412041235-634426-14744_call_13_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412041235-634426-14744_call_13_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 77.8856875,
+          "duration": 18.885687500000003,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412041305-617206-14744_call_14.wav",
+      "original_duration": 62.366375,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412041305-617206-14744_call_14.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412041305-617206-14744_call_14.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 1
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412041305-617206-14744_call_24.wav",
+      "original_duration": 119.131375,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412041305-617206-14744_call_24_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412041305-617206-14744_call_24_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412041305-617206-14744_call_24_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412041305-617206-14744_call_24_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 119.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412041604-460429-14744_call_10.wav",
+      "original_duration": 88.8928125,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412041604-460429-14744_call_10_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412041604-460429-14744_call_10_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412041604-460429-14744_call_10_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412041604-460429-14744_call_10_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 88.8928125,
+          "duration": 29.892812500000005,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412041604-460429-14744_call_12.wav",
+      "original_duration": 83.6449375,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412041604-460429-14744_call_12_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412041604-460429-14744_call_12_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412041604-460429-14744_call_12_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412041604-460429-14744_call_12_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 83.6449375,
+          "duration": 24.644937499999997,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412050230-586791-14744_call_3.wav",
+      "original_duration": 100.0280625,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412050230-586791-14744_call_3_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412050230-586791-14744_call_3_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412050230-586791-14744_call_3_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412050230-586791-14744_call_3_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 100.0280625,
+          "duration": 41.028062500000004,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412050459-375222-14744_call_16.wav",
+      "original_duration": 110.620625,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412050459-375222-14744_call_16_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412050459-375222-14744_call_16_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412050459-375222-14744_call_16_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412050459-375222-14744_call_16_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 110.620625,
+          "duration": 51.620625000000004,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412050858-692837-14744_call_8.wav",
+      "original_duration": 83.8695,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412050858-692837-14744_call_8_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412050858-692837-14744_call_8_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412050858-692837-14744_call_8_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412050858-692837-14744_call_8_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 83.8695,
+          "duration": 24.869500000000002,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412051127-142191-14744_call_3.wav",
+      "original_duration": 63.069625,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412051127-142191-14744_call_3.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412051127-142191-14744_call_3.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 1
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412051157-727845-14744_call_15.wav",
+      "original_duration": 66.526125,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412051157-727845-14744_call_15_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412051157-727845-14744_call_15_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412051157-727845-14744_call_15_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412051157-727845-14744_call_15_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 66.526125,
+          "duration": 7.526124999999993,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412051556-238089-14744_call_6.wav",
+      "original_duration": 99.58125,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412051556-238089-14744_call_6_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412051556-238089-14744_call_6_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412051556-238089-14744_call_6_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412051556-238089-14744_call_6_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 99.58125,
+          "duration": 40.58125,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412061448-597093-14744_call_12.wav",
+      "original_duration": 115.196375,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412061448-597093-14744_call_12_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412061448-597093-14744_call_12_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412061448-597093-14744_call_12_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412061448-597093-14744_call_12_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 115.196375,
+          "duration": 56.196375,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412010731-280830-14744_call_1.wav",
+      "original_duration": 97.275625,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412010731-280830-14744_call_1_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412010731-280830-14744_call_1_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412010731-280830-14744_call_1_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412010731-280830-14744_call_1_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 97.275625,
+          "duration": 38.275625000000005,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412011259-954439-14744_call_11.wav",
+      "original_duration": 69.5663125,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412011259-954439-14744_call_11_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412011259-954439-14744_call_11_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412011259-954439-14744_call_11_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412011259-954439-14744_call_11_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 69.5663125,
+          "duration": 10.566312499999995,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412011329-642550-14744_call_6.wav",
+      "original_duration": 72.8931875,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412011329-642550-14744_call_6_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412011329-642550-14744_call_6_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412011329-642550-14744_call_6_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412011329-642550-14744_call_6_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 72.8931875,
+          "duration": 13.893187499999996,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412011458-971661-14744_call_3.wav",
+      "original_duration": 76.3500625,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412011458-971661-14744_call_3_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412011458-971661-14744_call_3_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412011458-971661-14744_call_3_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412011458-971661-14744_call_3_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 76.3500625,
+          "duration": 17.350062500000007,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412021121-31317-14744_call_2.wav",
+      "original_duration": 157.2743125,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412021121-31317-14744_call_2_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021121-31317-14744_call_2_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412021121-31317-14744_call_2_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021121-31317-14744_call_2_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 119.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412021121-31317-14744_call_2_segment_002.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021121-31317-14744_call_2_segment_002.wav",
+          "start_time": 118.0,
+          "end_time": 157.2743125,
+          "duration": 39.27431250000001,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 3
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412021321-120801-14744_call_13.wav",
+      "original_duration": 71.4214375,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412021321-120801-14744_call_13_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021321-120801-14744_call_13_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412021321-120801-14744_call_13_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021321-120801-14744_call_13_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 71.4214375,
+          "duration": 12.421437499999996,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412021520-274679-14744_call_10.wav",
+      "original_duration": 66.7825625,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412021520-274679-14744_call_10_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021520-274679-14744_call_10_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412021520-274679-14744_call_10_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021520-274679-14744_call_10_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 66.7825625,
+          "duration": 7.782562499999997,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412021520-274679-14744_call_12.wav",
+      "original_duration": 62.653625,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412021520-274679-14744_call_12.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021520-274679-14744_call_12.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 1
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412021649-160048-14744_call_11.wav",
+      "original_duration": 61.3105625,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412021649-160048-14744_call_11.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021649-160048-14744_call_11.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 1
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412021649-160048-14744_call_7.wav",
+      "original_duration": 113.532125,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412021649-160048-14744_call_7_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021649-160048-14744_call_7_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412021649-160048-14744_call_7_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021649-160048-14744_call_7_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 113.532125,
+          "duration": 54.53212499999999,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412021948-545512-14744_call_8.wav",
+      "original_duration": 82.6851875,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412021948-545512-14744_call_8_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021948-545512-14744_call_8_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412021948-545512-14744_call_8_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412021948-545512-14744_call_8_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 82.6851875,
+          "duration": 23.685187499999998,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412031043-922113-14744_call_16.wav",
+      "original_duration": 71.0695625,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412031043-922113-14744_call_16_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412031043-922113-14744_call_16_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412031043-922113-14744_call_16_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412031043-922113-14744_call_16_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 71.0695625,
+          "duration": 12.069562500000004,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412040607-588047-14744_call_11.wav",
+      "original_duration": 144.6015625,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412040607-588047-14744_call_11_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412040607-588047-14744_call_11_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412040607-588047-14744_call_11_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412040607-588047-14744_call_11_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 119.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412040607-588047-14744_call_11_segment_002.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412040607-588047-14744_call_11_segment_002.wav",
+          "start_time": 118.0,
+          "end_time": 144.6015625,
+          "duration": 26.6015625,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 3
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412040637-530611-14744_call_6.wav",
+      "original_duration": 61.6938125,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412040637-530611-14744_call_6.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412040637-530611-14744_call_6.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 1
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412040736-239835-14744_call_4.wav",
+      "original_duration": 85.6915,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412040736-239835-14744_call_4_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412040736-239835-14744_call_4_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412040736-239835-14744_call_4_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412040736-239835-14744_call_4_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 85.6915,
+          "duration": 26.691500000000005,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412040736-239835-14744_call_6.wav",
+      "original_duration": 62.269875,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412040736-239835-14744_call_6.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412040736-239835-14744_call_6.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 1
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412041135-308215-14744_call_10.wav",
+      "original_duration": 66.622,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412041135-308215-14744_call_10_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412041135-308215-14744_call_10_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412041135-308215-14744_call_10_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412041135-308215-14744_call_10_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 66.622,
+          "duration": 7.622,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412041703-315276-14744_call_6.wav",
+      "original_duration": 64.3499375,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412041703-315276-14744_call_6_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412041703-315276-14744_call_6_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412041703-315276-14744_call_6_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412041703-315276-14744_call_6_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 64.3499375,
+          "duration": 5.349937499999996,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412050429-519717-14744_call_21.wav",
+      "original_duration": 62.2061875,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412050429-519717-14744_call_21.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412050429-519717-14744_call_21.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 1
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412050728-925202-14744_call_6.wav",
+      "original_duration": 64.2538125,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412050728-925202-14744_call_6_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412050728-925202-14744_call_6_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412050728-925202-14744_call_6_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412050728-925202-14744_call_6_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 64.2538125,
+          "duration": 5.253812499999995,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412050858-692837-14744_call_2.wav",
+      "original_duration": 75.452875,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412050858-692837-14744_call_2_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412050858-692837-14744_call_2_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412050858-692837-14744_call_2_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412050858-692837-14744_call_2_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 75.452875,
+          "duration": 16.452875000000006,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412051456-239162-14744_call_1.wav",
+      "original_duration": 60.12625,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412051456-239162-14744_call_1.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412051456-239162-14744_call_1.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 1
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412051556-238089-14744_call_12.wav",
+      "original_duration": 64.92575,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412051556-238089-14744_call_12_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412051556-238089-14744_call_12_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412051556-238089-14744_call_12_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412051556-238089-14744_call_12_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 64.92575,
+          "duration": 5.925749999999994,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412061348-251491-14744_call_9.wav",
+      "original_duration": 69.1173125,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412061348-251491-14744_call_9_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412061348-251491-14744_call_9_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412061348-251491-14744_call_9_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412061348-251491-14744_call_9_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 69.1173125,
+          "duration": 10.117312499999997,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    },
+    {
+      "status": "success",
+      "original_file": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/temp_combined_input/202412061448-597093-14744_call_6.wav",
+      "original_duration": 64.3494375,
+      "original_sample_rate": 16000,
+      "needs_upsampling": false,
+      "needs_splitting": true,
+      "segments": [
+        {
+          "filename": "202412061448-597093-14744_call_6_segment_000.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412061448-597093-14744_call_6_segment_000.wav",
+          "start_time": 0.0,
+          "end_time": 60.0,
+          "duration": 60.0,
+          "sample_rate": 16000
+        },
+        {
+          "filename": "202412061448-597093-14744_call_6_segment_001.wav",
+          "path": "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/202412061448-597093-14744_call_6_segment_001.wav",
+          "start_time": 59.0,
+          "end_time": 64.3494375,
+          "duration": 5.349437499999993,
+          "sample_rate": 16000
+        }
+      ],
+      "total_segments": 2
+    }
+  ]
+}

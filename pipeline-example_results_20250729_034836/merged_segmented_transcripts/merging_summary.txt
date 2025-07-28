@@ -1,0 +1,306 @@
+============================================================
+SEGMENTED TRANSCRIPT MERGING SUMMARY
+============================================================
+Total original files: 50
+Successfully merged: 50
+Errors: 0
+Models processed: wav2vec-xls-r, canary-1b, parakeet-tdt-0.6b-v2, large-v3
+
+📁 202412010133-841696-14744_call_2:
+  - wav2vec-xls-r: 83 words
+  - canary-1b: 76 words
+  - parakeet-tdt-0.6b-v2: 104 words
+  - large-v3: 107 words
+
+📁 202412011757-965821-14744_call_11:
+  - wav2vec-xls-r: 69 words
+  - canary-1b: 154 words
+  - parakeet-tdt-0.6b-v2: 66 words
+  - large-v3: 99 words
+
+📁 202412011757-965821-14744_call_5:
+  - wav2vec-xls-r: 63 words
+  - canary-1b: 217 words
+  - parakeet-tdt-0.6b-v2: 21 words
+  - large-v3: 53 words
+
+📁 202412020952-344688-14744_call_14:
+  - wav2vec-xls-r: 158 words
+  - canary-1b: 159 words
+  - parakeet-tdt-0.6b-v2: 172 words
+  - large-v3: 124 words
+
+📁 202412021022-748072-14744_call_9:
+  - wav2vec-xls-r: 120 words
+  - canary-1b: 396 words
+  - parakeet-tdt-0.6b-v2: 107 words
+  - large-v3: 107 words
+
+📁 202412021121-31317-14744_call_13:
+  - wav2vec-xls-r: 107 words
+  - canary-1b: 73 words
+  - parakeet-tdt-0.6b-v2: 111 words
+  - large-v3: 99 words
+
+📁 202412021919-979320-14744_call_3:
+  - wav2vec-xls-r: 94 words
+  - canary-1b: 145 words
+  - parakeet-tdt-0.6b-v2: 104 words
+  - large-v3: 80 words
+
+📁 202412031043-922113-14744_call_18:
+  - wav2vec-xls-r: 98 words
+  - canary-1b: 96 words
+  - parakeet-tdt-0.6b-v2: 104 words
+  - large-v3: 87 words
+
+📁 202412031512-254309-14744_call_16:
+  - wav2vec-xls-r: 88 words
+  - canary-1b: 78 words
+  - parakeet-tdt-0.6b-v2: 89 words
+  - large-v3: 87 words
+
+📁 202412040437-202163-14744_call_14:
+  - wav2vec-xls-r: 181 words
+  - canary-1b: 177 words
+  - parakeet-tdt-0.6b-v2: 186 words
+  - large-v3: 179 words
+
+📁 202412040637-530611-14744_call_16:
+  - wav2vec-xls-r: 116 words
+  - canary-1b: 94 words
+  - parakeet-tdt-0.6b-v2: 123 words
+  - large-v3: 112 words
+
+📁 202412040936-56143-14744_call_8:
+  - wav2vec-xls-r: 98 words
+  - canary-1b: 91 words
+  - parakeet-tdt-0.6b-v2: 114 words
+  - large-v3: 132 words
+
+📁 202412041035-161261-14744_call_21:
+  - wav2vec-xls-r: 87 words
+  - canary-1b: 66 words
+  - parakeet-tdt-0.6b-v2: 90 words
+  - large-v3: 92 words
+
+📁 202412041235-634426-14744_call_13:
+  - wav2vec-xls-r: 113 words
+  - canary-1b: 105 words
+  - parakeet-tdt-0.6b-v2: 119 words
+  - large-v3: 209 words
+
+📁 202412041305-617206-14744_call_14:
+  - wav2vec-xls-r: 78 words
+  - canary-1b: 97 words
+  - parakeet-tdt-0.6b-v2: 82 words
+  - large-v3: 73 words
+
+📁 202412041305-617206-14744_call_24:
+  - wav2vec-xls-r: 158 words
+  - canary-1b: 136 words
+  - parakeet-tdt-0.6b-v2: 168 words
+  - large-v3: 130 words
+
+📁 202412041604-460429-14744_call_10:
+  - wav2vec-xls-r: 110 words
+  - canary-1b: 102 words
+  - parakeet-tdt-0.6b-v2: 102 words
+  - large-v3: 94 words
+
+📁 202412041604-460429-14744_call_12:
+  - wav2vec-xls-r: 75 words
+  - canary-1b: 174 words
+  - parakeet-tdt-0.6b-v2: 77 words
+  - large-v3: 88 words
+
+📁 202412050230-586791-14744_call_3:
+  - wav2vec-xls-r: 76 words
+  - canary-1b: 183 words
+  - large-v3: 97 words
+
+📁 202412050459-375222-14744_call_16:
+  - wav2vec-xls-r: 176 words
+  - canary-1b: 161 words
+  - parakeet-tdt-0.6b-v2: 191 words
+  - large-v3: 196 words
+
+📁 202412050858-692837-14744_call_8:
+  - wav2vec-xls-r: 95 words
+  - canary-1b: 87 words
+  - parakeet-tdt-0.6b-v2: 98 words
+  - large-v3: 105 words
+
+📁 202412051127-142191-14744_call_3:
+  - wav2vec-xls-r: 62 words
+  - canary-1b: 41 words
+  - parakeet-tdt-0.6b-v2: 54 words
+  - large-v3: 47 words
+
+📁 202412051157-727845-14744_call_15:
+  - wav2vec-xls-r: 71 words
+  - canary-1b: 55 words
+  - parakeet-tdt-0.6b-v2: 70 words
+  - large-v3: 84 words
+
+📁 202412051556-238089-14744_call_6:
+  - wav2vec-xls-r: 109 words
+  - canary-1b: 113 words
+  - parakeet-tdt-0.6b-v2: 126 words
+  - large-v3: 120 words
+
+📁 202412061448-597093-14744_call_12:
+  - wav2vec-xls-r: 126 words
+  - canary-1b: 97 words
+  - parakeet-tdt-0.6b-v2: 120 words
+  - large-v3: 124 words
+
+📁 202412010731-280830-14744_call_1:
+  - wav2vec-xls-r: 94 words
+  - canary-1b: 163 words
+  - parakeet-tdt-0.6b-v2: 75 words
+  - large-v3: 85 words
+
+📁 202412011259-954439-14744_call_11:
+  - wav2vec-xls-r: 100 words
+  - canary-1b: 89 words
+  - parakeet-tdt-0.6b-v2: 110 words
+  - large-v3: 80 words
+
+📁 202412011329-642550-14744_call_6:
+  - wav2vec-xls-r: 130 words
+  - canary-1b: 274 words
+  - parakeet-tdt-0.6b-v2: 140 words
+  - large-v3: 130 words
+
+📁 202412011458-971661-14744_call_3:
+  - wav2vec-xls-r: 89 words
+  - canary-1b: 186 words
+  - parakeet-tdt-0.6b-v2: 96 words
+  - large-v3: 80 words
+
+📁 202412021121-31317-14744_call_2:
+  - wav2vec-xls-r: 185 words
+  - canary-1b: 249 words
+  - parakeet-tdt-0.6b-v2: 188 words
+  - large-v3: 219 words
+
+📁 202412021321-120801-14744_call_13:
+  - wav2vec-xls-r: 82 words
+  - canary-1b: 58 words
+  - parakeet-tdt-0.6b-v2: 93 words
+  - large-v3: 75 words
+
+📁 202412021520-274679-14744_call_10:
+  - wav2vec-xls-r: 82 words
+  - canary-1b: 75 words
+  - parakeet-tdt-0.6b-v2: 84 words
+  - large-v3: 73 words
+
+📁 202412021520-274679-14744_call_12:
+  - wav2vec-xls-r: 109 words
+  - canary-1b: 134 words
+  - parakeet-tdt-0.6b-v2: 126 words
+  - large-v3: 127 words
+
+📁 202412021649-160048-14744_call_11:
+  - wav2vec-xls-r: 63 words
+  - canary-1b: 62 words
+  - parakeet-tdt-0.6b-v2: 63 words
+  - large-v3: 67 words
+
+📁 202412021649-160048-14744_call_7:
+  - wav2vec-xls-r: 97 words
+  - canary-1b: 91 words
+  - parakeet-tdt-0.6b-v2: 80 words
+  - large-v3: 116 words
+
+📁 202412021948-545512-14744_call_8:
+  - wav2vec-xls-r: 127 words
+  - canary-1b: 104 words
+  - parakeet-tdt-0.6b-v2: 127 words
+  - large-v3: 82 words
+
+📁 202412031043-922113-14744_call_16:
+  - wav2vec-xls-r: 62 words
+  - canary-1b: 177 words
+  - parakeet-tdt-0.6b-v2: 57 words
+  - large-v3: 54 words
+
+📁 202412040607-588047-14744_call_11:
+  - wav2vec-xls-r: 200 words
+  - canary-1b: 319 words
+  - parakeet-tdt-0.6b-v2: 173 words
+  - large-v3: 191 words
+
+📁 202412040637-530611-14744_call_6:
+  - wav2vec-xls-r: 77 words
+  - canary-1b: 177 words
+  - parakeet-tdt-0.6b-v2: 92 words
+  - large-v3: 81 words
+
+📁 202412040736-239835-14744_call_4:
+  - wav2vec-xls-r: 119 words
+  - canary-1b: 88 words
+  - parakeet-tdt-0.6b-v2: 116 words
+  - large-v3: 112 words
+
+📁 202412040736-239835-14744_call_6:
+  - wav2vec-xls-r: 79 words
+  - canary-1b: 163 words
+  - parakeet-tdt-0.6b-v2: 74 words
+  - large-v3: 81 words
+
+📁 202412041135-308215-14744_call_10:
+  - wav2vec-xls-r: 62 words
+  - canary-1b: 55 words
+  - parakeet-tdt-0.6b-v2: 47 words
+  - large-v3: 60 words
+
+📁 202412041703-315276-14744_call_6:
+  - wav2vec-xls-r: 52 words
+  - canary-1b: 49 words
+  - parakeet-tdt-0.6b-v2: 55 words
+  - large-v3: 49 words
+
+📁 202412050429-519717-14744_call_21:
+  - wav2vec-xls-r: 94 words
+  - canary-1b: 95 words
+  - parakeet-tdt-0.6b-v2: 98 words
+  - large-v3: 91 words
+
+📁 202412050728-925202-14744_call_6:
+  - wav2vec-xls-r: 111 words
+  - canary-1b: 94 words
+  - parakeet-tdt-0.6b-v2: 116 words
+  - large-v3: 79 words
+
+📁 202412050858-692837-14744_call_2:
+  - wav2vec-xls-r: 93 words
+  - canary-1b: 86 words
+  - parakeet-tdt-0.6b-v2: 96 words
+  - large-v3: 103 words
+
+📁 202412051456-239162-14744_call_1:
+  - wav2vec-xls-r: 88 words
+  - canary-1b: 64 words
+  - parakeet-tdt-0.6b-v2: 87 words
+  - large-v3: 90 words
+
+📁 202412051556-238089-14744_call_12:
+  - wav2vec-xls-r: 75 words
+  - canary-1b: 155 words
+  - parakeet-tdt-0.6b-v2: 72 words
+  - large-v3: 48 words
+
+📁 202412061348-251491-14744_call_9:
+  - wav2vec-xls-r: 92 words
+  - canary-1b: 57 words
+  - parakeet-tdt-0.6b-v2: 77 words
+  - large-v3: 79 words
+
+📁 202412061448-597093-14744_call_6:
+  - wav2vec-xls-r: 65 words
+  - canary-1b: 58 words
+  - parakeet-tdt-0.6b-v2: 75 words
+  - large-v3: 68 words

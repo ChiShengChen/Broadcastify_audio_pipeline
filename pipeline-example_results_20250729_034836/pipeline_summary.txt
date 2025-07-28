@@ -1,0 +1,47 @@
+Enhanced ASR Pipeline Summary
+=============================
+Date: 西元2025年07月29日 (週二) 03時58分26秒 CST
+Input Directory: /media/meow/One Touch/ems_call/random_samples_1
+Output Directory: /media/meow/One Touch/ems_call/pipeline_results_20250729_034836
+
+Configuration:
+  - Audio Preprocessing: true
+  - Audio Preprocessing Parameters:
+    * Target sample rate: 16000Hz
+    * Max duration: 60.0s
+    * Overlap duration: 1.0s
+    * Min segment duration: 5.0s
+  - Audio Filtering: false
+  - VAD Preprocessing: false
+  - Enhanced VAD: false
+  - Long Audio Split: false
+  - Ground Truth Preprocessing: true
+  - Ground Truth Preprocessing:
+    * Input file: /media/meow/One Touch/ems_call/vb_ems_anotation/human_anotation_vb.csv
+    * Processed file: /media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_ground_truth.csv
+    * Preprocessor: Basic
+    * Mode: conservative
+
+Input Files: 50 audio files (from multiple directories)
+
+Audio Preprocessing Results:
+  - Audio preprocessing summary available in: /media/meow/One Touch/ems_call/pipeline_results_20250729_034836/preprocessed_audio/processing_metadata.json
+
+ASR Results:
+  - Transcript files: 200
+  - Transcripts directory: /media/meow/One Touch/ems_call/pipeline_results_20250729_034836/merged_segmented_transcripts
+
+Evaluation Results:
+  - Evaluation report: /media/meow/One Touch/ems_call/pipeline_results_20250729_034836/asr_evaluation_results.csv
+
+Model File Analysis:
+  - Model file analysis: /media/meow/One Touch/ems_call/pipeline_results_20250729_034836/model_file_analysis.txt
+
+Error Analysis:
+  - Error log: /media/meow/One Touch/ems_call/pipeline_results_20250729_034836/error_analysis.log
+  - Errors found: 0
+0
+  - Warnings found: 2
+  - Check error log for detailed analysis
+
+All results saved to: /media/meow/One Touch/ems_call/pipeline_results_20250729_034836
