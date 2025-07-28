@@ -70,8 +70,6 @@ echo "    --input_dir $PREPROCESSED_INPUT_DIR \\"
 echo "    --output_dir $TEST_OUTPUT_DIR \\"
 echo "    --ground_truth $TEST_GROUND_TRUTH \\"
 echo "    --no-audio-preprocessing \\"
-echo "    --no-vad \\"
-echo "    --no-long-audio-split \\"
 echo "    --preprocess-ground-truth"
 echo ""
 
@@ -82,8 +80,6 @@ echo "🚀 開始運行測試1..."
     --output_dir "$TEST_OUTPUT_DIR" \
     --ground_truth "$TEST_GROUND_TRUTH" \
     --no-audio-preprocessing \
-    --no-vad \
-    --no-long-audio-split \
     --preprocess-ground-truth
 
 if [ $? -eq 0 ]; then
@@ -105,7 +101,6 @@ echo "    --output_dir $VAD_OUTPUT_DIR \\"
 echo "    --ground_truth $TEST_GROUND_TRUTH \\"
 echo "    --no-audio-preprocessing \\"
 echo "    --use-vad \\"
-echo "    --no-long-audio-split \\"
 echo "    --preprocess-ground-truth"
 echo ""
 
@@ -117,7 +112,6 @@ echo "🚀 開始運行測試2..."
     --ground_truth "$TEST_GROUND_TRUTH" \
     --no-audio-preprocessing \
     --use-vad \
-    --no-long-audio-split \
     --preprocess-ground-truth
 
 if [ $? -eq 0 ]; then
@@ -138,7 +132,6 @@ echo "    --input_dir $PREPROCESSED_INPUT_DIR \\"
 echo "    --output_dir $SPLIT_OUTPUT_DIR \\"
 echo "    --ground_truth $TEST_GROUND_TRUTH \\"
 echo "    --no-audio-preprocessing \\"
-echo "    --no-vad \\"
 echo "    --use-long-audio-split \\"
 echo "    --preprocess-ground-truth"
 echo ""
@@ -150,7 +143,6 @@ echo "🚀 開始運行測試3..."
     --output_dir "$SPLIT_OUTPUT_DIR" \
     --ground_truth "$TEST_GROUND_TRUTH" \
     --no-audio-preprocessing \
-    --no-vad \
     --use-long-audio-split \
     --preprocess-ground-truth
 

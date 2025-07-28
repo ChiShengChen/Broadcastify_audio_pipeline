@@ -1,0 +1,9 @@
+Filename,transcript
+normal_audio_large-v3.wav,This is a normal audio file for testing ASR models.
+normal_audio_canary-1b.wav,This is a normal audio file for testing ASR models.
+normal_audio_parakeet-tdt-0.6b-v2.wav,This is a normal audio file for testing ASR models.
+normal_audio_wav2vec-xls-r.wav,This is a normal audio file for testing ASR models.
+short_audio_large-v3.wav,This is a short audio file.
+short_audio_canary-1b.wav,This is a short audio file.
+short_audio_parakeet-tdt-0.6b-v2.wav,This is a short audio file.
+short_audio_wav2vec-xls-r.wav,This is a short audio file.

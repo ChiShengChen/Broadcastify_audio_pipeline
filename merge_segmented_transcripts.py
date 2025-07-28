@@ -152,7 +152,8 @@ class SegmentedTranscriptMerger:
                         expected_filename = f"{model_name}_{original_name}.txt"
                     else:
                         # Segmented case: model_name_original_name_segment_XXX.txt
-                        expected_filename = f"{model_name}_{original_name}_{segment_filename.replace('.wav', '.txt')}"
+                        # The segment_filename already contains the original name, so we just need to add the model prefix
+                        expected_filename = f"{model_name}_{segment_filename.replace('.wav', '.txt')}"
                     
                     if filename == expected_filename:
                         content = self.read_transcript_content(transcript_file)

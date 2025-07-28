@@ -29,8 +29,8 @@ OUTPUT_DIR="/media/meow/One Touch/ems_call/pipeline_results_${TIMESTAMP}"
 # Path to save the final evaluation report CSV.
 OUTPUT_FILE="$OUTPUT_DIR/asr_evaluation_results.csv"
 
-USE_VAD=true                    # Enable VAD preprocessing
-USE_LONG_AUDIO_SPLIT=true      # Enable long audio splitting to prevent OOM
+USE_VAD=false                    # Enable VAD preprocessing
+USE_LONG_AUDIO_SPLIT=false      # Enable long audio splitting to prevent OOM
 MAX_SEGMENT_DURATION=120.0      # Maximum segment duration in seconds (2 minutes)
 
 # Audio preprocessing options
