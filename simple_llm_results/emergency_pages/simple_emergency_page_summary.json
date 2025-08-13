@@ -1,0 +1,376 @@
+{
+  "mode": "emergency_page",
+  "model": "microsoft/DialoGPT-small",
+  "input_directories": [
+    "simple_llm_results/corrected_transcripts"
+  ],
+  "output_directory": "simple_llm_results/emergency_pages",
+  "total_files": 58,
+  "successful": 36,
+  "failed": 22,
+  "success_rate": 0.6206896551724138,
+  "results": [
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412010133-841696-14744_call_2_segment_001.txt",
+      "success": true,
+      "transcript_length": 51,
+      "page_length": 25,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412010133-841696-14744_call_2_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412010731-280830-14744_call_1_segment_000.txt",
+      "success": true,
+      "transcript_length": 51,
+      "page_length": 18,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412010731-280830-14744_call_1_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412010731-280830-14744_call_1_segment_001.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412011259-954439-14744_call_11_segment_000.txt",
+      "success": true,
+      "transcript_length": 16,
+      "page_length": 10,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412011259-954439-14744_call_11_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412011259-954439-14744_call_11_segment_001.txt",
+      "success": true,
+      "transcript_length": 5,
+      "page_length": 5,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412011259-954439-14744_call_11_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412011329-642550-14744_call_6_segment_001.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412011458-971661-14744_call_3_segment_000.txt",
+      "success": true,
+      "transcript_length": 2,
+      "page_length": 2,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412011458-971661-14744_call_3_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412011458-971661-14744_call_3_segment_001.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412011757-965821-14744_call_11_segment_000.txt",
+      "success": true,
+      "transcript_length": 12,
+      "page_length": 6,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412011757-965821-14744_call_11_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412011757-965821-14744_call_11_segment_001.txt",
+      "success": true,
+      "transcript_length": 12,
+      "page_length": 14,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412011757-965821-14744_call_11_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412011757-965821-14744_call_5_segment_000.txt",
+      "success": true,
+      "transcript_length": 3,
+      "page_length": 6,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412011757-965821-14744_call_5_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412011757-965821-14744_call_5_segment_001.txt",
+      "success": true,
+      "transcript_length": 20,
+      "page_length": 31,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412011757-965821-14744_call_5_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412020952-344688-14744_call_14_segment_001.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412021022-748072-14744_call_9_segment_000.txt",
+      "success": true,
+      "transcript_length": 8,
+      "page_length": 10,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412021022-748072-14744_call_9_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412021022-748072-14744_call_9_segment_001.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412021022-748072-14744_call_9_segment_002.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412021121-31317-14744_call_2_segment_000.txt",
+      "success": true,
+      "transcript_length": 3,
+      "page_length": 3,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412021121-31317-14744_call_2_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412021121-31317-14744_call_2_segment_001.txt",
+      "success": true,
+      "transcript_length": 55,
+      "page_length": 10,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412021121-31317-14744_call_2_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412021321-120801-14744_call_13_segment_000.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412021321-120801-14744_call_13_segment_001.txt",
+      "success": true,
+      "transcript_length": 32,
+      "page_length": 8,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412021321-120801-14744_call_13_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412021520-274679-14744_call_10_segment_000.txt",
+      "success": true,
+      "transcript_length": 18,
+      "page_length": 18,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412021520-274679-14744_call_10_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412021520-274679-14744_call_10_segment_001.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412021649-160048-14744_call_11.txt",
+      "success": true,
+      "transcript_length": 22,
+      "page_length": 5,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412021649-160048-14744_call_11_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412021649-160048-14744_call_7_segment_000.txt",
+      "success": true,
+      "transcript_length": 3,
+      "page_length": 6,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412021649-160048-14744_call_7_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412021649-160048-14744_call_7_segment_001.txt",
+      "success": true,
+      "transcript_length": 24,
+      "page_length": 19,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412021649-160048-14744_call_7_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412021919-979320-14744_call_3_segment_000.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412021919-979320-14744_call_3_segment_001.txt",
+      "success": true,
+      "transcript_length": 13,
+      "page_length": 3,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412021919-979320-14744_call_3_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412021948-545512-14744_call_8_segment_000.txt",
+      "success": true,
+      "transcript_length": 7,
+      "page_length": 14,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412021948-545512-14744_call_8_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412021948-545512-14744_call_8_segment_001.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412031043-922113-14744_call_16_segment_000.txt",
+      "success": true,
+      "transcript_length": 30,
+      "page_length": 53,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412031043-922113-14744_call_16_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412031043-922113-14744_call_16_segment_001.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412031043-922113-14744_call_18_segment_000.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412031043-922113-14744_call_18_segment_001.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412031512-254309-14744_call_16_segment_000.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412031512-254309-14744_call_16_segment_001.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412040437-202163-14744_call_14_segment_001.txt",
+      "success": true,
+      "transcript_length": 20,
+      "page_length": 3,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412040437-202163-14744_call_14_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412040607-588047-14744_call_11_segment_000.txt",
+      "success": true,
+      "transcript_length": 2,
+      "page_length": 1,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412040607-588047-14744_call_11_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412040607-588047-14744_call_11_segment_001.txt",
+      "success": true,
+      "transcript_length": 44,
+      "page_length": 40,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412040607-588047-14744_call_11_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412040607-588047-14744_call_11_segment_002.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412040736-239835-14744_call_4_segment_000.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412040736-239835-14744_call_4_segment_001.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412040736-239835-14744_call_6.txt",
+      "success": true,
+      "transcript_length": 21,
+      "page_length": 2,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412040736-239835-14744_call_6_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412040936-56143-14744_call_8_segment_001.txt",
+      "success": true,
+      "transcript_length": 48,
+      "page_length": 9,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412040936-56143-14744_call_8_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412041035-161261-14744_call_21_segment_000.txt",
+      "success": true,
+      "transcript_length": 42,
+      "page_length": 1,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412041035-161261-14744_call_21_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412041035-161261-14744_call_21_segment_001.txt",
+      "success": true,
+      "transcript_length": 62,
+      "page_length": 19,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412041035-161261-14744_call_21_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412041135-308215-14744_call_10_segment_000.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412041135-308215-14744_call_10_segment_001.txt",
+      "success": true,
+      "transcript_length": 30,
+      "page_length": 7,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412041135-308215-14744_call_10_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412041235-634426-14744_call_13_segment_001.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412041305-617206-14744_call_14.txt",
+      "success": true,
+      "transcript_length": 2,
+      "page_length": 2,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412041305-617206-14744_call_14_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412041305-617206-14744_call_24_segment_000.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412041305-617206-14744_call_24_segment_001.txt",
+      "success": true,
+      "transcript_length": 31,
+      "page_length": 12,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412041305-617206-14744_call_24_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412041604-460429-14744_call_10_segment_000.txt",
+      "success": true,
+      "transcript_length": 7,
+      "page_length": 41,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412041604-460429-14744_call_10_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412041604-460429-14744_call_12_segment_000.txt",
+      "success": true,
+      "transcript_length": 16,
+      "page_length": 18,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412041604-460429-14744_call_12_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412041604-460429-14744_call_12_segment_001.txt",
+      "success": true,
+      "transcript_length": 4,
+      "page_length": 135,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412041604-460429-14744_call_12_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412041703-315276-14744_call_6_segment_000.txt",
+      "success": true,
+      "transcript_length": 16,
+      "page_length": 2,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412041703-315276-14744_call_6_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412041703-315276-14744_call_6_segment_001.txt",
+      "success": false,
+      "error": "Model page generation failed"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412050230-586791-14744_call_3_segment_000.txt",
+      "success": true,
+      "transcript_length": 45,
+      "page_length": 32,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412050230-586791-14744_call_3_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "simple_llm_results/corrected_transcripts/large-v3_202412050230-586791-14744_call_3_segment_001.txt",
+      "success": true,
+      "transcript_length": 2,
+      "page_length": 6,
+      "output_file": "simple_llm_results/emergency_pages/large-v3_202412050230-586791-14744_call_3_segment_001_emergency_page.txt"
+    }
+  ]
+}

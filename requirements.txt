@@ -1,28 +1,89 @@
-# Basic data handling and plotting
-pandas
-matplotlib
-seaborn
+# EMS Call ASR and LLM-Enhanced Pipeline Requirements
+# Complete dependencies for both ASR and LLM processing stages
 
-# System and audio metrics
-psutil
-pynvml
-librosa
+# ============================================================================
+# CORE DATA PROCESSING AND VISUALIZATION
+# ============================================================================
+pandas>=1.3.0
+matplotlib>=3.3.0
+seaborn>=0.11.0
 
-# Core ML/ASR Libraries
-torch
-torchaudio
-transformers
-openai-whisper
+# ============================================================================
+# SYSTEM MONITORING AND AUDIO PROCESSING
+# ============================================================================
+psutil>=5.8.0
+pynvml>=11.0.0
+librosa>=0.8.0
+soundfile>=0.10.0
+pydub>=0.25.0
+
+# ============================================================================
+# CORE MACHINE LEARNING AND ASR LIBRARIES
+# ============================================================================
+torch>=2.0.0
+torchaudio>=2.0.0
+transformers>=4.30.0
+openai-whisper>=20230314
 
 # For NVIDIA Models (Canary and Parakeet)
-nemo_toolkit[asr]
+nemo_toolkit[asr]>=1.15.0
 
-# VAD Pipeline Dependencies
-pathlib2
-tqdm
-datasets
-soundfile
-pydub
+# ============================================================================
+# LLM AND QUANTIZATION SUPPORT
+# ============================================================================
+# Model acceleration and quantization
+accelerate>=0.20.0
+bitsandbytes>=0.41.0
 
-# Evaluation and metrics
-jiwer 
+# Optional: Enhanced tokenization and serialization
+sentencepiece>=0.1.99
+protobuf>=3.20.0
+
+# ============================================================================
+# PIPELINE PROCESSING AND UTILITIES
+# ============================================================================
+# Progress bars and concurrent processing
+tqdm>=4.60.0
+pathlib2>=2.3.0
+datasets>=2.0.0
+
+# HTTP requests for API-based LLM calls (optional)
+requests>=2.25.0
+
+# ============================================================================
+# EVALUATION AND METRICS
+# ============================================================================
+jiwer>=2.3.0
+
+# ============================================================================
+# OPTIONAL PERFORMANCE ENHANCEMENTS
+# ============================================================================
+# Better JSON handling with unicode support
+# ujson>=4.0.0
+
+# Enhanced HTTP session management
+# urllib3>=1.26.0
+
+# Better error handling and retries
+# tenacity>=8.0.0
+
+# ============================================================================
+# NOTES
+# ============================================================================
+# Standard library modules (no installation required):
+# - concurrent.futures (Python 3.2+)
+# - json, pathlib (Python 3.4+)
+# - argparse, logging, os, sys, time, typing
+# - datetime, collections, functools, itertools
+
+# Hardware-specific notes:
+# - bitsandbytes: Requires CUDA-compatible GPU for quantization
+# - torch with CUDA: Install with: pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+# - nemo_toolkit: Requires additional system dependencies for some ASR models
+
+# Installation command:
+# pip install -r requirements.txt
+
+# For CUDA support (recommended):
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+# pip install -r requirements.txt

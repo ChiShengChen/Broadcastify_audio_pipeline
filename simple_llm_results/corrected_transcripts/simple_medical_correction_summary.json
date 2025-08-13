@@ -1,0 +1,422 @@
+{
+  "mode": "medical_correction",
+  "model": "microsoft/DialoGPT-small",
+  "input_directories": [
+    "whisper_only_results/asr_transcripts"
+  ],
+  "output_directory": "simple_llm_results/corrected_transcripts",
+  "total_files": 70,
+  "successful": 58,
+  "failed": 12,
+  "success_rate": 0.8285714285714286,
+  "results": [
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412010133-841696-14744_call_2_segment_000.txt",
+      "success": false,
+      "error": "Model correction failed"
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412010133-841696-14744_call_2_segment_001.txt",
+      "success": true,
+      "original_length": 26,
+      "corrected_length": 51
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412010731-280830-14744_call_1_segment_000.txt",
+      "success": true,
+      "original_length": 260,
+      "corrected_length": 51
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412010731-280830-14744_call_1_segment_001.txt",
+      "success": true,
+      "original_length": 256,
+      "corrected_length": 43
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412011259-954439-14744_call_11_segment_000.txt",
+      "success": true,
+      "original_length": 382,
+      "corrected_length": 16
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412011259-954439-14744_call_11_segment_001.txt",
+      "success": true,
+      "original_length": 101,
+      "corrected_length": 5
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412011329-642550-14744_call_6_segment_000.txt",
+      "success": false,
+      "error": "Model correction failed"
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412011329-642550-14744_call_6_segment_001.txt",
+      "success": true,
+      "original_length": 4,
+      "corrected_length": 3
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412011458-971661-14744_call_3_segment_000.txt",
+      "success": true,
+      "original_length": 409,
+      "corrected_length": 2
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412011458-971661-14744_call_3_segment_001.txt",
+      "success": true,
+      "original_length": 41,
+      "corrected_length": 5
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412011757-965821-14744_call_11_segment_000.txt",
+      "success": true,
+      "original_length": 393,
+      "corrected_length": 12
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412011757-965821-14744_call_11_segment_001.txt",
+      "success": true,
+      "original_length": 175,
+      "corrected_length": 12
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412011757-965821-14744_call_5_segment_000.txt",
+      "success": true,
+      "original_length": 197,
+      "corrected_length": 3
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412011757-965821-14744_call_5_segment_001.txt",
+      "success": true,
+      "original_length": 74,
+      "corrected_length": 20
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412020952-344688-14744_call_14_segment_000.txt",
+      "success": false,
+      "error": "Model correction failed"
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412020952-344688-14744_call_14_segment_001.txt",
+      "success": true,
+      "original_length": 235,
+      "corrected_length": 25
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021022-748072-14744_call_9_segment_000.txt",
+      "success": true,
+      "original_length": 327,
+      "corrected_length": 8
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021022-748072-14744_call_9_segment_001.txt",
+      "success": true,
+      "original_length": 240,
+      "corrected_length": 27
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021022-748072-14744_call_9_segment_002.txt",
+      "success": true,
+      "original_length": 42,
+      "corrected_length": 1
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021121-31317-14744_call_13.txt",
+      "success": false,
+      "error": "Model correction failed"
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021121-31317-14744_call_2_segment_000.txt",
+      "success": true,
+      "original_length": 269,
+      "corrected_length": 3
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021121-31317-14744_call_2_segment_001.txt",
+      "success": true,
+      "original_length": 423,
+      "corrected_length": 55
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021121-31317-14744_call_2_segment_002.txt",
+      "success": false,
+      "error": "Model correction failed"
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021321-120801-14744_call_13_segment_000.txt",
+      "success": true,
+      "original_length": 359,
+      "corrected_length": 48
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021321-120801-14744_call_13_segment_001.txt",
+      "success": true,
+      "original_length": 48,
+      "corrected_length": 32
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021520-274679-14744_call_10_segment_000.txt",
+      "success": true,
+      "original_length": 309,
+      "corrected_length": 18
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021520-274679-14744_call_10_segment_001.txt",
+      "success": true,
+      "original_length": 60,
+      "corrected_length": 1
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021520-274679-14744_call_12.txt",
+      "success": false,
+      "error": "Model correction failed"
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021649-160048-14744_call_11.txt",
+      "success": true,
+      "original_length": 373,
+      "corrected_length": 22
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021649-160048-14744_call_7_segment_000.txt",
+      "success": true,
+      "original_length": 193,
+      "corrected_length": 3
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021649-160048-14744_call_7_segment_001.txt",
+      "success": true,
+      "original_length": 435,
+      "corrected_length": 24
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021919-979320-14744_call_3_segment_000.txt",
+      "success": true,
+      "original_length": 409,
+      "corrected_length": 30
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021919-979320-14744_call_3_segment_001.txt",
+      "success": true,
+      "original_length": 34,
+      "corrected_length": 13
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021948-545512-14744_call_8_segment_000.txt",
+      "success": true,
+      "original_length": 361,
+      "corrected_length": 7
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412021948-545512-14744_call_8_segment_001.txt",
+      "success": true,
+      "original_length": 128,
+      "corrected_length": 6
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412031043-922113-14744_call_16_segment_000.txt",
+      "success": true,
+      "original_length": 218,
+      "corrected_length": 30
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412031043-922113-14744_call_16_segment_001.txt",
+      "success": true,
+      "original_length": 87,
+      "corrected_length": 46
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412031043-922113-14744_call_18_segment_000.txt",
+      "success": true,
+      "original_length": 376,
+      "corrected_length": 47
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412031043-922113-14744_call_18_segment_001.txt",
+      "success": true,
+      "original_length": 96,
+      "corrected_length": 62
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412031512-254309-14744_call_16_segment_000.txt",
+      "success": true,
+      "original_length": 416,
+      "corrected_length": 10
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412031512-254309-14744_call_16_segment_001.txt",
+      "success": true,
+      "original_length": 47,
+      "corrected_length": 12
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412040437-202163-14744_call_14_segment_000.txt",
+      "success": false,
+      "error": "Model correction failed"
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412040437-202163-14744_call_14_segment_001.txt",
+      "success": true,
+      "original_length": 358,
+      "corrected_length": 20
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412040607-588047-14744_call_11_segment_000.txt",
+      "success": true,
+      "original_length": 465,
+      "corrected_length": 2
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412040607-588047-14744_call_11_segment_001.txt",
+      "success": true,
+      "original_length": 276,
+      "corrected_length": 44
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412040607-588047-14744_call_11_segment_002.txt",
+      "success": true,
+      "original_length": 287,
+      "corrected_length": 10
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412040637-530611-14744_call_16.txt",
+      "success": false,
+      "error": "Model correction failed"
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412040637-530611-14744_call_6.txt",
+      "success": false,
+      "error": "Model correction failed"
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412040736-239835-14744_call_4_segment_000.txt",
+      "success": true,
+      "original_length": 433,
+      "corrected_length": 1
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412040736-239835-14744_call_4_segment_001.txt",
+      "success": true,
+      "original_length": 183,
+      "corrected_length": 3
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412040736-239835-14744_call_6.txt",
+      "success": true,
+      "original_length": 426,
+      "corrected_length": 21
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412040936-56143-14744_call_8_segment_000.txt",
+      "success": false,
+      "error": "Model correction failed"
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412040936-56143-14744_call_8_segment_001.txt",
+      "success": true,
+      "original_length": 99,
+      "corrected_length": 48
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412041035-161261-14744_call_21_segment_000.txt",
+      "success": true,
+      "original_length": 359,
+      "corrected_length": 42
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412041035-161261-14744_call_21_segment_001.txt",
+      "success": true,
+      "original_length": 146,
+      "corrected_length": 62
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412041135-308215-14744_call_10_segment_000.txt",
+      "success": true,
+      "original_length": 230,
+      "corrected_length": 34
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412041135-308215-14744_call_10_segment_001.txt",
+      "success": true,
+      "original_length": 127,
+      "corrected_length": 30
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412041235-634426-14744_call_13_segment_000.txt",
+      "success": false,
+      "error": "Model correction failed"
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412041235-634426-14744_call_13_segment_001.txt",
+      "success": true,
+      "original_length": 160,
+      "corrected_length": 39
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412041305-617206-14744_call_14.txt",
+      "success": true,
+      "original_length": 396,
+      "corrected_length": 2
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412041305-617206-14744_call_24_segment_000.txt",
+      "success": true,
+      "original_length": 385,
+      "corrected_length": 8
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412041305-617206-14744_call_24_segment_001.txt",
+      "success": true,
+      "original_length": 386,
+      "corrected_length": 31
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412041604-460429-14744_call_10_segment_000.txt",
+      "success": true,
+      "original_length": 512,
+      "corrected_length": 7
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412041604-460429-14744_call_10_segment_001.txt",
+      "success": false,
+      "error": "Empty or unreadable transcript"
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412041604-460429-14744_call_12_segment_000.txt",
+      "success": true,
+      "original_length": 410,
+      "corrected_length": 16
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412041604-460429-14744_call_12_segment_001.txt",
+      "success": true,
+      "original_length": 68,
+      "corrected_length": 4
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412041703-315276-14744_call_6_segment_000.txt",
+      "success": true,
+      "original_length": 276,
+      "corrected_length": 16
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412041703-315276-14744_call_6_segment_001.txt",
+      "success": true,
+      "original_length": 11,
+      "corrected_length": 11
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412050230-586791-14744_call_3_segment_000.txt",
+      "success": true,
+      "original_length": 283,
+      "corrected_length": 45
+    },
+    {
+      "file": "whisper_only_results/asr_transcripts/large-v3_202412050230-586791-14744_call_3_segment_001.txt",
+      "success": true,
+      "original_length": 184,
+      "corrected_length": 2
+    }
+  ]
+}

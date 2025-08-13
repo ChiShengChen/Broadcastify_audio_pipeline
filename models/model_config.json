@@ -1,0 +1,31 @@
+{
+  "models": {
+    "BioMistral-7B": {
+      "huggingface_id": "BioMistral/BioMistral-7B",
+      "description": "Medical-focused Mistral model",
+      "size_gb": 14,
+      "requirements": "16GB+ RAM, CUDA recommended"
+    },
+    "Meditron-7B": {
+      "huggingface_id": "epfl-llm/meditron-7b",
+      "description": "Medical instruction-tuned model",
+      "size_gb": 14,
+      "requirements": "16GB+ RAM, CUDA recommended"
+    },
+    "gpt-oss-20b": {
+      "huggingface_id": "microsoft/DialoGPT-medium",
+      "description": "Open source GPT model (placeholder)",
+      "size_gb": 40,
+      "requirements": "32GB+ RAM, CUDA required"
+    },
+    "Llama-3-8B-UltraMedica": {
+      "huggingface_id": "meta-llama/Llama-3-8B",
+      "description": "Medical-focused Llama model (placeholder)",
+      "size_gb": 16,
+      "requirements": "16GB+ RAM, CUDA recommended"
+    }
+  },
+  "download_path": "models",
+  "setup_date": "/media/meow/One Touch/ems_call",
+  "cuda_available": true
+}
