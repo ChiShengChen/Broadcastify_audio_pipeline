@@ -1,313 +1,526 @@
-# 錯誤處理與日誌記錄功能指南
+# Error Handling and Troubleshooting Guide
 
-## 概述
+A comprehensive guide for error handling, troubleshooting, and problem resolution in the EMS Call ASR and LLM-Enhanced Pipeline.
 
-`run_pipeline.sh` 現在包含了全面的錯誤處理和日誌記錄功能，能夠自動檢測、記錄和分析處理過程中遇到的各種問題。
+## 📋 Overview
 
-## 新增功能
+Both pipeline stages (`run_pipeline.sh` and `run_llm_pipeline.sh`) include comprehensive error handling and logging capabilities that automatically detect, record, and analyze various issues encountered during processing.
 
-### 🔍 **自動錯誤檢測**
+## 🏗️ Error Handling Architecture
 
-系統會自動檢測以下類型的錯誤：
-
-1. **文件讀取錯誤**
-   - 文件不存在
-   - 文件權限問題
-   - 編碼錯誤
-   - 文件損壞
-
-2. **數據格式錯誤**
-   - CSV 格式不正確
-   - 缺少必需列
-   - 數據類型錯誤
-   - 空數據
-
-3. **處理錯誤**
-   - ASR 處理失敗
-   - 評估計算錯誤
-   - 預處理失敗
-
-4. **系統錯誤**
-   - 目錄不存在
-   - 磁盤空間不足
-   - 內存不足
-
-### 📝 **詳細日誌記錄**
-
-#### 錯誤日誌文件 (`error_analysis.log`)
-
-包含以下信息：
-- **時間戳**：錯誤發生的精確時間
-- **錯誤類型**：分類的錯誤類型
-- **錯誤描述**：詳細的錯誤信息
-- **文件路徑**：相關文件的位置
-- **上下文信息**：錯誤發生的環境信息
-
-#### 錯誤類型分類
-
-| 錯誤類型 | 描述 | 嚴重程度 |
-|----------|------|----------|
-| `FILE_NOT_FOUND` | 文件或目錄不存在 | 高 |
-| `INVALID_FORMAT` | 文件格式不正確 | 高 |
-| `ENCODING_ERROR` | 文件編碼問題 | 中 |
-| `EMPTY_DATA` | 數據為空或無效 | 中 |
-| `LOAD_ERROR` | 數據加載失敗 | 高 |
-| `ANALYSIS_ERROR` | 分析過程錯誤 | 中 |
-| `MISSING_GROUND_TRUTH` | 缺少對應的 ground truth | 中 |
-| `SUSPICIOUS_CONTENT` | 內容可疑或異常 | 低 |
-
-### 📊 **增強的模型文件分析**
-
-新的 `analyze_model_files_enhanced.py` 提供：
-
-1. **文件狀態分析**
-   - 成功處理的文件
-   - 空文件
-   - 錯誤文件
-   - 缺少 ground truth 的文件
-
-2. **內容質量檢查**
-   - 文件大小檢查
-   - 編碼檢測
-   - 可疑內容模式檢測
-   - 內容長度驗證
-
-3. **詳細報告**
-   - 每個模型的處理統計
-   - 問題文件的詳細列表
-   - 錯誤和警告的匯總
-
-## 使用方法
-
-### 1. **基本使用**
-
-錯誤處理功能會自動啟用，無需額外參數：
-
-```bash
-./run_pipeline.sh \
-    --input_dir /path/to/audio \
-    --output_dir /path/to/results
+```
+Input → Error Detection → Processing → Error Logging → Error Analysis → Resolution
 ```
 
-### 2. **查看錯誤報告**
+## 🔍 Error Detection System
 
-處理完成後，檢查以下文件：
+### Stage 1: ASR Pipeline Errors
+
+#### File-Related Errors
+- **File not found**: Audio files or ground truth missing
+- **Permission denied**: Insufficient file access rights
+- **Format errors**: Unsupported audio formats or CSV structure
+- **Encoding issues**: Character encoding problems
+
+#### Processing Errors
+- **ASR model failures**: Model loading or processing errors
+- **VAD processing issues**: Voice activity detection failures
+- **Audio preprocessing errors**: Filtering or conversion failures
+- **Memory errors**: Out-of-memory conditions
+
+#### Data Quality Errors
+- **Empty files**: Zero-length or corrupted files
+- **Invalid audio**: Unsupported sample rates or formats
+- **Missing ground truth**: Filename mismatches
+- **Evaluation errors**: Metric calculation failures
+
+### Stage 2: LLM Pipeline Errors
+
+#### Model-Related Errors
+- **Model loading failures**: CUDA, memory, or download issues
+- **Quantization errors**: Unsupported quantization settings
+- **GPU memory issues**: Insufficient VRAM
+- **Model timeout**: Processing timeout exceeded
+
+#### Processing Errors
+- **Empty transcripts**: Input files with no content
+- **LLM processing failures**: Model inference errors
+- **Prompt processing errors**: Invalid or problematic prompts
+- **Output generation failures**: File writing or formatting issues
+
+#### Configuration Errors
+- **Invalid model names**: Unsupported or misspelled model names
+- **Path errors**: Incorrect ASR results directory paths
+- **Parameter conflicts**: Conflicting configuration options
+
+## 📝 Error Logging System
+
+### Error Log Structure
+
+Both pipelines generate detailed error logs with the following information:
+
+```
+=== Pipeline Error Analysis Log ===
+Analysis Date: 2025-08-13 07:47:01 CST
+Pipeline Output Directory: /path/to/results
+Input Directory: /path/to/input
+
+FAILED FILE: /path/to/file.txt
+  Processing Mode: medical_correction
+  Model: BioMistral-7B
+  Error: Empty or unreadable transcript
+  Timestamp: 2025-08-13 07:51:40
+
+ERROR SUMMARY:
+  - Total files processed: 150
+  - Successful: 147
+  - Failed: 3
+  - Error types:
+    * Empty/unreadable files: 2
+    * Model processing failures: 1
+```
+
+### Error Categories
+
+| Category | Description | Severity | Stage |
+|----------|-------------|----------|-------|
+| **FILE_NOT_FOUND** | File or directory missing | High | Both |
+| **INVALID_FORMAT** | Incorrect file format | High | Both |
+| **ENCODING_ERROR** | File encoding issues | Medium | Both |
+| **EMPTY_DATA** | Empty or invalid data | Medium | Both |
+| **MODEL_ERROR** | Model loading/processing failure | High | Both |
+| **MEMORY_ERROR** | Insufficient memory | High | Both |
+| **CUDA_ERROR** | GPU/CUDA related issues | High | LLM |
+| **QUANTIZATION_ERROR** | Quantization setup failure | Medium | LLM |
+| **TIMEOUT_ERROR** | Processing timeout | Medium | LLM |
+| **PERMISSION_ERROR** | File permission issues | High | Both |
+
+## 🚨 Common Errors and Solutions
+
+### Stage 1: ASR Pipeline Errors
+
+#### Audio Format Issues
+**Error**: `Unsupported audio format`
+```bash
+# Solution: Convert to supported format
+ffmpeg -i input.mp3 -ar 16000 -ac 1 output.wav
+
+# Batch conversion
+for file in *.mp3; do
+    ffmpeg -i "$file" -ar 16000 -ac 1 "${file%.mp3}.wav"
+done
+```
+
+#### Memory Issues
+**Error**: `CUDA out of memory` or `RAM insufficient`
+```bash
+# Solution: Enable long audio splitting
+./run_pipeline.sh --use-long-audio-split --max-segment-duration 60
+
+# Reduce parallel processing
+./run_pipeline.sh --max-workers 2
+```
+
+#### VAD Processing Failures
+**Error**: `VAD processing failed`
+```bash
+# Solution: Adjust VAD parameters
+./run_pipeline.sh \
+    --vad-threshold 0.3 \
+    --vad-min-speech 0.2 \
+    --vad-max-speech 25
+
+# Disable VAD if persistent issues
+./run_pipeline.sh --disable-vad
+```
+
+#### Ground Truth Issues
+**Error**: `Missing ground truth` or `Filename mismatch`
+```bash
+# Solution: Check filename matching
+python3 -c "
+import pandas as pd
+df = pd.read_csv('ground_truth.csv')
+print('Ground truth files:', df['Filename'].tolist())
+"
+
+# Check audio files
+ls -la /path/to/audio/*.wav
+```
+
+### Stage 2: LLM Pipeline Errors
+
+#### CUDA Not Available
+**Error**: `Torch not compiled with CUDA enabled`
+```bash
+# Solution: Install CUDA-enabled PyTorch
+pip uninstall torch torchvision torchaudio
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# Verify CUDA installation
+python3 -c "import torch; print(torch.cuda.is_available())"
+```
+
+#### GPU Memory Issues
+**Error**: `CUDA out of memory`
+```bash
+# Solution: Use quantization
+./run_llm_pipeline.sh --load_in_8bit  # or --load_in_4bit
+
+# Reduce batch size
+./run_llm_pipeline.sh --batch_size 1
+
+# Use CPU processing (slower)
+./run_llm_pipeline.sh --device cpu
+```
+
+#### Model Loading Failures
+**Error**: `Model not found` or `Connection error`
+```bash
+# Solution: Manual model download
+python3 -c "
+from transformers import AutoTokenizer, AutoModel
+tokenizer = AutoTokenizer.from_pretrained('BioMistral/BioMistral-7B')
+model = AutoModel.from_pretrained('BioMistral/BioMistral-7B')
+print('Model downloaded successfully')
+"
+
+# Check internet connection
+ping huggingface.co
+
+# Clear model cache if corrupted
+rm -rf ~/.cache/huggingface/transformers/
+```
+
+#### Empty Transcript Errors
+**Error**: `Empty or unreadable transcript`
+```bash
+# Solution: Check ASR results quality
+find /path/to/asr_results -name "*.txt" -empty
+find /path/to/asr_results -name "*.txt" -exec wc -l {} \; | awk '$1==0 {print $2}'
+
+# Verify transcript content
+head -5 /path/to/asr_results/asr_transcripts/*.txt
+```
+
+#### Quantization Issues
+**Error**: `bitsandbytes not installed` or `Quantization failed`
+```bash
+# Solution: Install/upgrade bitsandbytes
+pip install bitsandbytes>=0.41.0
+
+# For specific CUDA versions
+pip install bitsandbytes-cuda118  # For CUDA 11.8
+
+# Verify installation
+python3 -c "import bitsandbytes; print('BitsAndBytes available')"
+```
+
+## 🔧 Troubleshooting Tools
+
+### Error Analysis Commands
 
 ```bash
-# 查看錯誤日誌
+# View error summary
 cat /path/to/results/error_analysis.log
 
-# 查看模型文件分析
-cat /path/to/results/model_file_analysis.txt
+# Count errors by type
+grep "Error:" /path/to/results/error_analysis.log | sort | uniq -c
 
-# 查看管道摘要
-cat /path/to/results/pipeline_summary.txt
+# Find failed files
+grep "FAILED FILE:" /path/to/results/error_analysis.log
+
+# Check processing statistics
+grep "Processing:" /path/to/results/*_summary.txt
 ```
 
-### 3. **錯誤日誌格式**
-
-```
-[ERROR] 2025-07-27T07:02:40.158884 - FILE_NOT_FOUND: Ground truth file not found
-  Details: The ground truth file is required for analysis
-  File: /path/to/ground_truth.csv
-
-[WARNING] 2025-07-27T07:02:40.158831 - ANALYSIS_START: Starting enhanced model file analysis
-  Details: Transcript dir: /path/to/transcripts, Ground truth: /path/to/ground_truth.csv
-```
-
-## 錯誤處理流程
-
-### 1. **錯誤檢測階段**
-
-```mermaid
-graph TD
-    A[開始處理] --> B[檢查文件存在性]
-    B --> C{文件存在?}
-    C -->|否| D[記錄 FILE_NOT_FOUND 錯誤]
-    C -->|是| E[檢查文件格式]
-    E --> F{格式正確?}
-    F -->|否| G[記錄 INVALID_FORMAT 錯誤]
-    F -->|是| H[檢查文件內容]
-    H --> I{內容有效?}
-    I -->|否| J[記錄 EMPTY_DATA 錯誤]
-    I -->|是| K[繼續處理]
-```
-
-### 2. **錯誤記錄階段**
-
-- 實時記錄錯誤到日誌文件
-- 分類錯誤類型
-- 保存上下文信息
-- 提供修復建議
-
-### 3. **錯誤報告階段**
-
-- 生成錯誤統計
-- 創建詳細分析報告
-- 整合到管道摘要中
-
-## 常見錯誤及解決方案
-
-### 1. **文件不存在錯誤**
-
-**錯誤信息**：
-```
-[ERROR] FILE_NOT_FOUND: Ground truth file not found
-```
-
-**解決方案**：
-- 檢查文件路徑是否正確
-- 確認文件確實存在
-- 檢查文件權限
-
-### 2. **格式錯誤**
-
-**錯誤信息**：
-```
-[ERROR] INVALID_FORMAT: Missing required columns
-```
-
-**解決方案**：
-- 確認 CSV 文件包含必需的列（Filename, transcript）
-- 檢查 CSV 格式是否正確
-- 驗證數據類型
-
-### 3. **編碼錯誤**
-
-**錯誤信息**：
-```
-[ERROR] ENCODING_ERROR: Failed to decode file
-```
-
-**解決方案**：
-- 檢查文件編碼（建議使用 UTF-8）
-- 重新保存文件為正確編碼
-- 使用文本編輯器檢查文件內容
-
-### 4. **空數據錯誤**
-
-**錯誤信息**：
-```
-[WARNING] EMPTY_DATA: File contains only whitespace
-```
-
-**解決方案**：
-- 檢查文件是否為空
-- 確認數據是否正確寫入
-- 檢查處理流程是否正確
-
-## 監控和維護
-
-### 1. **定期檢查**
+### System Diagnostics
 
 ```bash
-# 檢查錯誤數量
-grep -c "\[ERROR\]" /path/to/results/error_analysis.log
+# Check GPU status
+nvidia-smi
 
-# 檢查警告數量
-grep -c "\[WARNING\]" /path/to/results/error_analysis.log
+# Monitor GPU usage during processing
+watch -n 1 nvidia-smi
 
-# 查看最新錯誤
-tail -20 /path/to/results/error_analysis.log
+# Check CUDA availability
+python3 -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}')"
+
+# Check disk space
+df -h /path/to/workspace
+
+# Check memory usage
+free -h
+
+# Check Python environment
+pip list | grep -E "(torch|transformers|whisper|nemo)"
 ```
 
-### 2. **錯誤趨勢分析**
+### Log Analysis Tools
 
 ```bash
-# 按錯誤類型統計
-grep "\[ERROR\]" /path/to/results/error_analysis.log | \
-    awk '{print $4}' | sort | uniq -c | sort -nr
+# Analyze error patterns
+python3 tool/analyze_errors.py --error_log /path/to/error_analysis.log
+
+# Generate error report
+python3 tool/generate_error_report.py --results_dir /path/to/results
+
+# Monitor processing progress
+tail -f /path/to/results/error_analysis.log
 ```
 
-### 3. **性能監控**
+## 📊 Error Analysis and Reporting
 
-- 監控處理時間
-- 檢查磁盤使用情況
-- 監控內存使用
+### Automated Error Analysis
 
-## 最佳實踐
+Both pipelines include automated error analysis that generates:
 
-### 1. **預防性檢查**
+1. **Error Statistics**: Count and categorization of all errors
+2. **Failed File Lists**: Detailed list of problematic files
+3. **Error Patterns**: Common error types and frequencies
+4. **Resolution Suggestions**: Specific recommendations for each error type
+
+### Error Report Structure
+
+```
+=== Error Analysis Report ===
+Date: 2025-08-13 08:00:00
+Pipeline: LLM Enhancement
+Total Files: 150
+Successful: 147 (98%)
+Failed: 3 (2%)
+
+Error Breakdown:
+  - Empty/unreadable files: 2
+  - Model processing failures: 1
+  - GPU memory issues: 0
+
+Failed Files:
+  1. large-v3_file1.txt - Empty or unreadable transcript
+  2. large-v3_file2.txt - Empty or unreadable transcript
+  3. large-v3_file3.txt - Model correction failed
+
+Recommendations:
+  - Check ASR output quality for empty files
+  - Verify model configuration for processing failures
+  - Consider using quantization for memory issues
+```
+
+## 🔍 Performance Troubleshooting
+
+### Slow Processing Issues
+
+#### ASR Pipeline
+```bash
+# Enable parallel processing
+./run_pipeline.sh --max-workers 4
+
+# Use GPU acceleration
+./run_pipeline.sh --enable-gpu
+
+# Skip unnecessary preprocessing
+./run_pipeline.sh --disable-vad --disable-audio-filter
+```
+
+#### LLM Pipeline
+```bash
+# Use quantization for speed
+./run_llm_pipeline.sh --load_in_8bit
+
+# Increase batch size (if memory allows)
+./run_llm_pipeline.sh --batch_size 2
+
+# Use faster models
+./run_llm_pipeline.sh --medical_correction_model "BioMistral-7B"
+```
+
+### Memory Optimization
+
+#### High RAM Usage
+```bash
+# Process smaller batches
+./run_pipeline.sh --batch-size 10
+
+# Enable long audio splitting
+./run_pipeline.sh --use-long-audio-split --max-segment-duration 60
+
+# Reduce parallel workers
+./run_pipeline.sh --max-workers 2
+```
+
+#### High GPU Memory Usage
+```bash
+# Use 4-bit quantization
+./run_llm_pipeline.sh --load_in_4bit
+
+# Reduce batch size
+./run_llm_pipeline.sh --batch_size 1
+
+# Process sequentially
+./run_llm_pipeline.sh --disable_page_generation  # Process one task at a time
+```
+
+## 🛠️ Advanced Troubleshooting
+
+### Environment Issues
+
+#### Python Environment Problems
+```bash
+# Create clean environment
+conda create -n ems_pipeline python=3.8
+conda activate ems_pipeline
+
+# Install requirements
+pip install -r requirements.txt
+
+# Verify installation
+python3 -c "import torch, transformers, whisper; print('All packages available')"
+```
+
+#### CUDA Environment Issues
+```bash
+# Check CUDA version
+nvcc --version
+nvidia-smi
+
+# Reinstall PyTorch for specific CUDA version
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# Test CUDA functionality
+python3 -c "import torch; print(torch.cuda.get_device_name(0))"
+```
+
+### Model-Specific Troubleshooting
+
+#### Whisper Issues
+```bash
+# Reinstall Whisper
+pip uninstall openai-whisper
+pip install openai-whisper
+
+# Clear Whisper cache
+rm -rf ~/.cache/whisper/
+
+# Test Whisper installation
+python3 -c "import whisper; model = whisper.load_model('base'); print('Whisper working')"
+```
+
+#### Transformers Issues
+```bash
+# Update transformers
+pip install --upgrade transformers
+
+# Clear transformers cache
+rm -rf ~/.cache/huggingface/transformers/
+
+# Test model loading
+python3 -c "from transformers import AutoTokenizer; AutoTokenizer.from_pretrained('BioMistral/BioMistral-7B')"
+```
+
+#### NeMo Issues
+```bash
+# Install NeMo with ASR support
+pip install nemo_toolkit[asr]
+
+# Check NeMo installation
+python3 -c "import nemo; print('NeMo available')"
+
+# Test NeMo ASR
+python3 -c "
+import nemo.collections.asr as nemo_asr
+model = nemo_asr.models.EncDecCTCModel.from_pretrained('nvidia/parakeet-ctc-0.6b')
+print('NeMo ASR working')
+"
+```
+
+## 📚 Error Prevention Best Practices
+
+### Pre-Processing Checks
 
 ```bash
-# 在運行管道前檢查環境
-ls -la /path/to/audio/
-ls -la /path/to/ground_truth.csv
-df -h /path/to/output/
+# Verify input data before processing
+python3 tool/validate_input_data.py \
+    --audio_dir /path/to/audio \
+    --ground_truth /path/to/ground_truth.csv
+
+# Check system resources
+python3 tool/check_system_requirements.py
+
+# Test configuration
+./run_pipeline.sh --dry-run --input_dir /path/to/test
 ```
 
-### 2. **錯誤處理策略**
+### Configuration Validation
 
-- 設置適當的錯誤閾值
-- 實施自動重試機制
-- 建立錯誤通知系統
-
-### 3. **日誌管理**
-
-- 定期清理舊日誌
-- 實施日誌輪轉
-- 備份重要日誌
-
-## 故障排除
-
-### 1. **日誌文件不生成**
-
-**可能原因**：
-- 權限問題
-- 磁盤空間不足
-- 目錄不存在
-
-**解決方案**：
 ```bash
-# 檢查權限
-ls -la /path/to/output/
+# Validate ASR pipeline configuration
+./run_pipeline.sh --validate-config
 
-# 檢查磁盤空間
-df -h
+# Validate LLM pipeline configuration
+./run_llm_pipeline.sh --validate-config
 
-# 創建目錄
-mkdir -p /path/to/output/
+# Check model availability
+python3 tool/check_model_availability.py
 ```
 
-### 2. **錯誤信息不完整**
+### Monitoring and Maintenance
 
-**可能原因**：
-- 腳本提前退出
-- 權限不足
-- 編碼問題
-
-**解決方案**：
 ```bash
-# 檢查腳本權限
-chmod +x run_pipeline.sh
+# Set up error monitoring
+python3 tool/setup_error_monitoring.py
 
-# 檢查 Python 腳本
-chmod +x analyze_model_files_enhanced.py
+# Regular health checks
+python3 tool/pipeline_health_check.py
 
-# 設置正確的編碼
-export PYTHONIOENCODING=utf-8
+# Clean up old error logs
+find /path/to/results -name "error_analysis.log" -mtime +30 -delete
 ```
 
-### 3. **性能問題**
+## 🔗 Related Documentation
 
-**可能原因**：
-- 大文件處理
-- 內存不足
-- 磁盤 I/O 瓶頸
+- [ASR Pipeline Guide](ASR_PIPELINE_GUIDE.md) - ASR processing details
+- [LLM Pipeline Guide](LLM_PIPELINE_GUIDE.md) - LLM enhancement guide
+- [Performance Tuning](PERFORMANCE_TUNING.md) - Optimization strategies
+- [Model Configuration Guide](MODEL_CONFIG_GUIDE.md) - Model setup details
 
-**解決方案**：
-- 分批處理大文件
-- 增加系統內存
-- 使用 SSD 存儲
+## 📞 Support and Contact
 
-## 總結
+For persistent issues:
 
-新的錯誤處理功能提供了：
+1. **Check error logs**: Review detailed error messages
+2. **Verify system requirements**: Ensure all dependencies are met
+3. **Test with sample data**: Use provided test datasets
+4. **Check documentation**: Review relevant guides
+5. **Report issues**: Include error logs and system information
 
-✅ **全面的錯誤檢測**：自動識別各種類型的錯誤  
-✅ **詳細的日誌記錄**：提供完整的錯誤上下文  
-✅ **智能錯誤分類**：按嚴重程度和類型分類  
-✅ **實用的解決方案**：提供具體的修復建議  
-✅ **易於監控**：便於追蹤和維護  
+### Error Reporting Template
 
-這些功能大大提高了管道的可靠性和可維護性，幫助用戶快速識別和解決問題。 
+```
+System Information:
+- OS: Linux/Windows/macOS
+- Python Version: 3.x.x
+- CUDA Version: x.x
+- GPU Model: 
+- Available RAM: 
+- Available GPU Memory: 
+
+Error Information:
+- Pipeline Stage: ASR/LLM
+- Error Message: 
+- Error Log: [attach error_analysis.log]
+- Configuration Used: [attach command or config]
+- Input Data Size: 
+
+Steps to Reproduce:
+1. 
+2. 
+3. 
+
+Expected Behavior:
+
+Actual Behavior:
+```
+
+---
+
+**Note**: This guide covers error handling for both pipeline stages. For specific configuration and usage details, refer to the respective pipeline guides.

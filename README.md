@@ -826,6 +826,15 @@ python3 tool/analyze_llm_results.py \
 - [File Format Guide](tool/FILE_FORMAT_GUIDE.md) - Input/output file specifications
 - [Performance Tuning](tool/PERFORMANCE_TUNING.md) - Optimization tips and best practices
 
+### Legacy Documentation
+- [VAD Integration Summary](tool/VAD_INTEGRATION_SUMMARY.md) - Voice Activity Detection integration
+- [VAD README](tool/VAD_README.md) - Voice Activity Detection detailed guide
+- [Ground Truth Preprocessing Guide](tool/GROUND_TRUTH_PREPROCESSING_GUIDE.md) - Text preprocessing methods
+- [Enhanced Preprocessor Usage Guide](tool/ENHANCED_PREPROCESSOR_USAGE_GUIDE.md) - Advanced preprocessing
+- [Comprehensive Text Preprocessing Guide](tool/COMPREHENSIVE_TEXT_PREPROCESSING_GUIDE.md) - Complete preprocessing reference
+- [ASR Number Processing Analysis](tool/ASR_NUMBER_PROCESSING_ANALYSIS.md) - Number handling analysis
+- [Pipeline Status Guide](tool/PIPELINE_STATUS_GUIDE.md) - Pipeline monitoring and status
+
 ## 🚨 Troubleshooting
 
 ### Common Issues
