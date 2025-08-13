@@ -9,6 +9,147 @@ This project provides a complete two-stage processing system:
 1. **Stage 1: ASR Pipeline** (`run_pipeline.sh`) - Transcribes audio files using multiple ASR models with optional preprocessing
 2. **Stage 2: LLM Enhancement** (`run_llm_pipeline.sh`) - Enhances ASR transcripts with medical term correction and emergency page generation
 
+## ⚠️ Important Configuration Requirements
+
+### Before Running the Pipeline
+
+**You MUST configure the following parameters in the script files before execution:**
+
+#### Stage 1: ASR Pipeline Configuration (`run_pipeline.sh`)
+
+Edit the following variables in `run_pipeline.sh` (lines 17-38):
+
+```bash
+# 1. Set your audio input directory(ies)
+AUDIO_DIR=("/path/to/your/audio/files")
+# Example: AUDIO_DIR=("/media/meow/One Touch/ems_call/audio_samples")
+
+# 2. Set your ground truth CSV file path
+GROUND_TRUTH_FILE="/path/to/your/ground_truth.csv"
+# Example: GROUND_TRUTH_FILE="/media/meow/One Touch/ems_call/annotations/ground_truth.csv"
+
+# 3. Enable/disable VAD preprocessing (optional)
+USE_VAD=false  # Set to true if you want VAD preprocessing
+# Example: USE_VAD=true
+```
+
+**Required CSV Format for Ground Truth:**
+```csv
+Filename,transcript
+audio_file1.wav,"This is the transcript for file 1"
+audio_file2.wav,"This is the transcript for file 2"
+```
+
+#### Stage 2: LLM Enhancement Configuration (`run_llm_pipeline.sh`)
+
+Edit the following variables in `run_llm_pipeline.sh` (lines 31-49):
+
+```bash
+# 1. Set ASR results directory (output from Stage 1)
+ASR_RESULTS_DIR="/path/to/asr/pipeline/results"
+# Example: ASR_RESULTS_DIR="/media/meow/One Touch/ems_call/pipeline_results_20240101_120000"
+
+# 2. Set ground truth file (same as Stage 1, optional for evaluation)
+GROUND_TRUTH_FILE="/path/to/your/ground_truth.csv"
+# Example: GROUND_TRUTH_FILE="/media/meow/One Touch/ems_call/annotations/ground_truth.csv"
+
+# 3. Choose medical correction model
+MEDICAL_CORRECTION_MODEL="BioMistral-7B"  # Recommended
+# Options: "BioMistral-7B", "Meditron-7B", "Llama-3-8B-UltraMedica", "gpt-oss-20b"
+
+# 4. Choose emergency page generation model  
+PAGE_GENERATION_MODEL="BioMistral-7B"     # Recommended
+# Options: "BioMistral-7B", "Meditron-7B", "Llama-3-8B-UltraMedica", "gpt-oss-20b"
+```
+
+### Configuration Steps
+
+#### Step 1: Prepare Your Data
+```bash
+# 1. Place your .wav audio files in a directory
+mkdir -p /path/to/your/audio/files
+# Copy your .wav files here
+
+# 2. Create a ground truth CSV file with the required format
+# Filename,transcript
+# file1.wav,"Medical transcript content here"
+# file2.wav,"Another medical transcript"
+```
+
+#### Step 2: Configure Stage 1 (ASR Pipeline)
+```bash
+# Edit run_pipeline.sh
+nano run_pipeline.sh
+
+# Update these lines (around lines 17-38):
+AUDIO_DIR=("/your/actual/audio/directory")
+GROUND_TRUTH_FILE="/your/actual/ground_truth.csv"
+USE_VAD=true  # or false, depending on your needs
+```
+
+#### Step 3: Run Stage 1
+```bash
+./run_pipeline.sh
+# This will create a results directory like: pipeline_results_YYYYMMDD_HHMMSS/
+```
+
+#### Step 4: Configure Stage 2 (LLM Enhancement)
+```bash
+# Edit run_llm_pipeline.sh  
+nano run_llm_pipeline.sh
+
+# Update these lines (around lines 31-49):
+ASR_RESULTS_DIR="/path/to/pipeline_results_YYYYMMDD_HHMMSS"
+GROUND_TRUTH_FILE="/your/actual/ground_truth.csv"
+MEDICAL_CORRECTION_MODEL="BioMistral-7B"
+PAGE_GENERATION_MODEL="BioMistral-7B"
+```
+
+#### Step 5: Run Stage 2
+```bash
+./run_llm_pipeline.sh
+# This will create an LLM results directory like: llm_results_YYYYMMDD_HHMMSS/
+```
+
+### Alternative: Command-Line Configuration
+
+Instead of editing the script files, you can override the default settings using command-line parameters:
+
+#### Stage 1 Command-Line Override
+```bash
+./run_pipeline.sh \
+    --input_dir "/your/audio/directory" \
+    --ground_truth "/your/ground_truth.csv" \
+    --output_dir "/your/output/directory" \
+    --use-vad  # optional
+```
+
+#### Stage 2 Command-Line Override
+```bash
+./run_llm_pipeline.sh \
+    --asr_results_dir "/path/to/pipeline_results" \
+    --ground_truth "/your/ground_truth.csv" \
+    --medical_correction_model "BioMistral-7B" \
+    --page_generation_model "BioMistral-7B" \
+    --load_in_8bit \
+    --device "cuda"
+```
+
+### Quick Validation
+
+Before running the full pipeline, validate your configuration:
+
+```bash
+# Check if your audio directory exists and contains .wav files
+ls -la /your/audio/directory/*.wav
+
+# Check if your ground truth file exists and has the correct format
+head -5 /your/ground_truth.csv
+
+# Verify the CSV has the required columns
+head -1 /your/ground_truth.csv | grep -q "Filename,transcript" && echo "✓ CSV format correct" || echo "✗ CSV format incorrect"
+```
+
 ## 🤖 Available Models and Configuration
 
 ### Stage 1: ASR Models (`run_pipeline.sh`)
