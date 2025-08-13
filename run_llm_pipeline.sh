@@ -42,7 +42,7 @@ OUTPUT_DIR=""
 
 # --- LLM Configuration ---
 # Available LLM models
-AVAILABLE_MODELS=("gpt-oss-20b" "BioMistral-7B" "Meditron-7B" "Llama-3-8B-UltraMedica")
+AVAILABLE_MODELS=("gpt-oss-20b" "gpt-oss-120b" "BioMistral-7B" "Meditron-7B" "Llama-3-8B-UltraMedica")
 
 # Default model selections
 MEDICAL_CORRECTION_MODEL="gpt-oss-20b"    # Model for medical term correction
@@ -60,7 +60,8 @@ USE_LOCAL_MODELS=true
 
 # Model paths (can be overridden with --model_path)
 MODEL_PATHS=(
-    "gpt-oss-20b:/path/to/gpt-oss-20b"
+    "gpt-oss-20b:openai/gpt-oss-20b"
+    "gpt-oss-120b:openai/gpt-oss-120b"
     "BioMistral-7B:BioMistral/BioMistral-7B"
     "Meditron-7B:epfl-llm/meditron-7b"
     "Llama-3-8B-UltraMedica:/path/to/llama-3-8b-ultramedica"
@@ -191,9 +192,9 @@ while [[ $# -gt 0 ]]; do
             echo ""
             echo "LLM Model Selection:"
             echo "  --medical_correction_model MODEL  Model for medical term correction"
-            echo "                                    Available: gpt-oss-20b, BioMistral-7B, Meditron-7B, Llama-3-8B-UltraMedica"
+            echo "                                    Available: gpt-oss-20b, gpt-oss-120b, BioMistral-7B, Meditron-7B, Llama-3-8B-UltraMedica"
             echo "  --page_generation_model MODEL     Model for emergency page generation"
-            echo "                                    Available: gpt-oss-20b, BioMistral-7B, Meditron-7B, Llama-3-8B-UltraMedica"
+            echo "                                    Available: gpt-oss-20b, gpt-oss-120b, BioMistral-7B, Meditron-7B, Llama-3-8B-UltraMedica"
             echo ""
             echo "Feature Switches:"
             echo "  --enable_medical_correction        Enable medical term correction (default)"

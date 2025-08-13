@@ -46,6 +46,7 @@ ASR Results → Whisper Filter → Medical Correction → Emergency Page Generat
 | **Meditron-7B** | 7B | Medical literature | ~14GB | ~4GB | ~2GB | Clinical documentation |
 | **Llama-3-8B-UltraMedica** | 8B | Medical fine-tuned | ~16GB | ~4.5GB | ~2.5GB | Advanced medical reasoning |
 | **gpt-oss-20b** | 20B | General purpose | ~40GB | ~12GB | ~6GB | Complex language tasks |
+| **gpt-oss-120b** | 120B | Large-scale reasoning | ~240GB | ~70GB | ~35GB | Maximum capability, research use |
 
 ⭐ **Recommended**: BioMistral-7B offers the best balance of medical accuracy and efficiency.
 
@@ -111,6 +112,8 @@ MODEL_PATHS=(
     "BioMistral-7B:BioMistral/BioMistral-7B"
     "Meditron-7B:epfl-llm/meditron-7b"
     "Llama-3-8B-UltraMedica:/path/to/local/model"
+    "gpt-oss-20b:openai/gpt-oss-20b"
+    "gpt-oss-120b:openai/gpt-oss-120b"
 )
 ```
 
@@ -159,6 +162,11 @@ Quantization reduces model precision to save memory and increase speed:
 | RTX 3080 | 10GB | 8-bit | 7B models |
 | RTX 3060 | 8GB | 4-bit | 7B models |
 | GTX 1660 | 6GB | 4-bit | 7B models |
+
+**Note**: For gpt-oss-120b (120B parameters), you need:
+- **Multiple RTX 4090s**: 4-bit quantization (~35GB) requires 2+ GPUs
+- **High-end workstations**: 8-bit quantization (~70GB) requires 3+ RTX 4090s  
+- **Research clusters**: Full precision (~240GB) requires 10+ RTX 4090s
 
 ## 🚀 Usage Examples
 
@@ -221,6 +229,22 @@ Quantization reduces model precision to save memory and increase speed:
     --load_in_4bit \
     --device "cuda" \
     --batch_size 1
+```
+
+### High-Capability Processing (gpt-oss-120b)
+
+```bash
+# Maximum model capability (requires multiple high-end GPUs)
+./run_llm_pipeline.sh \
+    --asr_results_dir "/path/to/asr_results" \
+    --medical_correction_model "gpt-oss-120b" \
+    --page_generation_model "gpt-oss-120b" \
+    --load_in_4bit \
+    --device "cuda" \
+    --batch_size 1
+
+# Note: Requires 2+ RTX 4090s with 4-bit quantization
+# Monitor GPU memory usage: watch -n 1 nvidia-smi
 ```
 
 ## 💬 Prompt Engineering

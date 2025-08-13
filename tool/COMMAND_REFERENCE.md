@@ -111,6 +111,7 @@ This guide provides detailed documentation for all command-line parameters, conf
 - `Meditron-7B` (clinical documentation)
 - `Llama-3-8B-UltraMedica` (advanced medical reasoning)
 - `gpt-oss-20b` (general purpose)
+- `gpt-oss-120b` (large-scale reasoning, requires multiple GPUs)
 
 #### Feature Control
 | Parameter | Description | Default | Example |
@@ -305,6 +306,20 @@ This guide provides detailed documentation for all command-line parameters, conf
     --load_in_4bit \
     --batch_size 1 \
     --device "cuda"
+```
+
+#### High-Capability Processing (gpt-oss-120b)
+```bash
+# Maximum model capability (requires multiple high-end GPUs)
+./run_llm_pipeline.sh \
+    --asr_results_dir "/path/to/asr_results" \
+    --medical_correction_model "gpt-oss-120b" \
+    --page_generation_model "gpt-oss-120b" \
+    --load_in_4bit \
+    --batch_size 1 \
+    --device "cuda"
+
+# Note: Requires 2+ RTX 4090s with 4-bit quantization
 ```
 
 ## 🔧 Configuration Files

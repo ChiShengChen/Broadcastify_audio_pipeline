@@ -123,7 +123,8 @@ MODELS['custom_model'] = {
 | **BioMistral-7B** ⭐ | 7B | Medical domain | `BioMistral/BioMistral-7B` | ~14GB | ~4GB | ~2GB |
 | **Meditron-7B** | 7B | Medical literature | `epfl-llm/meditron-7b` | ~14GB | ~4GB | ~2GB |
 | **Llama-3-8B-UltraMedica** | 8B | Medical fine-tuned | Custom path | ~16GB | ~4.5GB | ~2.5GB |
-| **gpt-oss-20b** | 20B | General purpose | Custom path | ~40GB | ~12GB | ~6GB |
+| **gpt-oss-20b** | 20B | General purpose | `openai/gpt-oss-20b` | ~40GB | ~12GB | ~6GB |
+| **gpt-oss-120b** | 120B | Large-scale reasoning | `openai/gpt-oss-120b` | ~240GB | ~70GB | ~35GB |
 
 ### LLM Model Installation
 
@@ -149,6 +150,37 @@ print('Meditron-7B ready')
 "
 ```
 
+#### OpenAI OSS Models (gpt-oss-20b/120b)
+```bash
+# Pre-download OSS models
+python3 -c "
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+# Download gpt-oss-20b
+tokenizer_20b = AutoTokenizer.from_pretrained('openai/gpt-oss-20b')
+model_20b = AutoModelForCausalLM.from_pretrained('openai/gpt-oss-20b')
+print('gpt-oss-20b ready')
+
+# Download gpt-oss-120b (requires significant storage and memory)
+# tokenizer_120b = AutoTokenizer.from_pretrained('openai/gpt-oss-120b')
+# model_120b = AutoModelForCausalLM.from_pretrained('openai/gpt-oss-120b')
+# print('gpt-oss-120b ready')
+"
+
+# Test OSS model loading (example from your oai_oss.py)
+python3 -c "
+from transformers import pipeline
+
+pipe = pipeline(
+    'text-generation',
+    model='openai/gpt-oss-20b',
+    torch_dtype='auto',
+    device_map='auto',
+)
+print('OSS model pipeline ready')
+"
+```
+
 #### Custom Local Models
 ```bash
 # For custom models, ensure proper directory structure
@@ -170,7 +202,8 @@ MODEL_PATHS=(
     "BioMistral-7B:BioMistral/BioMistral-7B"
     "Meditron-7B:epfl-llm/meditron-7b"
     "Llama-3-8B-UltraMedica:/path/to/llama-3-8b-ultramedica"
-    "gpt-oss-20b:/path/to/gpt-oss-20b"
+    "gpt-oss-20b:openai/gpt-oss-20b"
+    "gpt-oss-120b:openai/gpt-oss-120b"
 )
 
 # Custom model addition
@@ -333,7 +366,7 @@ export CUDA_VISIBLE_DEVICES=0,1
 1. **Update model configuration in `run_llm_pipeline.sh`:**
 ```bash
 # Add to AVAILABLE_MODELS
-AVAILABLE_MODELS=("gpt-oss-20b" "BioMistral-7B" "Meditron-7B" "Llama-3-8B-UltraMedica" "CustomMedicalModel")
+AVAILABLE_MODELS=("gpt-oss-20b" "gpt-oss-120b" "BioMistral-7B" "Meditron-7B" "Llama-3-8B-UltraMedica" "CustomMedicalModel")
 
 # Add to MODEL_PATHS
 MODEL_PATHS+=(
