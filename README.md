@@ -60,6 +60,11 @@ MEDICAL_CORRECTION_MODEL="BioMistral-7B"  # Recommended
 # 4. Choose emergency page generation model  
 PAGE_GENERATION_MODEL="BioMistral-7B"     # Recommended
 # Options: "BioMistral-7B", "Meditron-7B", "Llama-3-8B-UltraMedica", "gpt-oss-20b"
+
+# 5. Customize prompts (optional) - lines 75-78
+MEDICAL_CORRECTION_PROMPT="You are a medical transcription specialist. Please correct any medical terms, drug names, anatomical terms, and medical procedures in the following ASR transcript. Maintain the original meaning and context. Only correct obvious medical errors and standardize medical terminology. Return only the corrected transcript without explanations."
+
+PAGE_GENERATION_PROMPT="You are an emergency medical dispatcher. Based on the following corrected medical transcript, generate a structured emergency page that includes: 1) Patient condition summary, 2) Location details, 3) Required medical resources, 4) Priority level, 5) Key medical information. Format the response as a structured emergency page."
 ```
 
 ### Configuration Steps
@@ -103,6 +108,10 @@ ASR_RESULTS_DIR="/path/to/pipeline_results_YYYYMMDD_HHMMSS"
 GROUND_TRUTH_FILE="/your/actual/ground_truth.csv"
 MEDICAL_CORRECTION_MODEL="BioMistral-7B"
 PAGE_GENERATION_MODEL="BioMistral-7B"
+
+# Optional: Customize prompts (around lines 75-78):
+MEDICAL_CORRECTION_PROMPT="Your custom medical correction prompt..."
+PAGE_GENERATION_PROMPT="Your custom emergency page generation prompt..."
 ```
 
 #### Step 5: Run Stage 2
@@ -131,6 +140,16 @@ Instead of editing the script files, you can override the default settings using
     --ground_truth "/your/ground_truth.csv" \
     --medical_correction_model "BioMistral-7B" \
     --page_generation_model "BioMistral-7B" \
+    --load_in_8bit \
+    --device "cuda"
+
+# With custom prompts
+./run_llm_pipeline.sh \
+    --asr_results_dir "/path/to/pipeline_results" \
+    --medical_correction_model "BioMistral-7B" \
+    --page_generation_model "BioMistral-7B" \
+    --medical_correction_prompt "Your custom medical correction instructions..." \
+    --page_generation_prompt "Your custom emergency page generation instructions..." \
     --load_in_8bit \
     --device "cuda"
 ```
@@ -264,6 +283,71 @@ The same models are used for both medical correction and emergency page generati
 - **Quantization**: `pip install bitsandbytes>=0.41.0`
 - **GPU**: NVIDIA GPU with CUDA support (8GB+ VRAM recommended)
 - **Models are downloaded automatically** from HuggingFace Hub on first use
+
+### Prompt Configuration
+
+#### Default Prompts
+
+The pipeline includes optimized default prompts for medical EMS call processing:
+
+**Medical Correction Prompt (Default):**
+```
+You are a medical transcription specialist. Please correct any medical terms, drug names, anatomical terms, and medical procedures in the following ASR transcript. Maintain the original meaning and context. Only correct obvious medical errors and standardize medical terminology. Return only the corrected transcript without explanations.
+```
+
+**Emergency Page Generation Prompt (Default):**
+```
+You are an emergency medical dispatcher. Based on the following corrected medical transcript, generate a structured emergency page that includes: 1) Patient condition summary, 2) Location details, 3) Required medical resources, 4) Priority level, 5) Key medical information. Format the response as a structured emergency page.
+```
+
+#### Custom Prompt Configuration
+
+You can customize prompts in three ways:
+
+**1. Edit Script Configuration (lines 75-78 in `run_llm_pipeline.sh`):**
+```bash
+# Edit the default prompts directly in the script
+MEDICAL_CORRECTION_PROMPT="Your custom medical correction instructions..."
+PAGE_GENERATION_PROMPT="Your custom emergency page instructions..."
+```
+
+**2. Command-Line Parameters:**
+```bash
+./run_llm_pipeline.sh \
+    --medical_correction_prompt "Your custom medical prompt..." \
+    --page_generation_prompt "Your custom page generation prompt..."
+```
+
+**3. Specialized Prompt Examples:**
+
+**For Cardiac Emergencies:**
+```bash
+--medical_correction_prompt "Focus on cardiac terminology: arrhythmias, medications (beta-blockers, ACE inhibitors), procedures (CPR, defibrillation), and cardiac anatomy. Correct drug dosages and timing."
+
+--page_generation_prompt "CARDIAC EMERGENCY REPORT: RHYTHM STATUS, CARDIAC MEDICATIONS GIVEN, CPR DURATION, DEFIBRILLATION ATTEMPTS, CARDIAC HISTORY, TRANSPORT DESTINATION (PCI-capable facility)."
+```
+
+**For Trauma Cases:**
+```bash
+--medical_correction_prompt "Specialize in trauma terminology: injury mechanisms, anatomical locations, Glasgow Coma Scale, vital signs, trauma interventions. Preserve mechanism of injury details."
+
+--page_generation_prompt "TRAUMA ALERT: MECHANISM OF INJURY, INJURIES IDENTIFIED, VITAL SIGNS, GCS, INTERVENTIONS PERFORMED, TRAUMA CENTER CRITERIA MET, TRANSPORT PRIORITY."
+```
+
+**For Pediatric Emergencies:**
+```bash
+--medical_correction_prompt "Focus on pediatric medical terms: age-appropriate vital signs, pediatric drug dosages, developmental considerations, family dynamics."
+
+--page_generation_prompt "PEDIATRIC EMERGENCY: AGE/WEIGHT, PEDIATRIC VITAL SIGNS, PARENT/GUARDIAN PRESENT, PEDIATRIC-SPECIFIC INTERVENTIONS, PEDIATRIC FACILITY REQUIREMENTS."
+```
+
+#### Prompt Best Practices
+
+1. **Be Specific**: Include domain-specific terminology requirements
+2. **Maintain Context**: Preserve important contextual information
+3. **Format Requirements**: Specify desired output structure
+4. **Medical Accuracy**: Emphasize accuracy for medical terminology
+5. **EMS Protocols**: Include standard EMS reporting requirements
 
 ### Model Configuration Files
 
@@ -467,6 +551,7 @@ pipeline_results_YYYYMMDD_HHMMSS/
 - **Emergency Page Generation**: Structured emergency report creation
 - **Multiple LLM Models**: BioMistral-7B, Meditron-7B, Llama-3-8B-UltraMedica
 - **Model Quantization**: 4-bit and 8-bit quantization for memory efficiency
+- **Customizable Prompts**: Configurable prompts for both medical correction and emergency page generation
 - **Error Tracking**: Detailed logging of failed files and processing issues
 
 ### LLM Models and Quantization
@@ -558,6 +643,28 @@ llm_results_YYYYMMDD_HHMMSS/
     --load_in_8bit \
     --device "cuda" \
     --batch_size 1
+```
+
+#### Custom Prompts Configuration
+```bash
+# Using custom prompts for specialized medical domains
+./run_llm_pipeline.sh \
+    --asr_results_dir "/path/to/asr_results" \
+    --medical_correction_model "BioMistral-7B" \
+    --page_generation_model "BioMistral-7B" \
+    --medical_correction_prompt "You are a specialized emergency medicine transcriptionist. Focus on correcting cardiac, respiratory, and trauma-related medical terminology. Preserve all timestamps and speaker identifications. Return only the corrected transcript." \
+    --page_generation_prompt "Generate a structured EMS dispatch report with: PRIORITY LEVEL, CHIEF COMPLAINT, PATIENT STATUS, LOCATION, RESOURCES REQUESTED, SPECIAL CONSIDERATIONS. Use clear medical terminology and standard EMS protocols." \
+    --load_in_8bit \
+    --device "cuda"
+
+# Prompts for different medical specialties
+./run_llm_pipeline.sh \
+    --asr_results_dir "/path/to/asr_results" \
+    --medical_correction_model "Meditron-7B" \
+    --medical_correction_prompt "Focus on pediatric emergency terminology. Correct age-specific medical terms, dosages, and procedures. Maintain family/guardian context." \
+    --page_generation_model "BioMistral-7B" \
+    --page_generation_prompt "Generate pediatric emergency page: AGE/WEIGHT, CHIEF COMPLAINT, VITAL SIGNS, PARENT/GUARDIAN INFO, PEDIATRIC RESOURCES NEEDED, TRANSPORT PRIORITY." \
+    --load_in_4bit
 ```
 
 ## 📊 File Flow and Data Processing
