@@ -221,10 +221,11 @@ The ASR pipeline supports multiple state-of-the-art speech recognition models:
 
 #### ASR Model Configuration in `run_pipeline.sh`
 
-The ASR models are automatically configured in `run_all_asrs.py` and executed by the pipeline:
+##### Default Configuration (All Models)
+By default, all ASR models are executed by the pipeline:
 
 ```bash
-# ASR models are automatically run - no manual configuration needed
+# Run all ASR models (default behavior)
 ./run_pipeline.sh --input_dir /path/to/audio --output_dir /path/to/results
 
 # All models will generate transcripts with prefixes:
@@ -232,6 +233,43 @@ The ASR models are automatically configured in `run_all_asrs.py` and executed by
 # - wav2vec-xls-r_filename.txt (Wav2Vec2)
 # - canary-1b_filename.txt     (Canary-1B)  
 # - parakeet-tdt-0.6b-v2_filename.txt (Parakeet)
+```
+
+##### Selective Model Execution
+You can now choose specific ASR models to run using the `--asr-models` parameter:
+
+```bash
+# Run only Whisper Large-v3 (fastest, most accurate)
+./run_pipeline.sh --input_dir /path/to/audio --output_dir /path/to/results --asr-models "large-v3"
+
+# Run multiple specific models
+./run_pipeline.sh --input_dir /path/to/audio --output_dir /path/to/results --asr-models "large-v3 wav2vec-xls-r"
+
+# Run only NeMo models (enterprise-grade)
+./run_pipeline.sh --input_dir /path/to/audio --output_dir /path/to/results --asr-models "canary-1b parakeet-tdt-0.6b-v2"
+
+# Combine with other options
+./run_pipeline.sh --input_dir /path/to/audio --output_dir /path/to/results --use-vad --asr-models "large-v3"
+```
+
+##### Available Model Identifiers
+| Model Name | Identifier | Best For |
+|------------|------------|----------|
+| **Whisper Large-v3** | `large-v3` | General purpose, multilingual |
+| **Wav2Vec2** | `wav2vec-xls-r` | English audio, clean recordings |
+| **Canary-1B** | `canary-1b` | Enterprise use, punctuation |
+| **Parakeet CTC-0.6B** | `parakeet-tdt-0.6b-v2` | Streaming, low latency |
+
+##### Configuration in Script
+You can also set the default models in the script configuration:
+
+```bash
+# Edit run_pipeline.sh
+ASR_MODELS="large-v3"  # Run only Whisper by default
+# or
+ASR_MODELS="large-v3 canary-1b"  # Run multiple models by default
+# or
+ASR_MODELS=""  # Run all models (default behavior)
 ```
 
 #### ASR Model Requirements
@@ -393,6 +431,7 @@ PAGE_GENERATION_PROMPT="Your custom emergency page instructions..."
 
 #### ASR Models (`run_all_asrs.py`)
 ```python
+# Available ASR models configuration
 MODELS = {
     'wav2vec-xls-r': {
         'path': 'facebook/wav2vec2-base-960h',
@@ -411,6 +450,25 @@ MODELS = {
         'framework': 'whisper'
     }
 }
+
+# Model selection usage:
+# python3 run_all_asrs.py /path/to/audio                    # Run all models
+# python3 run_all_asrs.py /path/to/audio --models large-v3  # Run only Whisper
+# python3 run_all_asrs.py /path/to/audio --models "large-v3 canary-1b"  # Run multiple
+```
+
+#### Pipeline Configuration (`run_pipeline.sh`)
+```bash
+# ASR Model Selection Configuration
+ASR_MODELS="large-v3"  # Default to Whisper Large-v3 only
+# ASR_MODELS="large-v3 canary-1b"  # Multiple models
+# ASR_MODELS=""  # All models (original behavior)
+
+# Available model identifiers:
+# - wav2vec-xls-r: Facebook Wav2Vec2 (good for English)
+# - canary-1b: NVIDIA Canary (multilingual with punctuation)
+# - parakeet-tdt-0.6b-v2: NVIDIA Parakeet (streaming, low latency)
+# - large-v3: OpenAI Whisper Large-v3 (general purpose, most accurate)
 ```
 
 #### LLM Models (`run_llm_pipeline.sh`)
@@ -445,10 +503,11 @@ MODEL_PATHS=(
     --device "cuda"
 ```
 
-### Complete Workflow Example
+### Complete Workflow Examples
 
+#### Full Pipeline with All Models
 ```bash
-# Stage 1: ASR with VAD and preprocessing
+# Stage 1: ASR with VAD and preprocessing (all models)
 ./run_pipeline.sh \
     --input_dir "/media/meow/One Touch/ems_call/audio_files" \
     --output_dir "/media/meow/One Touch/ems_call/asr_results_$(date +%Y%m%d_%H%M%S)" \
@@ -466,6 +525,43 @@ MODEL_PATHS=(
     --load_in_8bit \
     --device "cuda" \
     --batch_size 1
+```
+
+#### Fast Pipeline with Selected Models
+```bash
+# Stage 1: ASR with only Whisper Large-v3 (fastest)
+./run_pipeline.sh \
+    --input_dir "/media/meow/One Touch/ems_call/audio_files" \
+    --output_dir "/media/meow/One Touch/ems_call/asr_results_$(date +%Y%m%d_%H%M%S)" \
+    --ground_truth "/media/meow/One Touch/ems_call/ground_truth.csv" \
+    --asr-models "large-v3" \
+    --use-vad \
+    --preprocess-ground-truth
+
+# Stage 2: LLM enhancement
+./run_llm_pipeline.sh \
+    --asr_results_dir "/media/meow/One Touch/ems_call/asr_results_20240101_120000" \
+    --medical_correction_model "BioMistral-7B" \
+    --load_in_8bit
+```
+
+#### Enterprise Pipeline with NeMo Models
+```bash
+# Stage 1: ASR with enterprise-grade NeMo models
+./run_pipeline.sh \
+    --input_dir "/media/meow/One Touch/ems_call/audio_files" \
+    --output_dir "/media/meow/One Touch/ems_call/asr_results_$(date +%Y%m%d_%H%M%S)" \
+    --ground_truth "/media/meow/One Touch/ems_call/ground_truth.csv" \
+    --asr-models "canary-1b parakeet-tdt-0.6b-v2" \
+    --use-enhanced-vad \
+    --preprocess-ground-truth
+
+# Stage 2: LLM enhancement with medical specialization
+./run_llm_pipeline.sh \
+    --asr_results_dir "/media/meow/One Touch/ems_call/asr_results_20240101_120000" \
+    --medical_correction_model "Meditron-7B" \
+    --page_generation_model "BioMistral-7B" \
+    --load_in_8bit
 ```
 
 ## 🏗️ Data Flow Architecture

@@ -38,6 +38,10 @@ USE_VAD=false                    # Enable VAD preprocessing
 USE_LONG_AUDIO_SPLIT=false      # Enable long audio splitting to prevent OOM
 MAX_SEGMENT_DURATION=120.0      # Maximum segment duration in seconds (2 minutes)
 
+# ASR Model Selection Options
+ASR_MODELS="large-v3"  # Specify which ASR models to run (space-separated). Leave empty to run all models.
+               # Available models: wav2vec-xls-r canary-1b parakeet-tdt-0.6b-v2 large-v3
+
 # Audio preprocessing options
 USE_AUDIO_PREPROCESSING=true   # Enable audio preprocessing (upsampling and segmentation)
 TARGET_SAMPLE_RATE=16000        # Target sample rate for upsampling
@@ -68,6 +72,8 @@ PREPROCESSED_GROUND_TRUTH_FILE=""  # Will be set automatically if preprocessing 
 # Enhanced preprocessing options
 USE_ENHANCED_PREPROCESSOR=false  # Use enhanced preprocessor with comprehensive text normalization
 ENHANCED_PREPROCESSOR_MODE="conservative"  # Enhanced preprocessor mode: conservative or aggressive
+
+
 
 
 # Python interpreter to use.
@@ -198,6 +204,10 @@ while [[ $# -gt 0 ]]; do
             FILTER_ENABLE_WIENER=false
             shift
             ;;
+        --asr-models)
+            ASR_MODELS="$2"
+            shift 2
+            ;;
         -h|--help)
             echo "Enhanced ASR Pipeline with Optional VAD"
             echo ""
@@ -234,6 +244,9 @@ while [[ $# -gt 0 ]]; do
             echo "  --filter-order INT           Filter order (default: 5)"
             echo "  --filter-enable-wiener       Enable Wiener filter for noise reduction"
             echo "  --filter-disable-wiener      Disable Wiener filter"
+            echo "  --asr-models \"MODEL1 MODEL2\" Select specific ASR models to run"
+            echo "                               Available models: wav2vec-xls-r, canary-1b, parakeet-tdt-0.6b-v2, large-v3"
+            echo "                               Leave empty to run all models"
             echo "  -h, --help                   Show this help"
             echo ""
             echo "Examples:"
@@ -272,6 +285,15 @@ while [[ $# -gt 0 ]]; do
             echo ""
             echo "  # With custom audio preprocessing parameters"
             echo "  $0 --input_dir /path/to/audio --output_dir /path/to/results --use-audio-preprocessing --target-sample-rate 16000 --audio-max-duration 60"
+            echo ""
+            echo "  # Run only specific ASR models"
+            echo "  $0 --input_dir /path/to/audio --output_dir /path/to/results --asr-models \"large-v3 wav2vec-xls-r\""
+            echo ""
+            echo "  # Run only Whisper Large-v3"
+            echo "  $0 --input_dir /path/to/audio --output_dir /path/to/results --asr-models \"large-v3\""
+            echo ""
+            echo "  # Run only NeMo models"
+            echo "  $0 --input_dir /path/to/audio --output_dir /path/to/results --asr-models \"canary-1b parakeet-tdt-0.6b-v2\""
             exit 0
             ;;
         *)
@@ -548,6 +570,10 @@ if [ "$PREPROCESS_GROUND_TRUTH" = true ]; then
         echo "Basic Preprocessor Mode: $PREPROCESS_MODE"
     fi
 fi
+echo "ASR Models: ${ASR_MODELS:-"All available models"}"
+if [ -n "$ASR_MODELS" ]; then
+    echo "Selected ASR Models: $ASR_MODELS"
+fi
 echo "==============================================="
 echo ""
 
@@ -771,6 +797,7 @@ from pathlib import Path
 asr_input_dir = '$ASR_INPUT_DIR'
 asr_output_dir = '$ASR_OUTPUT_DIR'
 python_exec = '$PYTHON_EXEC'
+asr_models = '$ASR_MODELS'
 
 # Find all segment files from VAD output
 segment_files = []
@@ -816,8 +843,10 @@ print(f'Prepared {len(os.listdir(temp_dir))} segments for ASR processing')
 
 # Run ASR on all segments
 print('Running ASR transcription...')
-result = subprocess.run([python_exec, 'run_all_asrs.py', temp_dir], 
-                       capture_output=True, text=True)
+cmd = [python_exec, 'run_all_asrs.py', temp_dir]
+if asr_models.strip():
+    cmd.extend(['--models'] + asr_models.strip().split())
+result = subprocess.run(cmd, capture_output=True, text=True)
 if result.returncode != 0:
     print(f'ASR processing failed: {result.stderr}')
     sys.exit(1)
@@ -889,7 +918,11 @@ print(f'Processed {len(file_mapping)} original files with {len(available_models)
         
             # Run ASR on VAD processed files
     echo "Running ASR transcription on concatenated VAD files..."
-    $PYTHON_EXEC run_all_asrs.py "$temp_vad_dir"
+    if [ -n "$ASR_MODELS" ]; then
+        $PYTHON_EXEC run_all_asrs.py "$temp_vad_dir" --models $ASR_MODELS
+    else
+        $PYTHON_EXEC run_all_asrs.py "$temp_vad_dir"
+    fi
     
     if [ $? -ne 0 ]; then
         echo "Warning: ASR processing encountered issues"
@@ -946,7 +979,11 @@ else
     fi
     
     # Run ASR on original files
-    $PYTHON_EXEC run_all_asrs.py "$ASR_OUTPUT_DIR"
+    if [ -n "$ASR_MODELS" ]; then
+        $PYTHON_EXEC run_all_asrs.py "$ASR_OUTPUT_DIR" --models $ASR_MODELS
+    else
+        $PYTHON_EXEC run_all_asrs.py "$ASR_OUTPUT_DIR"
+    fi
     
     # Set transcript directory for evaluation
     TRANSCRIPT_DIR="$ASR_OUTPUT_DIR"
@@ -1126,6 +1163,10 @@ SUMMARY_FILE="$OUTPUT_DIR/pipeline_summary.txt"
             echo "    * Preprocessor: Basic"
             echo "    * Mode: $PREPROCESS_MODE"
         fi
+    fi
+    echo "  - ASR Models: ${ASR_MODELS:-"All available models"}"
+    if [ -n "$ASR_MODELS" ]; then
+        echo "    * Selected models: $ASR_MODELS"
     fi
     echo ""
     

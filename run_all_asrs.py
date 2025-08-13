@@ -189,8 +189,13 @@ def transcribe_with_whisper(model_name, wav_files, device, model_prefix):
 
 # --- Main Execution ---
 
-def main(wav_folder):
-    """Main function to orchestrate the transcription process."""
+def main(wav_folder, selected_models=None):
+    """Main function to orchestrate the transcription process.
+    
+    Args:
+        wav_folder (str): Path to folder containing WAV files
+        selected_models (list): List of specific models to run. If None, run all models.
+    """
     if not check_dependencies():
         return
 
@@ -207,7 +212,15 @@ def main(wav_folder):
 
     device = get_device()
 
-    for model_prefix, config in MODELS.items():
+    # Determine which models to run
+    if selected_models:
+        models_to_run = {k: v for k, v in MODELS.items() if k in selected_models}
+        print(f"Running selected models: {', '.join(selected_models)}")
+    else:
+        models_to_run = MODELS
+        print("Running all available models")
+
+    for model_prefix, config in models_to_run.items():
         print(f"\n--- Starting transcription for model: {model_prefix} ---")
         model_path = config['path']
         framework = config['framework']
@@ -228,11 +241,14 @@ def main(wav_folder):
             
         print(f"--- Finished transcription for model: {model_prefix} ---")
 
-    print("\nAll models have been processed.")
+    print(f"\nProcessed {len(models_to_run)} model(s).")
     print(f"Transcription .txt files saved in: {wav_folder}")
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Run multiple local ASR models on a folder of WAV files.")
     parser.add_argument("wav_folder", type=str, help="Path to the folder containing .wav files to process.")
+    parser.add_argument("--models", type=str, nargs='+', 
+                       choices=list(MODELS.keys()), 
+                       help="Select specific ASR models to run. Available models: " + ", ".join(MODELS.keys()))
     args = parser.parse_args()
-    main(args.wav_folder) 
+    main(args.wav_folder, selected_models=args.models) 
