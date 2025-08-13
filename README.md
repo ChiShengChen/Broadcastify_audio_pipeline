@@ -103,8 +103,7 @@ USE_VAD=true  # or false, depending on your needs
 # Edit run_llm_pipeline.sh  
 nano run_llm_pipeline.sh
 
-# Update these lines (around lines 31-49):
-ASR_RESULTS_DIR="/path/to/pipeline_results_YYYYMMDD_HHMMSS"
+# Update these lines:
 GROUND_TRUTH_FILE="/your/actual/ground_truth.csv"
 MEDICAL_CORRECTION_MODEL="BioMistral-7B"
 PAGE_GENERATION_MODEL="BioMistral-7B"
