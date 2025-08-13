@@ -9,6 +9,157 @@ This project provides a complete two-stage processing system:
 1. **Stage 1: ASR Pipeline** (`run_pipeline.sh`) - Transcribes audio files using multiple ASR models with optional preprocessing
 2. **Stage 2: LLM Enhancement** (`run_llm_pipeline.sh`) - Enhances ASR transcripts with medical term correction and emergency page generation
 
+## 🤖 Available Models and Configuration
+
+### Stage 1: ASR Models (`run_pipeline.sh`)
+
+The ASR pipeline supports multiple state-of-the-art speech recognition models:
+
+#### Supported ASR Models
+| Model | Framework | Description | Performance | Configuration |
+|-------|-----------|-------------|-------------|---------------|
+| **Whisper Large-v3** | OpenAI Whisper | Multilingual speech recognition | High accuracy, robust | `large-v3` |
+| **Wav2Vec2** | HuggingFace Transformers | Facebook's self-supervised ASR | Good for English | `facebook/wav2vec2-base-960h` |
+| **Canary-1B** | NVIDIA NeMo | Multilingual ASR with punctuation | Enterprise-grade | `nvidia/canary-1b` |
+| **Parakeet CTC-0.6B** | NVIDIA NeMo | Streaming ASR model | Low latency | `nvidia/parakeet-ctc-0.6b` |
+
+#### ASR Model Configuration in `run_pipeline.sh`
+
+The ASR models are automatically configured in `run_all_asrs.py` and executed by the pipeline:
+
+```bash
+# ASR models are automatically run - no manual configuration needed
+./run_pipeline.sh --input_dir /path/to/audio --output_dir /path/to/results
+
+# All models will generate transcripts with prefixes:
+# - large-v3_filename.txt      (Whisper Large-v3)
+# - wav2vec-xls-r_filename.txt (Wav2Vec2)
+# - canary-1b_filename.txt     (Canary-1B)  
+# - parakeet-tdt-0.6b-v2_filename.txt (Parakeet)
+```
+
+#### ASR Model Requirements
+- **Whisper**: `pip install openai-whisper`
+- **Transformers**: `pip install transformers torch torchaudio`
+- **NeMo Models**: `pip install nemo_toolkit[asr]`
+- **GPU**: CUDA-compatible GPU recommended for faster processing
+
+### Stage 2: LLM Models (`run_llm_pipeline.sh`)
+
+The LLM pipeline supports specialized medical language models for enhancement:
+
+#### Medical Correction Models
+| Model | Size | Specialization | Memory (FP16) | Memory (8-bit) | Memory (4-bit) |
+|-------|------|----------------|---------------|----------------|----------------|
+| **BioMistral-7B** ⭐ | 7B | Medical domain | ~14GB | ~4GB | ~2GB |
+| **Meditron-7B** | 7B | Medical literature | ~14GB | ~4GB | ~2GB |
+| **Llama-3-8B-UltraMedica** | 8B | Medical fine-tuned | ~16GB | ~4.5GB | ~2.5GB |
+| **gpt-oss-20b** | 20B | General purpose | ~40GB | ~12GB | ~6GB |
+
+⭐ **Recommended**: BioMistral-7B offers the best balance of medical accuracy and efficiency.
+
+#### Emergency Page Generation Models
+The same models are used for both medical correction and emergency page generation, with specialized prompts:
+
+- **Medical Correction**: Corrects medical terminology, drug names, anatomical terms
+- **Emergency Page Generation**: Creates structured emergency reports with patient condition, location, resources, priority
+
+#### LLM Model Configuration in `run_llm_pipeline.sh`
+
+```bash
+# Basic configuration with recommended models
+./run_llm_pipeline.sh \
+    --asr_results_dir /path/to/asr_results \
+    --medical_correction_model "BioMistral-7B" \
+    --page_generation_model "BioMistral-7B"
+
+# Advanced configuration with quantization
+./run_llm_pipeline.sh \
+    --asr_results_dir /path/to/asr_results \
+    --medical_correction_model "BioMistral-7B" \
+    --page_generation_model "Meditron-7B" \
+    --load_in_8bit \
+    --device "cuda" \
+    --batch_size 1
+
+# Memory-optimized configuration
+./run_llm_pipeline.sh \
+    --asr_results_dir /path/to/asr_results \
+    --medical_correction_model "BioMistral-7B" \
+    --page_generation_model "BioMistral-7B" \
+    --load_in_4bit \
+    --device "cuda"
+
+# Use different models for different tasks
+./run_llm_pipeline.sh \
+    --asr_results_dir /path/to/asr_results \
+    --medical_correction_model "Meditron-7B" \
+    --page_generation_model "BioMistral-7B" \
+    --load_in_8bit
+```
+
+#### Model Selection Guidelines
+
+**For Medical Correction:**
+- **BioMistral-7B**: Best overall medical accuracy and terminology
+- **Meditron-7B**: Strong medical literature understanding
+- **Llama-3-8B-UltraMedica**: Advanced medical reasoning (requires more memory)
+
+**For Emergency Page Generation:**
+- **BioMistral-7B**: Excellent structured medical reporting
+- **Meditron-7B**: Good clinical documentation
+- **gpt-oss-20b**: Best general language capabilities (high memory requirement)
+
+#### Quantization Options
+
+| Setting | Memory Usage | Speed | Quality | Use Case |
+|---------|-------------|--------|---------|----------|
+| **No quantization** | 100% | Baseline | Highest | High-end GPUs (24GB+) |
+| **8-bit (`--load_in_8bit`)** | ~25% | 1.5-2x faster | Very High | Most GPUs (8GB+) |
+| **4-bit (`--load_in_4bit`)** | ~12% | 2-4x faster | High | Low-memory GPUs (4GB+) |
+
+#### LLM Model Requirements
+- **Base**: `pip install torch transformers accelerate`
+- **Quantization**: `pip install bitsandbytes>=0.41.0`
+- **GPU**: NVIDIA GPU with CUDA support (8GB+ VRAM recommended)
+- **Models are downloaded automatically** from HuggingFace Hub on first use
+
+### Model Configuration Files
+
+#### ASR Models (`run_all_asrs.py`)
+```python
+MODELS = {
+    'wav2vec-xls-r': {
+        'path': 'facebook/wav2vec2-base-960h',
+        'framework': 'transformers'
+    },
+    'canary-1b': {
+        'path': 'nvidia/canary-1b',
+        'framework': 'nemo'
+    },
+    'parakeet-tdt-0.6b-v2': {
+        'path': 'nvidia/parakeet-ctc-0.6b',
+        'framework': 'nemo'
+    },
+    'large-v3': {
+        'path': 'large-v3',
+        'framework': 'whisper'
+    }
+}
+```
+
+#### LLM Models (`run_llm_pipeline.sh`)
+```bash
+AVAILABLE_MODELS=("gpt-oss-20b" "BioMistral-7B" "Meditron-7B" "Llama-3-8B-UltraMedica")
+
+MODEL_PATHS=(
+    "BioMistral-7B:BioMistral/BioMistral-7B"
+    "Meditron-7B:epfl-llm/meditron-7b" 
+    "Llama-3-8B-UltraMedica:/path/to/llama-3-8b-ultramedica"
+    "gpt-oss-20b:/path/to/gpt-oss-20b"
+)
+```
+
 ## 🚀 Quick Start
 
 ### Two-Stage Pipeline Execution
@@ -348,15 +499,27 @@ grep "Error:" /path/to/results/error_analysis.log | sort | uniq -c
 - **Storage**: Sufficient space for audio files and results
 
 ### Python Dependencies
-```bash
-# Install core dependencies
-pip install pandas jiwer torch transformers torchaudio
-pip install "nemo_toolkit[asr]" openai-whisper tqdm
-pip install scipy numpy pathlib2 soundfile pydub librosa
-pip install bitsandbytes accelerate
 
-# For LLM quantization
-pip install bitsandbytes>=0.41.0
+#### Option 1: Install from requirements.txt (Recommended)
+```bash
+# Install all dependencies at once
+pip install -r requirements.txt
+
+# For CUDA support (recommended for GPU acceleration)
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip install -r requirements.txt
+```
+
+#### Option 2: Manual Installation
+```bash
+# Core dependencies for ASR pipeline
+pip install pandas matplotlib seaborn psutil pynvml librosa
+pip install torch torchaudio transformers openai-whisper
+pip install "nemo_toolkit[asr]" pathlib2 tqdm datasets soundfile pydub jiwer
+
+# Additional dependencies for LLM pipeline
+pip install accelerate bitsandbytes>=0.41.0 requests
+pip install sentencepiece protobuf  # Optional performance enhancements
 ```
 
 ### Hardware Recommendations
