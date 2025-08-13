@@ -11,6 +11,43 @@ This project provides a complete two-stage processing system:
 
 ## ⚠️ Important Configuration Requirements
 
+### HuggingFace Authentication (Required for Certain Models)
+
+**🔐 Meditron-7B Model Access**
+
+The `Meditron-7B` model is a **gated repository** on HuggingFace and requires authentication and access approval:
+
+#### Step 1: HuggingFace Login
+```bash
+# Login to HuggingFace (use your access token)
+huggingface-cli login
+# or
+hf auth login
+```
+
+#### Step 2: Request Model Access
+1. Visit: https://huggingface.co/epfl-llm/meditron-7b
+2. Click **"Request access"** button
+3. Fill out the access request form
+4. Wait for approval (may take several days)
+
+#### Alternative: Use Non-Gated Models
+If you need immediate access, use these models instead:
+- **BioMistral-7B** ⭐ (Recommended) - No authentication required
+- **gpt-oss-20b** - No authentication required  
+- **gpt-oss-120b** - No authentication required
+
+```bash
+# Use BioMistral-7B instead of Meditron-7B
+./run_llm_pipeline.sh \
+    --medical_correction_model "BioMistral-7B" \
+    --page_generation_model "BioMistral-7B"
+```
+
+**💡 Note**: All models are automatically downloaded from HuggingFace Hub on first use - no manual pre-download required.
+
+---
+
 ### Before Running the Pipeline
 
 **You MUST configure the following parameters in the script files before execution:**
@@ -208,12 +245,13 @@ The ASR models are automatically configured in `run_all_asrs.py` and executed by
 The LLM pipeline supports specialized medical language models for enhancement:
 
 #### Medical Correction Models
-| Model | Size | Specialization | Memory (FP16) | Memory (8-bit) | Memory (4-bit) |
-|-------|------|----------------|---------------|----------------|----------------|
-| **BioMistral-7B** ⭐ | 7B | Medical domain | ~14GB | ~4GB | ~2GB |
-| **Meditron-7B** | 7B | Medical literature | ~14GB | ~4GB | ~2GB |
-| **Llama-3-8B-UltraMedica** | 8B | Medical fine-tuned | ~16GB | ~4.5GB | ~2.5GB |
-| **gpt-oss-20b** | 20B | General purpose | ~40GB | ~12GB | ~6GB |
+| Model | Size | Specialization | Access | Memory (FP16) | Memory (8-bit) | Memory (4-bit) |
+|-------|------|----------------|--------|---------------|----------------|----------------|
+| **BioMistral-7B** ⭐ | 7B | Medical domain | ✅ Public | ~14GB | ~4GB | ~2GB |
+| **Meditron-7B** | 7B | Medical literature | 🔐 **Gated** | ~14GB | ~4GB | ~2GB |
+| **Llama-3-8B-UltraMedica** | 8B | Medical fine-tuned | ✅ Public | ~16GB | ~4.5GB | ~2.5GB |
+| **gpt-oss-20b** | 20B | General purpose | ✅ Public | ~40GB | ~12GB | ~6GB |
+| **gpt-oss-120b** | 120B | Large-scale reasoning | ✅ Public | ~240GB | ~70GB | ~35GB |
 
 ⭐ **Recommended**: BioMistral-7B offers the best balance of medical accuracy and efficiency.
 
@@ -260,14 +298,17 @@ The same models are used for both medical correction and emergency page generati
 #### Model Selection Guidelines
 
 **For Medical Correction:**
-- **BioMistral-7B**: Best overall medical accuracy and terminology
-- **Meditron-7B**: Strong medical literature understanding
+- **BioMistral-7B** ⭐: Best overall medical accuracy and terminology (immediate access)
+- **Meditron-7B**: Strong medical literature understanding (**requires HuggingFace authentication**)
 - **Llama-3-8B-UltraMedica**: Advanced medical reasoning (requires more memory)
+- **gpt-oss-20b**: Good general medical capabilities (immediate access)
 
 **For Emergency Page Generation:**
-- **BioMistral-7B**: Excellent structured medical reporting
-- **Meditron-7B**: Good clinical documentation
-- **gpt-oss-20b**: Best general language capabilities (high memory requirement)
+- **BioMistral-7B** ⭐: Excellent structured medical reporting (immediate access)
+- **Meditron-7B**: Good clinical documentation (**requires HuggingFace authentication**)
+- **gpt-oss-20b**: Best general language capabilities (high memory requirement, immediate access)
+
+**🚨 Authentication Note**: Meditron-7B requires HuggingFace login and access approval. For immediate usage, use BioMistral-7B which offers similar medical performance without authentication requirements.
 
 #### Quantization Options
 
