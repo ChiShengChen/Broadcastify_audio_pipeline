@@ -1,1 +1,0 @@
-Priority 1: Emergency Incident. Medical Information: 1) Patient Condition Summary: Unknown; 2) Location Details: 876 Main Street; 3) Required Medical Resources: Ambulance; 4) Priority Level: Code 1 (Highest priority); 5) Key Medical Information: None provided.

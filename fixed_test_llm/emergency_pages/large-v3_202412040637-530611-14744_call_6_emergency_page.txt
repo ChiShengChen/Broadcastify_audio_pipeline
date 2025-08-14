@@ -1,1 +1,0 @@
-PATIENT: N740, 69 year old male, chest pain.LOCATION: 4824 Bromfield Ave, apartment 204.RESOURCES: ALS, Lift Assist.PRIORITY: 1.KEY INFORMATION: Male, 69 years old, chest pain, EMS-1 and rescue on scene.

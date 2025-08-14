@@ -1,1 +1,0 @@
-Priority 1: Patient Condition Summary: Patient unresponsive; unknown breathing status.Location Details: 4th and 1st, 1st floor.Required Medical Resources: ALS.Priority Level: Code 1.Key Medical Information: Unknown breathing status.

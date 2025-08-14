@@ -1,1 +1,0 @@
-PATIENT: 1 adult male, chest pain, shortness of breath. LOCATION: 600 Main St., Hamlet, NC. MEDICAL RESOURCES: ALS, ground transport requested. PRIORITY: Code 1. KEY INFORMATION: Patient will be transported to Rainbow Regional Trauma Center upon completion of care.

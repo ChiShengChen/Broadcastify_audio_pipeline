@@ -1,1 +1,0 @@
-Priority 1, Location 0-1-0-1-0, Medical Resource Requested: EMS/Fire/Law Enforcement, Medical Information: Light smoke is present, but there is no active fire. The source of the smoke is a chiller unit. The chiller unit has been isolated from the electrical grid. The cause of the smoke production is unknown at this time.

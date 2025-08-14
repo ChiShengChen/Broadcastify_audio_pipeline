@@ -1,1 +1,0 @@
-Priority 1. Code 2. Patient age: 69 years old. Patient gender: Female. Patient location: 400 Major Andre Road. Patient condition: Conscious and breathing. Medical resources required: Ambulance.
