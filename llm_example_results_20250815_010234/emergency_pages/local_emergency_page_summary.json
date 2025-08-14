@@ -1,0 +1,499 @@
+{
+  "mode": "emergency_page",
+  "model": "BioMistral-7B",
+  "model_path": "BioMistral-7B",
+  "device": "auto",
+  "input_directories": [
+    "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts"
+  ],
+  "output_directory": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages",
+  "total_files": 69,
+  "successful": 69,
+  "failed": 0,
+  "success_rate": 1.0,
+  "results": [
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412011259-954439-14744_call_11_segment_001.txt",
+      "success": true,
+      "transcript_length": 108,
+      "page_length": 130,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412011259-954439-14744_call_11_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412011259-954439-14744_call_11_segment_000.txt",
+      "success": true,
+      "transcript_length": 382,
+      "page_length": 299,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412011259-954439-14744_call_11_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412010731-280830-14744_call_1_segment_000.txt",
+      "success": true,
+      "transcript_length": 260,
+      "page_length": 317,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412010731-280830-14744_call_1_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412010133-841696-14744_call_2_segment_001.txt",
+      "success": true,
+      "transcript_length": 30,
+      "page_length": 289,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412010133-841696-14744_call_2_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412011458-971661-14744_call_3_segment_001.txt",
+      "success": true,
+      "transcript_length": 47,
+      "page_length": 102,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412011458-971661-14744_call_3_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412011329-642550-14744_call_6_segment_001.txt",
+      "success": true,
+      "transcript_length": 145,
+      "page_length": 180,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412011329-642550-14744_call_6_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412011757-965821-14744_call_5_segment_000.txt",
+      "success": true,
+      "transcript_length": 197,
+      "page_length": 211,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412011757-965821-14744_call_5_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412010133-841696-14744_call_2_segment_000.txt",
+      "success": true,
+      "transcript_length": 603,
+      "page_length": 317,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412010133-841696-14744_call_2_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412011757-965821-14744_call_5_segment_001.txt",
+      "success": true,
+      "transcript_length": 74,
+      "page_length": 67,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412011757-965821-14744_call_5_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412011329-642550-14744_call_6_segment_000.txt",
+      "success": true,
+      "transcript_length": 684,
+      "page_length": 205,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412011329-642550-14744_call_6_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412011757-965821-14744_call_11_segment_000.txt",
+      "success": true,
+      "transcript_length": 394,
+      "page_length": 294,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412011757-965821-14744_call_11_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021022-748072-14744_call_9_segment_002.txt",
+      "success": true,
+      "transcript_length": 43,
+      "page_length": 61,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021022-748072-14744_call_9_segment_002_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412010731-280830-14744_call_1_segment_001.txt",
+      "success": true,
+      "transcript_length": 258,
+      "page_length": 639,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412010731-280830-14744_call_1_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412020952-344688-14744_call_14_segment_001.txt",
+      "success": true,
+      "transcript_length": 235,
+      "page_length": 184,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412020952-344688-14744_call_14_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412011458-971661-14744_call_3_segment_000.txt",
+      "success": true,
+      "transcript_length": 409,
+      "page_length": 360,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412011458-971661-14744_call_3_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021022-748072-14744_call_9_segment_001.txt",
+      "success": true,
+      "transcript_length": 240,
+      "page_length": 239,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021022-748072-14744_call_9_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412020952-344688-14744_call_14_segment_000.txt",
+      "success": true,
+      "transcript_length": 368,
+      "page_length": 223,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412020952-344688-14744_call_14_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412011757-965821-14744_call_11_segment_001.txt",
+      "success": true,
+      "transcript_length": 478,
+      "page_length": 342,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412011757-965821-14744_call_11_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021121-31317-14744_call_2_segment_000.txt",
+      "success": true,
+      "transcript_length": 134,
+      "page_length": 189,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021121-31317-14744_call_2_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021321-120801-14744_call_13_segment_001.txt",
+      "success": true,
+      "transcript_length": 51,
+      "page_length": 156,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021321-120801-14744_call_13_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021022-748072-14744_call_9_segment_000.txt",
+      "success": true,
+      "transcript_length": 286,
+      "page_length": 313,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021022-748072-14744_call_9_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021121-31317-14744_call_2_segment_001.txt",
+      "success": true,
+      "transcript_length": 423,
+      "page_length": 171,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021121-31317-14744_call_2_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021520-274679-14744_call_10_segment_001.txt",
+      "success": true,
+      "transcript_length": 56,
+      "page_length": 137,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021520-274679-14744_call_10_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021321-120801-14744_call_13_segment_000.txt",
+      "success": true,
+      "transcript_length": 359,
+      "page_length": 186,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021321-120801-14744_call_13_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021919-979320-14744_call_3_segment_001.txt",
+      "success": true,
+      "transcript_length": 37,
+      "page_length": 29,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021919-979320-14744_call_3_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021121-31317-14744_call_13.txt",
+      "success": true,
+      "transcript_length": 525,
+      "page_length": 268,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021121-31317-14744_call_13_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021948-545512-14744_call_8_segment_001.txt",
+      "success": true,
+      "transcript_length": 119,
+      "page_length": 82,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021948-545512-14744_call_8_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021520-274679-14744_call_10_segment_000.txt",
+      "success": true,
+      "transcript_length": 309,
+      "page_length": 235,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021520-274679-14744_call_10_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021649-160048-14744_call_7_segment_000.txt",
+      "success": true,
+      "transcript_length": 195,
+      "page_length": 258,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021649-160048-14744_call_7_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021649-160048-14744_call_11.txt",
+      "success": true,
+      "transcript_length": 359,
+      "page_length": 307,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021649-160048-14744_call_11_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412031043-922113-14744_call_16_segment_001.txt",
+      "success": true,
+      "transcript_length": 90,
+      "page_length": 71,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412031043-922113-14744_call_16_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021649-160048-14744_call_7_segment_001.txt",
+      "success": true,
+      "transcript_length": 435,
+      "page_length": 239,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021649-160048-14744_call_7_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021919-979320-14744_call_3_segment_000.txt",
+      "success": true,
+      "transcript_length": 405,
+      "page_length": 247,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021919-979320-14744_call_3_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412031043-922113-14744_call_18_segment_001.txt",
+      "success": true,
+      "transcript_length": 94,
+      "page_length": 117,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412031043-922113-14744_call_18_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412031512-254309-14744_call_16_segment_001.txt",
+      "success": true,
+      "transcript_length": 47,
+      "page_length": 48,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412031512-254309-14744_call_16_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412031043-922113-14744_call_16_segment_000.txt",
+      "success": true,
+      "transcript_length": 214,
+      "page_length": 239,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412031043-922113-14744_call_16_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021121-31317-14744_call_2_segment_002.txt",
+      "success": true,
+      "transcript_length": 407,
+      "page_length": 700,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021121-31317-14744_call_2_segment_002_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412031512-254309-14744_call_16_segment_000.txt",
+      "success": true,
+      "transcript_length": 425,
+      "page_length": 202,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412031512-254309-14744_call_16_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412031043-922113-14744_call_18_segment_000.txt",
+      "success": true,
+      "transcript_length": 310,
+      "page_length": 288,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412031043-922113-14744_call_18_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412040607-588047-14744_call_11_segment_001.txt",
+      "success": true,
+      "transcript_length": 234,
+      "page_length": 235,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412040607-588047-14744_call_11_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021948-545512-14744_call_8_segment_000.txt",
+      "success": true,
+      "transcript_length": 255,
+      "page_length": 277,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021948-545512-14744_call_8_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412040437-202163-14744_call_14_segment_000.txt",
+      "success": true,
+      "transcript_length": 579,
+      "page_length": 198,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412040437-202163-14744_call_14_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412040607-588047-14744_call_11_segment_000.txt",
+      "success": true,
+      "transcript_length": 450,
+      "page_length": 168,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412040607-588047-14744_call_11_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412040736-239835-14744_call_4_segment_001.txt",
+      "success": true,
+      "transcript_length": 183,
+      "page_length": 170,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412040736-239835-14744_call_4_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412021520-274679-14744_call_12.txt",
+      "success": true,
+      "transcript_length": 651,
+      "page_length": 936,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412021520-274679-14744_call_12_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412040607-588047-14744_call_11_segment_002.txt",
+      "success": true,
+      "transcript_length": 287,
+      "page_length": 188,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412040607-588047-14744_call_11_segment_002_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412040637-530611-14744_call_6.txt",
+      "success": true,
+      "transcript_length": 437,
+      "page_length": 165,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412040637-530611-14744_call_6_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412040736-239835-14744_call_4_segment_000.txt",
+      "success": true,
+      "transcript_length": 418,
+      "page_length": 299,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412040736-239835-14744_call_4_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412040637-530611-14744_call_16.txt",
+      "success": true,
+      "transcript_length": 614,
+      "page_length": 130,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412040637-530611-14744_call_16_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412040736-239835-14744_call_6.txt",
+      "success": true,
+      "transcript_length": 428,
+      "page_length": 206,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412040736-239835-14744_call_6_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412040936-56143-14744_call_8_segment_001.txt",
+      "success": true,
+      "transcript_length": 108,
+      "page_length": 196,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412040936-56143-14744_call_8_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412041035-161261-14744_call_21_segment_001.txt",
+      "success": true,
+      "transcript_length": 142,
+      "page_length": 234,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412041035-161261-14744_call_21_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412041135-308215-14744_call_10_segment_000.txt",
+      "success": true,
+      "transcript_length": 194,
+      "page_length": 108,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412041135-308215-14744_call_10_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412041135-308215-14744_call_10_segment_001.txt",
+      "success": true,
+      "transcript_length": 134,
+      "page_length": 243,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412041135-308215-14744_call_10_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412040437-202163-14744_call_14_segment_001.txt",
+      "success": true,
+      "transcript_length": 373,
+      "page_length": 484,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412040437-202163-14744_call_14_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412041035-161261-14744_call_21_segment_000.txt",
+      "success": true,
+      "transcript_length": 357,
+      "page_length": 320,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412041035-161261-14744_call_21_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412041305-617206-14744_call_14.txt",
+      "success": true,
+      "transcript_length": 232,
+      "page_length": 181,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412041305-617206-14744_call_14_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412041305-617206-14744_call_24_segment_000.txt",
+      "success": true,
+      "transcript_length": 369,
+      "page_length": 186,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412041305-617206-14744_call_24_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412041235-634426-14744_call_13_segment_001.txt",
+      "success": true,
+      "transcript_length": 162,
+      "page_length": 311,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412041235-634426-14744_call_13_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412040936-56143-14744_call_8_segment_000.txt",
+      "success": true,
+      "transcript_length": 655,
+      "page_length": 268,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412040936-56143-14744_call_8_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412041604-460429-14744_call_12_segment_001.txt",
+      "success": true,
+      "transcript_length": 68,
+      "page_length": 202,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412041604-460429-14744_call_12_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412041604-460429-14744_call_12_segment_000.txt",
+      "success": true,
+      "transcript_length": 396,
+      "page_length": 167,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412041604-460429-14744_call_12_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412041604-460429-14744_call_10_segment_000.txt",
+      "success": true,
+      "transcript_length": 509,
+      "page_length": 256,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412041604-460429-14744_call_10_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412041703-315276-14744_call_6_segment_001.txt",
+      "success": true,
+      "transcript_length": 238,
+      "page_length": 185,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412041703-315276-14744_call_6_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412041305-617206-14744_call_24_segment_001.txt",
+      "success": true,
+      "transcript_length": 386,
+      "page_length": 424,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412041305-617206-14744_call_24_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412050230-586791-14744_call_3_segment_001.txt",
+      "success": true,
+      "transcript_length": 75,
+      "page_length": 292,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412050230-586791-14744_call_3_segment_001_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412041235-634426-14744_call_13_segment_000.txt",
+      "success": true,
+      "transcript_length": 883,
+      "page_length": 294,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412041235-634426-14744_call_13_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412050230-586791-14744_call_3_segment_000.txt",
+      "success": true,
+      "transcript_length": 294,
+      "page_length": 200,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412050230-586791-14744_call_3_segment_000_emergency_page.txt"
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/large-v3_202412041703-315276-14744_call_6_segment_000.txt",
+      "success": true,
+      "transcript_length": 275,
+      "page_length": 258,
+      "output_file": "/media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/large-v3_202412041703-315276-14744_call_6_segment_000_emergency_page.txt"
+    }
+  ]
+}

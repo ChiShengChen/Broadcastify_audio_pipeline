@@ -1,0 +1,34 @@
+LLM-Enhanced ASR Pipeline Summary
+=================================
+Date: 西元2025年08月15日 (週五) 01時07分38秒 CST
+ASR Results Directory: /media/meow/One Touch/ems_call/pipeline_results_20250729_033902
+Output Directory: /media/meow/One Touch/ems_call/llm_results_20250815_010234
+
+Configuration:
+  - Whisper Filter: true
+    * Output: /media/meow/One Touch/ems_call/llm_results_20250815_010234/whisper_filtered
+  - Medical Correction: true
+    * Model: BioMistral-7B
+    * Output: /media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts
+  - Page Generation: true
+    * Model: BioMistral-7B
+    * Output: /media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages
+  - Evaluation: true
+    * Ground Truth: /media/meow/One Touch/ems_call/vb_ems_anotation/human_anotation_vb.csv
+    * Results: /media/meow/One Touch/ems_call/llm_results_20250815_010234/llm_enhanced_evaluation_results.csv
+
+Processing Results:
+  - Total ASR transcripts: 349
+  - Whisper filtered transcripts: 70
+  - Corrected transcripts: 69
+  - Emergency pages generated: 69
+
+Output Structure:
+  /media/meow/One Touch/ems_call/llm_results_20250815_010234/whisper_filtered/           # Filtered Whisper transcripts
+  /media/meow/One Touch/ems_call/llm_results_20250815_010234/corrected_transcripts/     # Medical term corrected transcripts
+  /media/meow/One Touch/ems_call/llm_results_20250815_010234/emergency_pages/           # Generated emergency pages
+  /media/meow/One Touch/ems_call/llm_results_20250815_010234/llm_enhanced_evaluation_results.csv                # Evaluation metrics
+  /media/meow/One Touch/ems_call/llm_results_20250815_010234/llm_enhanced_pipeline_summary.txt                             # This summary
+  /media/meow/One Touch/ems_call/llm_results_20250815_010234/error_analysis.log                           # Error analysis
+
+All results saved to: /media/meow/One Touch/ems_call/llm_results_20250815_010234

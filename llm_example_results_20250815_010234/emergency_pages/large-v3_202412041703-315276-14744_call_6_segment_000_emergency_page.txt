@@ -1,0 +1,1 @@
+Priority 1, Rescue 173, Adult male, chest pain, location Green Beach, send EMS and fire rescue immediately, standby for code call, patient is unresponsive, unknown time of injury, send code call if no response within 30 seconds, send ALS and LZC immediately.

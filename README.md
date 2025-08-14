@@ -31,7 +31,7 @@ hf auth login
 3. Fill out the access request form
 4. Wait for approval (may take several days)
 
-#### Alternative: Use Non-Gated Models
+<!-- #### Alternative: Use Non-Gated Models
 If you need immediate access, use these models instead:
 - **BioMistral-7B** ⭐ (Recommended) - No authentication required
 - **gpt-oss-20b** - No authentication required  
@@ -42,7 +42,7 @@ If you need immediate access, use these models instead:
 ./run_llm_pipeline.sh \
     --medical_correction_model "BioMistral-7B" \
     --page_generation_model "BioMistral-7B"
-```
+``` -->
 
 **💡 Note**: All models are automatically downloaded from HuggingFace Hub on first use - no manual pre-download required.
 

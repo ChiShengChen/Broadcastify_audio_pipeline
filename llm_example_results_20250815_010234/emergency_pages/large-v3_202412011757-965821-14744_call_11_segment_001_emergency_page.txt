@@ -1,0 +1,1 @@
+PATIENT COND: Trauma - Penetrating InjuryLOCATION DETAILS: Motor vehicle crash on I-5 NB at 7th St exit.RESOURCE REQUESTED: 1 RU, 1 ALS, 1 LZ PRIORITY: 1 (Code One)KEY MEDICAL INFO: Tourniquet applied to right arm. Left upper extremity fracture. Vitals: BP 90/60, HR 80 bpm, RR 20 bpm, ABG 19. Alert and oriented. No complaints of CPR or SOB.

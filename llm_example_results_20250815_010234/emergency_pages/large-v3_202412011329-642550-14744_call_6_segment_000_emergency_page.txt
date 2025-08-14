@@ -1,0 +1,1 @@
+Priority 1: Medical Emergency; Patient Condition Summary: Unknown; Location Details: 1446 Virginia Beach; Required Medical Resources: Ambulance; Incident Identifier: 923P; Key Medical Information: Unknown.

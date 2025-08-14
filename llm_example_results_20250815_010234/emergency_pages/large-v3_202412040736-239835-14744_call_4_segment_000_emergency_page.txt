@@ -1,0 +1,1 @@
+Priority Level: 1 (Code 1)Patient Condition Summary: Male patient with injuriesLocation Details: Interstate 264 westbound at Independence exitRSD Required Resources: RSD ParamedicRSD Transport: GroundTransport Type: TraumaAlertPriority Code: 1 (Code 1)Patient Information: Male patient with injuries

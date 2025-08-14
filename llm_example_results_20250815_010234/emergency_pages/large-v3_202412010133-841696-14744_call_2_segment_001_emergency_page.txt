@@ -1,0 +1,1 @@
+Priority 1: Immediate Response Required.Patient Condition Summary: Chest pain.Location Details: 800 Main Street.Location Description: Bank.Latitude/Longitude: 37.222692,-122.419422.Urgency Code: 1.Required Medical Resources: ALS.Requesting Agency: SFPD.Key Medical Information: Chest Pain.

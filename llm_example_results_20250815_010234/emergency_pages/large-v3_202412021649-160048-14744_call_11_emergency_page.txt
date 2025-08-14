@@ -1,0 +1,1 @@
+Priority 1; Location 123 Main Street; Unit 1A; Medical Aid Incident; EMS requested; Fire Department Rescue 1 requested; Police Department requested; Hazmat 1 requested; EMS response time < 5 min; Fire Department Response Time < 5 min; Police Department Response Time < 5 min; Hazmat 1 Response Time < 5 min;

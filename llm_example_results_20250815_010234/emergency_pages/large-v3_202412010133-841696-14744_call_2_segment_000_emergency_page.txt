@@ -1,0 +1,1 @@
+Priority 1: Medical Emergency. Patient status unknown. Location: 123 Main Street. Unit requesting assistance: EMS. Units responding: Engine 7 and Battalion 3. Medical information: Patient is reported to be arriving on scene. No signs of smoke or fire in the structure. Alarms are hardwired. Unknown patient condition.

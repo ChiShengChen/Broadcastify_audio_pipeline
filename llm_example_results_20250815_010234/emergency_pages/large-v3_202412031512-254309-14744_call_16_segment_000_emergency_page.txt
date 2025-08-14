@@ -1,0 +1,1 @@
+Priority 1, Rescue 2, Medical Condition Summary: Unknown, Location: 123 Main Street, Medical Resources Required: Ambulance, Priority Level: Code 1, Key Medical Information: Patient Extrication Required.

@@ -1,0 +1,1 @@
+Priority 1: Immediate. Medical Information: Chest pain. Location: 123 Main Street. Medical Resources: ALS. Condition Summary: Chest pain.

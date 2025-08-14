@@ -1,0 +1,1 @@
+Priority 2; Location: 520P; Medical Resource: Fire Department; Incident Description: Smoke in building; Key Information: No one injured at this time; Incident Status: In Progress; Incident ID: 3541.

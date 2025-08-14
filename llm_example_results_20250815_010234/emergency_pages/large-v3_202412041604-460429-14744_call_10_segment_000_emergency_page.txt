@@ -1,0 +1,1 @@
+Priority 1: Medical Emergency. Patient Condition Summary: Female patient with chest pain. Location Details: 1723 Tower Rd, Unit 309, 6th floor. Required Medical Resources: ALS. Transport: Ground. Priority Level: Code 1. Key Medical Information: Chest Pain.

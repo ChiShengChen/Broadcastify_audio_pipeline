@@ -1,0 +1,1 @@
+Priority 1, Adult male, chest pain, location: 16th floor, apartment unit, requested resources: ALS, estimated time to scene: 7 minutes, key information: patient is conscious and alert, vital signs are within normal limits, no known allergies or medical conditions, and no one else is injured.
