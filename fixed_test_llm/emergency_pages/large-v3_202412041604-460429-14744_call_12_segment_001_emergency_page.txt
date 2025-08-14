@@ -1,0 +1,1 @@
+Priority 1: Medical Emergency. Location: 123 Main Street. Patient Condition Summary: Patient is unconscious. Medical Resources Required: Paramedic Unit with Automatic External Defibrillator (AED). Key Information: Elevator key and door key missing.

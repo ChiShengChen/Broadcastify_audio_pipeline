@@ -46,7 +46,17 @@ class LocalLLMModel:
     def __init__(self, model_name: str, model_path: str = None, device: str = "auto", 
                  load_in_8bit: bool = False, load_in_4bit: bool = False):
         self.model_name = model_name
-        self.model_path = model_path or model_name
+        
+        # Model path mappings
+        model_path_mappings = {
+            "BioMistral-7B": "BioMistral/BioMistral-7B",
+            "Meditron-7B": "epfl-llm/meditron-7b",
+            "gpt-oss-20b": "openai/gpt-oss-20b",
+            "gpt-oss-120b": "openai/gpt-oss-120b",
+            "Llama-3-8B-UltraMedica": "Llama-3-8B-UltraMedica"  # Placeholder path
+        }
+        
+        self.model_path = model_path or model_path_mappings.get(model_name, model_name)
         self.device = device
         self.load_in_8bit = load_in_8bit
         self.load_in_4bit = load_in_4bit
@@ -124,10 +134,22 @@ class LocalLLMModel:
             # Load model
             logger.info("Loading model...")
             try:
+                # Use auto device mapping for large models and quantization
+                use_auto_device_map = (
+                    quantization_config is not None or  # Always use auto for quantized models
+                    self.device == "cuda"  # Use auto for CUDA to handle memory efficiently
+                )
+                
+                if use_auto_device_map:
+                    logger.info("Using automatic device mapping")
+                    device_map = "auto"
+                else:
+                    device_map = None
+                
                 self.model = AutoModelForCausalLM.from_pretrained(
                     self.model_path,
                     torch_dtype=torch.float16 if self.device == "cuda" else torch.float32,
-                    device_map=self.device if self.device == "cuda" else None,
+                    device_map=device_map,
                     quantization_config=quantization_config,
                     trust_remote_code=True,
                     low_cpu_mem_usage=True
@@ -158,8 +180,12 @@ class LocalLLMModel:
             
             # Create pipeline
             logger.info("Creating inference pipeline...")
-            # When using quantization (8-bit or 4-bit), don't specify device in pipeline
-            if self.load_in_8bit or self.load_in_4bit:
+            # Check if model has device mapping (loaded with accelerate)
+            has_device_map = hasattr(self.model, 'hf_device_map') and self.model.hf_device_map
+            
+            # When using quantization, device mapping, or accelerate, don't specify device in pipeline
+            if self.load_in_8bit or self.load_in_4bit or has_device_map:
+                logger.info("Creating pipeline without device specification (using model's device mapping)")
                 self.pipeline = pipeline(
                     "text-generation",
                     model=self.model,
@@ -167,6 +193,7 @@ class LocalLLMModel:
                     torch_dtype=torch.float16 if self.device == "cuda" else torch.float32
                 )
             else:
+                logger.info(f"Creating pipeline with device: {self.device}")
                 self.pipeline = pipeline(
                     "text-generation",
                     model=self.model,

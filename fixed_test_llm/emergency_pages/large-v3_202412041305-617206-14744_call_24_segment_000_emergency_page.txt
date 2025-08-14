@@ -1,0 +1,1 @@
+PATIENT CONDITION SUMMARY: Unknown, but caller states that the patient is conscious and breathing. LOCATION DETAILS: 100 Block of Camelot Drive. REQUIRED MEDICAL RESOURCES: Ambulance with ALS capabilities. PRIORITY LEVEL: Code 2 (Priority 2). KEY MEDICAL INFORMATION: Caller states that the patient is conscious and breathing.

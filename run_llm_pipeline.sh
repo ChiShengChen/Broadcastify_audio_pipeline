@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Exit immediately if a command exits with a non-zero status.
-set -e
+# Disabled to allow pipeline to continue even if some files fail
+# set -e
 
 # --- LLM-Enhanced ASR Pipeline Overview ---
 # This script extends the basic ASR pipeline with LLM capabilities:
@@ -28,11 +29,11 @@ set -e
 
 # --- User Configuration ---
 # Input directory containing ASR results from previous pipeline
-ASR_RESULTS_DIR=""
+ASR_RESULTS_DIR="/media/meow/One Touch/ems_call/pipeline_results_20250729_033902"
 # Example: "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836"
 
 # Ground truth file for evaluation (optional)
-GROUND_TRUTH_FILE=""
+GROUND_TRUTH_FILE="/media/meow/One Touch/ems_call/vb_ems_anotation/human_anotation_vb.csv"
 # Example: "/media/meow/One Touch/ems_call/vb_ems_anotation/human_anotation_vb.csv"
 
 # Output directory for LLM processing results
@@ -45,7 +46,7 @@ OUTPUT_DIR=""
 AVAILABLE_MODELS=("gpt-oss-20b" "gpt-oss-120b" "BioMistral-7B" "Meditron-7B" "Llama-3-8B-UltraMedica")
 
 # Default model selections
-MEDICAL_CORRECTION_MODEL="gpt-oss-20b"    # Model for medical term correction
+MEDICAL_CORRECTION_MODEL="BioMistral-7B"    # Model for medical term correction
 PAGE_GENERATION_MODEL="BioMistral-7B"     # Model for emergency page generation
 
 # --- Feature Switches ---
@@ -73,8 +74,18 @@ LOAD_IN_8BIT=false
 LOAD_IN_4BIT=false
 
 # --- Medical Correction Configuration ---
-MEDICAL_CORRECTION_PROMPT="You are a medical transcription specialist. Please correct any medical terms, drug names, anatomical terms, and medical procedures in the following ASR transcript. Maintain the original meaning and context. Only correct obvious medical errors and standardize medical terminology. Return only the corrected transcript without explanations."
-
+# MEDICAL_CORRECTION_PROMPT="You are a medical transcription specialist. Please correct any medical terms, drug names, anatomical terms, and medical procedures in the following ASR transcript. Maintain the original meaning and context. Only correct obvious medical errors and standardize medical terminology. Return only the corrected transcript without explanations."
+MEDICAL_CORRECTION_PROMPT="You are an expert medical transcription correction system. Your role is to improve noisy, error-prone transcripts generated from EMS radio calls. These transcripts are derived from automatic speech recognition (ASR) and often contain phonetic errors, especially with medication names, clinical terminology, and numerical values.
+Each transcript reflects a real-time communication from EMS personnel to hospital staff, summarizing a patient’s clinical condition, vital signs, and any treatments administered during prehospital care. Use your knowledge of emergency medicine, pharmacology, and EMS protocols to reconstruct the intended meaning of the message as accurately and clearly as possible.
+Guidelines:
+	1.	Replace misrecognized or phonetically incorrect words and phrases with their most likely intended clinical equivalents.
+	2.	Express the message in clear, natural language while maintaining the tone and intent of an EMS-to-hospital handoff.
+	3.	Include all information from the original transcript—ensure your output is complete and continuous.
+	4.	Use medical abbreviations and shorthand appropriately when they match clinical usage (e.g., “BP” for blood pressure, “ETT” for endotracheal tube).
+	5.	Apply contextual reasoning to identify and correct drug names, dosages, clinical phrases, and symptoms using common EMS knowledge.
+	6.	Deliver your output as plain, unstructured text without metadata, formatting, or explanatory notes.
+	7.	Present the cleaned transcript as a fully corrected version, without gaps, placeholders, or annotations.
+"
 # --- Emergency Page Generation Configuration ---
 PAGE_GENERATION_PROMPT="You are an emergency medical dispatcher. Based on the following corrected medical transcript, generate a structured emergency page that includes: 1) Patient condition summary, 2) Location details, 3) Required medical resources, 4) Priority level, 5) Key medical information. Format the response as a structured emergency page."
 
@@ -84,6 +95,12 @@ MAX_RETRIES=3                     # Maximum retry attempts for API calls
 REQUEST_TIMEOUT=60                # Timeout for API requests in seconds
 
 # Python interpreter to use
+# Ensure we're using the correct conda environment with CUDA support
+if [ -z "$CONDA_DEFAULT_ENV" ] || [ "$CONDA_DEFAULT_ENV" != "pytorch_112" ]; then
+    echo "Warning: Not in pytorch_112 environment. Attempting to activate..."
+    source $(conda info --base)/etc/profile.d/conda.sh
+    conda activate pytorch_112
+fi
 PYTHON_EXEC="python3"
 
 # Parse command line arguments
@@ -471,23 +488,30 @@ EOF
         rm -f "$FILTER_SCRIPT"
     fi
     
-    if [ $? -eq 0 ]; then
-        echo "Whisper filtering completed successfully"
+    WHISPER_FILTER_EXIT_CODE=$?
+    
+    # Check if whisper filtering produced any output files
+    FILTERED_COUNT=$(find "$WHISPER_FILTERED_DIR" -name "*.txt" 2>/dev/null | wc -l)
+    
+    if [ $WHISPER_FILTER_EXIT_CODE -eq 0 ] || [ $FILTERED_COUNT -gt 0 ]; then
+        if [ $WHISPER_FILTER_EXIT_CODE -eq 0 ]; then
+            echo "Whisper filtering completed successfully"
+        else
+            echo "Whisper filtering completed with some issues, but $FILTERED_COUNT files were filtered successfully"
+        fi
         echo "Filtered Whisper files saved to: $WHISPER_FILTERED_DIR"
         
-        # Update transcript directory for next steps
+        # Update transcript directory for next steps to use filtered results
         TRANSCRIPT_DIRS=("$WHISPER_FILTERED_DIR")
-        
-        # Count filtered files
-        FILTERED_COUNT=$(find "$WHISPER_FILTERED_DIR" -name "*.txt" | wc -l)
         echo "Filtered transcript files: $FILTERED_COUNT"
     else
-        echo "Warning: Whisper filtering failed"
-        echo "ERROR: Whisper filtering failed" >> "$ERROR_LOG_FILE"
+        echo "Warning: Whisper filtering failed completely - no output files generated"
+        echo "ERROR: Whisper filtering failed completely" >> "$ERROR_LOG_FILE"
         echo "  Input directories: ${TRANSCRIPT_DIRS[*]}" >> "$ERROR_LOG_FILE"
         echo "  Output directory: $WHISPER_FILTERED_DIR" >> "$ERROR_LOG_FILE"
         echo "  Continuing with original transcripts" >> "$ERROR_LOG_FILE"
         echo "" >> "$ERROR_LOG_FILE"
+        # Keep using original transcripts for next steps
     fi
 else
     echo "--- Skipping Whisper Filter ---"
@@ -517,24 +541,37 @@ if [ "$ENABLE_MEDICAL_CORRECTION" = true ]; then
         --batch_size "$BATCH_SIZE" \
         --prompt "$MEDICAL_CORRECTION_PROMPT" \
         --error_log "$ERROR_LOG_FILE" \
-        ${LOAD_IN_8BIT:+--load_in_8bit} \
-        ${LOAD_IN_4BIT:+--load_in_4bit} \
-        ${MODEL_PATH:+--model_path "$MODEL_PATH"}
+        $([ "$LOAD_IN_8BIT" = "true" ] && echo "--load_in_8bit") \
+        $([ "$LOAD_IN_4BIT" = "true" ] && echo "--load_in_4bit") \
+        ${MODEL_PATH:+--model_path "$MODEL_PATH"} || true
     
-    if [ $? -eq 0 ]; then
-        echo "Medical term correction completed successfully"
+    MEDICAL_CORRECTION_EXIT_CODE=$?
+    echo "Medical correction exit code: $MEDICAL_CORRECTION_EXIT_CODE"
+    echo "DEBUG: Medical correction step completed, continuing to next step..."
+    
+    # Check if medical correction produced any output files
+    CORRECTED_FILE_COUNT=$(find "$CORRECTED_TRANSCRIPTS_DIR" -name "*.txt" 2>/dev/null | wc -l)
+    echo "Found $CORRECTED_FILE_COUNT corrected transcript files"
+    
+    if [ $MEDICAL_CORRECTION_EXIT_CODE -eq 0 ] || [ $CORRECTED_FILE_COUNT -gt 0 ]; then
+        if [ $MEDICAL_CORRECTION_EXIT_CODE -eq 0 ]; then
+            echo "Medical term correction completed successfully"
+        else
+            echo "Medical term correction completed with some failures, but $CORRECTED_FILE_COUNT files were processed successfully"
+        fi
         echo "Corrected transcripts saved to: $CORRECTED_TRANSCRIPTS_DIR"
         
-        # Update transcript directory for next steps
+        # Update transcript directory for next steps to use corrected transcripts
         TRANSCRIPT_DIRS=("$CORRECTED_TRANSCRIPTS_DIR")
     else
-        echo "Warning: Medical term correction failed"
-        echo "ERROR: Medical term correction failed" >> "$ERROR_LOG_FILE"
+        echo "Warning: Medical term correction failed completely - no output files generated"
+        echo "ERROR: Medical term correction failed completely" >> "$ERROR_LOG_FILE"
         echo "  Model: $MEDICAL_CORRECTION_MODEL" >> "$ERROR_LOG_FILE"
         echo "  Input directories: ${TRANSCRIPT_DIRS[*]}" >> "$ERROR_LOG_FILE"
         echo "  Output directory: $CORRECTED_TRANSCRIPTS_DIR" >> "$ERROR_LOG_FILE"
         echo "  Continuing with original transcripts" >> "$ERROR_LOG_FILE"
         echo "" >> "$ERROR_LOG_FILE"
+        # Keep using original transcripts for next steps
     fi
 else
     echo "--- Skipping Medical Term Correction ---"
@@ -542,6 +579,8 @@ fi
 echo ""
 
 # --- Step 3: Emergency Page Generation (Optional) ---
+echo "DEBUG: ENABLE_PAGE_GENERATION = $ENABLE_PAGE_GENERATION"
+echo "DEBUG: TRANSCRIPT_DIRS = ${TRANSCRIPT_DIRS[*]}"
 if [ "$ENABLE_PAGE_GENERATION" = true ]; then
     echo "--- Step 3: Emergency Page Generation ---"
     EMERGENCY_PAGES_DIR="$OUTPUT_DIR/emergency_pages"
@@ -561,16 +600,25 @@ if [ "$ENABLE_PAGE_GENERATION" = true ]; then
         --batch_size "$BATCH_SIZE" \
         --prompt "$PAGE_GENERATION_PROMPT" \
         --error_log "$ERROR_LOG_FILE" \
-        ${LOAD_IN_8BIT:+--load_in_8bit} \
-        ${LOAD_IN_4BIT:+--load_in_4bit} \
-        ${MODEL_PATH:+--model_path "$MODEL_PATH"}
+        $([ "$LOAD_IN_8BIT" = "true" ] && echo "--load_in_8bit") \
+        $([ "$LOAD_IN_4BIT" = "true" ] && echo "--load_in_4bit") \
+        ${MODEL_PATH:+--model_path "$MODEL_PATH"} || true
     
-    if [ $? -eq 0 ]; then
-        echo "Emergency page generation completed successfully"
+    PAGE_GENERATION_EXIT_CODE=$?
+    
+    # Check if page generation produced any output files
+    PAGE_FILE_COUNT=$(find "$EMERGENCY_PAGES_DIR" -name "*.txt" 2>/dev/null | wc -l)
+    
+    if [ $PAGE_GENERATION_EXIT_CODE -eq 0 ] || [ $PAGE_FILE_COUNT -gt 0 ]; then
+        if [ $PAGE_GENERATION_EXIT_CODE -eq 0 ]; then
+            echo "Emergency page generation completed successfully"
+        else
+            echo "Emergency page generation completed with some failures, but $PAGE_FILE_COUNT pages were generated successfully"
+        fi
         echo "Emergency pages saved to: $EMERGENCY_PAGES_DIR"
     else
-        echo "Warning: Emergency page generation failed"
-        echo "ERROR: Emergency page generation failed" >> "$ERROR_LOG_FILE"
+        echo "Warning: Emergency page generation failed completely - no output files generated"
+        echo "ERROR: Emergency page generation failed completely" >> "$ERROR_LOG_FILE"
         echo "  Model: $PAGE_GENERATION_MODEL" >> "$ERROR_LOG_FILE"
         echo "  Input directories: ${TRANSCRIPT_DIRS[*]}" >> "$ERROR_LOG_FILE"
         echo "  Output directory: $EMERGENCY_PAGES_DIR" >> "$ERROR_LOG_FILE"
@@ -703,7 +751,7 @@ ERROR_COUNT=0
 
 # Check error log if it exists
 if [ -f "$ERROR_LOG_FILE" ]; then
-    ERROR_COUNT=$(grep -c "\[ERROR\]" "$ERROR_LOG_FILE" 2>/dev/null || echo "0")
+    ERROR_COUNT=$(grep -c "ERROR:" "$ERROR_LOG_FILE" 2>/dev/null || echo "0")
     
     # If there are errors, mark pipeline as failed
     if [ "$ERROR_COUNT" -gt 0 ]; then
@@ -744,6 +792,7 @@ else
     # Count failed files in error log
     if [ -f "$ERROR_LOG_FILE" ]; then
         FAILED_FILES=$(grep -c "FAILED FILE:" "$ERROR_LOG_FILE" 2>/dev/null || echo "0")
+        FAILED_FILES=${FAILED_FILES:-0}
         if [ "$FAILED_FILES" -gt 0 ]; then
             echo "  - Failed files: $FAILED_FILES"
             echo ""

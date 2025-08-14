@@ -1,0 +1,1 @@
+Priority 1: Medical Emergency; Patient Arriving at Scene; Patient Condition Unknown; Location: 123 Main Street; Unit #: Engine 7; Medical Resources Required: Firefighters; Priority Level: Code 3; Key Information: Patient Extrication Underway; Patient Expected to Be Alive; No Smoke or Fire Detected.

@@ -1,0 +1,1 @@
+911, this is [EMS agency] base command. This is [patient name] requesting a [transport type] to [destination hospital]. [Patient age], [gender], [diagnosis]. The patient has [chief complaint]. Expect [triage level].

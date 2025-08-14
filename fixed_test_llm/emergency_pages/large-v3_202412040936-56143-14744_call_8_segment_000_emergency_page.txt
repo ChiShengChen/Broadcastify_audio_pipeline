@@ -1,0 +1,1 @@
+Priority 1, Patient 1, Location 1952 Laston Road, Assessment 3288 H Avenue, Unit 811, Medical Priority Code 1, Medical Condition Headache, Stroke, Illness, Age 60, Gender Male, Vital Signs Unknown, Medications Unknown, Allergies Unknown, Injuries Unknown, Behavioral Observations Unknown, Response Time 5 min, Transport to Hospital Yes.

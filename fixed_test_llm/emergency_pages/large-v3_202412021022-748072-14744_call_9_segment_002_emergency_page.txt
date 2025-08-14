@@ -1,0 +1,1 @@
+Priority 1; Code 0; En route to [destination hospital]; [patient name], [age]/[gender], [diagnosis]; [chief complaint]; [triage level].
