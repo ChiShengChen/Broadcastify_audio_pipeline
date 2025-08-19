@@ -36,6 +36,9 @@ llm_results*/
 test_llm*/
 fixed*/
 debug*/
+audio_filter*/
+test*/
+CHiME*/
 # Transcription output
 *_transcriptions/
 
