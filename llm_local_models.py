@@ -205,7 +205,7 @@ class LocalLLMModel:
                     # Update device to match the model's actual device
                     if hasattr(self.model, 'device'):
                         self.device = str(self.model.device)
-                    elif hasattr(self.model, 'hf_device_map'):
+                    elif hasattr(self.model, 'hf_device_map') and self.model.hf_device_map is not None:
                         # For models with device mapping, use the first device
                         first_device = next(iter(self.model.hf_device_map.values()))
                         self.device = first_device if first_device != 'cpu' else 'cpu'

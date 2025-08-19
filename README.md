@@ -11,6 +11,33 @@ This project provides a complete two-stage processing system:
 
 ## ⚠️ Important Configuration Requirements
 
+### 🔧 Configuration Methods: Script vs Command Line
+
+**You have two options for configuring the pipeline:**
+
+#### Option 1: Edit Script Files (Recommended for Beginners)
+- **Modify the variables directly in `*.sh` files**
+- **No need to add command-line parameters when running**
+- **Configuration is permanent until you change it again**
+
+#### Option 2: Use Command-Line Parameters (Recommended for Advanced Users)
+- **Keep default values in script files**
+- **Override settings using command-line arguments**
+- **More flexible for different datasets and experiments**
+
+**💡 Tip**: Choose one method - either edit the script files OR use command-line parameters. You don't need to do both!
+
+**Example:**
+```bash
+# If you edited run_pipeline.sh with your paths, just run:
+./run_pipeline.sh
+
+# If you want to use command-line parameters instead:
+./run_pipeline.sh --input_dir "/your/audio/path" --output_dir "/your/output/path"
+```
+
+---
+
 ### HuggingFace Authentication (Required for Certain Models)
 
 **🔐 Meditron-7B Model Access**
@@ -55,7 +82,17 @@ If you need immediate access, use these models instead:
 
 ### Before Running the Pipeline
 
-**You MUST configure the following parameters in the script files before execution:**
+**You MUST configure the following parameters using ONE of these methods:**
+
+**Method 1: Edit Script Files (Simpler)**
+- Modify the variables directly in the `*.sh` files below
+- Run the scripts without additional parameters
+
+**Method 2: Use Command-Line Parameters (More Flexible)**
+- Keep the default values in script files
+- Override settings when running the scripts
+
+**Choose ONE method - you don't need to do both!**
 
 #### Stage 1: ASR Pipeline Configuration (`run_pipeline.sh`)
 
@@ -163,7 +200,9 @@ PAGE_GENERATION_PROMPT="Your custom emergency page generation prompt..."
 
 ### Alternative: Command-Line Configuration
 
-Instead of editing the script files, you can override the default settings using command-line parameters:
+**Instead of editing the script files, you can override the default settings using command-line parameters:**
+
+**💡 Remember**: Choose either script editing OR command-line parameters - not both!
 
 #### Stage 1 Command-Line Override
 ```bash
@@ -509,6 +548,8 @@ MODEL_PATHS=(
 
 ## 🚀 Quick Start
 
+**💡 Configuration Tip**: You can either edit the script files OR use command-line parameters. Choose one method!
+
 ### Two-Stage Pipeline Execution
 
 ```bash
@@ -533,6 +574,24 @@ MODEL_PATHS=(
     --page_generation_model "gpt-oss-120b" \
     --load_in_4bit \
     --device "cuda"
+```
+
+### Simple Script Editing Alternative
+
+**If you prefer to edit the script files instead:**
+
+```bash
+# 1. Edit run_pipeline.sh and set your paths:
+# AUDIO_DIR=("/your/audio/path")
+# GROUND_TRUTH_FILE="/your/ground_truth.csv"
+
+# 2. Edit run_llm_pipeline.sh and set your paths:
+# ASR_RESULTS_DIR="/your/asr/results/path"
+# MEDICAL_CORRECTION_MODEL="BioMistral-7B"
+
+# 3. Then simply run:
+./run_pipeline.sh
+./run_llm_pipeline.sh
 ```
 
 ### Complete Workflow Examples

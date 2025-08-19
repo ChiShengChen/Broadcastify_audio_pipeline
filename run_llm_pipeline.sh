@@ -76,6 +76,11 @@ LOAD_IN_4BIT=false
 TEMPERATURE=0.1  # Default temperature for gpt-oss models
 MAX_NEW_TOKENS=128  # Default max new tokens for gpt-oss models
 
+# --- Model Compatibility Configuration ---
+# 添加模型兼容性配置
+GPT_OSS_120B_COMPATIBLE=false  # 默认禁用 120b 以避免兼容性问题
+GPT_OSS_20B_COMPATIBLE=true    # 20b 模型通常更稳定
+
 # --- Medical Correction Configuration ---
 # MEDICAL_CORRECTION_PROMPT="You are a medical transcription specialist. Please correct any medical terms, drug names, anatomical terms, and medical procedures in the following ASR transcript. Maintain the original meaning and context. Only correct obvious medical errors and standardize medical terminology. Return only the corrected transcript without explanations."
 # MEDICAL_CORRECTION_PROMPT="You are an expert medical transcription correction system. Your role is to improve noisy, error-prone transcripts generated from EMS radio calls. These transcripts are derived from automatic speech recognition (ASR) and often contain phonetic errors, especially with medication names, clinical terminology, and numerical values.
@@ -206,6 +211,14 @@ while [[ $# -gt 0 ]]; do
             ENABLE_WHISPER_FILTER=false
             shift
             ;;
+        --enable_gpt_oss_120b)
+            GPT_OSS_120B_COMPATIBLE=true
+            shift
+            ;;
+        --disable_gpt_oss_120b)
+            GPT_OSS_120B_COMPATIBLE=t
+            shift
+            ;;
         -h|--help)
             echo "LLM-Enhanced ASR Pipeline"
             echo ""
@@ -315,6 +328,28 @@ validate_model() {
     if [ "$valid" = false ]; then
         echo "Error: Invalid model '$model'. Available models: ${AVAILABLE_MODELS[*]}"
         exit 1
+    fi
+    
+    # Check for known compatibility issues
+    if [ "$model" = "gpt-oss-120b" ] && [ "$GPT_OSS_120B_COMPATIBLE" = false ]; then
+        echo "Warning: gpt-oss-120b has known compatibility issues with 'NoneType' object has no attribute 'to_dict' error"
+        echo "Consider using gpt-oss-20b instead, or set GPT_OSS_120B_COMPATIBLE=true if you want to proceed"
+        echo "This error typically occurs due to:"
+        echo "  1. Transformers library version incompatibility"
+        echo "  2. Model configuration loading issues"
+        echo "  3. Memory allocation problems"
+        echo ""
+        read -p "Do you want to continue with gpt-oss-120b anyway? (y/N): " -n 1 -r
+        echo
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            echo "Switching to gpt-oss-20b for better compatibility..."
+            if [ "$1" = "$MEDICAL_CORRECTION_MODEL" ]; then
+                MEDICAL_CORRECTION_MODEL="gpt-oss-20b"
+            fi
+            if [ "$1" = "$PAGE_GENERATION_MODEL" ]; then
+                PAGE_GENERATION_MODEL="gpt-oss-20b"
+            fi
+        fi
     fi
 }
 
@@ -563,12 +598,39 @@ if [ "$ENABLE_MEDICAL_CORRECTION" = true ]; then
             SCRIPT_NAME="llm_gpt_oss_120b.py"
         fi
         
-        $PYTHON_EXEC $SCRIPT_NAME \
-            "${TRANSCRIPT_DIRS[0]}" \
-            "$CORRECTED_TRANSCRIPTS_DIR" \
-            "$MEDICAL_CORRECTION_PROMPT" \
-            "$TEMPERATURE" \
-            "$MAX_NEW_TOKENS" || true
+        # Check if script exists
+        if [ ! -f "$SCRIPT_NAME" ]; then
+            echo "ERROR: Script $SCRIPT_NAME not found!"
+            echo "ERROR: Script $SCRIPT_NAME not found!" >> "$ERROR_LOG_FILE"
+            echo "  Expected script: $SCRIPT_NAME" >> "$ERROR_LOG_FILE"
+            echo "  Current directory: $(pwd)" >> "$ERROR_LOG_FILE"
+            echo "  Available scripts:" >> "$ERROR_LOG_FILE"
+            ls -la *.py 2>/dev/null | head -10 >> "$ERROR_LOG_FILE" || echo "  No .py files found" >> "$ERROR_LOG_FILE"
+            echo "" >> "$ERROR_LOG_FILE"
+            echo "Falling back to llm_local_models.py..."
+            
+            # Fallback to local models script
+            $PYTHON_EXEC llm_local_models.py \
+                --mode medical_correction \
+                --input_dirs "${TRANSCRIPT_DIRS[@]}" \
+                --output_dir "$CORRECTED_TRANSCRIPTS_DIR" \
+                --model "$MEDICAL_CORRECTION_MODEL" \
+                --device "$DEVICE" \
+                --batch_size "$BATCH_SIZE" \
+                --prompt "$MEDICAL_CORRECTION_PROMPT" \
+                --error_log "$ERROR_LOG_FILE" \
+                $([ "$LOAD_IN_8BIT" = "true" ] && echo "--load_in_8bit") \
+                $([ "$LOAD_IN_4BIT" = "true" ] && echo "--load_in_4bit") \
+                ${MODEL_PATH:+--model_path "$MODEL_PATH"} || true
+        else
+            echo "Running $SCRIPT_NAME..."
+            $PYTHON_EXEC $SCRIPT_NAME \
+                "${TRANSCRIPT_DIRS[0]}" \
+                "$CORRECTED_TRANSCRIPTS_DIR" \
+                "$MEDICAL_CORRECTION_PROMPT" \
+                "$TEMPERATURE" \
+                "$MAX_NEW_TOKENS" || true
+        fi
     else
         # Run medical correction with local model for other models
         $PYTHON_EXEC llm_local_models.py \
@@ -642,7 +704,11 @@ if [ "$ENABLE_PAGE_GENERATION" = true ]; then
         if [ "$PAGE_GENERATION_MODEL" = "gpt-oss-20b" ]; then
             SCRIPT_NAME="llm_gpt_oss_20b.py"
         else
-            SCRIPT_NAME="llm_gpt_oss_120b.py"
+            # Use fixed version for 120b to avoid NoneType errors
+            SCRIPT_NAME="llm_gpt_oss_120b_fixed.py"
+            if [ ! -f "$SCRIPT_NAME" ]; then
+                SCRIPT_NAME="llm_gpt_oss_120b.py"  # Fallback to original
+            fi
         fi
         
         $PYTHON_EXEC $SCRIPT_NAME \
@@ -892,4 +958,4 @@ else
             echo "  - Error analysis: $ERROR_LOG_FILE"
         fi
     fi
-fi 
+fi      
