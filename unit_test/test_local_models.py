@@ -162,7 +162,7 @@ def test_setup_script():
         from setup_local_models import MODEL_CONFIGS, check_cuda_availability
         
         # Test model configs
-        expected_models = ["BioMistral-7B", "Meditron-7B", "gpt-oss-20b", "Llama-3-8B-UltraMedica"]
+        expected_models = ["BioMistral-7B", "Meditron-7B", "gpt-oss-20b", "gpt-oss-120b", "Llama-3-8B-UltraMedica"]
         for model in expected_models:
             if model in MODEL_CONFIGS:
                 print(f"✓ Model config for {model} found")

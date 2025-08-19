@@ -50,3 +50,5 @@ run_medical_asr.py
 medical*.csv
 
 run_audio_filter_llm_enhanced_exp_pipeline.sh
+
+專案介紹.md

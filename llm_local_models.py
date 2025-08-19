@@ -65,9 +65,15 @@ class LocalLLMModel:
         self.model = None
         self.pipeline = None
         
-        # Model configurations - optimized for BioMistral-7B
+        # Model configurations - optimized for different models
         self.model_configs = {
             "gpt-oss-20b": {
+                "max_length": 2048,
+                "temperature": 0.1,
+                "top_p": 0.9,
+                "do_sample": True
+            },
+            "gpt-oss-120b": {
                 "max_length": 2048,
                 "temperature": 0.1,
                 "top_p": 0.9,
@@ -110,14 +116,14 @@ class LocalLLMModel:
                     self.device = "cpu"
                     logger.info("Using CPU device")
             
-            # Special handling for gpt-oss-20b
-            if self.model_name == "gpt-oss-20b":
-                logger.info("Special handling for gpt-oss-20b model")
-                # Skip quantization for gpt-oss-20b due to compatibility issues
+            # Special handling for gpt-oss models
+            if self.model_name in ["gpt-oss-20b", "gpt-oss-120b"]:
+                logger.info(f"Special handling for {self.model_name} model")
+                # Skip quantization for gpt-oss models due to compatibility issues
                 quantization_config = None
                 self.load_in_8bit = False
                 self.load_in_4bit = False
-                logger.info("Skipping quantization for gpt-oss-20b")
+                logger.info(f"Skipping quantization for {self.model_name}")
             else:
                 # Configure quantization for other models
                 quantization_config = None
@@ -164,9 +170,9 @@ class LocalLLMModel:
                     self.device == "cuda"  # Use auto for CUDA to handle memory efficiently
                 )
                 
-                # Special handling for gpt-oss-20b
-                if self.model_name == "gpt-oss-20b":
-                    logger.info("Using auto device mapping for gpt-oss-20b")
+                # Special handling for gpt-oss models
+                if self.model_name in ["gpt-oss-20b", "gpt-oss-120b"]:
+                    logger.info(f"Using auto device mapping for {self.model_name}")
                     device_map = "auto"
                 elif use_auto_device_map:
                     logger.info("Using automatic device mapping")
@@ -550,7 +556,7 @@ def main():
     parser.add_argument("--output_dir", required=True,
                        help="Output directory for results")
     parser.add_argument("--model", required=True,
-                       choices=["gpt-oss-20b", "BioMistral-7B", "Meditron-7B", "Llama-3-8B-UltraMedica"],
+                       choices=["gpt-oss-20b", "gpt-oss-120b", "BioMistral-7B", "Meditron-7B", "Llama-3-8B-UltraMedica"],
                        help="LLM model to use")
     parser.add_argument("--model_path", default=None,
                        help="Custom model path (optional)")

@@ -19,17 +19,9 @@ AUDIO_DIR=("/media/meow/One Touch/ems_call/random_samples_1" "/media/meow/One To
 # For multiple directories, separate them with spaces:
 # AUDIO_DIR="/path/to/dir1 /path/to/dir2 /path/to/dir3"
 
-
-# Path to the ground truth CSV file for evaluation.
-# Must contain 'Filename' and 'transcript' columns.
-GROUND_TRUTH_FILE="/media/meow/One Touch/ems_call/vb_ems_anotation/human_anotation_vb.csv"
-# GROUND_TRUTH_FILE="/media/meow/One Touch/ems_call/long_audio_test_dataset/long_audio_ground_truth.csv"
-
-
-
-# Output directory for all processing results (with timestamp)
+# Output directory for pipeline results
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-OUTPUT_DIR="/media/meow/One Touch/ems_call/pipeline_results_${TIMESTAMP}"
+OUTPUT_DIR="./pipeline_results_${TIMESTAMP}"
 
 # Path to save the final evaluation report CSV.
 OUTPUT_FILE="$OUTPUT_DIR/asr_evaluation_results.csv"
@@ -304,6 +296,33 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 USE_ENHANCED_VAD=false  
+
+# Validate required parameters
+if [ ${#AUDIO_DIR[@]} -eq 0 ]; then
+    echo "Error: --input_dir is required"
+    echo "Use -h or --help for usage information"
+    exit 1
+fi
+
+# Validate that at least one input directory exists
+VALID_DIRS=()
+for dir in "${AUDIO_DIR[@]}"; do
+    if [ -d "$dir" ]; then
+        VALID_DIRS+=("$dir")
+    else
+        echo "Warning: Input directory does not exist: $dir"
+    fi
+done
+
+if [ ${#VALID_DIRS[@]} -eq 0 ]; then
+    echo "Error: No valid input directories found"
+    echo "Please provide valid directories with --input_dir"
+    exit 1
+fi
+
+# Update AUDIO_DIR to only include valid directories
+AUDIO_DIR=("${VALID_DIRS[@]}")
+
 # Create output directory
 mkdir -p "$OUTPUT_DIR"
 

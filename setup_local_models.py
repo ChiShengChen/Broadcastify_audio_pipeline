@@ -48,10 +48,16 @@ MODEL_CONFIGS = {
         "requirements": "16GB+ RAM, CUDA recommended"
     },
     "gpt-oss-20b": {
-        "huggingface_id": "microsoft/DialoGPT-medium",  # Placeholder
-        "description": "Open source GPT model (placeholder)",
+        "huggingface_id": "openai/gpt-oss-20b",
+        "description": "Open source GPT model (20B parameters)",
         "size_gb": 40,
         "requirements": "32GB+ RAM, CUDA required"
+    },
+    "gpt-oss-120b": {
+        "huggingface_id": "openai/gpt-oss-120b",
+        "description": "Open source GPT model (120B parameters)",
+        "size_gb": 240,
+        "requirements": "240GB+ RAM, Multiple GPUs required"
     },
     "Llama-3-8B-UltraMedica": {
         "huggingface_id": "meta-llama/Llama-3-8B",  # Placeholder

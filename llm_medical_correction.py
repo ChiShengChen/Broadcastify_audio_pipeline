@@ -111,7 +111,7 @@ def create_llm_client(model: str, local_endpoint: str, openai_base: str) -> LLMC
     """Create appropriate LLM client based on model type"""
     
     # Models that use OpenAI-compatible API
-    openai_models = ["gpt-oss-20b"]
+    openai_models = ["gpt-oss-20b", "gpt-oss-120b"]
     
     # Models that use local API
     local_models = ["BioMistral-7B", "Meditron-7B", "Llama-3-8B-UltraMedica"]
@@ -230,7 +230,7 @@ def main():
     parser.add_argument("--output_dir", required=True,
                        help="Output directory for corrected transcripts")
     parser.add_argument("--model", required=True,
-                       choices=["gpt-oss-20b", "BioMistral-7B", "Meditron-7B", "Llama-3-8B-UltraMedica"],
+                       choices=["gpt-oss-20b", "gpt-oss-120b", "BioMistral-7B", "Meditron-7B", "Llama-3-8B-UltraMedica"],
                        help="LLM model to use for correction")
     parser.add_argument("--local_endpoint", default="http://localhost:8000/v1",
                        help="Local model API endpoint")

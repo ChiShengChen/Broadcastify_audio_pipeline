@@ -76,7 +76,7 @@ def test_llm_client_creation():
         from llm_medical_correction import create_llm_client
         
         # Test client creation for different models
-        models = ["gpt-oss-20b", "BioMistral-7B", "Meditron-7B", "Llama-3-8B-UltraMedica"]
+        models = ["gpt-oss-20b", "gpt-oss-120b", "BioMistral-7B", "Meditron-7B", "Llama-3-8B-UltraMedica"]
         
         for model in models:
             try:

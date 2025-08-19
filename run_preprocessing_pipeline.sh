@@ -14,9 +14,9 @@ AUDIO_DIR="/media/meow/One Touch/ems_call/long_audio_test_dataset"
 # Path to the ground truth CSV file for evaluation.
 GROUND_TRUTH_FILE="/media/meow/One Touch/ems_call/long_audio_test_dataset/long_audio_ground_truth.csv"
 
-# Output directory for all processing results (with timestamp)
+# Output directory for preprocessing results
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-OUTPUT_DIR="/media/meow/One Touch/ems_call/preprocessing_pipeline_results_${TIMESTAMP}"
+OUTPUT_DIR="./preprocessing_pipeline_results_${TIMESTAMP}"
 
 # Path to save the final evaluation report CSV.
 OUTPUT_FILE="$OUTPUT_DIR/asr_evaluation_results.csv"
@@ -80,6 +80,18 @@ while [[ $# -gt 0 ]]; do
             ;;
     esac
 done
+
+# Validate required parameters
+if [ -z "$AUDIO_DIR" ]; then
+    echo "Error: --input_dir is required"
+    echo "Use -h or --help for usage information"
+    exit 1
+fi
+
+if [ ! -d "$AUDIO_DIR" ]; then
+    echo "Error: Input directory does not exist: $AUDIO_DIR"
+    exit 1
+fi
 
 # Create output directory
 mkdir -p "$OUTPUT_DIR"

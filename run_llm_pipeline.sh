@@ -100,11 +100,11 @@ REQUEST_TIMEOUT=60                # Timeout for API requests in seconds
 
 # Python interpreter to use
 # Ensure we're using the correct conda environment with CUDA support
-if [ -z "$CONDA_DEFAULT_ENV" ] || [ "$CONDA_DEFAULT_ENV" != "pytorch_112" ]; then
-    echo "Warning: Not in pytorch_112 environment. Attempting to activate..."
-    source $(conda info --base)/etc/profile.d/conda.sh
-    conda activate pytorch_112
-fi
+# if [ -z "$CONDA_DEFAULT_ENV" ] || [ "$CONDA_DEFAULT_ENV" != "pytorch_112" ]; then
+#     echo "Warning: Not in pytorch_112 environment. Attempting to activate..."
+#     source $(conda info --base)/etc/profile.d/conda.sh
+#     conda activate pytorch_112
+# fi
 PYTHON_EXEC="python3"
 
 # Parse command line arguments
