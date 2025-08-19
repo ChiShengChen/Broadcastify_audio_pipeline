@@ -548,16 +548,22 @@ if [ "$ENABLE_MEDICAL_CORRECTION" = true ]; then
     echo "Input directories: ${TRANSCRIPT_DIRS[*]}"
     echo "Output: $CORRECTED_TRANSCRIPTS_DIR"
     
-    # Special handling for gpt-oss-20b model
-    if [ "$MEDICAL_CORRECTION_MODEL" = "gpt-oss-20b" ]; then
-        echo "Using specialized gpt-oss-20b handler..."
+    # Special handling for gpt-oss models
+    if [ "$MEDICAL_CORRECTION_MODEL" = "gpt-oss-20b" ] || [ "$MEDICAL_CORRECTION_MODEL" = "gpt-oss-120b" ]; then
+        echo "Using specialized gpt-oss handler for $MEDICAL_CORRECTION_MODEL..."
         echo "Temperature: $TEMPERATURE, Max New Tokens: $MAX_NEW_TOKENS"
         
         # Set PyTorch memory allocation config
         export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
         
-        # Use the specialized script for gpt-oss-20b
-        $PYTHON_EXEC llm_gpt_oss_20b.py \
+        # Use the specialized script for gpt-oss models
+        if [ "$MEDICAL_CORRECTION_MODEL" = "gpt-oss-20b" ]; then
+            SCRIPT_NAME="llm_gpt_oss_20b.py"
+        else
+            SCRIPT_NAME="llm_gpt_oss_120b.py"
+        fi
+        
+        $PYTHON_EXEC $SCRIPT_NAME \
             "${TRANSCRIPT_DIRS[0]}" \
             "$CORRECTED_TRANSCRIPTS_DIR" \
             "$MEDICAL_CORRECTION_PROMPT" \
@@ -624,16 +630,22 @@ if [ "$ENABLE_PAGE_GENERATION" = true ]; then
     echo "Input directories: ${TRANSCRIPT_DIRS[*]}"
     echo "Output: $EMERGENCY_PAGES_DIR"
     
-    # Special handling for gpt-oss-20b model
-    if [ "$PAGE_GENERATION_MODEL" = "gpt-oss-20b" ]; then
-        echo "Using specialized gpt-oss-20b handler for page generation..."
+    # Special handling for gpt-oss models
+    if [ "$PAGE_GENERATION_MODEL" = "gpt-oss-20b" ] || [ "$PAGE_GENERATION_MODEL" = "gpt-oss-120b" ]; then
+        echo "Using specialized gpt-oss handler for $PAGE_GENERATION_MODEL..."
         echo "Temperature: $TEMPERATURE, Max New Tokens: $MAX_NEW_TOKENS"
         
         # Set PyTorch memory allocation config
         export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
         
-        # Use the specialized script for gpt-oss-20b
-        $PYTHON_EXEC llm_gpt_oss_20b.py \
+        # Use the specialized script for gpt-oss models
+        if [ "$PAGE_GENERATION_MODEL" = "gpt-oss-20b" ]; then
+            SCRIPT_NAME="llm_gpt_oss_20b.py"
+        else
+            SCRIPT_NAME="llm_gpt_oss_120b.py"
+        fi
+        
+        $PYTHON_EXEC $SCRIPT_NAME \
             "${TRANSCRIPT_DIRS[0]}" \
             "$EMERGENCY_PAGES_DIR" \
             "$PAGE_GENERATION_PROMPT" \
