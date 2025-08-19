@@ -31,7 +31,7 @@ hf auth login
 3. Fill out the access request form
 4. Wait for approval (may take several days)
 
-<!-- #### Alternative: Use Non-Gated Models
+#### Alternative: Use Non-Gated Models
 If you need immediate access, use these models instead:
 - **BioMistral-7B** ⭐ (Recommended) - No authentication required
 - **gpt-oss-20b** - No authentication required  
@@ -42,7 +42,12 @@ If you need immediate access, use these models instead:
 ./run_llm_pipeline.sh \
     --medical_correction_model "BioMistral-7B" \
     --page_generation_model "BioMistral-7B"
-``` -->
+
+# Or use gpt-oss-120b for maximum capability
+./run_llm_pipeline.sh \
+    --medical_correction_model "gpt-oss-120b" \
+    --page_generation_model "gpt-oss-120b"
+```
 
 **💡 Note**: All models are automatically downloaded from HuggingFace Hub on first use - no manual pre-download required.
 
@@ -92,11 +97,11 @@ GROUND_TRUTH_FILE="/path/to/your/ground_truth.csv"
 
 # 3. Choose medical correction model
 MEDICAL_CORRECTION_MODEL="BioMistral-7B"  # Recommended
-# Options: "BioMistral-7B", "Meditron-7B", "Llama-3-8B-UltraMedica", "gpt-oss-20b"
+# Options: "BioMistral-7B", "Meditron-7B", "Llama-3-8B-UltraMedica", "gpt-oss-20b", "gpt-oss-120b"
 
 # 4. Choose emergency page generation model  
 PAGE_GENERATION_MODEL="BioMistral-7B"     # Recommended
-# Options: "BioMistral-7B", "Meditron-7B", "Llama-3-8B-UltraMedica", "gpt-oss-20b"
+# Options: "BioMistral-7B", "Meditron-7B", "Llama-3-8B-UltraMedica", "gpt-oss-20b", "gpt-oss-120b"
 
 # 5. Customize prompts (optional) - lines 75-78
 MEDICAL_CORRECTION_PROMPT="You are a medical transcription specialist. Please correct any medical terms, drug names, anatomical terms, and medical procedures in the following ASR transcript. Maintain the original meaning and context. Only correct obvious medical errors and standardize medical terminology. Return only the corrected transcript without explanations."
@@ -186,7 +191,18 @@ Instead of editing the script files, you can override the default settings using
     --page_generation_model "BioMistral-7B" \
     --medical_correction_prompt "Your custom medical correction instructions..." \
     --page_generation_prompt "Your custom emergency page generation instructions..." \
-    --load_in_8bit \
+    --load_in_8bit
+
+# Using gpt-oss-120b for maximum capability
+./run_llm_pipeline.sh \
+    --asr_results_dir "/path/to/pipeline_results" \
+    --ground_truth "/your/ground_truth.csv" \
+    --medical_correction_model "gpt-oss-120b" \
+    --page_generation_model "gpt-oss-120b" \
+    --load_in_4bit \
+    --device "cuda" \
+    --batch_size 1
+``` \
     --device "cuda"
 ```
 
@@ -340,11 +356,13 @@ The same models are used for both medical correction and emergency page generati
 - **Meditron-7B**: Strong medical literature understanding (**requires HuggingFace authentication**)
 - **Llama-3-8B-UltraMedica**: Advanced medical reasoning (requires more memory)
 - **gpt-oss-20b**: Good general medical capabilities (immediate access)
+- **gpt-oss-120b**: Maximum reasoning capability (requires significant GPU memory, immediate access)
 
 **For Emergency Page Generation:**
 - **BioMistral-7B** ⭐: Excellent structured medical reporting (immediate access)
 - **Meditron-7B**: Good clinical documentation (**requires HuggingFace authentication**)
 - **gpt-oss-20b**: Best general language capabilities (high memory requirement, immediate access)
+- **gpt-oss-120b**: Maximum language understanding and generation (requires significant GPU memory, immediate access)
 
 **🚨 Authentication Note**: Meditron-7B requires HuggingFace login and access approval. For immediate usage, use BioMistral-7B which offers similar medical performance without authentication requirements.
 
@@ -355,6 +373,11 @@ The same models are used for both medical correction and emergency page generati
 | **No quantization** | 100% | Baseline | Highest | High-end GPUs (24GB+) |
 | **8-bit (`--load_in_8bit`)** | ~25% | 1.5-2x faster | Very High | Most GPUs (8GB+) |
 | **4-bit (`--load_in_4bit`)** | ~12% | 2-4x faster | High | Low-memory GPUs (4GB+) |
+
+**🚨 Note for gpt-oss-120b**: Due to its large size (120B parameters), gpt-oss-120b requires significant GPU memory even with quantization:
+- **No quantization**: ~240GB GPU memory (multiple high-end GPUs required)
+- **8-bit quantization**: ~70GB GPU memory (multiple GPUs recommended)
+- **4-bit quantization**: ~35GB GPU memory (single high-end GPU possible)
 
 #### LLM Model Requirements
 - **Base**: `pip install torch transformers accelerate`
@@ -473,13 +496,14 @@ ASR_MODELS="large-v3"  # Default to Whisper Large-v3 only
 
 #### LLM Models (`run_llm_pipeline.sh`)
 ```bash
-AVAILABLE_MODELS=("gpt-oss-20b" "BioMistral-7B" "Meditron-7B" "Llama-3-8B-UltraMedica")
+AVAILABLE_MODELS=("gpt-oss-20b" "gpt-oss-120b" "BioMistral-7B" "Meditron-7B" "Llama-3-8B-UltraMedica")
 
 MODEL_PATHS=(
     "BioMistral-7B:BioMistral/BioMistral-7B"
     "Meditron-7B:epfl-llm/meditron-7b" 
     "Llama-3-8B-UltraMedica:/path/to/llama-3-8b-ultramedica"
-    "gpt-oss-20b:/path/to/gpt-oss-20b"
+    "gpt-oss-20b:openai/gpt-oss-20b"
+    "gpt-oss-120b:openai/gpt-oss-120b"
 )
 ```
 
@@ -500,6 +524,14 @@ MODEL_PATHS=(
     --medical_correction_model "BioMistral-7B" \
     --page_generation_model "BioMistral-7B" \
     --load_in_8bit \
+    --device "cuda"
+
+# Or use gpt-oss-120b for maximum capability
+./run_llm_pipeline.sh \
+    --asr_results_dir /path/to/asr_results \
+    --medical_correction_model "gpt-oss-120b" \
+    --page_generation_model "gpt-oss-120b" \
+    --load_in_4bit \
     --device "cuda"
 ```
 
@@ -525,6 +557,16 @@ MODEL_PATHS=(
     --load_in_8bit \
     --device "cuda" \
     --batch_size 1
+
+# Or use gpt-oss-120b for maximum capability (requires significant GPU memory)
+./run_llm_pipeline.sh \
+    --asr_results_dir "/media/meow/One Touch/ems_call/asr_results_20240101_120000" \
+    --medical_correction_model "gpt-oss-120b" \
+    --page_generation_model "gpt-oss-120b" \
+    --ground_truth "/media/meow/One Touch/ems_call/ground_truth.csv" \
+    --load_in_4bit \
+    --device "cuda" \
+    --batch_size 1
 ```
 
 #### Fast Pipeline with Selected Models
@@ -543,6 +585,12 @@ MODEL_PATHS=(
     --asr_results_dir "/media/meow/One Touch/ems_call/asr_results_20240101_120000" \
     --medical_correction_model "BioMistral-7B" \
     --load_in_8bit
+
+# Or use gpt-oss-120b for maximum capability
+./run_llm_pipeline.sh \
+    --asr_results_dir "/media/meow/One Touch/ems_call/asr_results_20240101_120000" \
+    --medical_correction_model "gpt-oss-120b" \
+    --load_in_4bit
 ```
 
 #### Enterprise Pipeline with NeMo Models
@@ -562,6 +610,13 @@ MODEL_PATHS=(
     --medical_correction_model "Meditron-7B" \
     --page_generation_model "BioMistral-7B" \
     --load_in_8bit
+
+# Or use gpt-oss-120b for maximum capability
+./run_llm_pipeline.sh \
+    --asr_results_dir "/media/meow/One Touch/ems_call/asr_results_20240101_120000" \
+    --medical_correction_model "gpt-oss-120b" \
+    --page_generation_model "gpt-oss-120b" \
+    --load_in_4bit
 ```
 
 ## 🏗️ Data Flow Architecture
@@ -697,6 +752,7 @@ pipeline_results_YYYYMMDD_HHMMSS/
 - **Meditron-7B**: Medical language model
 - **Llama-3-8B-UltraMedica**: Medical fine-tuned Llama model
 - **gpt-oss-20b**: General purpose large model
+- **gpt-oss-120b**: Maximum capability large model (120B parameters)
 
 #### Quantization Options
 ```bash
@@ -716,6 +772,13 @@ pipeline_results_YYYYMMDD_HHMMSS/
 | **No Quantization** | ~14GB | Baseline | Highest |
 | **8-bit Quantization** | ~4GB | 1.5-2x faster | Very High |
 | **4-bit Quantization** | ~2GB | 2-4x faster | High |
+
+**gpt-oss-120b Memory Requirements:**
+| Configuration | GPU Memory | Performance | Quality |
+|---------------|------------|-------------|---------|
+| **No Quantization** | ~240GB | Baseline | Highest |
+| **8-bit Quantization** | ~70GB | 1.5-2x faster | Very High |
+| **4-bit Quantization** | ~35GB | 2-4x faster | High |
 
 ### Output Structure
 ```
@@ -921,6 +984,15 @@ pip install sentencepiece protobuf  # Optional performance enhancements
 - **RAM**: 16GB+ system RAM
 - **Storage**: Fast SSD for model loading
 
+#### For gpt-oss-120b Processing
+- **GPU**: Multiple high-end NVIDIA GPUs
+  - **4-bit quantization**: Single RTX 4090 (24GB) or A100 (40GB+)
+  - **8-bit quantization**: Multiple RTX 4090s or A100s
+  - **No quantization**: Multiple A100s or H100s
+- **RAM**: 64GB+ system RAM
+- **Storage**: NVMe SSD for fast model loading
+- **Network**: High-speed connection for model download
+
 ## 🧪 Testing and Validation
 
 ### Pipeline Testing
@@ -931,6 +1003,9 @@ python3 test_pipeline_status.py
 
 # Test LLM components
 python3 test_local_models.py
+
+# Test gpt-oss-120b specifically
+python3 test_gpt_oss_120b.py
 
 # Test error handling
 python3 test_error_handling.py
@@ -1003,6 +1078,10 @@ ffmpeg -i input.mp3 -ar 16000 -ac 1 output.wav
 # Model loading failures
 # Solution: Check model availability and paths
 python3 -c "from transformers import AutoTokenizer; AutoTokenizer.from_pretrained('BioMistral/BioMistral-7B')"
+
+# gpt-oss-120b memory issues
+# Solution: Use 4-bit quantization and ensure sufficient GPU memory
+./run_llm_pipeline.sh --medical_correction_model "gpt-oss-120b" --load_in_4bit --batch_size 1
 ```
 
 ### Performance Optimization
@@ -1017,6 +1096,9 @@ python3 -c "from transformers import AutoTokenizer; AutoTokenizer.from_pretraine
 
 # Process only essential features
 ./run_llm_pipeline.sh --disable_page_generation
+
+# For gpt-oss-120b: Use 4-bit quantization and single batch
+./run_llm_pipeline.sh --medical_correction_model "gpt-oss-120b" --load_in_4bit --batch_size 1
 ```
 
 #### Speed Optimization
