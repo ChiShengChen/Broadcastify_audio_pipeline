@@ -1,0 +1,149 @@
+Combination,Preprocessing,LLM_Model,WER,BLEU,Processing_Time_sec,ASR_Time_sec,LLM_Time_sec,Total_Files,Successful_Files
+baseline,None,None,  Evaluating results for baseline...
+Searching for transcript files...
+Found 50 .txt files in /media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/baseline/asr_results
+
+Processing a total of 50 files...
+
+Finished processing. Matched 50 files with ground truth.
+
+Calculating metrics for each model...
+ - Model: large-v3 (50 files)
+
+Evaluation complete. Results saved to /media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/baseline/evaluation_results.csv
+--- ASR Evaluation Report ---
+      Model       WER       MER       WIL  Substitutions  Deletions  Insertions  Hits  Total_Words_in_Reference  Total_Files_Matched
+0  large-v3  0.656796  0.493435  0.643485           1112        230        1364  2778                      4120                   50
+-----------------------------
+    - WER: 0.6567961165048544
+    - BLEU: 0.4934354485776805
+0.6567961165048544,  Evaluating results for baseline...
+Searching for transcript files...
+Found 50 .txt files in /media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/baseline/asr_results
+
+Processing a total of 50 files...
+
+Finished processing. Matched 50 files with ground truth.
+
+Calculating metrics for each model...
+ - Model: large-v3 (50 files)
+
+Evaluation complete. Results saved to /media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/baseline/evaluation_results.csv
+--- ASR Evaluation Report ---
+      Model       WER       MER       WIL  Substitutions  Deletions  Insertions  Hits  Total_Words_in_Reference  Total_Files_Matched
+0  large-v3  0.656796  0.493435  0.643485           1112        230        1364  2778                      4120                   50
+-----------------------------
+    - WER: 0.6567961165048544
+    - BLEU: 0.4934354485776805
+0.4934354485776805,338,82,0,50,50
+preprocessing_only,Mode_e,None,  Evaluating results for preprocessing_only...
+Searching for transcript files...
+Found 50 .txt files in /media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/preprocessing_only/asr_results
+
+Processing a total of 50 files...
+
+Finished processing. Matched 50 files with ground truth.
+
+Calculating metrics for each model...
+ - Model: large-v3 (50 files)
+
+Evaluation complete. Results saved to /media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/preprocessing_only/evaluation_results.csv
+--- ASR Evaluation Report ---
+      Model      WER       MER       WIL  Substitutions  Deletions  Insertions  Hits  Total_Words_in_Reference  Total_Files_Matched
+0  large-v3  0.63301  0.486749  0.641212           1128        242        1238  2750                      4120                   50
+-----------------------------
+    - WER: 0.6330097087378641
+    - BLEU: 0.48674878686076894
+0.6330097087378641,  Evaluating results for preprocessing_only...
+Searching for transcript files...
+Found 50 .txt files in /media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/preprocessing_only/asr_results
+
+Processing a total of 50 files...
+
+Finished processing. Matched 50 files with ground truth.
+
+Calculating metrics for each model...
+ - Model: large-v3 (50 files)
+
+Evaluation complete. Results saved to /media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/preprocessing_only/evaluation_results.csv
+--- ASR Evaluation Report ---
+      Model      WER       MER       WIL  Substitutions  Deletions  Insertions  Hits  Total_Words_in_Reference  Total_Files_Matched
+0  large-v3  0.63301  0.486749  0.641212           1128        242        1238  2750                      4120                   50
+-----------------------------
+    - WER: 0.6330097087378641
+    - BLEU: 0.48674878686076894
+0.48674878686076894,318,61,0,50,50
+postprocessing_only,None,BioMistral-7B,  Evaluating results for postprocessing_only...
+Searching for transcript files...
+Found 50 .txt files in /media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/llm_corrected
+
+Processing a total of 50 files...
+
+Finished processing. Matched 50 files with ground truth.
+
+Calculating metrics for each model...
+ - Model: large-v3 (50 files)
+
+Evaluation complete. Results saved to /media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/evaluation_results.csv
+--- ASR Evaluation Report ---
+      Model       WER       MER       WIL  Substitutions  Deletions  Insertions  Hits  Total_Words_in_Reference  Total_Files_Matched
+0  large-v3  0.645874  0.504455  0.665828           1194        312        1155  2614                      4120                   50
+-----------------------------
+    - WER: 0.6458737864077669
+    - BLEU: 0.5044549763033175
+0.6458737864077669,  Evaluating results for postprocessing_only...
+Searching for transcript files...
+Found 50 .txt files in /media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/llm_corrected
+
+Processing a total of 50 files...
+
+Finished processing. Matched 50 files with ground truth.
+
+Calculating metrics for each model...
+ - Model: large-v3 (50 files)
+
+Evaluation complete. Results saved to /media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/evaluation_results.csv
+--- ASR Evaluation Report ---
+      Model       WER       MER       WIL  Substitutions  Deletions  Insertions  Hits  Total_Words_in_Reference  Total_Files_Matched
+0  large-v3  0.645874  0.504455  0.665828           1194        312        1155  2614                      4120                   50
+-----------------------------
+    - WER: 0.6458737864077669
+    - BLEU: 0.5044549763033175
+0.5044549763033175,725,74,139,50,50
+preprocessing_postprocessing,Mode_e,BioMistral-7B,  Evaluating results for preprocessing_postprocessing...
+Searching for transcript files...
+Found 50 .txt files in /media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/preprocessing_postprocessing/llm_corrected
+
+Processing a total of 50 files...
+
+Finished processing. Matched 50 files with ground truth.
+
+Calculating metrics for each model...
+ - Model: large-v3 (50 files)
+
+Evaluation complete. Results saved to /media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/preprocessing_postprocessing/evaluation_results.csv
+--- ASR Evaluation Report ---
+      Model       WER       MER       WIL  Substitutions  Deletions  Insertions  Hits  Total_Words_in_Reference  Total_Files_Matched
+0  large-v3  0.625728  0.500972  0.661456           1134        418        1026  2568                      4120                   50
+-----------------------------
+    - WER: 0.6257281553398059
+    - BLEU: 0.500971628449281
+0.6257281553398059,  Evaluating results for preprocessing_postprocessing...
+Searching for transcript files...
+Found 50 .txt files in /media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/preprocessing_postprocessing/llm_corrected
+
+Processing a total of 50 files...
+
+Finished processing. Matched 50 files with ground truth.
+
+Calculating metrics for each model...
+ - Model: large-v3 (50 files)
+
+Evaluation complete. Results saved to /media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/preprocessing_postprocessing/evaluation_results.csv
+--- ASR Evaluation Report ---
+      Model       WER       MER       WIL  Substitutions  Deletions  Insertions  Hits  Total_Words_in_Reference  Total_Files_Matched
+0  large-v3  0.625728  0.500972  0.661456           1134        418        1026  2568                      4120                   50
+-----------------------------
+    - WER: 0.6257281553398059
+    - BLEU: 0.500971628449281
+0.500971628449281,684,45,126,50,50

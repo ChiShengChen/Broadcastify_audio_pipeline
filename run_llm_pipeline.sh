@@ -29,7 +29,7 @@
 
 # --- User Configuration ---
 # Input directory containing ASR results from previous pipeline
-ASR_RESULTS_DIR="/media/meow/One Touch/ems_call/pipeline_results_20250729_033902"
+ASR_RESULTS_DIR="/media/meow/One Touch/ems_call/pipeline_results_20250814_044143"
 # Example: "/media/meow/One Touch/ems_call/pipeline_results_20250729_034836"
 
 # Ground truth file for evaluation (optional)
@@ -45,17 +45,6 @@ OUTPUT_DIR=""
 # Available LLM models
 AVAILABLE_MODELS=("gpt-oss-20b" "gpt-oss-120b" "BioMistral-7B" "Meditron-7B" "Llama-3-8B-UltraMedica")
 
-# Default model selections
-MEDICAL_CORRECTION_MODEL="BioMistral-7B"    # Model for medical term correction
-PAGE_GENERATION_MODEL="BioMistral-7B"     # Model for emergency page generation
-
-# --- Feature Switches ---
-ENABLE_MEDICAL_CORRECTION=true    # Enable medical term correction
-ENABLE_PAGE_GENERATION=true       # Enable emergency page generation
-ENABLE_EVALUATION=true            # Enable evaluation of corrected results
-ENABLE_WHISPER_FILTER=true        # Enable filtering for Whisper results only
-
-# --- LLM Configuration ---
 # Use local models instead of API calls
 USE_LOCAL_MODELS=true
 
@@ -68,24 +57,39 @@ MODEL_PATHS=(
     "Llama-3-8B-UltraMedica:/path/to/llama-3-8b-ultramedica"
 )
 
+# Default model selections
+MEDICAL_CORRECTION_MODEL="gpt-oss-20b"    # Model for medical term correction
+PAGE_GENERATION_MODEL="gpt-oss-20b"     # Model for emergency page generation
+
+# --- Feature Switches ---
+ENABLE_MEDICAL_CORRECTION=true    # Enable medical term correction
+ENABLE_PAGE_GENERATION=true       # Enable emergency page generation
+ENABLE_EVALUATION=true            # Enable evaluation of corrected results
+ENABLE_WHISPER_FILTER=true        # Enable filtering for Whisper results only
+
 # Device configuration
 DEVICE="auto"  # auto, cpu, cuda
 LOAD_IN_8BIT=false
 LOAD_IN_4BIT=false
 
+# Generation parameters
+TEMPERATURE=0.1  # Default temperature for gpt-oss models
+MAX_NEW_TOKENS=128  # Default max new tokens for gpt-oss models
+
 # --- Medical Correction Configuration ---
 # MEDICAL_CORRECTION_PROMPT="You are a medical transcription specialist. Please correct any medical terms, drug names, anatomical terms, and medical procedures in the following ASR transcript. Maintain the original meaning and context. Only correct obvious medical errors and standardize medical terminology. Return only the corrected transcript without explanations."
-MEDICAL_CORRECTION_PROMPT="You are an expert medical transcription correction system. Your role is to improve noisy, error-prone transcripts generated from EMS radio calls. These transcripts are derived from automatic speech recognition (ASR) and often contain phonetic errors, especially with medication names, clinical terminology, and numerical values.
-Each transcript reflects a real-time communication from EMS personnel to hospital staff, summarizing a patient’s clinical condition, vital signs, and any treatments administered during prehospital care. Use your knowledge of emergency medicine, pharmacology, and EMS protocols to reconstruct the intended meaning of the message as accurately and clearly as possible.
-Guidelines:
-	1.	Replace misrecognized or phonetically incorrect words and phrases with their most likely intended clinical equivalents.
-	2.	Express the message in clear, natural language while maintaining the tone and intent of an EMS-to-hospital handoff.
-	3.	Include all information from the original transcript—ensure your output is complete and continuous.
-	4.	Use medical abbreviations and shorthand appropriately when they match clinical usage (e.g., “BP” for blood pressure, “ETT” for endotracheal tube).
-	5.	Apply contextual reasoning to identify and correct drug names, dosages, clinical phrases, and symptoms using common EMS knowledge.
-	6.	Deliver your output as plain, unstructured text without metadata, formatting, or explanatory notes.
-	7.	Present the cleaned transcript as a fully corrected version, without gaps, placeholders, or annotations.
-"
+# MEDICAL_CORRECTION_PROMPT="You are an expert medical transcription correction system. Your role is to improve noisy, error-prone transcripts generated from EMS radio calls. These transcripts are derived from automatic speech recognition (ASR) and often contain phonetic errors, especially with medication names, clinical terminology, and numerical values.
+# Each transcript reflects a real-time communication from EMS personnel to hospital staff, summarizing a patient’s clinical condition, vital signs, and any treatments administered during prehospital care. Use your knowledge of emergency medicine, pharmacology, and EMS protocols to reconstruct the intended meaning of the message as accurately and clearly as possible.
+# Guidelines:
+# 	1.	Replace misrecognized or phonetically incorrect words and phrases with their most likely intended clinical equivalents.
+# 	2.	Express the message in clear, natural language while maintaining the tone and intent of an EMS-to-hospital handoff.
+# 	3.	Include all information from the original transcript—ensure your output is complete and continuous.
+# 	4.	Use medical abbreviations and shorthand appropriately when they match clinical usage (e.g., “BP” for blood pressure, “ETT” for endotracheal tube).
+# 	5.	Apply contextual reasoning to identify and correct drug names, dosages, clinical phrases, and symptoms using common EMS knowledge.
+# 	6.	Deliver your output as plain, unstructured text without metadata, formatting, or explanatory notes.
+# 	7.	Present the cleaned transcript as a fully corrected version, without gaps, placeholders, or annotations.
+# "
+MEDICAL_CORRECTION_PROMPT="You are an information extraction model for EMS prearrival radio transcripts in Massachusetts. TASK: Return a single JSON object only. No prose, no code fences, no explanations. SCHEMA (all keys required; values are strings; if unspecified, use \"\"): {\"agency\": \"\", \"unit\": \"\", \"ETA\": \"\", \"age\": \"\", \"sex\": \"\", \"moi\": \"\", \"hr\": \"\", \"rrq\": \"\", \"sbp\": \"\", \"dbp\": \"\", \"end_tidal\": \"\", \"rr\": \"\", \"bgl\": \"\", \"spo2\": \"\", \"o2\": \"\", \"injuries\": \"\", \"ao\": \"\", \"GCS\": \"\", \"LOC\": \"\", \"ac\": \"\", \"treatment\": \"\", \"pregnant\": \"\", \"notes\": \"\"} RULES: Fill fields only with information explicitly stated in the transcript. Do not infer, guess, or normalize beyond obvious medical term corrections. Keep numbers as they are spoken. If multiple possibilities are stated, choose the most explicit; otherwise put \"\". Output must be valid JSON. No trailing commas. OUTPUT FORMAT: A single JSON object exactly matching the SCHEMA keys and order above. TRANSCRIPT:"
 # --- Emergency Page Generation Configuration ---
 PAGE_GENERATION_PROMPT="You are an emergency medical dispatcher. Based on the following corrected medical transcript, generate a structured emergency page that includes: 1) Patient condition summary, 2) Location details, 3) Required medical resources, 4) Priority level, 5) Key medical information. Format the response as a structured emergency page."
 
@@ -174,6 +178,14 @@ while [[ $# -gt 0 ]]; do
             LOAD_IN_4BIT=true
             shift
             ;;
+        --temperature)
+            TEMPERATURE="$2"
+            shift 2
+            ;;
+        --max_new_tokens)
+            MAX_NEW_TOKENS="$2"
+            shift 2
+            ;;
         --batch_size)
             BATCH_SIZE="$2"
             shift 2
@@ -231,6 +243,8 @@ echo "  --disable_whisper_filter           Disable Whisper filtering"
             echo "  --load_in_8bit                     Load model in 8-bit quantization"
             echo "  --load_in_4bit                     Load model in 4-bit quantization"
             echo "  --batch_size INT                   Number of files to process in parallel (default: 1 for local models)"
+            echo "  --temperature FLOAT                Temperature for generation (default: 0.1 for gpt-oss models)"
+            echo "  --max_new_tokens INT               Maximum new tokens to generate (default: 128 for gpt-oss models)"
             echo "  --medical_correction_prompt TEXT   Custom prompt for medical correction"
             echo "  --page_generation_prompt TEXT      Custom prompt for page generation"
             echo ""
@@ -345,6 +359,8 @@ echo "  - Use Local Models: $USE_LOCAL_MODELS"
 echo "  - Device: $DEVICE"
 echo "  - Load in 8-bit: $LOAD_IN_8BIT"
 echo "  - Load in 4-bit: $LOAD_IN_4BIT"
+echo "  - Temperature: $TEMPERATURE"
+echo "  - Max New Tokens: $MAX_NEW_TOKENS"
 echo ""
 echo "Processing Configuration:"
 echo "  - Batch Size: $BATCH_SIZE"
@@ -356,16 +372,17 @@ echo ""
 # --- Step 1: Find ASR Transcripts ---
 echo "--- Step 1: Locating ASR Transcripts ---"
 
-# Look for transcripts in various possible locations
+# Look for transcripts in various possible locations (prioritize merged results)
 TRANSCRIPT_DIRS=()
-if [ -d "$ASR_RESULTS_DIR/asr_transcripts" ]; then
-    TRANSCRIPT_DIRS+=("$ASR_RESULTS_DIR/asr_transcripts")
-fi
-if [ -d "$ASR_RESULTS_DIR/merged_transcripts" ]; then
-    TRANSCRIPT_DIRS+=("$ASR_RESULTS_DIR/merged_transcripts")
-fi
+# Prioritize merged segmented transcripts (complete files after merging segments)
 if [ -d "$ASR_RESULTS_DIR/merged_segmented_transcripts" ]; then
     TRANSCRIPT_DIRS+=("$ASR_RESULTS_DIR/merged_segmented_transcripts")
+# Then merged transcripts (for long audio splits)
+elif [ -d "$ASR_RESULTS_DIR/merged_transcripts" ]; then
+    TRANSCRIPT_DIRS+=("$ASR_RESULTS_DIR/merged_transcripts")
+# Finally fall back to raw ASR transcripts (may contain segments)
+elif [ -d "$ASR_RESULTS_DIR/asr_transcripts" ]; then
+    TRANSCRIPT_DIRS+=("$ASR_RESULTS_DIR/asr_transcripts")
 fi
 
 # If no specific transcript directory found, check the root
@@ -531,19 +548,36 @@ if [ "$ENABLE_MEDICAL_CORRECTION" = true ]; then
     echo "Input directories: ${TRANSCRIPT_DIRS[*]}"
     echo "Output: $CORRECTED_TRANSCRIPTS_DIR"
     
-    # Run medical correction with local model
-    $PYTHON_EXEC llm_local_models.py \
-        --mode medical_correction \
-        --input_dirs "${TRANSCRIPT_DIRS[@]}" \
-        --output_dir "$CORRECTED_TRANSCRIPTS_DIR" \
-        --model "$MEDICAL_CORRECTION_MODEL" \
-        --device "$DEVICE" \
-        --batch_size "$BATCH_SIZE" \
-        --prompt "$MEDICAL_CORRECTION_PROMPT" \
-        --error_log "$ERROR_LOG_FILE" \
-        $([ "$LOAD_IN_8BIT" = "true" ] && echo "--load_in_8bit") \
-        $([ "$LOAD_IN_4BIT" = "true" ] && echo "--load_in_4bit") \
-        ${MODEL_PATH:+--model_path "$MODEL_PATH"} || true
+    # Special handling for gpt-oss-20b model
+    if [ "$MEDICAL_CORRECTION_MODEL" = "gpt-oss-20b" ]; then
+        echo "Using specialized gpt-oss-20b handler..."
+        echo "Temperature: $TEMPERATURE, Max New Tokens: $MAX_NEW_TOKENS"
+        
+        # Set PyTorch memory allocation config
+        export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+        
+        # Use the specialized script for gpt-oss-20b
+        $PYTHON_EXEC llm_gpt_oss_20b.py \
+            "${TRANSCRIPT_DIRS[0]}" \
+            "$CORRECTED_TRANSCRIPTS_DIR" \
+            "$MEDICAL_CORRECTION_PROMPT" \
+            "$TEMPERATURE" \
+            "$MAX_NEW_TOKENS" || true
+    else
+        # Run medical correction with local model for other models
+        $PYTHON_EXEC llm_local_models.py \
+            --mode medical_correction \
+            --input_dirs "${TRANSCRIPT_DIRS[@]}" \
+            --output_dir "$CORRECTED_TRANSCRIPTS_DIR" \
+            --model "$MEDICAL_CORRECTION_MODEL" \
+            --device "$DEVICE" \
+            --batch_size "$BATCH_SIZE" \
+            --prompt "$MEDICAL_CORRECTION_PROMPT" \
+            --error_log "$ERROR_LOG_FILE" \
+            $([ "$LOAD_IN_8BIT" = "true" ] && echo "--load_in_8bit") \
+            $([ "$LOAD_IN_4BIT" = "true" ] && echo "--load_in_4bit") \
+            ${MODEL_PATH:+--model_path "$MODEL_PATH"} || true
+    fi
     
     MEDICAL_CORRECTION_EXIT_CODE=$?
     echo "Medical correction exit code: $MEDICAL_CORRECTION_EXIT_CODE"
@@ -590,19 +624,36 @@ if [ "$ENABLE_PAGE_GENERATION" = true ]; then
     echo "Input directories: ${TRANSCRIPT_DIRS[*]}"
     echo "Output: $EMERGENCY_PAGES_DIR"
     
-    # Run emergency page generation with local model
-    $PYTHON_EXEC llm_local_models.py \
-        --mode emergency_page \
-        --input_dirs "${TRANSCRIPT_DIRS[@]}" \
-        --output_dir "$EMERGENCY_PAGES_DIR" \
-        --model "$PAGE_GENERATION_MODEL" \
-        --device "$DEVICE" \
-        --batch_size "$BATCH_SIZE" \
-        --prompt "$PAGE_GENERATION_PROMPT" \
-        --error_log "$ERROR_LOG_FILE" \
-        $([ "$LOAD_IN_8BIT" = "true" ] && echo "--load_in_8bit") \
-        $([ "$LOAD_IN_4BIT" = "true" ] && echo "--load_in_4bit") \
-        ${MODEL_PATH:+--model_path "$MODEL_PATH"} || true
+    # Special handling for gpt-oss-20b model
+    if [ "$PAGE_GENERATION_MODEL" = "gpt-oss-20b" ]; then
+        echo "Using specialized gpt-oss-20b handler for page generation..."
+        echo "Temperature: $TEMPERATURE, Max New Tokens: $MAX_NEW_TOKENS"
+        
+        # Set PyTorch memory allocation config
+        export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+        
+        # Use the specialized script for gpt-oss-20b
+        $PYTHON_EXEC llm_gpt_oss_20b.py \
+            "${TRANSCRIPT_DIRS[0]}" \
+            "$EMERGENCY_PAGES_DIR" \
+            "$PAGE_GENERATION_PROMPT" \
+            "$TEMPERATURE" \
+            "$MAX_NEW_TOKENS" || true
+    else
+        # Run emergency page generation with local model for other models
+        $PYTHON_EXEC llm_local_models.py \
+            --mode emergency_page \
+            --input_dirs "${TRANSCRIPT_DIRS[@]}" \
+            --output_dir "$EMERGENCY_PAGES_DIR" \
+            --model "$PAGE_GENERATION_MODEL" \
+            --device "$DEVICE" \
+            --batch_size "$BATCH_SIZE" \
+            --prompt "$PAGE_GENERATION_PROMPT" \
+            --error_log "$ERROR_LOG_FILE" \
+            $([ "$LOAD_IN_8BIT" = "true" ] && echo "--load_in_8bit") \
+            $([ "$LOAD_IN_4BIT" = "true" ] && echo "--load_in_4bit") \
+            ${MODEL_PATH:+--model_path "$MODEL_PATH"} || true
+    fi
     
     PAGE_GENERATION_EXIT_CODE=$?
     

@@ -110,14 +110,38 @@ class LocalLLMModel:
                     self.device = "cpu"
                     logger.info("Using CPU device")
             
-            # Configure quantization
-            quantization_config = None
-            if self.load_in_8bit:
-                quantization_config = BitsAndBytesConfig(load_in_8bit=True)
-                logger.info("Using 8-bit quantization")
-            elif self.load_in_4bit:
-                quantization_config = BitsAndBytesConfig(load_in_4bit=True)
-                logger.info("Using 4-bit quantization")
+            # Special handling for gpt-oss-20b
+            if self.model_name == "gpt-oss-20b":
+                logger.info("Special handling for gpt-oss-20b model")
+                # Skip quantization for gpt-oss-20b due to compatibility issues
+                quantization_config = None
+                self.load_in_8bit = False
+                self.load_in_4bit = False
+                logger.info("Skipping quantization for gpt-oss-20b")
+            else:
+                # Configure quantization for other models
+                quantization_config = None
+                if self.load_in_8bit:
+                    try:
+                        quantization_config = BitsAndBytesConfig(load_in_8bit=True)
+                        logger.info("Using 8-bit quantization")
+                    except Exception as e:
+                        logger.warning(f"8-bit quantization failed: {e}")
+                        quantization_config = None
+                elif self.load_in_4bit:
+                    try:
+                        # try 4-bit quantization
+                        quantization_config = BitsAndBytesConfig(load_in_4bit=True)
+                        logger.info("Using 4-bit quantization")
+                    except Exception as e:
+                        logger.warning(f"4-bit quantization failed: {e}")
+                        # if 4-bit failed, try 8-bit
+                        try:
+                            quantization_config = BitsAndBytesConfig(load_in_8bit=True)
+                            logger.info("Falling back to 8-bit quantization")
+                        except Exception as e2:
+                            logger.warning(f"8-bit quantization also failed: {e2}")
+                            quantization_config = None
             
             # Load tokenizer
             logger.info("Loading tokenizer...")
@@ -140,7 +164,11 @@ class LocalLLMModel:
                     self.device == "cuda"  # Use auto for CUDA to handle memory efficiently
                 )
                 
-                if use_auto_device_map:
+                # Special handling for gpt-oss-20b
+                if self.model_name == "gpt-oss-20b":
+                    logger.info("Using auto device mapping for gpt-oss-20b")
+                    device_map = "auto"
+                elif use_auto_device_map:
                     logger.info("Using automatic device mapping")
                     device_map = "auto"
                 else:
@@ -148,7 +176,7 @@ class LocalLLMModel:
                 
                 self.model = AutoModelForCausalLM.from_pretrained(
                     self.model_path,
-                    torch_dtype=torch.float16 if self.device == "cuda" else torch.float32,
+                    torch_dtype=torch.bfloat16 if self.device == "cuda" and "gpt-oss" in self.model_name else torch.float32,  # gpt-oss系列使用bfloat16
                     device_map=device_map,
                     quantization_config=quantization_config,
                     trust_remote_code=True,
@@ -325,7 +353,8 @@ def create_local_model(model_name: str, model_path: str = None, device: str = "a
     
     # Model path mappings (if not provided)
     model_paths = {
-        "gpt-oss-20b": "microsoft/DialoGPT-medium",  # Placeholder, replace with actual model
+        "gpt-oss-20b": "openai/gpt-oss-20b",
+        "gpt-oss-120b": "openai/gpt-oss-120b",
         "BioMistral-7B": "BioMistral/BioMistral-7B",
         "Meditron-7B": "epfl-llm/meditron-7b",
         "Llama-3-8B-UltraMedica": "meta-llama/Llama-3-8B"  # Placeholder, replace with actual model

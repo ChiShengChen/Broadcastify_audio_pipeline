@@ -1,0 +1,316 @@
+{
+  "mode": "medical_correction",
+  "model": "BioMistral-7B",
+  "model_path": "BioMistral-7B",
+  "device": "auto",
+  "input_directories": [
+    "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results"
+  ],
+  "output_directory": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/llm_corrected",
+  "total_files": 50,
+  "successful": 50,
+  "failed": 0,
+  "success_rate": 1.0,
+  "results": [
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412010133-841696-14744_call_2.txt",
+      "success": true,
+      "original_length": 837,
+      "corrected_length": 837
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412011757-965821-14744_call_11.txt",
+      "success": true,
+      "original_length": 650,
+      "corrected_length": 631
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412011757-965821-14744_call_5.txt",
+      "success": true,
+      "original_length": 376,
+      "corrected_length": 370
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412020952-344688-14744_call_14.txt",
+      "success": true,
+      "original_length": 1326,
+      "corrected_length": 652
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412021022-748072-14744_call_9.txt",
+      "success": true,
+      "original_length": 627,
+      "corrected_length": 610
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412021121-31317-14744_call_13.txt",
+      "success": true,
+      "original_length": 545,
+      "corrected_length": 564
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412021919-979320-14744_call_3.txt",
+      "success": true,
+      "original_length": 508,
+      "corrected_length": 499
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412031043-922113-14744_call_18.txt",
+      "success": true,
+      "original_length": 662,
+      "corrected_length": 754
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412031512-254309-14744_call_16.txt",
+      "success": true,
+      "original_length": 485,
+      "corrected_length": 489
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412040437-202163-14744_call_14.txt",
+      "success": true,
+      "original_length": 940,
+      "corrected_length": 889
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412040637-530611-14744_call_16.txt",
+      "success": true,
+      "original_length": 572,
+      "corrected_length": 583
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412040936-56143-14744_call_8.txt",
+      "success": true,
+      "original_length": 677,
+      "corrected_length": 640
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412041035-161261-14744_call_21.txt",
+      "success": true,
+      "original_length": 507,
+      "corrected_length": 527
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412041235-634426-14744_call_13.txt",
+      "success": true,
+      "original_length": 756,
+      "corrected_length": 689
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412041305-617206-14744_call_14.txt",
+      "success": true,
+      "original_length": 438,
+      "corrected_length": 438
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412041305-617206-14744_call_24.txt",
+      "success": true,
+      "original_length": 691,
+      "corrected_length": 691
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412041604-460429-14744_call_10.txt",
+      "success": true,
+      "original_length": 681,
+      "corrected_length": 681
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412041604-460429-14744_call_12.txt",
+      "success": true,
+      "original_length": 655,
+      "corrected_length": 594
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412050230-586791-14744_call_3.txt",
+      "success": true,
+      "original_length": 342,
+      "corrected_length": 350
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412050459-375222-14744_call_16.txt",
+      "success": true,
+      "original_length": 1003,
+      "corrected_length": 952
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412050858-692837-14744_call_8.txt",
+      "success": true,
+      "original_length": 649,
+      "corrected_length": 656
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412051127-142191-14744_call_3.txt",
+      "success": true,
+      "original_length": 306,
+      "corrected_length": 306
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412051157-727845-14744_call_15.txt",
+      "success": true,
+      "original_length": 373,
+      "corrected_length": 368
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412051556-238089-14744_call_6.txt",
+      "success": true,
+      "original_length": 690,
+      "corrected_length": 684
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412061448-597093-14744_call_12.txt",
+      "success": true,
+      "original_length": 688,
+      "corrected_length": 686
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412010731-280830-14744_call_1.txt",
+      "success": true,
+      "original_length": 455,
+      "corrected_length": 453
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412011259-954439-14744_call_11.txt",
+      "success": true,
+      "original_length": 474,
+      "corrected_length": 471
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412011329-642550-14744_call_6.txt",
+      "success": true,
+      "original_length": 625,
+      "corrected_length": 615
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412011458-971661-14744_call_3.txt",
+      "success": true,
+      "original_length": 604,
+      "corrected_length": 608
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412021121-31317-14744_call_2.txt",
+      "success": true,
+      "original_length": 1134,
+      "corrected_length": 823
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412021321-120801-14744_call_13.txt",
+      "success": true,
+      "original_length": 407,
+      "corrected_length": 412
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412021520-274679-14744_call_10.txt",
+      "success": true,
+      "original_length": 363,
+      "corrected_length": 363
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412021520-274679-14744_call_12.txt",
+      "success": true,
+      "original_length": 676,
+      "corrected_length": 676
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412021649-160048-14744_call_11.txt",
+      "success": true,
+      "original_length": 393,
+      "corrected_length": 319
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412021649-160048-14744_call_7.txt",
+      "success": true,
+      "original_length": 515,
+      "corrected_length": 516
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412021948-545512-14744_call_8.txt",
+      "success": true,
+      "original_length": 632,
+      "corrected_length": 624
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412031043-922113-14744_call_16.txt",
+      "success": true,
+      "original_length": 269,
+      "corrected_length": 285
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412040607-588047-14744_call_11.txt",
+      "success": true,
+      "original_length": 1034,
+      "corrected_length": 749
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412040637-530611-14744_call_6.txt",
+      "success": true,
+      "original_length": 426,
+      "corrected_length": 420
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412040736-239835-14744_call_4.txt",
+      "success": true,
+      "original_length": 640,
+      "corrected_length": 640
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412040736-239835-14744_call_6.txt",
+      "success": true,
+      "original_length": 448,
+      "corrected_length": 448
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412041135-308215-14744_call_10.txt",
+      "success": true,
+      "original_length": 335,
+      "corrected_length": 339
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412041703-315276-14744_call_6.txt",
+      "success": true,
+      "original_length": 282,
+      "corrected_length": 282
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412050429-519717-14744_call_21.txt",
+      "success": true,
+      "original_length": 489,
+      "corrected_length": 489
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412050728-925202-14744_call_6.txt",
+      "success": true,
+      "original_length": 444,
+      "corrected_length": 444
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412050858-692837-14744_call_2.txt",
+      "success": true,
+      "original_length": 687,
+      "corrected_length": 677
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412051456-239162-14744_call_1.txt",
+      "success": true,
+      "original_length": 435,
+      "corrected_length": 435
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412051556-238089-14744_call_12.txt",
+      "success": true,
+      "original_length": 273,
+      "corrected_length": 273
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412061348-251491-14744_call_9.txt",
+      "success": true,
+      "original_length": 437,
+      "corrected_length": 437
+    },
+    {
+      "file": "/media/meow/One Touch/ems_call/audio_filter_llm_exp_results_20250815_013034/postprocessing_only/asr_results/large-v3_202412061448-597093-14744_call_6.txt",
+      "success": true,
+      "original_length": 356,
+      "corrected_length": 356
+    }
+  ]
+}
