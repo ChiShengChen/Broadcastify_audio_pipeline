@@ -5,25 +5,28 @@
 # set -e
 
 # --- LLM-Enhanced ASR Pipeline Overview ---
-# This script extends the basic ASR pipeline with LLM capabilities:
+# This script extends the basic ASR pipeline with advanced LLM capabilities:
 # 1. ASR: Transcribe audio files (using existing pipeline)
 # 1.5. WHISPER FILTER: Filter only Whisper results (optional)
-# 2. LLM Medical Term Correction: Correct medical terms in ASR results
-# 3. LLM Emergency Page Generation: Generate emergency pages from corrected transcripts
-# 4. EVALUATION: Compare results against ground truth (optional)
+# 2-1. MULTI-ASR COMPARISON: Compare Canary and Whisper results (optional)
+# 2-2. ASR SELECTION: Choose the better ASR result between Canary and Whisper (optional)
+# 3. LLM MEDICAL CORRECTION: Correct medical terms and improve transcript quality
+# 4. LLM INFORMATION EXTRACTION: Extract structured medical data (JSON format)
+# 5. LLM EMERGENCY PAGE GENERATION: Generate comprehensive emergency pages
+# 6. EVALUATION: Compare results against ground truth (optional)
 
 # Example:
-# ./run_llm_enhanced_pipeline.sh \
+# ./run_llm_pipeline.sh \
 #   --asr_results_dir "/media/meow/One Touch/ems_call/pipeline_results_20250729_033902" \
 #   --output_dir "/media/meow/One Touch/ems_call/llm_results" \
-#   --medical_correction_model "BioMistral-7B" \
-#   --page_generation_model "BioMistral-7B" \
+#   --medical_correction_model "gpt-oss-20b" \
+#   --extraction_model "gpt-oss-20b" \
+#   --page_generation_model "gpt-oss-20b" \
+#   --enable_asr_selection \
+#   --enable_information_extraction \
 #   --batch_size 1 \
 #   --load_in_8bit \
 #   --device "cuda"
-
-
-
 
 
 
@@ -70,7 +73,7 @@ ENABLE_EVALUATION=true            # Enable evaluation of corrected results
 ENABLE_WHISPER_FILTER=false        # Enable filtering for Whisper results only
 ENABLE_MULTI_ASR_COMPARISON=false # Enable comparison and merge of multiple ASR results (Canary + Whisper)
 ENABLE_ASR_SELECTION=true        # Enable ASR selection mode (choose better ASR result)
-ENABLE_INFORMATION_EXTRACTION=true # Enable information extraction step
+ENABLE_INFORMATION_EXTRACTION=true # Enable information extraction as JStep
 
 AUTO_DETECT_MULTI_ASR=true        # Automatically detect and use multiple ASR results from pipeline output
 
@@ -83,10 +86,6 @@ LOAD_IN_4BIT=false
 TEMPERATURE=0.1  # Default temperature for gpt-oss models
 MAX_NEW_TOKENS=128  # Default max new tokens for gpt-oss models
 
-# --- Model Compatibility Configuration ---
-# 添加模型兼容性配置
-GPT_OSS_120B_COMPATIBLE=false  # 默认禁用 120b 以避免兼容性问题
-GPT_OSS_20B_COMPATIBLE=true    # 20b 模型通常更稳定
 
 # --- Medical Correction Configuration ---
 MEDICAL_CORRECTION_PROMPT="You are an expert medical transcription correction system. Your role is to improve noisy, error-prone transcripts generated from EMS radio calls. These transcripts are derived from automatic speech recognition (ASR) and often contain phonetic errors, especially with medication names, clinical terminology, and numerical values.
@@ -178,10 +177,19 @@ Generate a structured emergency page that includes:
 
 Format the response as a clear, structured emergency page suitable for hospital handoff."
 
+
+
+
+###### Do not change the following settings ##########################################################
 # --- Processing Options ---
 BATCH_SIZE=5                      # Number of files to process in parallel
 MAX_RETRIES=3                     # Maximum retry attempts for API calls
 REQUEST_TIMEOUT=60                # Timeout for API requests in seconds
+
+# --- Oss on small device, Model Compatibility Configuration ---
+# GPT-OSS-120B is not compatible with the current pipeline, so we disable it
+GPT_OSS_120B_COMPATIBLE=false  # Disable GPT-OSS-120B to avoid compatibility issues
+GPT_OSS_20B_COMPATIBLE=true    # Enable GPT-OSS-20B for medical term correction
 
 # Python interpreter to use
 # Ensure we're using the correct conda environment with CUDA support
