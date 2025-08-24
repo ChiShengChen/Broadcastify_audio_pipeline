@@ -58,9 +58,9 @@ MODEL_PATHS=(
 )
 
 # Default model selections
-MEDICAL_CORRECTION_MODEL="BioMistral-7B"    # Model for medical term correction
-PAGE_GENERATION_MODEL="BioMistral-7B"     # Model for emergency page generation
-EXTRACTION_MODEL="BioMistral-7B"          # Model for information extraction
+MEDICAL_CORRECTION_MODEL="gpt-oss-20b"    # Model for medical term correction
+PAGE_GENERATION_MODEL="gpt-oss-20b"     # Model for emergency page generation
+EXTRACTION_MODEL="gpt-oss-20b"          # Model for information extraction
 
 # --- Feature Switches ---
 ENABLE_MEDICAL_CORRECTION=true    # Enable medical term correction
