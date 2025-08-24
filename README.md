@@ -231,7 +231,7 @@ mkdir -p /path/to/your/audio/files
 # Edit run_pipeline.sh
 nano run_pipeline.sh
 
-# Update these lines (around lines 17-38):
+# Update these lines:
 AUDIO_DIR=("/your/actual/audio/directory")
 GROUND_TRUTH_FILE="/your/actual/ground_truth.csv"
 USE_VAD=true  # or false, depending on your needs
@@ -253,7 +253,7 @@ GROUND_TRUTH_FILE="/your/actual/ground_truth.csv"
 MEDICAL_CORRECTION_MODEL="gpt-oss-20b"
 PAGE_GENERATION_MODEL="gpt-oss-20b"
 
-# Optional: Customize prompts (around lines 105-182):
+# Optional: Customize prompts:
 MEDICAL_CORRECTION_PROMPT="Your custom medical correction prompt..."
 PAGE_GENERATION_PROMPT="Your custom emergency page generation prompt..."
 ```
