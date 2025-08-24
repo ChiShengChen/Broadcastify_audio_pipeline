@@ -188,7 +188,7 @@ REQUEST_TIMEOUT=60                # Timeout for API requests in seconds
 
 # --- Oss on small device, Model Compatibility Configuration ---
 # GPT-OSS-120B is not compatible with the current pipeline, so we disable it
-GPT_OSS_120B_COMPATIBLE=false  # Disable GPT-OSS-120B to avoid compatibility issues
+GPT_OSS_120B_COMPATIBLE=true  # Disable GPT-OSS-120B to avoid compatibility issues
 GPT_OSS_20B_COMPATIBLE=true    # Enable GPT-OSS-20B for medical term correction
 
 # Python interpreter to use
