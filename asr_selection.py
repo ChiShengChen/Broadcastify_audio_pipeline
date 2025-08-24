@@ -195,12 +195,18 @@ class ASRSelector:
                 else:
                     selected_text = whisper_text
 
-            # Save selected result
+            # Save selected result with model prefix
             base_name = os.path.basename(canary_file)
             if base_name.startswith("canary-1b_"):
                 base_name = base_name[10:]  # Remove "canary-1b_" prefix
             
-            output_file = os.path.join(output_dir, f"{base_name}")
+            # Add model prefix based on selection
+            if selection_result["selected_asr"] == "canary":
+                output_filename = f"canary-1b_{base_name}"
+            else:
+                output_filename = f"large-v3_{base_name}"
+            
+            output_file = os.path.join(output_dir, output_filename)
             os.makedirs(os.path.dirname(output_file), exist_ok=True)
             
             with open(output_file, 'w', encoding='utf-8') as f:

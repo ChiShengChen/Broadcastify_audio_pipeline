@@ -61,9 +61,9 @@ MODEL_PATHS=(
 )
 
 # Default model selections
-MEDICAL_CORRECTION_MODEL="gpt-oss-20b"    # Model for medical term correction
-PAGE_GENERATION_MODEL="gpt-oss-20b"     # Model for emergency page generation
-EXTRACTION_MODEL="gpt-oss-20b"          # Model for information extraction
+MEDICAL_CORRECTION_MODEL="BioMistral-7B"    # Model for medical term correction
+PAGE_GENERATION_MODEL="BioMistral-7B"     # Model for emergency page generation
+EXTRACTION_MODEL="BioMistral-7B"             # Model for information extraction
 
 # --- Feature Switches ---
 ENABLE_MEDICAL_CORRECTION=true    # Enable medical term correction
@@ -211,51 +211,13 @@ clear_gpu_cache() {
 import torch
 import gc
 import os
-import subprocess
 import time
 
-def kill_gpu_processes():
-    """Kill other GPU processes to free memory"""
-    try:
-        # Get GPU processes
-        result = subprocess.run(['nvidia-smi', '--query-compute-apps=pid,process_name,used_memory', '--format=csv,noheader,nounits'], 
-                              capture_output=True, text=True)
-        
-        if result.returncode == 0 and result.stdout.strip():
-            processes = result.stdout.strip().split('\n')
-            current_pid = os.getpid()
-            
-            print("Current GPU processes:")
-            for process in processes:
-                if process.strip():
-                    parts = process.split(', ')
-                    if len(parts) >= 3:
-                        pid, name, memory = parts[0], parts[1], parts[2]
-                        print(f"  PID {pid}: {name} using {memory}MB")
-                        
-                        # Don't kill our own process or critical system processes
-                        if (int(pid) != current_pid and 
-                            'python' in name.lower() and 
-                            'jupyter' not in name.lower() and
-                            'vscode' not in name.lower()):
-                            try:
-                                print(f"  Attempting to kill process {pid} ({name})")
-                                os.kill(int(pid), 9)  # SIGKILL
-                                time.sleep(1)
-                            except:
-                                print(f"  Could not kill process {pid}")
-        else:
-            print("No GPU processes found or nvidia-smi not available")
-            
-    except Exception as e:
-        print(f"Warning: Failed to check/kill GPU processes: {e}")
+
 
 def clear_gpu_cache():
     """Comprehensive GPU memory clearing and optimization"""
     try:
-        # Kill other GPU processes first
-        kill_gpu_processes()
-        
         # Clear PyTorch cache multiple times
         if torch.cuda.is_available():
             print("Performing comprehensive GPU cache clearing...")
@@ -645,6 +607,30 @@ while [[ $# -gt 0 ]]; do
             ENABLE_ASR_SELECTION=false
             shift
             ;;
+        --enable_page_generation)
+            ENABLE_PAGE_GENERATION=true
+            shift
+            ;;
+        --disable_page_generation)
+            ENABLE_PAGE_GENERATION=false
+            shift
+            ;;
+        --enable_medical_correction)
+            ENABLE_MEDICAL_CORRECTION=true
+            shift
+            ;;
+        --disable_medical_correction)
+            ENABLE_MEDICAL_CORRECTION=false
+            shift
+            ;;
+        --enable_evaluation)
+            ENABLE_EVALUATION=true
+            shift
+            ;;
+        --disable_evaluation)
+            ENABLE_EVALUATION=false
+            shift
+            ;;
         -h|--help)
             echo "LLM-Enhanced ASR Pipeline"
             echo ""
@@ -876,15 +862,18 @@ echo "--- Step 1: Locating ASR Transcripts ---"
 
 # Look for transcripts in various possible locations (prioritize merged results)
 TRANSCRIPT_DIRS=()
-# Priority 1: asr_transcripts (complete files after merging segments)
-if [ -d "$ASR_RESULTS_DIR/asr_transcripts" ]; then
-    TRANSCRIPT_DIRS+=("$ASR_RESULTS_DIR/asr_transcripts")
-# Priority 2: merged_segmented_transcripts (complete files after merging segments)
-elif [ -d "$ASR_RESULTS_DIR/merged_segmented_transcripts" ]; then
+# Priority 1: merged_segmented_transcripts (complete files after merging segments)
+if [ -d "$ASR_RESULTS_DIR/merged_segmented_transcripts" ]; then
     TRANSCRIPT_DIRS+=("$ASR_RESULTS_DIR/merged_segmented_transcripts")
-# Priority 3: merged_transcripts (for long audio splits)
+    echo "Using merged segmented transcripts (complete files)"
+# Priority 2: merged_transcripts (for long audio splits)
 elif [ -d "$ASR_RESULTS_DIR/merged_transcripts" ]; then
     TRANSCRIPT_DIRS+=("$ASR_RESULTS_DIR/merged_transcripts")
+    echo "Using merged transcripts (long audio splits)"
+# Priority 3: asr_transcripts (raw ASR results)
+elif [ -d "$ASR_RESULTS_DIR/asr_transcripts" ]; then
+    TRANSCRIPT_DIRS+=("$ASR_RESULTS_DIR/asr_transcripts")
+    echo "Using raw ASR transcripts"
 fi
 
 # If no specific transcript directory found, check the root
@@ -897,10 +886,10 @@ fi
 
 if [ ${#TRANSCRIPT_DIRS[@]} -eq 0 ]; then
     echo "Error: No transcript directories found in $ASR_RESULTS_DIR"
-    echo "Expected locations:"
-    echo "  - $ASR_RESULTS_DIR/asr_transcripts/"
-    echo "  - $ASR_RESULTS_DIR/merged_transcripts/"
-    echo "  - $ASR_RESULTS_DIR/merged_segmented_transcripts/"
+    echo "Expected locations (in priority order):"
+    echo "  - $ASR_RESULTS_DIR/merged_segmented_transcripts/ (highest priority - complete files)"
+    echo "  - $ASR_RESULTS_DIR/merged_transcripts/ (long audio splits)"
+    echo "  - $ASR_RESULTS_DIR/asr_transcripts/ (raw ASR results)"
     echo "  - $ASR_RESULTS_DIR/*.txt (root directory)"
     exit 1
 fi
@@ -1482,16 +1471,37 @@ if [ "$ENABLE_EVALUATION" = true ] && [ -n "$GROUND_TRUTH_FILE" ] && [ -f "$GROU
     echo "--- Step 6: Evaluation of Corrected Results ---"
     EVALUATION_OUTPUT_FILE="$OUTPUT_DIR/llm_enhanced_evaluation_results.csv"
     
-    echo "Evaluating corrected transcripts against ground truth..."
+    # For evaluation, we should use corrected transcripts (not extracted information)
+    # Determine which directory to use for evaluation
+    if [ "$ENABLE_MEDICAL_CORRECTION" = true ] && [ -d "$CORRECTED_TRANSCRIPTS_DIR" ]; then
+        EVALUATION_TRANSCRIPT_DIRS=("$CORRECTED_TRANSCRIPTS_DIR")
+        echo "Evaluating corrected transcripts against ground truth..."
+    else
+        # Fallback to original transcript directories if no correction was performed
+        EVALUATION_TRANSCRIPT_DIRS=("${TRANSCRIPT_DIRS[@]}")
+        echo "Evaluating original transcripts against ground truth..."
+    fi
+    
     echo "Ground truth: $GROUND_TRUTH_FILE"
-    echo "Transcript directories: ${TRANSCRIPT_DIRS[*]}"
+    echo "Transcript directories: ${EVALUATION_TRANSCRIPT_DIRS[*]}"
     echo "Output: $EVALUATION_OUTPUT_FILE"
     
-    # Run evaluation
-    $PYTHON_EXEC evaluate_asr.py \
-        --transcript_dirs "${TRANSCRIPT_DIRS[@]}" \
-        --ground_truth_file "$GROUND_TRUTH_FILE" \
-        --output_file "$EVALUATION_OUTPUT_FILE"
+    # Choose evaluation script based on processing mode
+    if [ "$ENABLE_ASR_SELECTION" = true ]; then
+        echo "Using ASR Selection evaluation (business logic mode)..."
+        # Use the specialized ASR Selection evaluation script
+        $PYTHON_EXEC evaluate_asr_selection.py \
+            --transcript_dir "${EVALUATION_TRANSCRIPT_DIRS[0]}" \
+            --ground_truth_file "$GROUND_TRUTH_FILE" \
+            --output_file "$EVALUATION_OUTPUT_FILE"
+    else
+        echo "Using standard multi-model evaluation..."
+        # Use the standard evaluation script for individual model comparison
+        $PYTHON_EXEC evaluate_asr.py \
+            --transcript_dirs "${EVALUATION_TRANSCRIPT_DIRS[@]}" \
+            --ground_truth_file "$GROUND_TRUTH_FILE" \
+            --output_file "$EVALUATION_OUTPUT_FILE"
+    fi
     
     if [ $? -eq 0 ]; then
         echo "Evaluation completed successfully"
