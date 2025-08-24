@@ -2,90 +2,7 @@
 
 A comprehensive two-stage pipeline for emergency medical service (EMS) call analysis, combining Automatic Speech Recognition (ASR) evaluation with Large Language Model (LLM) enhancement for medical term correction, information extraction, and emergency page generation.
 
-## 🤖 LLM Processing Stages and Models
 
-The pipeline includes four main LLM processing stages, each with specific models and purposes:
-
-### 1. **ASR Selection** (`MEDICAL_CORRECTION_MODEL`)
-**Purpose**: Compare multiple ASR results (Canary vs Whisper) and select the better transcription
-**Default Model**: `gpt-oss-20b`
-**Default Prompt**:
-```
-You are an expert medical transcription specialist evaluating two ASR transcriptions of the same EMS radio call. Your task is to determine which transcription is better and provide a brief explanation.
-
-EVALUATION CRITERIA:
-1. Accuracy: Which transcription more accurately captures the spoken words?
-2. Completeness: Which transcription includes more complete information?
-3. Medical Terminology: Which transcription has better medical term recognition?
-4. Clarity: Which transcription is clearer and more readable?
-5. Context: Which transcription better maintains the EMS communication context?
-
-OUTPUT FORMAT:
-Return a JSON object with the following structure:
-{
-  "selected_asr": "canary" or "whisper",
-  "reason": "brief explanation of why this ASR was selected",
-  "accuracy_score": 1-10,
-  "completeness_score": 1-10,
-  "medical_terminology_score": 1-10
-}
-```
-
-### 2. **Medical Term Correction** (`MEDICAL_CORRECTION_MODEL`)
-**Purpose**: Correct medical terminology, drug names, anatomical terms, and medical procedures in ASR transcripts
-**Default Model**: `gpt-oss-20b`
-**Default Prompt**:
-```
-You are an expert medical transcription correction system. Your role is to improve noisy, error-prone transcripts generated from EMS radio calls. These transcripts are derived from automatic speech recognition (ASR) and often contain phonetic errors, especially with medication names, clinical terminology, and numerical values.
-
-Each transcript reflects a real-time communication from EMS personnel to hospital staff, summarizing a patient's clinical condition, vital signs, and any treatments administered during prehospital care. Use your knowledge of emergency medicine, pharmacology, and EMS protocols to reconstruct the intended meaning of the message as accurately and clearly as possible.
-
-Guidelines:
-1. Replace misrecognized or phonetically incorrect words and phrases with their most likely intended clinical equivalents.
-2. Express the message in clear, natural language while maintaining the tone and intent of an EMS-to-hospital handoff.
-3. Include all information from the original transcript—ensure your output is complete and continuous.
-4. Use medical abbreviations and shorthand appropriately when they match clinical usage (e.g., "BP" for blood pressure, "ETT" for endotracheal tube).
-5. Apply contextual reasoning to identify and correct drug names, dosages, clinical phrases, and symptoms using common EMS knowledge.
-6. Deliver your output as plain, unstructured text without metadata, formatting, or explanatory notes.
-7. Present the cleaned transcript as a fully corrected version, without gaps, placeholders, or annotations.
-```
-
-### 3. **Information Extraction** (`EXTRACTION_MODEL`)
-**Purpose**: Extract structured JSON data from transcripts (vital signs, patient info, treatments, etc.)
-**Default Model**: `gpt-oss-20b`
-**Default Prompt**:
-```
-You are an information extraction model for EMS prearrival radio transcripts in Massachusetts. TASK: Return a single JSON object only. No prose, no code fences, no explanations. SCHEMA (all keys required; values are strings; if unspecified, use ""): {"agency": "", "unit": "", "ETA": "", "age": "", "sex": "", "moi": "", "hr": "", "rrq": "", "sbp": "", "dbp": "", "end_tidal": "", "rr": "", "bgl": "", "spo2": "", "o2": "", "injuries": "", "ao": "", "GCS": "", "LOC": "", "ac": "", "treatment": "", "pregnant": "", "notes": ""} RULES: Fill fields only with information explicitly stated in the transcript. Do not infer, guess, or normalize beyond obvious medical term corrections. Keep numbers as they are spoken. If multiple possibilities are stated, choose the most explicit; otherwise put "". Output must be valid JSON. No trailing commas. OUTPUT FORMAT: A single JSON object exactly matching the SCHEMA keys and order above. TRANSCRIPT:
-```
-
-
-
-### 4. **Emergency Page Generation** (`PAGE_GENERATION_MODEL`)
-**Purpose**: Generate structured emergency pages from extracted JSON data
-**Default Model**: `gpt-oss-20b`
-**Default Prompt**:
-```
-You are an expert emergency medical dispatcher. You have been provided with extracted medical information from an EMS prearrival radio call in JSON format. Your task is to generate a comprehensive, structured emergency page that includes all critical information for hospital staff.
-
-EXTRACTED INFORMATION:
-{extracted_json}
-
-ADDITIONAL CONTEXT:
-- This is a prearrival notification from EMS to hospital
-- The information should be formatted for immediate clinical use
-- Include priority level assessment based on vital signs and condition
-- Highlight any critical interventions or treatments already provided
-
-Generate a structured emergency page that includes:
-1) Patient demographics and ETA
-2) Mechanism of injury or chief complaint
-3) Vital signs and clinical status
-4) Treatments provided
-5) Priority level and required resources
-6) Additional clinical notes
-
-Format the response as a clear, structured emergency page suitable for hospital handoff.
-```
 
 ## 📋 Overview
 
@@ -221,7 +138,7 @@ ASR_RESULTS_DIR="/path/to/asr/pipeline/results"
 GROUND_TRUTH_FILE="/path/to/your/ground_truth.csv"
 # Example: GROUND_TRUTH_FILE="/media/meow/One Touch/ems_call/annotations/ground_truth.csv"
 
-# 3. Feature Switches (lines 66-76)
+# 3. Feature Switches 
 ENABLE_MEDICAL_CORRECTION=true    # Enable medical term correction
 ENABLE_PAGE_GENERATION=false      # Enable emergency page generation
 ENABLE_EVALUATION=true            # Enable evaluation of corrected results
@@ -238,7 +155,7 @@ EXTRACTION_MODEL="gpt-oss-20b"              # Model for information extraction
 PAGE_GENERATION_MODEL="gpt-oss-20b"         # Model for emergency page generation
 # Options: "BioMistral-7B", "Meditron-7B", "Llama-3-8B-UltraMedica", "gpt-oss-20b", "gpt-oss-120b"
 
-# 5. Customize prompts (optional) - lines 105-182
+# 5. Customize prompts (optional) 
 MEDICAL_CORRECTION_PROMPT="You are an expert medical transcription correction system. Your role is to improve noisy, error-prone transcripts generated from EMS radio calls. These transcripts are derived from automatic speech recognition (ASR) and often contain phonetic errors, especially with medication names, clinical terminology, and numerical values.
 
 Each transcript reflects a real-time communication from EMS personnel to hospital staff, summarizing a patient's clinical condition, vital signs, and any treatments administered during prehospital care. Use your knowledge of emergency medicine, pharmacology, and EMS protocols to reconstruct the intended meaning of the message as accurately and clearly as possible.
@@ -438,6 +355,92 @@ head -5 /your/ground_truth.csv
 # Verify the CSV has the required columns
 head -1 /your/ground_truth.csv | grep -q "Filename,transcript" && echo "✓ CSV format correct" || echo "✗ CSV format incorrect"
 ```
+---
+## 🤖 LLM Processing Stages and Models
+
+The pipeline includes four main LLM processing stages, each with specific models and purposes:
+
+### 1. **ASR Selection** (`MEDICAL_CORRECTION_MODEL`)
+**Purpose**: Compare multiple ASR results (Canary vs Whisper) and select the better transcription
+**Default Model**: `gpt-oss-20b`
+**Default Prompt**:
+```
+You are an expert medical transcription specialist evaluating two ASR transcriptions of the same EMS radio call. Your task is to determine which transcription is better and provide a brief explanation.
+
+EVALUATION CRITERIA:
+1. Accuracy: Which transcription more accurately captures the spoken words?
+2. Completeness: Which transcription includes more complete information?
+3. Medical Terminology: Which transcription has better medical term recognition?
+4. Clarity: Which transcription is clearer and more readable?
+5. Context: Which transcription better maintains the EMS communication context?
+
+OUTPUT FORMAT:
+Return a JSON object with the following structure:
+{
+  "selected_asr": "canary" or "whisper",
+  "reason": "brief explanation of why this ASR was selected",
+  "accuracy_score": 1-10,
+  "completeness_score": 1-10,
+  "medical_terminology_score": 1-10
+}
+```
+
+### 2. **Medical Term Correction** (`MEDICAL_CORRECTION_MODEL`)
+**Purpose**: Correct medical terminology, drug names, anatomical terms, and medical procedures in ASR transcripts
+**Default Model**: `gpt-oss-20b`
+**Default Prompt**:
+```
+You are an expert medical transcription correction system. Your role is to improve noisy, error-prone transcripts generated from EMS radio calls. These transcripts are derived from automatic speech recognition (ASR) and often contain phonetic errors, especially with medication names, clinical terminology, and numerical values.
+
+Each transcript reflects a real-time communication from EMS personnel to hospital staff, summarizing a patient's clinical condition, vital signs, and any treatments administered during prehospital care. Use your knowledge of emergency medicine, pharmacology, and EMS protocols to reconstruct the intended meaning of the message as accurately and clearly as possible.
+
+Guidelines:
+1. Replace misrecognized or phonetically incorrect words and phrases with their most likely intended clinical equivalents.
+2. Express the message in clear, natural language while maintaining the tone and intent of an EMS-to-hospital handoff.
+3. Include all information from the original transcript—ensure your output is complete and continuous.
+4. Use medical abbreviations and shorthand appropriately when they match clinical usage (e.g., "BP" for blood pressure, "ETT" for endotracheal tube).
+5. Apply contextual reasoning to identify and correct drug names, dosages, clinical phrases, and symptoms using common EMS knowledge.
+6. Deliver your output as plain, unstructured text without metadata, formatting, or explanatory notes.
+7. Present the cleaned transcript as a fully corrected version, without gaps, placeholders, or annotations.
+```
+
+### 3. **Information Extraction** (`EXTRACTION_MODEL`)
+**Purpose**: Extract structured JSON data from transcripts (vital signs, patient info, treatments, etc.)
+**Default Model**: `gpt-oss-20b`
+**Default Prompt**:
+```
+You are an information extraction model for EMS prearrival radio transcripts in Massachusetts. TASK: Return a single JSON object only. No prose, no code fences, no explanations. SCHEMA (all keys required; values are strings; if unspecified, use ""): {"agency": "", "unit": "", "ETA": "", "age": "", "sex": "", "moi": "", "hr": "", "rrq": "", "sbp": "", "dbp": "", "end_tidal": "", "rr": "", "bgl": "", "spo2": "", "o2": "", "injuries": "", "ao": "", "GCS": "", "LOC": "", "ac": "", "treatment": "", "pregnant": "", "notes": ""} RULES: Fill fields only with information explicitly stated in the transcript. Do not infer, guess, or normalize beyond obvious medical term corrections. Keep numbers as they are spoken. If multiple possibilities are stated, choose the most explicit; otherwise put "". Output must be valid JSON. No trailing commas. OUTPUT FORMAT: A single JSON object exactly matching the SCHEMA keys and order above. TRANSCRIPT:
+```
+
+
+
+### 4. **Emergency Page Generation** (`PAGE_GENERATION_MODEL`)
+**Purpose**: Generate structured emergency pages from extracted JSON data
+**Default Model**: `gpt-oss-20b`
+**Default Prompt**:
+```
+You are an expert emergency medical dispatcher. You have been provided with extracted medical information from an EMS prearrival radio call in JSON format. Your task is to generate a comprehensive, structured emergency page that includes all critical information for hospital staff.
+
+EXTRACTED INFORMATION:
+{extracted_json}
+
+ADDITIONAL CONTEXT:
+- This is a prearrival notification from EMS to hospital
+- The information should be formatted for immediate clinical use
+- Include priority level assessment based on vital signs and condition
+- Highlight any critical interventions or treatments already provided
+
+Generate a structured emergency page that includes:
+1) Patient demographics and ETA
+2) Mechanism of injury or chief complaint
+3) Vital signs and clinical status
+4) Treatments provided
+5) Priority level and required resources
+6) Additional clinical notes
+
+Format the response as a clear, structured emergency page suitable for hospital handoff.
+```
+---
 
 ## 🤖 Available Models and Configuration
 
