@@ -2,6 +2,59 @@
 
 A comprehensive two-stage pipeline for emergency medical service (EMS) call analysis, combining Automatic Speech Recognition (ASR) evaluation with Large Language Model (LLM) enhancement for medical term correction, information extraction, and emergency page generation.
 
+## 📑 Table of Contents
+
+### 🚀 Quick Start
+- [Overview](#-overview)
+- [Quick Start](#-quick-start)
+- [Two-Stage Pipeline Execution](#two-stage-pipeline-execution)
+- [Simple Script Editing Alternative](#simple-script-editing-alternative)
+- [Complete Workflow Examples](#complete-workflow-examples)
+
+### ⚙️ Configuration
+- [Important Configuration Requirements](#️-important-configuration-requirements)
+- [Configuration Methods: Script vs Command Line](#-configuration-methods-script-vs-command-line)
+- [Before Running the Pipeline](#before-running-the-pipeline)
+- [Configuration Steps](#configuration-steps)
+- [Alternative: Command-Line Configuration](#alternative-command-line-configuration)
+
+### 🤖 Models and Processing
+- [LLM Processing Stages and Models](#-llm-processing-stages-and-models)
+- [Available Models and Configuration](#-available-models-and-configuration)
+- [Stage 1: ASR Models](#stage-1-asr-models-run_pipelinesh)
+- [Stage 2: LLM Models](#stage-2-llm-models-run_llm_pipelinesh)
+- [Model Configuration Files](#model-configuration-files)
+- [Prompt Configuration](#prompt-configuration)
+
+### 🏗️ Architecture and Data Flow
+- [Data Flow Architecture](#️-data-flow-architecture)
+- [Stage 1: ASR Pipeline](#-stage-1-asr-pipeline-run_pipelinesh)
+- [Stage 2: LLM Pipeline](#-stage-2-llm-pipeline-run_llm_pipelinesh)
+- [File Flow and Data Processing](#-file-flow-and-data-processing)
+
+### 🔧 Technical Details
+- [Requirements](#-requirements)
+- [System Requirements](#system-requirements)
+- [Python Dependencies](#python-dependencies)
+- [Hardware Recommendations](#hardware-recommendations)
+
+### 🧪 Testing and Troubleshooting
+- [Testing and Validation](#-testing-and-validation)
+- [Troubleshooting](#-troubleshooting)
+- [Common Issues](#common-issues)
+- [Performance Optimization](#performance-optimization)
+
+### 📚 Documentation and Support
+- [Documentation](#-documentation)
+- [Detailed Guides](#detailed-guides)
+- [Quick References](#quick-references)
+- [Legacy Documentation](#legacy-documentation)
+- [Contributing](#-contributing)
+- [Support](#-support)
+
+---
+
+
 
 
 ## 📋 Overview
