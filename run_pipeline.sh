@@ -26,12 +26,15 @@ OUTPUT_DIR="./pipeline_results_${TIMESTAMP}"
 # Path to save the final evaluation report CSV.
 OUTPUT_FILE="$OUTPUT_DIR/asr_evaluation_results.csv"
 
+# Ground truth file for evaluation (optional)
+GROUND_TRUTH_FILE="/media/meow/One Touch/ems_call/vb_ems_anotation/human_anotation_vb.csv"
+
 USE_VAD=false                    # Enable VAD preprocessing
 USE_LONG_AUDIO_SPLIT=false      # Enable long audio splitting to prevent OOM
 MAX_SEGMENT_DURATION=120.0      # Maximum segment duration in seconds (2 minutes)
 
 # ASR Model Selection Options
-ASR_MODELS="large-v3"  # Specify which ASR models to run (space-separated). Leave empty to run all models.
+ASR_MODELS="large-v3 canary-1b"  # Specify which ASR models to run (space-separated). Leave empty to run all models.
                # Available models: wav2vec-xls-r canary-1b parakeet-tdt-0.6b-v2 large-v3
 
 # Audio preprocessing options
@@ -57,7 +60,7 @@ VAD_MIN_SPEECH_DURATION=0.5     # Minimum speech segment duration
 VAD_MIN_SILENCE_DURATION=0.3    # Minimum silence between segments
 
 # Ground truth preprocessing options
-PREPROCESS_GROUND_TRUTH=true    # Enable ground truth preprocessing for better ASR matching
+PREPROCESS_GROUND_TRUTH=false   # Enable ground truth preprocessing for better ASR matching (only if ground truth file is provided)
 PREPROCESS_MODE="conservative"  # Preprocessing mode: conservative (minimal) or aggressive (extensive)
 PREPROCESSED_GROUND_TRUTH_FILE=""  # Will be set automatically if preprocessing is enabled
 
@@ -85,6 +88,7 @@ while [[ $# -gt 0 ]]; do
             ;;
         --ground_truth)
             GROUND_TRUTH_FILE="$2"
+            PREPROCESS_GROUND_TRUTH=true
             shift 2
             ;;
         --use-vad)
@@ -492,7 +496,7 @@ fi
 echo ""
 
 # --- Step 2: Ground Truth Preprocessing (Optional) ---
-if [ "$PREPROCESS_GROUND_TRUTH" = true ]; then
+if [ "$PREPROCESS_GROUND_TRUTH" = true ] && [ -n "$GROUND_TRUTH_FILE" ] && [ -f "$GROUND_TRUTH_FILE" ]; then
     echo "--- Step 2: Ground Truth Preprocessing ---"
     
     # Set the preprocessed ground truth file path

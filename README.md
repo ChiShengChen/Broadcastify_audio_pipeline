@@ -1,13 +1,102 @@
 # EMS Call ASR and LLM-Enhanced Pipeline
 
-A comprehensive two-stage pipeline for emergency medical service (EMS) call analysis, combining Automatic Speech Recognition (ASR) evaluation with Large Language Model (LLM) enhancement for medical term correction and emergency page generation.
+A comprehensive two-stage pipeline for emergency medical service (EMS) call analysis, combining Automatic Speech Recognition (ASR) evaluation with Large Language Model (LLM) enhancement for medical term correction, information extraction, and emergency page generation.
+
+## 🤖 LLM Processing Stages and Models
+
+The pipeline includes four main LLM processing stages, each with specific models and purposes:
+
+### 1. **ASR Selection** (`MEDICAL_CORRECTION_MODEL`)
+**Purpose**: Compare multiple ASR results (Canary vs Whisper) and select the better transcription
+**Default Model**: `gpt-oss-20b`
+**Default Prompt**:
+```
+You are an expert medical transcription specialist evaluating two ASR transcriptions of the same EMS radio call. Your task is to determine which transcription is better and provide a brief explanation.
+
+EVALUATION CRITERIA:
+1. Accuracy: Which transcription more accurately captures the spoken words?
+2. Completeness: Which transcription includes more complete information?
+3. Medical Terminology: Which transcription has better medical term recognition?
+4. Clarity: Which transcription is clearer and more readable?
+5. Context: Which transcription better maintains the EMS communication context?
+
+OUTPUT FORMAT:
+Return a JSON object with the following structure:
+{
+  "selected_asr": "canary" or "whisper",
+  "reason": "brief explanation of why this ASR was selected",
+  "accuracy_score": 1-10,
+  "completeness_score": 1-10,
+  "medical_terminology_score": 1-10
+}
+```
+
+### 2. **Medical Term Correction** (`MEDICAL_CORRECTION_MODEL`)
+**Purpose**: Correct medical terminology, drug names, anatomical terms, and medical procedures in ASR transcripts
+**Default Model**: `gpt-oss-20b`
+**Default Prompt**:
+```
+You are an expert medical transcription correction system. Your role is to improve noisy, error-prone transcripts generated from EMS radio calls. These transcripts are derived from automatic speech recognition (ASR) and often contain phonetic errors, especially with medication names, clinical terminology, and numerical values.
+
+Each transcript reflects a real-time communication from EMS personnel to hospital staff, summarizing a patient's clinical condition, vital signs, and any treatments administered during prehospital care. Use your knowledge of emergency medicine, pharmacology, and EMS protocols to reconstruct the intended meaning of the message as accurately and clearly as possible.
+
+Guidelines:
+1. Replace misrecognized or phonetically incorrect words and phrases with their most likely intended clinical equivalents.
+2. Express the message in clear, natural language while maintaining the tone and intent of an EMS-to-hospital handoff.
+3. Include all information from the original transcript—ensure your output is complete and continuous.
+4. Use medical abbreviations and shorthand appropriately when they match clinical usage (e.g., "BP" for blood pressure, "ETT" for endotracheal tube).
+5. Apply contextual reasoning to identify and correct drug names, dosages, clinical phrases, and symptoms using common EMS knowledge.
+6. Deliver your output as plain, unstructured text without metadata, formatting, or explanatory notes.
+7. Present the cleaned transcript as a fully corrected version, without gaps, placeholders, or annotations.
+```
+
+### 3. **Information Extraction** (`EXTRACTION_MODEL`)
+**Purpose**: Extract structured JSON data from transcripts (vital signs, patient info, treatments, etc.)
+**Default Model**: `gpt-oss-20b`
+**Default Prompt**:
+```
+You are an information extraction model for EMS prearrival radio transcripts in Massachusetts. TASK: Return a single JSON object only. No prose, no code fences, no explanations. SCHEMA (all keys required; values are strings; if unspecified, use ""): {"agency": "", "unit": "", "ETA": "", "age": "", "sex": "", "moi": "", "hr": "", "rrq": "", "sbp": "", "dbp": "", "end_tidal": "", "rr": "", "bgl": "", "spo2": "", "o2": "", "injuries": "", "ao": "", "GCS": "", "LOC": "", "ac": "", "treatment": "", "pregnant": "", "notes": ""} RULES: Fill fields only with information explicitly stated in the transcript. Do not infer, guess, or normalize beyond obvious medical term corrections. Keep numbers as they are spoken. If multiple possibilities are stated, choose the most explicit; otherwise put "". Output must be valid JSON. No trailing commas. OUTPUT FORMAT: A single JSON object exactly matching the SCHEMA keys and order above. TRANSCRIPT:
+```
+
+
+
+### 4. **Emergency Page Generation** (`PAGE_GENERATION_MODEL`)
+**Purpose**: Generate structured emergency pages from extracted JSON data
+**Default Model**: `gpt-oss-20b`
+**Default Prompt**:
+```
+You are an expert emergency medical dispatcher. You have been provided with extracted medical information from an EMS prearrival radio call in JSON format. Your task is to generate a comprehensive, structured emergency page that includes all critical information for hospital staff.
+
+EXTRACTED INFORMATION:
+{extracted_json}
+
+ADDITIONAL CONTEXT:
+- This is a prearrival notification from EMS to hospital
+- The information should be formatted for immediate clinical use
+- Include priority level assessment based on vital signs and condition
+- Highlight any critical interventions or treatments already provided
+
+Generate a structured emergency page that includes:
+1) Patient demographics and ETA
+2) Mechanism of injury or chief complaint
+3) Vital signs and clinical status
+4) Treatments provided
+5) Priority level and required resources
+6) Additional clinical notes
+
+Format the response as a clear, structured emergency page suitable for hospital handoff.
+```
 
 ## 📋 Overview
 
-This project provides a complete two-stage processing system:
+This project provides a complete two-stage processing system with advanced multi-ASR capabilities:
 
 1. **Stage 1: ASR Pipeline** (`run_pipeline.sh`) - Transcribes audio files using multiple ASR models with optional preprocessing
-2. **Stage 2: LLM Enhancement** (`run_llm_pipeline.sh`) - Enhances ASR transcripts with medical term correction and emergency page generation
+2. **Stage 2: LLM Enhancement** (`run_llm_pipeline.sh`) - Enhances ASR transcripts with:
+   - **ASR Selection**: Intelligent comparison and selection between multiple ASR results (Canary vs Whisper)
+   - **Medical Term Correction**: LLM-based medical terminology enhancement
+   - **Information Extraction**: Structured data extraction from transcripts (JSON format)
+   - **Emergency Page Generation**: Structured emergency report creation from extracted data
 
 ## ⚠️ Important Configuration Requirements
 
@@ -132,18 +221,78 @@ ASR_RESULTS_DIR="/path/to/asr/pipeline/results"
 GROUND_TRUTH_FILE="/path/to/your/ground_truth.csv"
 # Example: GROUND_TRUTH_FILE="/media/meow/One Touch/ems_call/annotations/ground_truth.csv"
 
-# 3. Choose medical correction model
-MEDICAL_CORRECTION_MODEL="BioMistral-7B"  # Recommended
+# 3. Feature Switches (lines 66-76)
+ENABLE_MEDICAL_CORRECTION=true    # Enable medical term correction
+ENABLE_PAGE_GENERATION=false      # Enable emergency page generation
+ENABLE_EVALUATION=true            # Enable evaluation of corrected results
+ENABLE_WHISPER_FILTER=false       # Enable filtering for Whisper results only
+ENABLE_MULTI_ASR_COMPARISON=false # Enable comparison and merge of multiple ASR results
+ENABLE_ASR_SELECTION=true         # Enable ASR selection mode (choose better ASR result)
+ENABLE_INFORMATION_EXTRACTION=true # Enable information extraction step
+
+AUTO_DETECT_MULTI_ASR=true        # Automatically detect and use multiple ASR results
+
+# 4. Choose models for different tasks
+MEDICAL_CORRECTION_MODEL="gpt-oss-20b"      # Model for medical term correction
+EXTRACTION_MODEL="gpt-oss-20b"              # Model for information extraction
+PAGE_GENERATION_MODEL="gpt-oss-20b"         # Model for emergency page generation
 # Options: "BioMistral-7B", "Meditron-7B", "Llama-3-8B-UltraMedica", "gpt-oss-20b", "gpt-oss-120b"
 
-# 4. Choose emergency page generation model  
-PAGE_GENERATION_MODEL="BioMistral-7B"     # Recommended
-# Options: "BioMistral-7B", "Meditron-7B", "Llama-3-8B-UltraMedica", "gpt-oss-20b", "gpt-oss-120b"
+# 5. Customize prompts (optional) - lines 105-182
+MEDICAL_CORRECTION_PROMPT="You are an expert medical transcription correction system. Your role is to improve noisy, error-prone transcripts generated from EMS radio calls. These transcripts are derived from automatic speech recognition (ASR) and often contain phonetic errors, especially with medication names, clinical terminology, and numerical values.
 
-# 5. Customize prompts (optional) - lines 75-78
-MEDICAL_CORRECTION_PROMPT="You are a medical transcription specialist. Please correct any medical terms, drug names, anatomical terms, and medical procedures in the following ASR transcript. Maintain the original meaning and context. Only correct obvious medical errors and standardize medical terminology. Return only the corrected transcript without explanations."
+Each transcript reflects a real-time communication from EMS personnel to hospital staff, summarizing a patient's clinical condition, vital signs, and any treatments administered during prehospital care. Use your knowledge of emergency medicine, pharmacology, and EMS protocols to reconstruct the intended meaning of the message as accurately and clearly as possible.
 
-PAGE_GENERATION_PROMPT="You are an emergency medical dispatcher. Based on the following corrected medical transcript, generate a structured emergency page that includes: 1) Patient condition summary, 2) Location details, 3) Required medical resources, 4) Priority level, 5) Key medical information. Format the response as a structured emergency page."
+Guidelines:
+1. Replace misrecognized or phonetically incorrect words and phrases with their most likely intended clinical equivalents.
+2. Express the message in clear, natural language while maintaining the tone and intent of an EMS-to-hospital handoff.
+3. Include all information from the original transcript—ensure your output is complete and continuous.
+4. Use medical abbreviations and shorthand appropriately when they match clinical usage (e.g., "BP" for blood pressure, "ETT" for endotracheal tube).
+5. Apply contextual reasoning to identify and correct drug names, dosages, clinical phrases, and symptoms using common EMS knowledge.
+6. Deliver your output as plain, unstructured text without metadata, formatting, or explanatory notes.
+7. Present the cleaned transcript as a fully corrected version, without gaps, placeholders, or annotations."
+
+ASR_SELECTION_PROMPT="You are an expert medical transcription specialist evaluating two ASR transcriptions of the same EMS radio call. Your task is to determine which transcription is better and provide a brief explanation.
+
+EVALUATION CRITERIA:
+1. Accuracy: Which transcription more accurately captures the spoken words?
+2. Completeness: Which transcription includes more complete information?
+3. Medical Terminology: Which transcription has better medical term recognition?
+4. Clarity: Which transcription is clearer and more readable?
+5. Context: Which transcription better maintains the EMS communication context?
+
+OUTPUT FORMAT:
+Return a JSON object with the following structure:
+{
+  \"selected_asr\": \"canary\" or \"whisper\",
+  \"reason\": \"brief explanation of why this ASR was selected\",
+  \"accuracy_score\": 1-10,
+  \"completeness_score\": 1-10,
+  \"medical_terminology_score\": 1-10
+}"
+
+INFORMATION_EXTRACTION_PROMPT="You are an information extraction model for EMS prearrival radio transcripts in Massachusetts. TASK: Return a single JSON object only. No prose, no code fences, no explanations. SCHEMA (all keys required; values are strings; if unspecified, use \"\"): {\"agency\": \"\", \"unit\": \"\", \"ETA\": \"\", \"age\": \"\", \"sex\": \"\", \"moi\": \"\", \"hr\": \"\", \"rrq\": \"\", \"sbp\": \"\", \"dbp\": \"\", \"end_tidal\": \"\", \"rr\": \"\", \"bgl\": \"\", \"spo2\": \"\", \"o2\": \"\", \"injuries\": \"\", \"ao\": \"\", \"GCS\": \"\", \"LOC\": \"\", \"ac\": \"\", \"treatment\": \"\", \"pregnant\": \"\", \"notes\": \"\"} RULES: Fill fields only with information explicitly stated in the transcript. Do not infer, guess, or normalize beyond obvious medical term corrections. Keep numbers as they are spoken. If multiple possibilities are stated, choose the most explicit; otherwise put \"\". Output must be valid JSON. No trailing commas. OUTPUT FORMAT: A single JSON object exactly matching the SCHEMA keys and order above. TRANSCRIPT:"
+
+PAGE_GENERATION_PROMPT="You are an expert emergency medical dispatcher. You have been provided with extracted medical information from an EMS prearrival radio call in JSON format. Your task is to generate a comprehensive, structured emergency page that includes all critical information for hospital staff.
+
+EXTRACTED INFORMATION:
+{extracted_json}
+
+ADDITIONAL CONTEXT:
+- This is a prearrival notification from EMS to hospital
+- The information should be formatted for immediate clinical use
+- Include priority level assessment based on vital signs and condition
+- Highlight any critical interventions or treatments already provided
+
+Generate a structured emergency page that includes:
+1) Patient demographics and ETA
+2) Mechanism of injury or chief complaint
+3) Vital signs and clinical status
+4) Treatments provided
+5) Priority level and required resources
+6) Additional clinical notes
+
+Format the response as a clear, structured emergency page suitable for hospital handoff."
 ```
 
 ### Configuration Steps
@@ -184,10 +333,10 @@ nano run_llm_pipeline.sh
 
 # Update these lines:
 GROUND_TRUTH_FILE="/your/actual/ground_truth.csv"
-MEDICAL_CORRECTION_MODEL="BioMistral-7B"
-PAGE_GENERATION_MODEL="BioMistral-7B"
+MEDICAL_CORRECTION_MODEL="gpt-oss-20b"
+PAGE_GENERATION_MODEL="gpt-oss-20b"
 
-# Optional: Customize prompts (around lines 75-78):
+# Optional: Customize prompts (around lines 105-182):
 MEDICAL_CORRECTION_PROMPT="Your custom medical correction prompt..."
 PAGE_GENERATION_PROMPT="Your custom emergency page generation prompt..."
 ```
@@ -215,20 +364,47 @@ PAGE_GENERATION_PROMPT="Your custom emergency page generation prompt..."
 
 #### Stage 2 Command-Line Override
 ```bash
+# Basic configuration with ASR selection and information extraction
 ./run_llm_pipeline.sh \
     --asr_results_dir "/path/to/pipeline_results" \
     --ground_truth "/your/ground_truth.csv" \
-    --medical_correction_model "BioMistral-7B" \
-    --page_generation_model "BioMistral-7B" \
+    --medical_correction_model "gpt-oss-20b" \
+    --extraction_model "gpt-oss-20b" \
+    --page_generation_model "gpt-oss-20b" \
+    --enable_asr_selection \
+    --enable_information_extraction \
     --load_in_8bit \
     --device "cuda"
+
+# ASR selection only (compare Canary vs Whisper and select better)
+./run_llm_pipeline.sh \
+    --asr_results_dir "/path/to/pipeline_results" \
+    --medical_correction_model "gpt-oss-20b" \
+    --enable_asr_selection \
+    --disable_information_extraction \
+    --disable_page_generation \
+    --load_in_8bit
+
+# Information extraction only (extract structured JSON data)
+./run_llm_pipeline.sh \
+    --asr_results_dir "/path/to/pipeline_results" \
+    --extraction_model "gpt-oss-20b" \
+    --disable_asr_selection \
+    --enable_information_extraction \
+    --disable_page_generation \
+    --load_in_8bit
 
 # With custom prompts
 ./run_llm_pipeline.sh \
     --asr_results_dir "/path/to/pipeline_results" \
-    --medical_correction_model "BioMistral-7B" \
-    --page_generation_model "BioMistral-7B" \
+    --medical_correction_model "gpt-oss-20b" \
+    --extraction_model "gpt-oss-20b" \
+    --page_generation_model "gpt-oss-20b" \
+    --enable_asr_selection \
+    --enable_information_extraction \
     --medical_correction_prompt "Your custom medical correction instructions..." \
+    --asr_selection_prompt "Your custom ASR selection instructions..." \
+    --information_extraction_prompt "Your custom information extraction instructions..." \
     --page_generation_prompt "Your custom emergency page generation instructions..." \
     --load_in_8bit
 
@@ -237,7 +413,10 @@ PAGE_GENERATION_PROMPT="Your custom emergency page generation prompt..."
     --asr_results_dir "/path/to/pipeline_results" \
     --ground_truth "/your/ground_truth.csv" \
     --medical_correction_model "gpt-oss-120b" \
+    --extraction_model "gpt-oss-120b" \
     --page_generation_model "gpt-oss-120b" \
+    --enable_asr_selection \
+    --enable_information_extraction \
     --load_in_4bit \
     --device "cuda" \
     --batch_size 1
@@ -346,7 +525,7 @@ The LLM pipeline supports specialized medical language models for enhancement:
 | **gpt-oss-20b** | 20B | General purpose | ✅ Public | ~40GB | ~12GB | ~6GB |
 | **gpt-oss-120b** | 120B | Large-scale reasoning | ✅ Public | ~240GB | ~70GB | ~35GB |
 
-⭐ **Recommended**: BioMistral-7B offers the best balance of medical accuracy and efficiency.
+⭐ **Recommended**: gpt-oss-20b offers the best balance of medical accuracy and efficiency.
 
 #### Emergency Page Generation Models
 The same models are used for both medical correction and emergency page generation, with specialized prompts:
@@ -360,13 +539,13 @@ The same models are used for both medical correction and emergency page generati
 # Basic configuration with recommended models
 ./run_llm_pipeline.sh \
     --asr_results_dir /path/to/asr_results \
-    --medical_correction_model "BioMistral-7B" \
-    --page_generation_model "BioMistral-7B"
+    --medical_correction_model "gpt-oss-20b" \
+    --page_generation_model "gpt-oss-20b"
 
 # Advanced configuration with quantization
 ./run_llm_pipeline.sh \
     --asr_results_dir /path/to/asr_results \
-    --medical_correction_model "BioMistral-7B" \
+    --medical_correction_model "gpt-oss-20b" \
     --page_generation_model "Meditron-7B" \
     --load_in_8bit \
     --device "cuda" \
@@ -375,8 +554,8 @@ The same models are used for both medical correction and emergency page generati
 # Memory-optimized configuration
 ./run_llm_pipeline.sh \
     --asr_results_dir /path/to/asr_results \
-    --medical_correction_model "BioMistral-7B" \
-    --page_generation_model "BioMistral-7B" \
+    --medical_correction_model "gpt-oss-20b" \
+    --page_generation_model "gpt-oss-20b" \
     --load_in_4bit \
     --device "cuda"
 
@@ -384,26 +563,26 @@ The same models are used for both medical correction and emergency page generati
 ./run_llm_pipeline.sh \
     --asr_results_dir /path/to/asr_results \
     --medical_correction_model "Meditron-7B" \
-    --page_generation_model "BioMistral-7B" \
+    --page_generation_model "gpt-oss-20b" \
     --load_in_8bit
 ```
 
 #### Model Selection Guidelines
 
 **For Medical Correction:**
-- **BioMistral-7B** ⭐: Best overall medical accuracy and terminology (immediate access)
+- **gpt-oss-20b** ⭐: Best overall medical accuracy and terminology (immediate access)
+- **BioMistral-7B**: Strong medical domain specialization (immediate access)
 - **Meditron-7B**: Strong medical literature understanding (**requires HuggingFace authentication**)
 - **Llama-3-8B-UltraMedica**: Advanced medical reasoning (requires more memory)
-- **gpt-oss-20b**: Good general medical capabilities (immediate access)
 - **gpt-oss-120b**: Maximum reasoning capability (requires significant GPU memory, immediate access)
 
 **For Emergency Page Generation:**
-- **BioMistral-7B** ⭐: Excellent structured medical reporting (immediate access)
+- **gpt-oss-20b** ⭐: Best general language capabilities and structured reporting (immediate access)
+- **BioMistral-7B**: Excellent structured medical reporting (immediate access)
 - **Meditron-7B**: Good clinical documentation (**requires HuggingFace authentication**)
-- **gpt-oss-20b**: Best general language capabilities (high memory requirement, immediate access)
 - **gpt-oss-120b**: Maximum language understanding and generation (requires significant GPU memory, immediate access)
 
-**🚨 Authentication Note**: Meditron-7B requires HuggingFace login and access approval. For immediate usage, use BioMistral-7B which offers similar medical performance without authentication requirements.
+**🚨 Authentication Note**: Meditron-7B requires HuggingFace login and access approval. For immediate usage, use gpt-oss-20b which offers similar medical performance without authentication requirements.
 
 #### Quantization Options
 
@@ -432,19 +611,49 @@ The pipeline includes optimized default prompts for medical EMS call processing:
 
 **Medical Correction Prompt (Default):**
 ```
-You are a medical transcription specialist. Please correct any medical terms, drug names, anatomical terms, and medical procedures in the following ASR transcript. Maintain the original meaning and context. Only correct obvious medical errors and standardize medical terminology. Return only the corrected transcript without explanations.
+You are an expert medical transcription correction system. Your role is to improve noisy, error-prone transcripts generated from EMS radio calls. These transcripts are derived from automatic speech recognition (ASR) and often contain phonetic errors, especially with medication names, clinical terminology, and numerical values.
+
+Each transcript reflects a real-time communication from EMS personnel to hospital staff, summarizing a patient's clinical condition, vital signs, and any treatments administered during prehospital care. Use your knowledge of emergency medicine, pharmacology, and EMS protocols to reconstruct the intended meaning of the message as accurately and clearly as possible.
+
+Guidelines:
+1. Replace misrecognized or phonetically incorrect words and phrases with their most likely intended clinical equivalents.
+2. Express the message in clear, natural language while maintaining the tone and intent of an EMS-to-hospital handoff.
+3. Include all information from the original transcript—ensure your output is complete and continuous.
+4. Use medical abbreviations and shorthand appropriately when they match clinical usage (e.g., "BP" for blood pressure, "ETT" for endotracheal tube).
+5. Apply contextual reasoning to identify and correct drug names, dosages, clinical phrases, and symptoms using common EMS knowledge.
+6. Deliver your output as plain, unstructured text without metadata, formatting, or explanatory notes.
+7. Present the cleaned transcript as a fully corrected version, without gaps, placeholders, or annotations.
 ```
 
 **Emergency Page Generation Prompt (Default):**
 ```
-You are an emergency medical dispatcher. Based on the following corrected medical transcript, generate a structured emergency page that includes: 1) Patient condition summary, 2) Location details, 3) Required medical resources, 4) Priority level, 5) Key medical information. Format the response as a structured emergency page.
+You are an expert emergency medical dispatcher. You have been provided with extracted medical information from an EMS prearrival radio call in JSON format. Your task is to generate a comprehensive, structured emergency page that includes all critical information for hospital staff.
+
+EXTRACTED INFORMATION:
+{extracted_json}
+
+ADDITIONAL CONTEXT:
+- This is a prearrival notification from EMS to hospital
+- The information should be formatted for immediate clinical use
+- Include priority level assessment based on vital signs and condition
+- Highlight any critical interventions or treatments already provided
+
+Generate a structured emergency page that includes:
+1) Patient demographics and ETA
+2) Mechanism of injury or chief complaint
+3) Vital signs and clinical status
+4) Treatments provided
+5) Priority level and required resources
+6) Additional clinical notes
+
+Format the response as a clear, structured emergency page suitable for hospital handoff.
 ```
 
 #### Custom Prompt Configuration
 
 You can customize prompts in three ways:
 
-**1. Edit Script Configuration (lines 75-78 in `run_llm_pipeline.sh`):**
+**1. Edit Script Configuration (lines 105-182 in `run_llm_pipeline.sh`):**
 ```bash
 # Edit the default prompts directly in the script
 MEDICAL_CORRECTION_PROMPT="Your custom medical correction instructions..."
@@ -559,11 +768,14 @@ MODEL_PATHS=(
     --output_dir /path/to/asr_results \
     --ground_truth /path/to/ground_truth.csv
 
-# Stage 2: LLM Enhancement
+# Stage 2: LLM Enhancement with ASR Selection and Information Extraction
 ./run_llm_pipeline.sh \
     --asr_results_dir /path/to/asr_results \
-    --medical_correction_model "BioMistral-7B" \
-    --page_generation_model "BioMistral-7B" \
+    --medical_correction_model "gpt-oss-20b" \
+    --extraction_model "gpt-oss-20b" \
+    --page_generation_model "gpt-oss-20b" \
+    --enable_asr_selection \
+    --enable_information_extraction \
     --load_in_8bit \
     --device "cuda"
 
@@ -571,7 +783,10 @@ MODEL_PATHS=(
 ./run_llm_pipeline.sh \
     --asr_results_dir /path/to/asr_results \
     --medical_correction_model "gpt-oss-120b" \
+    --extraction_model "gpt-oss-120b" \
     --page_generation_model "gpt-oss-120b" \
+    --enable_asr_selection \
+    --enable_information_extraction \
     --load_in_4bit \
     --device "cuda"
 ```
@@ -587,7 +802,7 @@ MODEL_PATHS=(
 
 # 2. Edit run_llm_pipeline.sh and set your paths:
 # ASR_RESULTS_DIR="/your/asr/results/path"
-# MEDICAL_CORRECTION_MODEL="BioMistral-7B"
+# MEDICAL_CORRECTION_MODEL="gpt-oss-20b"
 
 # 3. Then simply run:
 ./run_pipeline.sh
@@ -607,11 +822,14 @@ MODEL_PATHS=(
     --use-long-audio-split \
     --preprocess-ground-truth
 
-# Stage 2: LLM enhancement with quantization
+# Stage 2: LLM enhancement with ASR selection and information extraction
 ./run_llm_pipeline.sh \
     --asr_results_dir "/media/meow/One Touch/ems_call/asr_results_20240101_120000" \
-    --medical_correction_model "BioMistral-7B" \
-    --page_generation_model "BioMistral-7B" \
+    --medical_correction_model "gpt-oss-20b" \
+    --extraction_model "gpt-oss-20b" \
+    --page_generation_model "gpt-oss-20b" \
+    --enable_asr_selection \
+    --enable_information_extraction \
     --ground_truth "/media/meow/One Touch/ems_call/ground_truth.csv" \
     --load_in_8bit \
     --device "cuda" \
@@ -621,7 +839,10 @@ MODEL_PATHS=(
 ./run_llm_pipeline.sh \
     --asr_results_dir "/media/meow/One Touch/ems_call/asr_results_20240101_120000" \
     --medical_correction_model "gpt-oss-120b" \
+    --extraction_model "gpt-oss-120b" \
     --page_generation_model "gpt-oss-120b" \
+    --enable_asr_selection \
+    --enable_information_extraction \
     --ground_truth "/media/meow/One Touch/ems_call/ground_truth.csv" \
     --load_in_4bit \
     --device "cuda" \
@@ -639,16 +860,18 @@ MODEL_PATHS=(
     --use-vad \
     --preprocess-ground-truth
 
-# Stage 2: LLM enhancement
+# Stage 2: LLM enhancement with ASR selection
 ./run_llm_pipeline.sh \
     --asr_results_dir "/media/meow/One Touch/ems_call/asr_results_20240101_120000" \
-    --medical_correction_model "BioMistral-7B" \
+    --medical_correction_model "gpt-oss-20b" \
+    --enable_asr_selection \
     --load_in_8bit
 
 # Or use gpt-oss-120b for maximum capability
 ./run_llm_pipeline.sh \
     --asr_results_dir "/media/meow/One Touch/ems_call/asr_results_20240101_120000" \
     --medical_correction_model "gpt-oss-120b" \
+    --enable_asr_selection \
     --load_in_4bit
 ```
 
@@ -663,18 +886,24 @@ MODEL_PATHS=(
     --use-enhanced-vad \
     --preprocess-ground-truth
 
-# Stage 2: LLM enhancement with medical specialization
+# Stage 2: LLM enhancement with medical specialization and ASR selection
 ./run_llm_pipeline.sh \
     --asr_results_dir "/media/meow/One Touch/ems_call/asr_results_20240101_120000" \
     --medical_correction_model "Meditron-7B" \
-    --page_generation_model "BioMistral-7B" \
+    --extraction_model "Meditron-7B" \
+    --page_generation_model "gpt-oss-20b" \
+    --enable_asr_selection \
+    --enable_information_extraction \
     --load_in_8bit
 
 # Or use gpt-oss-120b for maximum capability
 ./run_llm_pipeline.sh \
     --asr_results_dir "/media/meow/One Touch/ems_call/asr_results_20240101_120000" \
     --medical_correction_model "gpt-oss-120b" \
+    --extraction_model "gpt-oss-120b" \
     --page_generation_model "gpt-oss-120b" \
+    --enable_asr_selection \
+    --enable_information_extraction \
     --load_in_4bit
 ```
 
@@ -695,15 +924,15 @@ Audio Files (.wav)
 │ 3. Long Audio Splitting (Optional)     │
 │    • Prevent OOM Issues               │
 │ 4. ASR Transcription                   │
-│    • Multiple Models (Whisper, etc.)   │
+│    • Multiple Models (Whisper, Canary) │
 │ 5. Transcript Merging                  │
 │ 6. ASR Evaluation                      │
 └─────────────────────────────────────────┘
        ↓
 ASR Results Directory
 ├── asr_transcripts/
-│   ├── large-v3_file1.txt
-│   ├── large-v3_file2.txt
+│   ├── large-v3_file1.txt (Whisper)
+│   ├── canary-1b_file1.txt (Canary)
 │   └── [other_model]_file.txt
 ├── merged_transcripts/
 ├── asr_evaluation_results.csv
@@ -715,16 +944,28 @@ ASR Results Directory
 ├─────────────────────────────────────────┤
 │ 1. Whisper Filtering (Optional)        │
 │    • Extract Whisper Results Only      │
-│ 2. Medical Term Correction             │
+│ 2. ASR Selection (NEW)                 │
+│    • Compare Canary vs Whisper         │
+│    • Select Better Transcription       │
+│    • Generate Selection Report (CSV)   │
+│ 3. Medical Term Correction             │
 │    • LLM-based Medical Enhancement     │
-│ 3. Emergency Page Generation           │
+│ 4. Information Extraction (NEW)        │
+│    • Extract Structured JSON Data      │
+│    • Vital Signs, Patient Info, etc.   │
+│ 5. Emergency Page Generation           │
 │    • Structured Emergency Reports      │
-│ 4. Enhanced Evaluation                 │
+│ 6. Enhanced Evaluation                 │
 └─────────────────────────────────────────┘
        ↓
 LLM Results Directory
 ├── whisper_filtered/
 ├── corrected_transcripts/
+│   ├── selected_transcripts.txt
+│   └── asr_selection_results.csv
+├── extracted_information/
+│   └── *_extracted.json
+
 ├── emergency_pages/
 ├── llm_enhanced_evaluation_results.csv
 ├── error_analysis.log
@@ -797,11 +1038,14 @@ pipeline_results_YYYYMMDD_HHMMSS/
 - **LLM Configuration**: Model selection and quantization settings
 
 ### Key Features
+- **ASR Selection**: Intelligent comparison and selection between multiple ASR results (Canary vs Whisper)
 - **Medical Term Correction**: LLM-based medical terminology enhancement
+- **Information Extraction**: Structured data extraction from transcripts (JSON format)
+
 - **Emergency Page Generation**: Structured emergency report creation
-- **Multiple LLM Models**: BioMistral-7B, Meditron-7B, Llama-3-8B-UltraMedica
+- **Multiple LLM Models**: BioMistral-7B, Meditron-7B, Llama-3-8B-UltraMedica, gpt-oss-20b, gpt-oss-120b
 - **Model Quantization**: 4-bit and 8-bit quantization for memory efficiency
-- **Customizable Prompts**: Configurable prompts for both medical correction and emergency page generation
+- **Customizable Prompts**: Configurable prompts for all processing stages
 - **Error Tracking**: Detailed logging of failed files and processing issues
 
 ### LLM Models and Quantization
@@ -846,11 +1090,18 @@ llm_results_YYYYMMDD_HHMMSS/
 │   ├── large-v3_file1.txt
 │   ├── large-v3_file2.txt
 │   └── large-v3_file3.txt
-├── corrected_transcripts/               # Medical term corrected transcripts
+├── corrected_transcripts/               # ASR selection and medical term corrected transcripts
+│   ├── selected_transcripts.txt         # Best ASR results selected
+│   ├── asr_selection_results.csv        # ASR selection report with reasons
 │   ├── large-v3_file1.txt              # Enhanced medical terminology
 │   ├── large-v3_file2.txt
 │   ├── large-v3_file3.txt
 │   └── local_medical_correction_summary.json
+├── extracted_information/               # Structured JSON data extraction
+│   ├── file1_extracted.json            # Extracted vital signs, patient info
+│   ├── file2_extracted.json
+│   └── file3_extracted.json
+
 ├── emergency_pages/                     # Generated emergency pages
 │   ├── large-v3_file1_emergency_page.txt
 │   ├── large-v3_file2_emergency_page.txt
@@ -863,19 +1114,50 @@ llm_results_YYYYMMDD_HHMMSS/
 
 ### Usage Examples
 
-#### Basic LLM Enhancement
+#### Basic LLM Enhancement with ASR Selection
 ```bash
 ./run_llm_pipeline.sh \
     --asr_results_dir "/path/to/asr_results" \
-    --medical_correction_model "BioMistral-7B" \
-    --page_generation_model "BioMistral-7B"
+    --medical_correction_model "gpt-oss-20b" \
+    --extraction_model "gpt-oss-20b" \
+    --page_generation_model "gpt-oss-20b" \
+    --enable_asr_selection \
+    --enable_information_extraction
 ```
+
+#### ASR Selection Only (Compare Canary vs Whisper)
+```bash
+./run_llm_pipeline.sh \
+    --asr_results_dir "/path/to/asr_results" \
+    --medical_correction_model "gpt-oss-20b" \
+    --enable_asr_selection \
+    --disable_information_extraction \
+    --disable_page_generation \
+    --load_in_8bit \
+    --device "cuda"
+```
+
+#### Information Extraction Only
+```bash
+./run_llm_pipeline.sh \
+    --asr_results_dir "/path/to/asr_results" \
+    --extraction_model "gpt-oss-20b" \
+    --disable_asr_selection \
+    --enable_information_extraction \
+    --disable_page_generation \
+    --load_in_8bit \
+    --device "cuda"
+```
+
+
 
 #### Medical Correction Only
 ```bash
 ./run_llm_pipeline.sh \
     --asr_results_dir "/path/to/asr_results" \
-    --medical_correction_model "BioMistral-7B" \
+    --medical_correction_model "gpt-oss-20b" \
+    --disable_asr_selection \
+    --disable_information_extraction \
     --disable_page_generation \
     --load_in_8bit \
     --device "cuda"
@@ -885,7 +1167,9 @@ llm_results_YYYYMMDD_HHMMSS/
 ```bash
 ./run_llm_pipeline.sh \
     --asr_results_dir "/path/to/asr_results" \
-    --page_generation_model "BioMistral-7B" \
+    --page_generation_model "gpt-oss-20b" \
+    --disable_asr_selection \
+    --disable_information_extraction \
     --disable_medical_correction \
     --load_in_4bit \
     --device "cuda"
@@ -896,8 +1180,8 @@ llm_results_YYYYMMDD_HHMMSS/
 ./run_llm_pipeline.sh \
     --asr_results_dir "/path/to/asr_results" \
     --ground_truth "/path/to/ground_truth.csv" \
-    --medical_correction_model "BioMistral-7B" \
-    --page_generation_model "BioMistral-7B" \
+    --medical_correction_model "gpt-oss-20b" \
+    --page_generation_model "gpt-oss-20b" \
     --load_in_8bit \
     --device "cuda" \
     --batch_size 1
@@ -908,9 +1192,14 @@ llm_results_YYYYMMDD_HHMMSS/
 # Using custom prompts for specialized medical domains
 ./run_llm_pipeline.sh \
     --asr_results_dir "/path/to/asr_results" \
-    --medical_correction_model "BioMistral-7B" \
-    --page_generation_model "BioMistral-7B" \
+    --medical_correction_model "gpt-oss-20b" \
+    --extraction_model "gpt-oss-20b" \
+    --page_generation_model "gpt-oss-20b" \
+    --enable_asr_selection \
+    --enable_information_extraction \
+    --asr_selection_prompt "You are an expert medical transcription specialist. Compare the accuracy, completeness, and medical terminology quality of two ASR transcriptions. Focus on medical term recognition, vital signs accuracy, and clinical context preservation." \
     --medical_correction_prompt "You are a specialized emergency medicine transcriptionist. Focus on correcting cardiac, respiratory, and trauma-related medical terminology. Preserve all timestamps and speaker identifications. Return only the corrected transcript." \
+    --information_extraction_prompt "Extract structured medical data from EMS transcripts. Focus on: vital signs (HR, BP, RR, SpO2), patient demographics, mechanism of injury, treatments given, and clinical status. Return valid JSON only." \
     --page_generation_prompt "Generate a structured EMS dispatch report with: PRIORITY LEVEL, CHIEF COMPLAINT, PATIENT STATUS, LOCATION, RESOURCES REQUESTED, SPECIAL CONSIDERATIONS. Use clear medical terminology and standard EMS protocols." \
     --load_in_8bit \
     --device "cuda"
@@ -919,9 +1208,14 @@ llm_results_YYYYMMDD_HHMMSS/
 ./run_llm_pipeline.sh \
     --asr_results_dir "/path/to/asr_results" \
     --medical_correction_model "Meditron-7B" \
+    --extraction_model "Meditron-7B" \
+    --page_generation_model "gpt-oss-20b" \
+    --enable_asr_selection \
+    --enable_information_extraction \
+    --asr_selection_prompt "Focus on pediatric medical terminology accuracy. Consider age-appropriate language, family context, and developmental considerations in ASR comparison." \
     --medical_correction_prompt "Focus on pediatric emergency terminology. Correct age-specific medical terms, dosages, and procedures. Maintain family/guardian context." \
-    --page_generation_model "BioMistral-7B" \
-    --page_generation_prompt "Generate pediatric emergency page: AGE/WEIGHT, CHIEF COMPLAINT, VITAL SIGNS, PARENT/GUARDIAN INFO, PEDIATRIC RESOURCES NEEDED, TRANSPORT PRIORITY." \
+    --information_extraction_prompt "Extract pediatric-specific data: age, weight, developmental status, parent/guardian presence, pediatric vital signs, and family dynamics." \
+    --page_generation_prompt "Generate pediatric emergency reports with: AGE/WEIGHT, DEVELOPMENTAL STATUS, FAMILY CONTEXT, PEDIATRIC RESOURCES NEEDED, TRANSPORT CONSIDERATIONS." \
     --load_in_4bit
 ```
 
