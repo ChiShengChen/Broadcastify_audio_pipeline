@@ -61,14 +61,16 @@ MODEL_PATHS=(
 )
 
 # Default model selections
-MEDICAL_CORRECTION_MODEL="BioMistral-7B"    # Model for medical term correction
-PAGE_GENERATION_MODEL="BioMistral-7B"     # Model for emergency page generation
-EXTRACTION_MODEL="BioMistral-7B"             # Model for information extraction
+ENABLE_MEDICAL_CORRECTION=true    # Enable medical term correction
+MEDICAL_CORRECTION_MODEL="gpt-oss-20b"    # Model for medical term correction
+
+ENABLE_PAGE_GENERATION=false       # Enable emergency page generation
+PAGE_GENERATION_MODEL="gpt-oss-20b"     # Model for emergency page generation
+
+ENABLE_EVALUATION=true            # Enable evaluation of corrected results
+EXTRACTION_MODEL="gpt-oss-20b"             # Model for information extraction
 
 # --- Feature Switches ---
-ENABLE_MEDICAL_CORRECTION=true    # Enable medical term correction
-ENABLE_PAGE_GENERATION=false       # Enable emergency page generation
-ENABLE_EVALUATION=true            # Enable evaluation of corrected results
 
 ENABLE_WHISPER_FILTER=false        # Enable filtering for Whisper results only
 ENABLE_MULTI_ASR_COMPARISON=false # Enable comparison and merge of multiple ASR results (Canary + Whisper)
