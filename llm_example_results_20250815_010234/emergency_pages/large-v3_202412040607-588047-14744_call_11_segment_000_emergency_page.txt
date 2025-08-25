@@ -1,1 +1,0 @@
-PATIENT COND: [Chest pain] LOCATION: [Hamlet] RESOURCES: [Transport only] PRIORITY: [1] KEY MEDICAL INFO: [Patient complaint of chest pain. No other symptoms reported.]

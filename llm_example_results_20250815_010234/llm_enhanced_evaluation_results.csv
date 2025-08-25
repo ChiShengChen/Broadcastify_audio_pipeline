@@ -1,2 +1,0 @@
-Model,WER,MER,WIL,Substitutions,Deletions,Insertions,Hits,Total_Words_in_Reference,Total_Files_Matched
-large-v3,0.5099667774086378,0.4541420118343195,0.6286025236076789,166,67,74,369,602,7

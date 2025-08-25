@@ -1,0 +1,10 @@
+Metric,Value
+WER,1.3932772209058484
+MER,0.5427184466019418
+WIL,1.2373786407766991
+Substitutions,2072.0
+Deletions,164.0
+Insertions,2862.0
+Hits,1884.0
+Total_Reference_Words,4120.0
+Files_Matched,50.0

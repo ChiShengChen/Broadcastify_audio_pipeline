@@ -1,1 +1,0 @@
-Priority 1: Medical Emergency. Patient unresponsive. Location: 123 Main Street. Unit: Apartment 206. Key Information: Patient unresponsive. Sending unit key and elevator key to apartment. EMS requested.

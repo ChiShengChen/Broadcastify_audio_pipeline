@@ -1,0 +1,34 @@
+LLM-Enhanced ASR Pipeline Summary
+=================================
+Date: 西元2025年08月25日 (週一) 07時45分40秒 CST
+ASR Results Directory: /media/meow/One Touch/ems_call/pipeline_results_20250823_095857
+Output Directory: /media/meow/One Touch/ems_call/llm_results_20250825_073823
+
+Configuration:
+  - Whisper Filter: false
+  - Medical Correction: true
+    * Model: BioMistral-7B
+    * Multi-ASR Comparison: false
+    * ASR Selection: true
+    * Output: /media/meow/One Touch/ems_call/llm_results_20250825_073823/corrected_transcripts
+  - Information Extraction: true
+    * Model: BioMistral-7B
+    * Output: /media/meow/One Touch/ems_call/llm_results_20250825_073823/extracted_information
+  - Page Generation: false
+  - Evaluation: true
+    * Ground Truth: /media/meow/One Touch/ems_call/vb_ems_anotation/human_anotation_vb.csv
+    * Results: /media/meow/One Touch/ems_call/llm_results_20250825_073823/llm_enhanced_evaluation_results.csv
+
+Processing Results:
+  - Total ASR transcripts: 101
+  - Corrected transcripts: 50
+  - Extracted information files: 0
+
+Output Structure:
+  /media/meow/One Touch/ems_call/llm_results_20250825_073823/corrected_transcripts/     # Medical term corrected transcripts
+  /media/meow/One Touch/ems_call/llm_results_20250825_073823/extracted_information/     # Extracted structured information
+  /media/meow/One Touch/ems_call/llm_results_20250825_073823/llm_enhanced_evaluation_results.csv                # Evaluation metrics
+  /media/meow/One Touch/ems_call/llm_results_20250825_073823/llm_enhanced_pipeline_summary.txt                             # This summary
+  /media/meow/One Touch/ems_call/llm_results_20250825_073823/error_analysis.log                           # Error analysis
+
+All results saved to: /media/meow/One Touch/ems_call/llm_results_20250825_073823

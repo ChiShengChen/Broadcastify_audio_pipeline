@@ -1,1 +1,0 @@
-Priority: Immediate (Code 1). Location: 10-14-Camelot. Medical Resource: Ambulance, Fire Engine, Ladder Truck. Condition Summary: Unknown. Key Information: Patient is located in Camelot.
