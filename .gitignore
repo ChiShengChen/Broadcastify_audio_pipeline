@@ -47,7 +47,7 @@ CHiME*/
 *.log 
 *.zip
 run_medical_asr.py
-medical*.csv
+# medical*.csv
 
 run_audio_filter_llm_enhanced_exp_pipeline.sh
 
