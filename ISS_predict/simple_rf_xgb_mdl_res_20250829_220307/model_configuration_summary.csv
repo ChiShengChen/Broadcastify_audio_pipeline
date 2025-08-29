@@ -1,0 +1,2 @@
+Input_File,Total_Samples,Test_Samples,Total_Features,Numerical_Features,Categorical_Features,TFIDF_Features,Keyword_Features,Training_Date,Best_Model,Best_R2_Score
+medically_consistent_trauma_reg_200.csv,200,40,172,20,7,100,50,2025-08-29 22:03:10,Gradient Boosting,0.9056797802713018

@@ -1,0 +1,517 @@
+Model,Feature_Name,Importance,Rank
+Random Forest,Age,0.003015346754291364,12
+Random Forest,SBP on Admission,0.005824130426779975,8
+Random Forest,Unassisted Resp Rate on Admission,0.002744080064189392,13
+Random Forest,GCS on Admission,0.040833080964319236,2
+Random Forest,RTS on Admission,0.0019442964392806159,16
+Random Forest,TRISS,0.82530485289737,1
+Random Forest,Risk_Score,0.030573148601720238,3
+Random Forest,Age_Squared,0.003876690636450938,10
+Random Forest,Age_Log,0.0031035140521516497,11
+Random Forest,BP_HR_Ratio,0.006090145702561205,7
+Random Forest,text_length,0.002564343283532815,14
+Random Forest,word_count,0.0005360207258118643,34
+Random Forest,keyword_count,0.00023220253856991302,65
+Random Forest,keyword_density,0.00048530295421540093,37
+Random Forest,text_risk_score,0.001739054436937594,19
+Random Forest,severe_injury_flag,0.004852541450429467,9
+Random Forest,penetrating_injury_flag,0.008879226769365626,6
+Random Forest,elderly_flag,0.0002716441686440396,62
+Random Forest,critical_gcs,4.252054151277876e-05,135
+Random Forest,hypotensive,0.00027154145858034094,63
+Random Forest,Gender,0.00020755565723111065,73
+Random Forest,Injury Type,0.012155095287152385,4
+Random Forest,Transfer In,0.0005920118029367695,32
+Random Forest,Discharge Status,0.009108557182934613,5
+Random Forest,Age_Group,0.00020203072744513005,74
+Random Forest,BP_Status,0.0003648877378766275,46
+Random Forest,GCS_Status,0.0010701749876484332,22
+Random Forest,tfidf_0,0.000370102233876601,44
+Random Forest,tfidf_1,9.189698548215264e-06,156
+Random Forest,tfidf_2,0.0003007849451473823,56
+Random Forest,tfidf_3,0.0005877261223096664,33
+Random Forest,tfidf_4,0.00016308032320147997,79
+Random Forest,tfidf_5,0.00032519615066728375,51
+Random Forest,tfidf_6,0.0004167717483740904,40
+Random Forest,tfidf_7,5.837251777399329e-07,166
+Random Forest,tfidf_8,0.00014174545647004165,86
+Random Forest,tfidf_9,0.000212366535261954,71
+Random Forest,tfidf_10,0.0003720872962935082,43
+Random Forest,tfidf_11,0.00020015778981606467,75
+Random Forest,tfidf_12,0.00034363660278549516,48
+Random Forest,tfidf_13,0.0002743420183849273,60
+Random Forest,tfidf_14,0.00012537184385164377,94
+Random Forest,tfidf_15,7.937456446589242e-05,118
+Random Forest,tfidf_16,0.00013702502633196044,87
+Random Forest,tfidf_17,0.00031782112045152634,53
+Random Forest,tfidf_18,0.00029507646570600817,57
+Random Forest,tfidf_19,0.00041215208158583145,41
+Random Forest,tfidf_20,0.0001357807961333674,90
+Random Forest,tfidf_21,8.942745653820219e-05,108
+Random Forest,tfidf_22,7.669147569195826e-05,121
+Random Forest,tfidf_23,0.00033513521568986665,49
+Random Forest,tfidf_24,5.223756253431769e-05,131
+Random Forest,tfidf_25,0.0001038277792980211,102
+Random Forest,tfidf_26,0.00014838374236932813,83
+Random Forest,tfidf_27,1.4629469051413394e-05,152
+Random Forest,tfidf_28,0.00013700105275487825,88
+Random Forest,tfidf_29,8.051921228092533e-05,116
+Random Forest,tfidf_30,1.2160054461821927e-05,154
+Random Forest,tfidf_31,9.234311052835142e-05,106
+Random Forest,tfidf_32,0.001913860419669784,17
+Random Forest,tfidf_33,7.733200055045782e-05,119
+Random Forest,tfidf_34,0.0001247937957748263,95
+Random Forest,tfidf_35,1.5246611000581355e-05,151
+Random Forest,tfidf_36,1.9739441264364687e-05,150
+Random Forest,tfidf_37,5.302067422566576e-05,130
+Random Forest,tfidf_38,0.00013061180443046241,93
+Random Forest,tfidf_39,9.068593810536894e-05,107
+Random Forest,tfidf_40,0.00014198493188361707,85
+Random Forest,tfidf_41,0.00014619565428493513,84
+Random Forest,tfidf_42,2.252928923106648e-05,147
+Random Forest,tfidf_43,0.00015220446089922639,81
+Random Forest,tfidf_44,0.0007894872317214107,25
+Random Forest,tfidf_45,7.681273454174005e-05,120
+Random Forest,tfidf_46,0.00011567249926527882,96
+Random Forest,tfidf_47,6.144155613800399e-05,125
+Random Forest,tfidf_48,0.0011241474465230892,21
+Random Forest,tfidf_49,0.0003256499284644464,50
+Random Forest,tfidf_50,1.3864428004654296e-05,153
+Random Forest,tfidf_51,8.179023761091784e-06,159
+Random Forest,tfidf_52,0.00027907947567574906,58
+Random Forest,tfidf_53,2.4324019455058413e-05,145
+Random Forest,tfidf_54,0.00011219892554838747,98
+Random Forest,tfidf_55,8.906771826102911e-05,109
+Random Forest,tfidf_56,0.00022379176125524895,67
+Random Forest,tfidf_57,8.409487967060368e-05,113
+Random Forest,tfidf_58,0.00022217097325935833,68
+Random Forest,tfidf_59,0.00018391541871325023,78
+Random Forest,tfidf_60,0.00010190995869535638,103
+Random Forest,tfidf_61,0.0001343918919969026,91
+Random Forest,tfidf_62,0.0022881572422409724,15
+Random Forest,tfidf_63,0.0002157984110184129,69
+Random Forest,tfidf_64,8.537526556301475e-05,112
+Random Forest,tfidf_65,4.594731820510475e-05,133
+Random Forest,tfidf_66,8.602897295584836e-05,111
+Random Forest,tfidf_67,0.0006678624592484487,28
+Random Forest,tfidf_68,0.00013243564152395717,92
+Random Forest,tfidf_69,1.7877469757769362e-06,164
+Random Forest,tfidf_70,0.0006362978517012555,30
+Random Forest,tfidf_71,8.665287189837225e-06,157
+Random Forest,tfidf_72,0.0006021107076894436,31
+Random Forest,tfidf_73,6.659018166928915e-05,124
+Random Forest,tfidf_74,0.00025868951033327617,64
+Random Forest,tfidf_75,0.0001969340555622966,76
+Random Forest,tfidf_76,0.0003205796699453496,52
+Random Forest,tfidf_77,0.00011149078620812176,100
+Random Forest,tfidf_78,3.955375621709471e-05,136
+Random Forest,tfidf_79,0.00011169119458251809,99
+Random Forest,tfidf_80,0.001449053452483009,20
+Random Forest,tfidf_81,2.8243732338949246e-05,143
+Random Forest,tfidf_82,9.36913187779469e-05,105
+Random Forest,tfidf_83,0.000308075067733018,55
+Random Forest,tfidf_84,0.00011502154079344051,97
+Random Forest,tfidf_85,0.0003781178548410426,42
+Random Forest,tfidf_86,7.3047222593534e-05,122
+Random Forest,tfidf_87,4.483575943245102e-05,134
+Random Forest,tfidf_88,0.00031285052574803505,54
+Random Forest,tfidf_89,0.0004949387019983526,36
+Random Forest,tfidf_90,0.00013614108678665162,89
+Random Forest,tfidf_91,6.86930852225152e-05,123
+Random Forest,tfidf_92,0.0006616067520175573,29
+Random Forest,tfidf_93,0.0007707467956383327,26
+Random Forest,tfidf_94,0.00021330939334718231,70
+Random Forest,tfidf_95,0.0002109184161478184,72
+Random Forest,tfidf_96,0.0002716921157964144,61
+Random Forest,tfidf_97,0.0003680719828778226,45
+Random Forest,tfidf_98,0.00016253459119338603,80
+Random Forest,tfidf_99,2.957883663221293e-05,142
+Random Forest,keyword_0,8.085973337036807e-05,115
+Random Forest,keyword_1,0.00014904847837625805,82
+Random Forest,keyword_2,3.9490420159068944e-05,137
+Random Forest,keyword_3,2.170055008559858e-05,148
+Random Forest,keyword_4,2.411749261989087e-05,146
+Random Forest,keyword_5,0.0004205726779645791,39
+Random Forest,keyword_6,3.0334276189165814e-05,141
+Random Forest,keyword_7,8.007216414328932e-05,117
+Random Forest,keyword_8,1.5183757344988056e-06,165
+Random Forest,keyword_9,8.383840665362297e-06,158
+Random Forest,keyword_10,0.0003521441580492356,47
+Random Forest,keyword_11,2.7046047965759496e-05,144
+Random Forest,keyword_12,2.0573641636228725e-05,149
+Random Forest,keyword_13,5.5781834961750165e-05,129
+Random Forest,keyword_14,0.0,168
+Random Forest,keyword_15,3.6495825540736895e-06,162
+Random Forest,keyword_16,1.284544229765897e-07,167
+Random Forest,keyword_17,4.6312208392804294e-05,132
+Random Forest,keyword_18,2.2921157612216816e-06,163
+Random Forest,keyword_19,0.0002751672469828648,59
+Random Forest,keyword_20,0.0005068043218693887,35
+Random Forest,keyword_21,0.0008147464383682848,24
+Random Forest,keyword_22,4.487103679029669e-06,161
+Random Forest,keyword_23,0.00019606520896861895,77
+Random Forest,keyword_24,5.5872393707785255e-05,128
+Random Forest,keyword_25,0.000843718172712532,23
+Random Forest,keyword_26,3.650901582853455e-05,140
+Random Forest,keyword_27,1.0372318394315977e-05,155
+Random Forest,keyword_28,4.7674556442680725e-06,160
+Random Forest,keyword_29,0.0,168
+Random Forest,keyword_30,8.851238102679781e-05,110
+Random Forest,keyword_31,9.764156358739741e-05,104
+Random Forest,keyword_32,0.00022686170371201853,66
+Random Forest,keyword_33,0.0017644041390941756,18
+Random Forest,keyword_34,0.0004232836983737834,38
+Random Forest,keyword_35,0.0,168
+Random Forest,keyword_36,3.7864167033963296e-05,139
+Random Forest,keyword_37,5.9854645178156824e-05,126
+Random Forest,keyword_38,0.0,168
+Random Forest,keyword_39,0.00010669373945904303,101
+Random Forest,keyword_40,0.0,168
+Random Forest,keyword_41,8.10068563627678e-05,114
+Random Forest,keyword_42,0.0007300727995839052,27
+Random Forest,keyword_43,3.9264216287591084e-05,138
+Random Forest,keyword_44,5.970825161264072e-05,127
+Gradient Boosting,Age,0.003843238956306798,12
+Gradient Boosting,SBP on Admission,0.005692160485392529,9
+Gradient Boosting,Unassisted Resp Rate on Admission,0.000681132062622411,29
+Gradient Boosting,GCS on Admission,0.04786771217693596,2
+Gradient Boosting,RTS on Admission,0.0029038915583556135,14
+Gradient Boosting,TRISS,0.8152505231432808,1
+Gradient Boosting,Risk_Score,0.03184073018728389,3
+Gradient Boosting,Age_Squared,0.004289511227134769,11
+Gradient Boosting,Age_Log,0.0024410325933000203,16
+Gradient Boosting,BP_HR_Ratio,0.006572095429839562,8
+Gradient Boosting,text_length,0.0023249733530653956,17
+Gradient Boosting,word_count,0.0012615608625333166,21
+Gradient Boosting,keyword_count,2.4407799789473397e-05,94
+Gradient Boosting,keyword_density,5.677438955348744e-05,76
+Gradient Boosting,text_risk_score,0.0026395902856711233,15
+Gradient Boosting,severe_injury_flag,0.0029054048803901582,13
+Gradient Boosting,penetrating_injury_flag,0.008522992830586917,6
+Gradient Boosting,elderly_flag,5.078851507325301e-06,122
+Gradient Boosting,critical_gcs,0.0,150
+Gradient Boosting,hypotensive,0.001067022390101365,23
+Gradient Boosting,Gender,7.10506981387088e-05,73
+Gradient Boosting,Injury Type,0.014008365996789915,4
+Gradient Boosting,Transfer In,1.358656427494076e-05,107
+Gradient Boosting,Discharge Status,0.011439795476037122,5
+Gradient Boosting,Age_Group,9.444258395202084e-06,112
+Gradient Boosting,BP_Status,3.1540695405573925e-05,87
+Gradient Boosting,GCS_Status,4.137489702191359e-05,82
+Gradient Boosting,tfidf_0,8.060979843245337e-05,69
+Gradient Boosting,tfidf_1,0.00045948301963244314,36
+Gradient Boosting,tfidf_2,0.00013156167576420776,59
+Gradient Boosting,tfidf_3,0.000466337218689406,34
+Gradient Boosting,tfidf_4,8.903630680150974e-06,115
+Gradient Boosting,tfidf_5,0.0004601305419370956,35
+Gradient Boosting,tfidf_6,8.632431649479672e-05,68
+Gradient Boosting,tfidf_7,7.456236656735761e-05,72
+Gradient Boosting,tfidf_8,0.000127489911663466,60
+Gradient Boosting,tfidf_9,0.00010194682773814471,63
+Gradient Boosting,tfidf_10,0.0,150
+Gradient Boosting,tfidf_11,0.00016726036999689255,55
+Gradient Boosting,tfidf_12,0.0004420890469865689,38
+Gradient Boosting,tfidf_13,7.863790842714845e-05,70
+Gradient Boosting,tfidf_14,0.0,150
+Gradient Boosting,tfidf_15,2.538882829334966e-05,92
+Gradient Boosting,tfidf_16,1.7926173423952395e-05,102
+Gradient Boosting,tfidf_17,0.00013616299104761488,56
+Gradient Boosting,tfidf_18,0.00013180895243740542,58
+Gradient Boosting,tfidf_19,1.9451859533505376e-05,98
+Gradient Boosting,tfidf_20,5.3500338314252195e-05,78
+Gradient Boosting,tfidf_21,3.641595174304113e-06,127
+Gradient Boosting,tfidf_22,0.0004267443680163316,40
+Gradient Boosting,tfidf_23,0.00019171877678696584,52
+Gradient Boosting,tfidf_24,3.836234400847731e-05,85
+Gradient Boosting,tfidf_25,5.575885613089008e-06,120
+Gradient Boosting,tfidf_26,7.271661225228098e-06,116
+Gradient Boosting,tfidf_27,6.344117302487406e-08,145
+Gradient Boosting,tfidf_28,2.2667964012601467e-06,135
+Gradient Boosting,tfidf_29,1.8974314962789476e-06,137
+Gradient Boosting,tfidf_30,4.171073025836816e-06,125
+Gradient Boosting,tfidf_31,3.617855570966923e-09,149
+Gradient Boosting,tfidf_32,0.005386474395345209,10
+Gradient Boosting,tfidf_33,1.7859210583470864e-05,103
+Gradient Boosting,tfidf_34,9.987074493921369e-05,64
+Gradient Boosting,tfidf_35,1.7565776813731923e-05,104
+Gradient Boosting,tfidf_36,4.927003175953924e-06,124
+Gradient Boosting,tfidf_37,0.0004807703106535948,33
+Gradient Boosting,tfidf_38,1.6615535824454457e-05,105
+Gradient Boosting,tfidf_39,1.9045823056708757e-05,99
+Gradient Boosting,tfidf_40,5.888419055134786e-05,75
+Gradient Boosting,tfidf_41,9.571451964173288e-05,66
+Gradient Boosting,tfidf_42,2.454665403062846e-06,133
+Gradient Boosting,tfidf_43,5.041547211565717e-06,123
+Gradient Boosting,tfidf_44,0.0016335255365709151,18
+Gradient Boosting,tfidf_45,2.5650220893191696e-06,132
+Gradient Boosting,tfidf_46,0.0006880036555949208,28
+Gradient Boosting,tfidf_47,1.6429943214244428e-08,146
+Gradient Boosting,tfidf_48,0.0002404719976166589,48
+Gradient Boosting,tfidf_49,0.001494558395784503,19
+Gradient Boosting,tfidf_50,2.783350379924945e-07,142
+Gradient Boosting,tfidf_51,0.0,150
+Gradient Boosting,tfidf_52,5.2588135735304587e-05,79
+Gradient Boosting,tfidf_53,4.5503225041856706e-05,81
+Gradient Boosting,tfidf_54,5.5600046388738184e-05,77
+Gradient Boosting,tfidf_55,0.0005386964881942269,31
+Gradient Boosting,tfidf_56,0.0008145311929885352,25
+Gradient Boosting,tfidf_57,2.025918324826661e-05,96
+Gradient Boosting,tfidf_58,0.0003478153545935884,42
+Gradient Boosting,tfidf_59,1.1003363425097417e-05,108
+Gradient Boosting,tfidf_60,0.0003204430449887623,43
+Gradient Boosting,tfidf_61,2.7181389390962324e-06,130
+Gradient Boosting,tfidf_62,0.0011161363797957224,22
+Gradient Boosting,tfidf_63,2.9556891613073136e-06,129
+Gradient Boosting,tfidf_64,0.00044333854579497057,37
+Gradient Boosting,tfidf_65,2.621249530180818e-05,91
+Gradient Boosting,tfidf_66,3.0024089077460295e-05,88
+Gradient Boosting,tfidf_67,3.391143997045019e-05,86
+Gradient Boosting,tfidf_68,9.51565602924745e-05,67
+Gradient Boosting,tfidf_69,0.0,150
+Gradient Boosting,tfidf_70,0.001409575206821696,20
+Gradient Boosting,tfidf_71,0.0002938627379999329,46
+Gradient Boosting,tfidf_72,0.00017008208832387513,54
+Gradient Boosting,tfidf_73,0.000533790110966398,32
+Gradient Boosting,tfidf_74,2.7153629152709266e-06,131
+Gradient Boosting,tfidf_75,1.8139521891252528e-05,101
+Gradient Boosting,tfidf_76,0.0001798234471049749,53
+Gradient Boosting,tfidf_77,2.72526695640733e-05,90
+Gradient Boosting,tfidf_78,9.231308961372715e-06,114
+Gradient Boosting,tfidf_79,1.9814517812650482e-05,97
+Gradient Boosting,tfidf_80,0.00030225289580136,45
+Gradient Boosting,tfidf_81,0.0,150
+Gradient Boosting,tfidf_82,2.4976714446008098e-05,93
+Gradient Boosting,tfidf_83,1.4044885925197934e-06,138
+Gradient Boosting,tfidf_84,2.9722153387085202e-06,128
+Gradient Boosting,tfidf_85,0.00031234413983956185,44
+Gradient Boosting,tfidf_86,2.2273438707975196e-05,95
+Gradient Boosting,tfidf_87,3.824503633960886e-06,126
+Gradient Boosting,tfidf_88,0.00036365187900394997,41
+Gradient Boosting,tfidf_89,0.0,150
+Gradient Boosting,tfidf_90,0.0,150
+Gradient Boosting,tfidf_91,1.2475875868986625e-08,148
+Gradient Boosting,tfidf_92,0.0006553014067182838,30
+Gradient Boosting,tfidf_93,4.984737495764045e-05,80
+Gradient Boosting,tfidf_94,0.00044138515485291806,39
+Gradient Boosting,tfidf_95,7.767653558907205e-05,71
+Gradient Boosting,tfidf_96,6.420466298505987e-05,74
+Gradient Boosting,tfidf_97,0.00022058204352771028,50
+Gradient Boosting,tfidf_98,0.00012511715081907948,61
+Gradient Boosting,tfidf_99,1.8208055911147446e-05,100
+Gradient Boosting,keyword_0,5.082936019506262e-06,121
+Gradient Boosting,keyword_1,9.391308129260185e-06,113
+Gradient Boosting,keyword_2,2.1819048219912452e-06,136
+Gradient Boosting,keyword_3,0.0,150
+Gradient Boosting,keyword_4,9.650629158175585e-06,110
+Gradient Boosting,keyword_5,0.00011796345318428365,62
+Gradient Boosting,keyword_6,9.51360803688745e-06,111
+Gradient Boosting,keyword_7,2.9943053312407265e-05,89
+Gradient Boosting,keyword_8,0.0,150
+Gradient Boosting,keyword_9,1.2599880243516182e-08,147
+Gradient Boosting,keyword_10,0.00023874479965504996,49
+Gradient Boosting,keyword_11,0.0,150
+Gradient Boosting,keyword_12,2.384145878560698e-06,134
+Gradient Boosting,keyword_13,1.620120148750949e-05,106
+Gradient Boosting,keyword_14,0.0,150
+Gradient Boosting,keyword_15,0.0,150
+Gradient Boosting,keyword_16,0.0,150
+Gradient Boosting,keyword_17,6.919679758189907e-06,117
+Gradient Boosting,keyword_18,9.67981502802789e-07,140
+Gradient Boosting,keyword_19,3.991299457381534e-05,84
+Gradient Boosting,keyword_20,0.0009678104604948274,24
+Gradient Boosting,keyword_21,0.00021203056842982314,51
+Gradient Boosting,keyword_22,0.0,150
+Gradient Boosting,keyword_23,5.334912604842834e-07,141
+Gradient Boosting,keyword_24,6.821919229588108e-06,118
+Gradient Boosting,keyword_25,0.0007077699861530659,27
+Gradient Boosting,keyword_26,4.026822421595024e-05,83
+Gradient Boosting,keyword_27,0.0,150
+Gradient Boosting,keyword_28,0.0,150
+Gradient Boosting,keyword_29,0.0,150
+Gradient Boosting,keyword_30,0.0,150
+Gradient Boosting,keyword_31,0.0,150
+Gradient Boosting,keyword_32,0.0002720331626846977,47
+Gradient Boosting,keyword_33,0.007135313405307423,7
+Gradient Boosting,keyword_34,0.0007919891800316995,26
+Gradient Boosting,keyword_35,0.0,150
+Gradient Boosting,keyword_36,6.688138044277673e-06,119
+Gradient Boosting,keyword_37,9.84586785443124e-05,65
+Gradient Boosting,keyword_38,0.0,150
+Gradient Boosting,keyword_39,9.092402463440562e-08,144
+Gradient Boosting,keyword_40,0.0,150
+Gradient Boosting,keyword_41,0.00013205347409178116,57
+Gradient Boosting,keyword_42,2.2286038277631846e-07,143
+Gradient Boosting,keyword_43,9.687108892080952e-06,109
+Gradient Boosting,keyword_44,1.214728525540261e-06,139
+XGBoost,Age,0.004181011114269495,25
+XGBoost,SBP on Admission,0.005820640828460455,19
+XGBoost,Unassisted Resp Rate on Admission,0.0018176357261836529,48
+XGBoost,GCS on Admission,0.06758969277143478,2
+XGBoost,RTS on Admission,0.0020720609463751316,45
+XGBoost,TRISS,0.5311781764030457,1
+XGBoost,Risk_Score,0.042806100100278854,3
+XGBoost,Age_Squared,0.0,79
+XGBoost,Age_Log,0.0,79
+XGBoost,BP_HR_Ratio,0.004060061648488045,28
+XGBoost,text_length,0.0020994844380766153,44
+XGBoost,word_count,0.0045262291096150875,23
+XGBoost,keyword_count,0.0005597453564405441,69
+XGBoost,keyword_density,0.0009971980471163988,58
+XGBoost,text_risk_score,0.006678626406937838,16
+XGBoost,severe_injury_flag,0.037639159709215164,5
+XGBoost,penetrating_injury_flag,0.03938240557909012,4
+XGBoost,elderly_flag,0.0,79
+XGBoost,critical_gcs,0.0,79
+XGBoost,hypotensive,0.0,79
+XGBoost,Gender,0.0016419172752648592,52
+XGBoost,Injury Type,0.00296744960360229,37
+XGBoost,Transfer In,0.003282829886302352,33
+XGBoost,Discharge Status,0.02869999036192894,6
+XGBoost,Age_Group,0.00366588169708848,31
+XGBoost,BP_Status,0.002692816313356161,39
+XGBoost,GCS_Status,0.0,79
+XGBoost,tfidf_0,0.0013551990268751979,54
+XGBoost,tfidf_1,0.0,79
+XGBoost,tfidf_2,0.00024705243413336575,75
+XGBoost,tfidf_3,0.02003701962530613,8
+XGBoost,tfidf_4,0.0,79
+XGBoost,tfidf_5,0.002204566029831767,42
+XGBoost,tfidf_6,0.0,79
+XGBoost,tfidf_7,0.0006723204860463738,65
+XGBoost,tfidf_8,0.0022933105938136578,41
+XGBoost,tfidf_9,0.0,79
+XGBoost,tfidf_10,0.003249102272093296,34
+XGBoost,tfidf_11,0.0,79
+XGBoost,tfidf_12,0.0020013502798974514,46
+XGBoost,tfidf_13,0.0,79
+XGBoost,tfidf_14,0.0,79
+XGBoost,tfidf_15,0.0010320032015442848,56
+XGBoost,tfidf_16,0.0,79
+XGBoost,tfidf_17,0.001756318029947579,51
+XGBoost,tfidf_18,0.0038226419128477573,30
+XGBoost,tfidf_19,0.0004649635520763695,71
+XGBoost,tfidf_20,0.0,79
+XGBoost,tfidf_21,0.00015460207941941917,78
+XGBoost,tfidf_22,0.004098925273865461,26
+XGBoost,tfidf_23,0.0007430582772940397,62
+XGBoost,tfidf_24,0.004600618965923786,22
+XGBoost,tfidf_25,0.0030722180381417274,36
+XGBoost,tfidf_26,0.0,79
+XGBoost,tfidf_27,0.0009823910659179091,59
+XGBoost,tfidf_28,0.001256593270227313,55
+XGBoost,tfidf_29,0.0,79
+XGBoost,tfidf_30,0.0,79
+XGBoost,tfidf_31,0.0,79
+XGBoost,tfidf_32,0.013900378718972206,9
+XGBoost,tfidf_33,0.003496901597827673,32
+XGBoost,tfidf_34,0.0006260301452130079,67
+XGBoost,tfidf_35,0.00021813051716890186,76
+XGBoost,tfidf_36,0.0,79
+XGBoost,tfidf_37,0.0,79
+XGBoost,tfidf_38,0.0,79
+XGBoost,tfidf_39,0.0021407348103821278,43
+XGBoost,tfidf_40,0.0,79
+XGBoost,tfidf_41,0.0,79
+XGBoost,tfidf_42,0.0,79
+XGBoost,tfidf_43,0.0,79
+XGBoost,tfidf_44,0.005558442790061235,20
+XGBoost,tfidf_45,0.0,79
+XGBoost,tfidf_46,0.007240797393023968,14
+XGBoost,tfidf_47,0.009740656241774559,11
+XGBoost,tfidf_48,0.0007959287031553686,61
+XGBoost,tfidf_49,0.008624278008937836,12
+XGBoost,tfidf_50,0.0,79
+XGBoost,tfidf_51,0.0,79
+XGBoost,tfidf_52,0.0,79
+XGBoost,tfidf_53,0.0,79
+XGBoost,tfidf_54,0.0,79
+XGBoost,tfidf_55,0.004424105864018202,24
+XGBoost,tfidf_56,0.009873061440885067,10
+XGBoost,tfidf_57,0.0,79
+XGBoost,tfidf_58,0.001984667731449008,47
+XGBoost,tfidf_59,0.0023364806547760963,40
+XGBoost,tfidf_60,0.0,79
+XGBoost,tfidf_61,0.0,79
+XGBoost,tfidf_62,0.006357906386256218,17
+XGBoost,tfidf_63,0.0,79
+XGBoost,tfidf_64,0.000616485602222383,68
+XGBoost,tfidf_65,0.0,79
+XGBoost,tfidf_66,0.0,79
+XGBoost,tfidf_67,0.002707410603761673,38
+XGBoost,tfidf_68,0.0003117405285593122,74
+XGBoost,tfidf_69,0.0,79
+XGBoost,tfidf_70,0.0006683563115075231,66
+XGBoost,tfidf_71,0.0,79
+XGBoost,tfidf_72,0.0008872282924130559,60
+XGBoost,tfidf_73,0.0,79
+XGBoost,tfidf_74,0.0007262208382599056,63
+XGBoost,tfidf_75,0.0003377925022505224,73
+XGBoost,tfidf_76,0.0,79
+XGBoost,tfidf_77,0.0,79
+XGBoost,tfidf_78,0.0,79
+XGBoost,tfidf_79,0.0,79
+XGBoost,tfidf_80,0.0031370273791253567,35
+XGBoost,tfidf_81,0.0,79
+XGBoost,tfidf_82,0.0,79
+XGBoost,tfidf_83,0.0,79
+XGBoost,tfidf_84,0.0,79
+XGBoost,tfidf_85,0.0018031955696642399,50
+XGBoost,tfidf_86,0.0,79
+XGBoost,tfidf_87,0.0,79
+XGBoost,tfidf_88,0.0,79
+XGBoost,tfidf_89,0.0,79
+XGBoost,tfidf_90,0.0,79
+XGBoost,tfidf_91,0.0,79
+XGBoost,tfidf_92,0.0,79
+XGBoost,tfidf_93,0.0,79
+XGBoost,tfidf_94,0.0,79
+XGBoost,tfidf_95,0.0,79
+XGBoost,tfidf_96,0.0,79
+XGBoost,tfidf_97,0.0018149755196645856,49
+XGBoost,tfidf_98,0.004090107046067715,27
+XGBoost,tfidf_99,0.0,79
+XGBoost,keyword_0,0.0,79
+XGBoost,keyword_1,0.0,79
+XGBoost,keyword_2,0.0,79
+XGBoost,keyword_3,0.0,79
+XGBoost,keyword_4,0.0,79
+XGBoost,keyword_5,0.004665565676987171,21
+XGBoost,keyword_6,0.000714596884790808,64
+XGBoost,keyword_7,0.0,79
+XGBoost,keyword_8,0.0,79
+XGBoost,keyword_9,0.0,79
+XGBoost,keyword_10,0.005837218835949898,18
+XGBoost,keyword_11,0.0,79
+XGBoost,keyword_12,0.0,79
+XGBoost,keyword_13,0.00017636465781833977,77
+XGBoost,keyword_14,0.0,79
+XGBoost,keyword_15,0.0,79
+XGBoost,keyword_16,0.0,79
+XGBoost,keyword_17,0.0,79
+XGBoost,keyword_18,0.0,79
+XGBoost,keyword_19,0.0013847011141479015,53
+XGBoost,keyword_20,0.008598188869655132,13
+XGBoost,keyword_21,0.02325129322707653,7
+XGBoost,keyword_22,0.0,79
+XGBoost,keyword_23,0.0,79
+XGBoost,keyword_24,0.0,79
+XGBoost,keyword_25,0.0,79
+XGBoost,keyword_26,0.00100464909337461,57
+XGBoost,keyword_27,0.0,79
+XGBoost,keyword_28,0.0,79
+XGBoost,keyword_29,0.0,79
+XGBoost,keyword_30,0.0,79
+XGBoost,keyword_31,0.0,79
+XGBoost,keyword_32,0.0004942325176671147,70
+XGBoost,keyword_33,0.00040108937537297606,72
+XGBoost,keyword_34,0.006820147391408682,15
+XGBoost,keyword_35,0.0,79
+XGBoost,keyword_36,0.0,79
+XGBoost,keyword_37,0.0,79
+XGBoost,keyword_38,0.0,79
+XGBoost,keyword_39,0.0,79
+XGBoost,keyword_40,0.0,79
+XGBoost,keyword_41,0.0038295311387628317,29
+XGBoost,keyword_42,0.0,79
+XGBoost,keyword_43,0.0,79
+XGBoost,keyword_44,0.0,79

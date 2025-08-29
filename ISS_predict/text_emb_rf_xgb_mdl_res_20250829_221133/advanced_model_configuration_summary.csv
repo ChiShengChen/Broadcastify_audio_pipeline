@@ -1,0 +1,2 @@
+Input_File,Total_Samples,Test_Samples,Total_Features,Numerical_Features,Categorical_Features,TFIDF_Features,Keyword_Features,Word2Vec_Features,Training_Date,Best_Model,Best_R2_Score,Model_Type
+medically_consistent_trauma_reg_200.csv,200,40,283,29,7,100,50,100,2025-08-29 22:12:53,XGBoost,0.8942044732504528,Advanced_Text_Embedding

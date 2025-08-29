@@ -1,0 +1,2 @@
+Text_Processing,Medical_Keywords_Count,TFIDF_Max_Features,Keyword_Max_Features,Word2Vec_Vector_Size,Word2Vec_Window,Word2Vec_Min_Count,Word2Vec_Epochs,N_Gram_Range_TFIDF,N_Gram_Range_Keywords,Advanced_Text_Features
+Advanced,170,100,50,100,5,2,10,"(1, 2)","(1, 1)","sentence_count, avg_word_length, unique_word_ratio, bigram_count, trigram_count"
