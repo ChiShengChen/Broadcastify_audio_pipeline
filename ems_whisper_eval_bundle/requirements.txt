@@ -1,0 +1,15 @@
+torch>=2.0
+transformers>=4.40
+datasets>=2.18
+peft>=0.10
+accelerate>=0.28
+soundfile
+librosa
+jiwer>=3.0
+pandas
+tqdm
+boto3  # avoids accelerate->boto3 stub conflict in some envs
+# for run_gap_analysis.py only (t-SNE + plot)
+matplotlib
+scikit-learn
+scipy
