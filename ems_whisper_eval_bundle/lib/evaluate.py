@@ -12,12 +12,17 @@ from pathlib import Path
 
 # Some envs break on transformers->accelerate->boto3->urllib3 mismatch.
 # If real boto3 isn't already importable, stub it out before transformers loads.
+# The stub needs a real ModuleSpec so accelerate's importlib.util.find_spec
+# doesn't trip on __spec__=None (Python 3.10+ behavior).
 import types
 if "boto3" not in sys.modules:
     try:
         import boto3 as _real_boto3  # noqa: F401
     except Exception:
+        from importlib.machinery import ModuleSpec
         _b = types.ModuleType("boto3"); _bs = types.ModuleType("boto3.session")
+        _b.__spec__ = ModuleSpec("boto3", loader=None)
+        _bs.__spec__ = ModuleSpec("boto3.session", loader=None)
         _bs.Session = type("DummySession", (), {})
         _b.session = _bs
         sys.modules["boto3"] = _b

@@ -20,12 +20,18 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-# boto3 stub guard (same as evaluate.py)
+# boto3 stub guard (same as evaluate.py).
+# If real boto3 isn't importable, install a stub *with* a real ModuleSpec so
+# accelerate's importlib.util.find_spec("boto3") doesn't trip on __spec__=None
+# (Python 3.10+ behavior).
 if "boto3" not in sys.modules:
     try:
         import boto3 as _real_boto3  # noqa: F401
     except Exception:
+        from importlib.machinery import ModuleSpec
         _b = types.ModuleType("boto3"); _bs = types.ModuleType("boto3.session")
+        _b.__spec__ = ModuleSpec("boto3", loader=None)
+        _bs.__spec__ = ModuleSpec("boto3.session", loader=None)
         _bs.Session = type("DummySession", (), {})
         _b.session = _bs
         sys.modules["boto3"] = _b

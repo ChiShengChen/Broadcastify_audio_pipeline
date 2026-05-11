@@ -8,7 +8,9 @@ librosa
 jiwer>=3.0
 pandas
 tqdm
-boto3  # avoids accelerate->boto3 stub conflict in some envs
+# boto3 is *not* required — lib/evaluate.py and lib/analyze_gap.py install a
+# self-contained stub before transformers loads. Install it only if you'd
+# rather use the real package for your own reasons.
 # for run_gap_analysis.py only (t-SNE + plot)
 matplotlib
 scikit-learn

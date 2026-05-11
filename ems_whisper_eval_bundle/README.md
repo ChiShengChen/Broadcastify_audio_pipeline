@@ -148,7 +148,7 @@ On our test set of 50 real EMS radio clips, **none of the synthetic-data fine-tu
 
 - **`CUDA out of memory`**: run one model at a time with `--models baseline`, then `--models v6_single`, etc.
 - **`No module named 'peft'`**: re-run `pip install -r requirements.txt`. PEFT is required to load LoRA adapters.
-- **`boto3.__spec__ is None`**: a `boto3` install is partially broken. Run `pip install --force-reinstall boto3`.
+- **`boto3.__spec__ is None`**: shouldn't happen — `lib/evaluate.py` and `lib/analyze_gap.py` now stub `boto3` with a real `ModuleSpec` before `transformers` loads. If you still see this, you're likely importing `transformers` *before* these modules in your own code; import from `lib/` first, or `pip install boto3` to short-circuit the stub.
 - **WAV files not found**: the script matches CSV `Filename` exactly against the basename of files in `--wav_dir` (no recursion). Check both sides match (e.g. case sensitivity, .wav vs .WAV).
 
 ## Reference
